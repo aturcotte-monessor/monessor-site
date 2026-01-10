@@ -1,3 +1,14 @@
-# monessor-site
-FR : Site personnel statique pour monessor.com (HTML/CSS). Déployé sur Vercel.  
-EN : Static personal website for monessor.com (HTML/CSS). Deployed on Vercel.
+# monessor.com
+
+Site personnel statique (HTML/CSS).
+
+## Stack
+- HTML
+- CSS
+- JavaScript léger (obfuscation email)
+
+## Déploiement
+Hébergé sur Vercel.
+
+## Développement local
+Ouvrir `index.html` directement ou utiliser Live Server dans VS Code.
