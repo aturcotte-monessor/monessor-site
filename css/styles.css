@@ -422,7 +422,7 @@ h3{
     margin-top: 0.75rem;
   }
   .hero-synthesis {
-    max-width: 40ch;
+    max-width: none;
   }
   .hero-synthesis--desktop {
     display: none;
