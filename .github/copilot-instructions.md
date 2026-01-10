@@ -41,6 +41,11 @@ Keep this file short, actionable and specific to this static site.
 - **Structure**:
   - Favor simple, readable markup over abstraction.
   - Avoid premature refactoring into components or templates.
+- **SEO & semantic markup**:
+  - Keep heading hierarchy clean: h1 once per page (main topic), then h2, h3 in order. Never skip levels.
+  - Each page has a canonical `<link rel="canonical">` tag (e.g., `/index.html` or `/en/index.html`).
+  - Use `<link rel="alternate" hreflang="...">` for language variants (already in place).
+  - Write meta descriptions naturally for humans first; avoid keyword stuffing.
 
 ## Coding principles
 - Prefer clarity over cleverness.
@@ -66,6 +71,8 @@ Keep this file short, actionable and specific to this static site.
 ## Examples (what to change and how)
 - Update the hero title or meta description:
   - Edit `<title>` and `<meta name="description">` in `index.html`.
+  - Keep meta descriptions between 155–160 characters (fits most search results).
+  - Ensure `<h1>` matches or closely mirrors `<title>` for consistency.
 - Change color tokens:
   - Edit `:root` variables at the top of `css/styles.css` (e.g. `--accent`, `--bg`).
 - Email obfuscation:
@@ -109,3 +116,11 @@ Keep this file short, actionable and specific to this static site.
 ## Language conventions
 - Use generic language codes (`fr`, `en`) only.
 - Do not introduce region-specific variants (`en-US`, `en-CA`) unless explicitly requested.
+
+## SEO checklist for updates
+When updating page content or structure, verify:
+1. **Page title** — 50–60 characters, includes primary keyword, matches h1 intent.
+2. **Meta description** — 155–160 characters, accurately summarizes content, not keyword-stuffed.
+3. **Heading hierarchy** — h1 (once), h2s (main sections), h3s (subsections), no skipped levels.
+4. **Canonical URL** — each page self-references its canonical URL to prevent duplicate-content issues.
+5. **Hreflang tags** — language alternates point to the correct versions (`/` for French, `/en/` for English).
