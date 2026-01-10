@@ -311,3 +311,32 @@ h3{
   .about{grid-template-columns: 1fr}
 }
 
+/* Improve mobile responsiveness and touch/layout spacing */
+@media (max-width: 600px) {
+  .nav{ padding: 10px 0; }
+  .brand{ font-size: 16px; }
+  .nav-links{ gap: 10px; font-size: 14px; align-items: center; }
+
+  .container{ width: calc(100% - 32px); }
+
+  .hero{ padding-top: 32px; }
+  .hero-grid{ gap: 18px; }
+
+  h1{ font-size: clamp(28px, 6vw, 40px); }
+  .lead{ font-size: 16px; max-width: 60ch; }
+
+  .hero-cta{ flex-direction: column; align-items: stretch; gap: 10px; }
+  .btn{ padding: 10px 14px; }
+
+  /* Keep hero card compact and centered on small screens */
+  .hero-card{ max-width: 360px; margin: 0 auto; }
+  .portrait{ aspect-ratio: 1/1; }
+
+  /* Reduce visual noise and improve vertical rhythm */
+  .microproof{ display: none; }
+  .card, .about-box, .contact-box, .bullet, .step{ padding: 12px; }
+
+  /* Ensure footers and small text remain readable */
+  .footer{ padding-top: 14px; }
+}
+
