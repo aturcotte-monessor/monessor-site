@@ -403,20 +403,34 @@ h3{
   .nav.nav-open .nav-links a.btn{ margin-top:6px; }
 }
 
+.hero-synthesis--mobile {
+  display: none;
+}
+
 /* Improve mobile responsiveness and touch/layout spacing */
 @media (max-width: 640px) {
   .nav{ padding: 10px 0; }
   .brand{ font-size: 16px; }
   .nav-links{ gap: 10px; font-size: 14px; align-items: center; }
-
   .container{ width: calc(100% - 32px); }
-
   .hero{ padding-top: 32px; }
   .hero-grid{ gap: 18px; }
   .hero-detail {
     display: none;
   }
+  .hero p + p {
+    margin-top: 0.75rem;
+  }
+  .hero-synthesis {
+    max-width: 32ch;
+  }
+  .hero-synthesis--desktop {
+    display: none;
+  }
 
+.hero-synthesis--mobile {
+    display: block;
+  }
   h1{ font-size: clamp(28px, 6vw, 40px); }
   .lead{ font-size: 16px; max-width: 60ch; }
 
