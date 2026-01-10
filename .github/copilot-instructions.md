@@ -105,3 +105,7 @@ Keep this file short, actionable and specific to this static site.
   1. Preview locally and confirm visual/functional change.
   2. Keep PRs atomic (one logical change per PR).
   3. Reference changed files in the PR description.
+
+## Language conventions
+- Use generic language codes (`fr`, `en`) only.
+- Do not introduce region-specific variants (`en-US`, `en-CA`) unless explicitly requested.
