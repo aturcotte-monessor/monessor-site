@@ -51,6 +51,21 @@ img{max-width:100%; display:block}
   padding:14px 0;
 }
 
+/* Nav toggle (hamburger) - hidden on desktop */
+.nav-toggle{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  border-radius:8px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text);
+}
+.nav-toggle svg{ width:20px; height:20px; }
+.nav-toggle:focus{ outline: 2px solid rgba(106,167,255,0.14); outline-offset:2px }
+
 .brand{
   font-weight:700;
   letter-spacing:.2px;
@@ -357,6 +372,26 @@ h3{
   .steps{grid-template-columns: 1fr}
   .bullets{grid-template-columns: 1fr}
   .about{grid-template-columns: 1fr}
+
+  /* show hamburger and collapse nav-links into a stacked panel */
+  .nav-toggle{ display:inline-flex; }
+  .nav-links{ display:none; }
+  .nav.nav-open .nav-links{
+    display:flex;
+    position: absolute;
+    right: 16px;
+    top: 64px;
+    flex-direction: column;
+    gap: 12px;
+    background: rgba(16,24,39,0.96);
+    border: 1px solid var(--line);
+    padding: 12px 14px;
+    border-radius: 12px;
+    min-width: 200px;
+    z-index: 40;
+  }
+  .nav.nav-open .nav-links a{ color: var(--muted); }
+  .nav.nav-open .nav-links a.btn{ margin-top:6px; }
 }
 
 /* Improve mobile responsiveness and touch/layout spacing */
