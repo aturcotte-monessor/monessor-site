@@ -88,3 +88,20 @@ Keep this file short, actionable and specific to this static site.
 
 ## If anything here is unclear
 - Update this file and include the clarification in the same commit.
+
+## Quick edit checklist
+- Common safe edits and where to make them:
+  - Change hero text / SEO: update `<title>` and the page `<h1>` in `index.html`.
+  - Adjust colors: edit `:root` tokens in `css/styles.css` (e.g. `--accent`, `--bg`).
+  - Replace portrait or favicon: add file to `assets/` and update the `src` in `index.html`.
+
+## Preview & validation (copyable)
+- Preview locally: open `index.html` in a browser or use Live Server (extension `ritwickdey.liveserver`).
+- Quick validation: visually inspect changes in-browser; run an HTML validator externally if needed.
+
+## Commit & PR conventions
+- Commit message style: short, imperative scope (e.g. `docs: update hero title`, `style: tweak --accent color`).
+- PR checklist:
+  1. Preview locally and confirm visual/functional change.
+  2. Keep PRs atomic (one logical change per PR).
+  3. Reference changed files in the PR description.
