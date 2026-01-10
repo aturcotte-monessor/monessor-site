@@ -123,6 +123,15 @@ img{max-width:100%; display:block}
 .hero{
   padding-top: 56px;
 }
+.hero-synthesis {
+  margin-top: 0.75rem;
+  max-width: 60ch;
+  opacity: 0.9;
+}
+.hero-detail {
+  margin-top: 0.75rem;
+  opacity: 0.9;
+}
 .hero-grid{
   display:grid;
   grid-template-columns: 1.35fr .85fr;
