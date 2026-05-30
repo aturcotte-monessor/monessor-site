@@ -1,27 +1,30 @@
-:root{
-  --bg: #0b0d12;
-  --bg2:#0f1420;
-  --text:#e9edf7;
-  --muted:#a8b0c5;
-  --card:#101827;
-  --line: rgba(255,255,255,.10);
-  --accent:#6aa7ff;
-
+:root {
+  /* --bg: #0b0d12; */
+  --bg: #0e1315;
+  --bg2: #0f1420;
+  --text: #e9edf7;
+  --muted: #a8b0c5;
+  --card: #101827;
+  --line: rgba(255, 255, 255, .08);
   --radius: 16px;
   --max: 1100px;
-  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+
+  /* Monessor Branding */
+  --teal: #23545b;           /* Transformative Teal */
+  --mint: #88d8b0;          /* Coral Pink (Innovation & Accentuation) */
+  --accent: var(--mint);
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;
+body {
+  margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  background: radial-gradient(1200px 600px at 20% 0%, rgba(106,167,255,.16), transparent 60%),
-              radial-gradient(900px 500px at 80% 10%, rgba(255,255,255,.06), transparent 60%),
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(35, 84, 91, 0.25), transparent 60%),
+              radial-gradient(900px 500px at 80% 10%, rgba(255, 111, 97, 0.05), transparent 60%),
               var(--bg);
-  color:var(--text);
-  .nav-links a:not(.btn):hover{color:var(--text); text-decoration:none}
+  color: var(--text);
 }
 
 a{color:inherit; text-decoration:none}
@@ -71,6 +74,17 @@ img{max-width:100%; display:block}
   letter-spacing:.2px;
   font-size:18px;
   text-decoration:none !important;
+}
+.site-branding {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Crée l'espace idéal entre l'icône et le mot Monessor */
+  text-decoration: none;
+}
+.header-logo-icon {
+  height: 28px; /* Ajuste cette valeur pour que l'icône ait la même hauteur visuelle que ton texte */
+  width: auto;  /* Conserve les proportions parfaites de tes chevrons */
+  display: block;
 }
 
 .nav-links{
@@ -189,18 +203,18 @@ h3{
   flex-wrap:wrap;
 }
 
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding: 12px 16px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--accent), #4c8fe6);
+.btn {
+  background: linear-gradient(180deg, var(--mint), #6fc299);
   color: #07101f;
   font-weight: 800;
-  border: 1px solid rgba(0,0,0,0.22);
-  box-shadow: 0 8px 20px rgba(16,36,64,0.30), var(--shadow);
-  text-decoration:none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  box-shadow: 0 8px 20px rgba(16, 36, 64, 0.30), var(--shadow);
+  text-decoration: none !important;
   transition: transform .14s ease, box-shadow .14s ease, filter .14s ease;
   position: relative;
   overflow: hidden;
@@ -449,3 +463,24 @@ h3{
   .footer{ padding-top: 14px; }
 }
 
+.libutton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7px;
+  text-align: center;
+  outline: none;
+  text-decoration: none !important;
+  background: transparent;
+  color: var(--mint);
+  width: 200px;
+  height: 32px;
+  border-radius: 16px;
+  border: 1px solid var(--mint);
+  box-shadow: none;
+  font-family: "SF Pro Text", Helvetica, sans-serif;
+}
+
+.libutton:hover {
+  background: rgba(136, 216, 176, 0.05); /* Légère lueur Mint au survol */
+}
