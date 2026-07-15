@@ -213,35 +213,68 @@
   <div class="container">
     <h2>Services</h2>
 
-    <div class="cards cards--services">
-      <article class="card">
-        <h3>CTO à temps partagé</h3>
-        <ul>
-          <li>Leadership technologique senior</li>
-          <li>Alignement exécutif</li>
-          <li>Plans 30-60-90 jours</li>
-        </ul>
-      </article>
+    <!-- Trust Badges / Credibility Indicators -->
+    <div class="trust-badges">
+      <div class="badge">
+        <div class="badge-value">20+</div>
+        <div class="badge-label">Ans de leadership technologique senior</div>
+      </div>
+      <div class="badge">
+        <div class="badge-value">Pragmatique</div>
+        <div class="badge-label">Approche exécutive orientée résultats</div>
+      </div>      
+      <div class="badge">
+        <div class="badge-value">100%</div>
+        <div class="badge-label">Livraison par consortium d'experts chevronnés</div>
+      </div>
+    </div>
 
-      <article class="card">
-        <h3>Stratégie & gouvernance</h3>
-        <ul>
-          <li>Roadmap et priorisation</li>
-          <li>Stratégie AI/ML & automatisation</li>
-          <li>Cadres décisionnels</li>
-          <li>Organisation & modèle opérationnel</li>
-        </ul>
-      </article>
+    <!-- Accordion Services -->
+    <div class="accordion-container">
+      <!-- Accordion Item 1: Fractional CTO -->
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="service-1-content">
+          <span>CTO à temps partagé</span>
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="accordion-content" id="service-1-content">
+          <p class="accordion-text">
+            Un leadership technologique senior intégré à votre équipe de direction pour aligner la feuille de route produit avec vos objectifs d'affaires. Nous intervenons dans la définition des plans 30-60-90 jours, la gestion de crise et la stabilisation des équipes techniques sans les coûts d'un exécutif permanent.
+          </p>
+        </div>
+      </div>
 
-      <article class="card">
-        <h3>Modernisation de plateformes</h3>
-        <ul>
-          <li>Vendor & build-vs-buy</li>
-          <li>Architecture pragmatique</li>
-          <li>Évaluation plateformes AI</li>
-          <li>Réduction de dette technique</li>
-        </ul>
-      </article>
+      <!-- Accordion Item 2: Strategy & Governance -->
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="service-2-content">
+          <span>Stratégie &amp; gouvernance</span>
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="accordion-content" id="service-2-content">
+          <p class="accordion-text">
+            Traduction de la vision d'affaires en architectures robustes et sécurisées. Nous concevons les cadres décisionnels nécessaires pour naviguer les environnements hautement régulés (BSIF / OSFI), optimiser l'organisation de vos équipes et structurer vos initiatives IA et automatisation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Accordion Item 3: Platform Modernization -->
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="service-3-content">
+          <span>Modernisation de plateformes</span>
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="accordion-content" id="service-3-content">
+          <p class="accordion-text">
+            Arbitrage pragmatique <em>Build vs Buy</em>, réduction de la dette technique héritée (<em>legacy</em>) et évaluation de la viabilité des plateformes. Nous sécurisons vos trajectoires de migration pour minimiser les risques opérationnels et maximiser le rendement de vos investissements technologiques.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -352,9 +385,14 @@
     </p>
 
     <div class="contact-box">
-      <a id="email-button" class="btn" href="#" aria-label="Écrire un courriel">
-        Écrire un courriel
-      </a>
+      <div class="contact-actions">
+        <a id="email-button" class="btn" href="#" aria-label="Écrire un courriel">
+          Écrire un courriel
+        </a>
+        <a class="btn btn--outline" href="https://calendar.app.google/jrWp3LMihMCr5qew7" target="_blank" rel="noopener noreferrer" aria-label="Planifier une consultation">
+          Planifier une consultation
+        </a>
+      </div>
       <p class="small muted" style="margin-top:12px">
         Ou directement :
         <a id="email-link-2" href="#" aria-label="Adresse courriel">
@@ -445,6 +483,32 @@
     // close on Escape
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeNav();
+    });
+  })();
+</script>
+
+<!-- ACCORDION SCRIPT -->
+<script>
+  (function () {
+    const triggers = document.querySelectorAll('.accordion-trigger');
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', function () {
+        const item = this.closest('.accordion-item');
+        const isOpen = item.classList.contains('open');
+
+        // Close all other items
+        document.querySelectorAll('.accordion-item.open').forEach(openItem => {
+          if (openItem !== item) {
+            openItem.classList.remove('open');
+            openItem.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle current item
+        item.classList.toggle('open');
+        this.setAttribute('aria-expanded', !isOpen);
+      });
     });
   })();
 </script>

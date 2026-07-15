@@ -207,35 +207,68 @@
   <div class="container">
     <h2>Services</h2>
 
-    <div class="cards cards--services">
-      <article class="card">
-        <h3>Fractional CTO</h3>
-        <ul>
-          <li>Senior technology leadership</li>
-          <li>Executive alignment</li>
-          <li>30–60–90 day plans</li>
-        </ul>
-      </article>
+    <!-- Trust Badges / Credibility Indicators -->
+    <div class="trust-badges">
+      <div class="badge">
+        <div class="badge-value">20+</div>
+        <div class="badge-label">Years of senior technology leadership</div>
+      </div>
+      <div class="badge">
+        <div class="badge-value">Pragmatic</div>
+        <div class="badge-label">Results-oriented executive approach</div>
+      </div>      
+      <div class="badge">
+        <div class="badge-value">100%</div>
+        <div class="badge-label">Delivery by seasoned expert consortium</div>
+      </div>
+    </div>
 
-      <article class="card">
-        <h3>Strategy & Governance</h3>
-        <ul>
-          <li>Roadmap and prioritization</li>
-          <li>AI/ML & automation strategy</li>
-          <li>Decision frameworks</li>
-          <li>Organization & operating model</li>
-        </ul>
-      </article>
+    <!-- Accordion Services -->
+    <div class="accordion-container">
+      <!-- Accordion Item 1: Fractional CTO -->
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="service-1-content">
+          <span>Fractional CTO</span>
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="accordion-content" id="service-1-content">
+          <p class="accordion-text">
+            Senior technology leadership embedded within your executive team to align product roadmap with business objectives. We guide 30–60–90 day planning, crisis management, and technical team stabilization without the cost of a full-time executive.
+          </p>
+        </div>
+      </div>
 
-      <article class="card">
-        <h3>Platform Modernization</h3>
-        <ul>
-          <li>Vendor & build-vs-buy</li>
-          <li>Pragmatic architecture</li>
-          <li>AI platform evaluation</li>
-          <li>Technical debt reduction</li>
-        </ul>
-      </article>
+      <!-- Accordion Item 2: Strategy & Governance -->
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="service-2-content">
+          <span>Strategy &amp; Governance</span>
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="accordion-content" id="service-2-content">
+          <p class="accordion-text">
+            Translating business vision into robust and secure architectures. We design the decision-making frameworks needed to navigate highly regulated environments (BSIF / OSFI), optimize team structure, and architect AI and automation initiatives.
+          </p>
+        </div>
+      </div>
+
+      <!-- Accordion Item 3: Platform Modernization -->
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="service-3-content">
+          <span>Platform Modernization</span>
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="accordion-content" id="service-3-content">
+          <p class="accordion-text">
+            Pragmatic <em>build vs. buy</em> arbitrage, legacy technical debt reduction, and platform viability assessment. We secure migration trajectories to minimize operational risk and maximize return on your technology investments.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -331,9 +364,14 @@
     </p>
 
     <div class="contact-box">
-      <a id="email-button" class="btn" href="#" aria-label="Send an email">
-        Send an email
-      </a>
+      <div class="contact-actions">
+        <a id="email-button" class="btn" href="#" aria-label="Send an email">
+          Send an email
+        </a>
+        <a class="btn btn--outline" href="https://calendar.app.google/jrWp3LMihMCr5qew7" target="_blank" rel="noopener noreferrer" aria-label="Schedule a consultation">
+          Schedule a consultation
+        </a>
+      </div>
       <p class="small muted" style="margin-top:12px">
         Or directly:
         <a id="email-link-2" href="#" aria-label="Email address">
@@ -424,6 +462,32 @@
     // close on Escape
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeNav();
+    });
+  })();
+</script>
+
+<!-- ACCORDION SCRIPT -->
+<script>
+  (function () {
+    const triggers = document.querySelectorAll('.accordion-trigger');
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', function () {
+        const item = this.closest('.accordion-item');
+        const isOpen = item.classList.contains('open');
+
+        // Close all other items
+        document.querySelectorAll('.accordion-item.open').forEach(openItem => {
+          if (openItem !== item) {
+            openItem.classList.remove('open');
+            openItem.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle current item
+        item.classList.toggle('open');
+        this.setAttribute('aria-expanded', !isOpen);
+      });
     });
   })();
 </script>

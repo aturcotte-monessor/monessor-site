@@ -12,8 +12,11 @@
 
   /* Monessor Branding */
   --teal: #23545b;           /* Transformative Teal */
-  --mint: #88d8b0;          /* Coral Pink (Innovation & Accentuation) */
+  --mint: #88d8b0;          /* Mint Green */
   --accent: var(--mint);
+  --coral: #FF6F61;          /* Coral Pink (Executive & Accentuation) */
+  --light-bg: #F8FAFC;       /* Bright light gray for Services section */
+  --light-text: #23545B;     /* Transformative Teal for light section text */
 }
 
 *{box-sizing:border-box}
@@ -342,27 +345,44 @@ h3{
   gap: 14px;
 }
 .step{
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 16px;
-  background: rgba(16,24,39,.45);
+  border: 1px solid rgba(35, 84, 91, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(35, 84, 91, 0.04);
+}
+.step h3{
+  color: var(--light-text);
+  margin: 8px 0 8px 0;
 }
 .step-num{
   margin: 0 0 10px;
   font-weight: 900;
   letter-spacing: .12em;
-  color: rgba(106,167,255,.9);
+  color: var(--light-text);
 }
-.step p{color: var(--muted); margin: 8px 0 0}
+.step p{
+  color: #3a4a52;
+  margin: 8px 0 0;
+}
 
 .note{
-  margin-top: 16px;
-  border-left: 3px solid rgba(106,167,255,.9);
-  padding: 12px 14px;
-  background: rgba(106,167,255,.08);
-  border-radius: 12px;
+  margin-top: 32px;
+  padding: 20px;
+  background: var(--light-text);
+  border: none;
+  border-radius: 0;
+  color: white;
 }
-.note p{margin:0}
+.note p{
+  margin: 0;
+  color: white;
+  font-weight: 500;
+}
+.note strong{
+  color: white;
+  font-weight: 700;
+}
 
 .about{
   display:grid;
@@ -391,6 +411,196 @@ h3{
   background: rgba(16,24,39,.45);
 }
 
+.contact-actions{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn--outline{
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: none;
+  font-weight: 600;
+}
+.btn--outline:hover{
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.35);
+  color: var(--text);
+}
+.btn--outline:focus-visible{
+  outline: 2px solid rgba(106,167,255,0.18);
+  outline-offset: 3px;
+}
+
+/* Trust Badges / Credibility Indicators */
+.trust-badges {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 48px;
+  padding: 32px 0;
+  border-top: 1px solid rgba(35, 84, 91, 0.12);
+  border-bottom: 1px solid rgba(35, 84, 91, 0.12);
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.badge-value {
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--coral);
+  line-height: 1.1;
+}
+
+.badge-label {
+  font-size: 13px;
+  color: var(--light-text);
+  line-height: 1.4;
+  max-width: 140px;
+}
+
+/* Services Section Light Theme */
+#services {
+  background: var(--light-bg);
+  color: var(--light-text);
+  border-top: none;
+  border-bottom: 1px solid rgba(35, 84, 91, 0.08);
+}
+
+#services h2 {
+  color: var(--light-text);
+  margin-bottom: 32px;
+}
+
+/* Approche Section Light Theme */
+#approche,
+#approach {
+  background: var(--light-bg);
+  color: var(--light-text);
+  border-top: none;
+  border-bottom: 1px solid rgba(35, 84, 91, 0.08);
+}
+
+#approche h2,
+#approach h2 {
+  color: var(--light-text);
+}
+
+/* Accordion Container */
+.accordion-container {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+/* Accordion Item */
+.accordion-item {
+  border: none;
+  border-bottom: 1px solid rgba(35, 84, 91, 0.15);
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* Accordion Trigger (Summary) */
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.2s ease;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--light-text);
+  font-family: inherit;
+}
+
+.accordion-trigger:hover {
+  opacity: 0.85;
+}
+
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.2s ease;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--light-text);
+  font-family: inherit;
+}
+
+.accordion-trigger:hover {
+  opacity: 0.85;
+}
+
+.accordion-trigger:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: -2px;
+}
+
+/* Chevron Icon */
+.accordion-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--coral);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: 12px;
+}
+
+.accordion-item.open .accordion-chevron {
+  transform: rotate(180deg);
+}
+
+/* Accordion Content */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+}
+
+.accordion-item.open .accordion-content {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.accordion-text {
+  padding: 12px 24px 0 24px;
+  color: var(--light-text);
+  line-height: 1.6;
+  font-size: 15px;
+  margin: 0;
+}
+
 .footer{
   margin-top: 26px;
   padding-top: 18px;
@@ -406,6 +616,7 @@ h3{
   .steps{grid-template-columns: 1fr}
   .bullets{grid-template-columns: 1fr}
   .about{grid-template-columns: 1fr}
+  .trust-badges{grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 
   /* show hamburger and collapse nav-links into a stacked panel */
   .nav-toggle{ display:inline-flex; }
@@ -468,7 +679,35 @@ h3{
 
   /* Reduce visual noise and improve vertical rhythm */
   .microproof{ display: none; }
-  .card, .about-box, .contact-box, .bullet, .step{ padding: 12px; }
+  .card, .about-box, .contact-box, .bullet{ padding: 12px; }
+  .step{ padding: 16px; }
+
+  /* Contact Actions responsive */
+  .contact-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .contact-actions .btn {
+    width: 100%;
+  }
+
+  /* Trust Badges responsive */
+  .trust-badges {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 24px 0;
+  }
+
+  /* Accordion responsive */
+  .accordion-trigger {
+    padding: 0 20px;
+    font-size: 15px;
+  }
+
+  .accordion-text {
+    padding: 12px 20px 0 20px;
+    font-size: 14px;
+  }
 
   /* Ensure footers and small text remain readable */
   .footer{ padding-top: 14px; }
