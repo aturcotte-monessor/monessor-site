@@ -390,13 +390,17 @@
         <a id="email-button" class="btn" href="#" aria-label="Écrire un courriel">
           Écrire un courriel
         </a>
-        <a class="btn btn--outline" href="https://calendar.app.google/jrWp3LMihMCr5qew7" target="_blank" rel="noopener noreferrer" aria-label="Planifier une consultation">
-          Planifier une consultation
+        <a class="btn btn--outline" href="https://calendar.app.google/jrWp3LMihMCr5qew7" target="_blank" rel="noopener noreferrer" aria-label="Planifier une rencontre">
+          Planifier une rencontre
         </a>
       </div>
-      <p class="small muted" style="margin-top:12px">
-        Ou directement :
-        <a id="email-link-2" href="#" aria-label="Adresse courriel">
+      <p class="small contact-meta contact-meta--phone">
+        <span class="contact-label">Téléphone :</span>
+        <span class="contact-value"><span class="phone-secure" aria-label="Numéro de téléphone">Appeler</span></span>
+      </p>
+      <p class="small contact-meta">
+        <span class="contact-label">Ou directement :</span>
+        <a id="email-link-2" class="contact-value" href="#" aria-label="Adresse courriel">
           <span data-user="info" data-domain="monessor" data-tld="com">Contact</span>
         </a>
       </p>
@@ -404,7 +408,7 @@
 
 
     <footer class="footer">
-      <p>© <span id="year"></span> Services-conseils Monessor inc.</p>
+      <p class="small footer-line">© <span id="year"></span> Services-conseils Monessor inc. <span class="footer-separator" aria-hidden="true"> | </span> <span class="contact-label">Téléphone :</span> <span class="contact-value"><span class="phone-secure" aria-label="Numéro de téléphone">Appeler</span></span></p>
     </footer>
   </div>
 </section>

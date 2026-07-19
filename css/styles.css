@@ -411,6 +411,59 @@ h3{
   background: rgba(16,24,39,.45);
 }
 
+.contact-meta{
+  margin: 12px 0 0;
+}
+
+.contact-meta .contact-label{
+  margin-right: 6px;
+}
+
+.contact-meta--phone{
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.contact-box .contact-meta:last-child{
+  margin-bottom: 0;
+}
+
+.contact-label{
+  color: #c4cede;
+}
+
+.contact-value,
+.contact-value:visited,
+.contact-value:hover,
+.contact-value:active,
+.contact-value:focus-visible,
+.contact-meta a,
+.contact-meta a:visited,
+.contact-meta a:hover,
+.contact-meta a:active,
+.contact-meta a:focus-visible,
+.footer .contact-value,
+.footer .contact-value:visited,
+.footer a,
+.footer a:visited,
+.footer a:hover,
+.footer a:active,
+.footer a:focus-visible{
+  color: #ffffff;
+}
+
+.footer-line{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin: 0;
+}
+
+.footer-separator{
+  color: #c4cede;
+}
+
 .contact-actions{
   display: flex;
   gap: 12px;

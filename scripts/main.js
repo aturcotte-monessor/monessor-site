@@ -31,6 +31,29 @@
   if (btn && email) {
     btn.href = "mailto:" + email;
   }
+
+  function wirePhone(selector) {
+    const slots = document.querySelectorAll(selector);
+    if (!slots.length) return;
+
+    const area = "514";
+    const mid = "316";
+    const last = "7743";
+    const phoneDisplay = area + "-" + mid + "-" + last;
+    const phoneHref = "+1" + area + mid + last;
+    const isFrench = document.documentElement.lang.toLowerCase().startsWith("fr");
+    const labelPrefix = isFrench ? "Appeler " : "Call ";
+
+    slots.forEach(function (slot) {
+      const link = document.createElement("a");
+      link.href = "tel:" + phoneHref;
+      link.textContent = phoneDisplay;
+      link.setAttribute("aria-label", labelPrefix + phoneDisplay);
+      slot.replaceWith(link);
+    });
+  }
+
+  wirePhone(".phone-secure");
 })();
 
 // YEAR INJECTION SCRIPT
