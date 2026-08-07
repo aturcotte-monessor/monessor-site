@@ -63,7 +63,7 @@ const sectionLinks = isFr
         <div class="flex flex-col gap-3 text-sm text-slate-200">
           {sectionLinks.map((link) => <a href={link.href}>{link.label}</a>)}
           <a href={switchPath}>{switchLabel}</a>
-          <a href="#contact" class="inline-flex justify-center rounded-full bg-[#6EE7B7] px-4 py-2 font-semibold text-slate-950 no-underline">
+          <a href="#contact" class="inline-flex justify-center rounded-full bg-[#6EE7B7] px-4 py-2 font-semibold !text-slate-950 hover:!text-slate-950 no-underline">
             Contact
           </a>
         </div>
@@ -73,7 +73,7 @@ const sectionLinks = isFr
     <div class="hidden md:flex items-center gap-6 text-sm text-slate-200">
       {sectionLinks.map((link) => <a class="hover:text-[#6EE7B7] transition-colors" href={link.href}>{link.label}</a>)}
       <a class="hover:text-[#6EE7B7] transition-colors" href={switchPath}>{switchLabel}</a>
-      <a href="#contact" class="inline-flex items-center rounded-full bg-[#6EE7B7] px-4 py-2 font-semibold text-slate-950 no-underline hover:brightness-95 transition-all">
+      <a href="#contact" class="inline-flex items-center rounded-full bg-[#6EE7B7] px-4 py-2 font-semibold !text-slate-950 hover:!text-slate-950 no-underline hover:brightness-95 transition-all">
         Contact
       </a>
     </div>
