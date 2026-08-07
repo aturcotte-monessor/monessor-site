@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('insights', ({ id, data }) => id.startsWith('en/') && data.lang === 'en');
+
+  return entries.map((entry) => ({
+    params: { slug: entry.id.replace(/^en\//, '').replace(/\.md$/, '') },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const metaParts = [entry.data.readTime, entry.data.author].filter(Boolean);
+
+let switchHref = `/insights/${entry.id.replace(/^en\//, '').replace(/\.md$/, '')}/`;
+
+if (entry.data.translationKey) {
+  const counterpart = await getCollection(
+    'insights',
+    ({ id, data }) => id.startsWith('fr/') && data.lang === 'fr' && data.translationKey === entry.data.translationKey
+  );
+
+  if (counterpart.length > 0) {
+    switchHref = `/insights/${counterpart[0].id.replace(/^fr\//, '').replace(/\.md$/, '')}/`;
+  }
+}
+---
+
+<Layout locale="en" switchHref={switchHref} title={`${entry.data.title} - Monessor`} description={entry.data.excerpt}>
+  <section class="bg-[#F8FAFC] min-h-[calc(100vh-80px)] py-16">
+    <article class="max-w-7xl mx-auto px-6 lg:px-8">
+      <p class="text-xs uppercase tracking-[0.14em] text-slate-500">
+        {entry.data.pubDate.toLocaleDateString('en-CA')}
+        {metaParts.length > 0 ? ` • ${metaParts.join(' • ')}` : ''}
+      </p>
+      <h1 class="mt-2 text-4xl font-semibold tracking-tight text-[#23545B]">{entry.data.title}</h1>
+      <p class="mt-4 max-w-3xl text-lg text-slate-700">{entry.data.excerpt}</p>
+
+      <div class="mt-10 max-w-none [&_p]:text-slate-800 [&>p]:mb-6 [&>p]:leading-relaxed [&_h2]:text-[#23545B] [&_h2]:font-semibold [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-[#23545B] [&_h3]:text-[#23545B] [&_h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-3 [&_a]:text-[#23545B] hover:[&_a]:text-[#FF6F61] [&_ul]:text-slate-700 [&>ul]:my-6 [&>ul]:space-y-2 [&>ul]:list-disc [&>ul]:pl-6 [&_ol]:text-slate-700 [&_blockquote]:text-slate-700 [&_li]:text-slate-700">
+        <Content />
+      </div>
+
+      <div class="mt-12 rounded-2xl bg-[#23545B] p-8 text-white">
+        <h2 class="text-2xl font-semibold">Need executive guidance on these challenges?</h2>
+        <p class="mt-3 text-slate-200">Let's discuss your context and technology priorities.</p>
+        <a href="https://calendar.app.google/jrWp3LMihMCr5qew7" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex rounded-full bg-[#FF6F61] px-5 py-3 font-semibold text-white no-underline hover:brightness-95">
+          Schedule a meeting
+        </a>
+      </div>
+    </article>
+  </section>
+</Layout>

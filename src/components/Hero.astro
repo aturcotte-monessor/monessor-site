@@ -1,0 +1,34 @@
+---
+interface Props {
+  locale?: 'fr' | 'en';
+}
+
+const { locale = 'fr' } = Astro.props;
+const isFr = locale === 'fr';
+---
+
+<section class="py-16 lg:py-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <p class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-4">
+      {isFr ? 'Pratique Executive • Leadership technologique stratégique' : 'Executive practice • Strategic technology leadership'}
+    </p>
+    <h1 class="text-4xl lg:text-6xl font-semibold tracking-tight text-white">
+      {isFr ? 'Clarte. Gouvernance. Execution.' : 'Clarity. Governance. Execution.'}
+    </h1>
+    <p class="mt-6 max-w-3xl text-lg text-slate-300">
+      {
+        isFr
+          ? "Monessor appuie les organisations confrontees a des enjeux technologiques complexes en offrant un leadership senior, pragmatique et oriente vers des resultats concrets."
+          : 'Monessor supports organizations facing complex technology challenges with senior, pragmatic leadership focused on clear and durable outcomes.'
+      }
+    </p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href="#contact" class="inline-flex rounded-full bg-[#6EE7B7] px-5 py-3 font-semibold text-slate-950 no-underline hover:brightness-95">
+        {isFr ? 'Entrer en contact' : 'Get in touch'}
+      </a>
+      <a href="#situations" class="inline-flex rounded-full border border-slate-600 px-5 py-3 text-slate-100 no-underline hover:border-slate-400">
+        {isFr ? 'Voir les situations' : 'View situations'}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,81 @@
+---
+interface Props {
+  locale?: 'fr' | 'en';
+  switchHref?: string;
+}
+
+const { locale = 'fr', switchHref } = Astro.props;
+const isFr = locale === 'fr';
+
+const homePath = isFr ? '/' : '/en/';
+const insightsPath = isFr ? '/insights/' : '/en/insights/';
+const switchLabel = isFr ? 'EN' : 'FR';
+const pathname = Astro.url.pathname;
+
+const computedSwitchPath = (() => {
+  if (isFr) {
+    if (pathname.startsWith('/insights/')) {
+      return `/en${pathname}`;
+    }
+
+    return '/en/';
+  }
+
+  if (pathname.startsWith('/en/insights/')) {
+    return pathname.replace(/^\/en/, '') || '/';
+  }
+
+  return '/';
+})();
+
+const switchPath = switchHref ?? computedSwitchPath;
+
+const sectionLinks = isFr
+  ? [
+      { href: '/#services', label: 'Services' },
+      { href: '/#approche', label: 'Approche' },
+      { href: '/#apropos', label: 'À propos' },
+      { href: insightsPath, label: 'Perspectives' }
+    ]
+  : [
+      { href: '/en/#services', label: 'Services' },
+      { href: '/en/#approach', label: 'Approach' },
+      { href: '/en/#about', label: 'About' },
+      { href: insightsPath, label: 'Insights' }
+    ];
+---
+
+<header class="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/95 backdrop-blur supports-[backdrop-filter]:bg-slate-950/85">
+  <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <a href={homePath} class="flex items-center gap-3 text-white no-underline">
+      <img src="/assets/monessor-logo-light.png" alt="Logo Monessor" class="h-7 w-auto" />
+      <span class="text-lg font-semibold tracking-tight">Monessor</span>
+    </a>
+
+    <details class="group md:hidden relative">
+      <summary class="list-none inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-700 text-slate-100 cursor-pointer">
+        <span class="sr-only">Menu</span>
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </summary>
+      <div class="absolute right-0 mt-3 w-64 rounded-xl border border-slate-700 bg-slate-900 p-4 shadow-xl">
+        <div class="flex flex-col gap-3 text-sm text-slate-200">
+          {sectionLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+          <a href={switchPath}>{switchLabel}</a>
+          <a href="#contact" class="inline-flex justify-center rounded-full bg-[#6EE7B7] px-4 py-2 font-semibold text-slate-950 no-underline">
+            Contact
+          </a>
+        </div>
+      </div>
+    </details>
+
+    <div class="hidden md:flex items-center gap-6 text-sm text-slate-200">
+      {sectionLinks.map((link) => <a class="hover:text-[#6EE7B7] transition-colors" href={link.href}>{link.label}</a>)}
+      <a class="hover:text-[#6EE7B7] transition-colors" href={switchPath}>{switchLabel}</a>
+      <a href="#contact" class="inline-flex items-center rounded-full bg-[#6EE7B7] px-4 py-2 font-semibold text-slate-950 no-underline hover:brightness-95 transition-all">
+        Contact
+      </a>
+    </div>
+  </nav>
+</header>

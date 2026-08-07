@@ -1,0 +1,36 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  locale?: 'fr' | 'en';
+  switchHref?: string;
+}
+
+const { title, description, locale = 'fr', switchHref } = Astro.props;
+const canonical = locale === 'fr' ? 'https://www.monessor.com/' : 'https://www.monessor.com/en/';
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="fr" href="https://www.monessor.com/" />
+    <link rel="alternate" hreflang="en" href="https://www.monessor.com/en/" />
+    <link rel="icon" href="/assets/favicon.png" />
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header locale={locale} switchHref={switchHref} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <slot name="scripts" />
+  </body>
+</html>
