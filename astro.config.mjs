@@ -6,15 +6,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.monessor.com',
   integrations: [
-    sitemap({
-      i18n: {
-        defaultLocale: 'fr',
-        locales: {
-          fr: 'fr',
-          en: 'en',
-        },
-      },
-    }),
+    sitemap(),
   ],
   vite: {
     plugins: [tailwindcss()],
