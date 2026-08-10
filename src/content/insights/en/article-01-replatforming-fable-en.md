@@ -62,3 +62,8 @@ The success of a platform modernization is not measured by the number of transla
 Before deciding between technical conversion, replatforming, redesign, or a hybrid strategy, evaluating the organizational context, team maturity, and product management capacity is just as essential as selecting the technology stack itself.
 
 Without strong product management at the decision-making table to enforce rigorous trade-offs and bridge business vision with engineering, modernization risks becoming nothing more than an expensive exercise in deferring debt.
+
+---
+
+> **Transparency note:**  
+> *This text was conceived, structured, and written by Alex Turcotte. Artificial intelligence was used as a translation and review tool to refine syntax and terminology nuances, without altering the style, core ideas, or real-world business experience.*
