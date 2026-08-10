@@ -9,9 +9,9 @@ translationKey: "replatforming-fable"
 tags: ["Modernisation TI", "Replatforming", "Dette Technique", "Intelligence Artificielle", "Gouvernance"]
 ---
 
-Quand une organisation s'appuie sur une plateforme critique développée il y a 20, 30 ou 40 ans, la question de la modernisation ne se pose pas avec un « si », mais avec un « quand ». Entre le coût de fonctionnement récurrent (*run cost*) qui s'alourdit d'année en année, la perte graduelle de la mémoire institutionnelle et la rareté grandissante des compétences sur des technologies devenues obsolètes, le maintien du statu quo devient rapidement un risque opérationnel et financier inacceptable.
+Face à un investissement majeur se chiffrant souvent en dizaines de millions de dollars, les équipes de direction se retrouvent systématiquement devant le même dilemme stratégique. Au cœur du débat, deux philosophies s'affrontent. Et le choix de la trajectoire en dit souvent long sur la maturité de la gouvernance technologique de l'entreprise.
 
-Pourtant, face à un investissement majeur se chiffrant souvent en dizaines de millions de dollars, les équipes de direction se retrouvent systématiquement devant le même dilemme stratégique. Au cœur du débat, deux philosophies s'affrontent. Et le choix de la trajectoire en dit souvent long sur la maturité de la gouvernance technologique de l'entreprise.
+En effet, quand une organisation s'appuie sur une plateforme critique développée il y a 20, 30 ou 40 ans, la question de la modernisation ne se pose pas avec un « si », mais avec un « quand ». Entre le coût de fonctionnement récurrent (*run cost / OpEx*) qui s'alourdit d'année en année, la perte graduelle de la mémoire institutionnelle et la rareté grandissante des compétences sur des technologies devenues obsolètes, le maintien du statu quo devient rapidement un risque opérationnel et financier inacceptable.
 
 ### La tentation de la conversion technique : Se concentrer sur la technologie sans repenser le fonctionnel
 
@@ -61,7 +61,7 @@ La réussite d'une modernisation de plateforme ne se mesure pas au nombre de lig
 
 Avant de trancher entre conversion technique, replatforming, refonte ou approche hybride, l'évaluation du contexte organisationnel, de la maturité des équipes et de la capacité de gestion de produit est tout aussi primordiale que le choix de la stratégie technologique elle-même.
 
-Sans une gestion de produit forte à la table de décision pour imposer des décisions rigoureuses et faire le pont entre la vision d'affaires et l'ingénierie, la modernisation risque de n'être qu'un exercice coûteux de report de dette.
+Sans une gestion de produit forte à la table de décision pour imposer des décisions rigoureuses et faire le pont entre la vision d'affaires et l'ingénierie, l'organisation s'expose au pire des scénarios: *dépenser des dizaines de millions de dollars pour sécuriser sa technologie, tout en scellant la paralysie de son modèle opérationnel*.
 
 ---
 
