@@ -1,4 +1,5 @@
 ---
+// src/layouts/Layout.astro
 import Header from '../components/Header.astro';
 import '../styles/global.css';
 
@@ -7,10 +8,49 @@ interface Props {
   description: string;
   locale?: 'fr' | 'en';
   switchHref?: string;
+  image?: string;
 }
 
-const { title, description, locale = 'fr', switchHref } = Astro.props;
-const canonical = locale === 'fr' ? 'https://www.monessor.com/' : 'https://www.monessor.com/en/';
+const { title, description, locale = 'fr', switchHref, image = '/assets/alex.jpg' } = Astro.props;
+
+const siteUrl = 'https://www.monessor.com';
+const pathname = Astro.url.pathname;
+
+// Calcul dynamique des URLs Canoniques et Hreflang
+const canonicalUrl = new URL(pathname, siteUrl).href;
+
+let frPath = pathname;
+let enPath = pathname;
+
+if (pathname.startsWith('/en/')) {
+  frPath = pathname.replace(/^\/en/, '') || '/';
+} else {
+  enPath = `/en${pathname === '/' ? '' : pathname}`;
+}
+
+const urlFR = new URL(frPath, siteUrl).href;
+const urlEN = new URL(enPath, siteUrl).href;
+const absoluteImageUrl = new URL(image, siteUrl).href;
+
+// Données structurées JSON-LD pour l'entité Monessor
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Monessor",
+  "url": siteUrl,
+  "logo": `${siteUrl}/assets/favicon.png`,
+  "image": absoluteImageUrl,
+  "description": locale === 'fr'
+    ? "Cabinet-conseil en stratégie technologique, CTO à temps partagé et gouvernance TI pour secteurs régulés."
+    : "Executive advisory firm specializing in technology strategy, fractional CTO services, and IT governance.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Montréal",
+    "addressRegion": "QC",
+    "addressCountry": "CA"
+  },
+  "knowsLanguage": ["fr", "en"]
+};
 ---
 
 <!doctype html>
@@ -18,12 +58,39 @@ const canonical = locale === 'fr' ? 'https://www.monessor.com/' : 'https://www.m
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Title & Meta Description -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="fr" href="https://www.monessor.com/" />
-    <link rel="alternate" hreflang="en" href="https://www.monessor.com/en/" />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Dynamic Hreflang Tags -->
+    <link rel="alternate" hreflang="fr" href={urlFR} />
+    <link rel="alternate" hreflang="en" href={urlEN} />
+    <link rel="alternate" hreflang="x-default" href={urlFR} />
+
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={absoluteImageUrl} />
+    <meta property="og:site_name" content="Monessor" />
+    <meta property="og:locale" content={locale === 'fr' ? 'fr_CA' : 'en_US'} />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteImageUrl} />
+
     <link rel="icon" href="/assets/favicon.png" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+
     <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col">
