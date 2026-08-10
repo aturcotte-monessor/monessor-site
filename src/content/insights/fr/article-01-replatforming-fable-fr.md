@@ -1,7 +1,6 @@
 ---
 title: "La fable du Replatforming : Pourquoi moderniser votre système est un compromis d'affaires, pas une simple décision d'ingénierie"
 excerpt: "Analyse stratégique sur la modernisation des systèmes patrimoniaux : le compromis entre conversion technique et réingénierie d'affaires, et la gestion de la dette fonctionnelle."
-description: "Analyse stratégique sur la modernisation des systèmes patrimoniaux : l'arbitrage entre conversion technique et réingénierie d'affaires, et la gestion de la dette fonctionnelle."
 pubDate: 2026-08-07
 author: "Alex Turcotte"
 readTime: "5 min"

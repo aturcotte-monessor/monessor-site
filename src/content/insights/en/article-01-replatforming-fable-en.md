@@ -1,7 +1,6 @@
 ---
 title: "The Replatforming Fable: Why System Modernization Is a Business Trade-off, Not Just an Engineering Decision"
 excerpt: "Strategic analysis on legacy system modernization: the trade-off between technical code conversion and business process re-engineering, and functional debt management."
-description: "Strategic analysis on legacy system modernization: the trade-off between technical code conversion and business process re-engineering, and functional debt management."
 pubDate: 2026-08-07
 author: "Alex Turcotte"
 readTime: "5 min"

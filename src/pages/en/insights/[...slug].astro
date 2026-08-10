@@ -27,9 +27,57 @@ if (entry.data.translationKey) {
     switchHref = `/insights/${counterpart[0].id.replace(/^fr\//, '').replace(/\.md$/, '')}/`;
   }
 }
+
+// --- AJOUTS SEO & DONNÉES STRUCTURÉES (VERSION EN) ---
+const siteUrl = 'https://www.monessor.com';
+const currentUrl = new URL(Astro.url.pathname, siteUrl).href;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": currentUrl
+  },
+  "headline": entry.data.title,
+  "description": entry.data.excerpt,
+  "inLanguage": "en-US",
+  "datePublished": entry.data.pubDate.toISOString(),
+  "dateModified": (entry.data.updatedDate || entry.data.pubDate).toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": entry.data.author || "Alex Turcotte",
+    "jobTitle": entry.data.authorTitle || "Managing Director & Fractional CTO",
+    "sameAs": "https://www.linkedin.com/in/alexturcotte/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Monessor",
+    "url": siteUrl,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/assets/logo.png`
+    }
+  },
+  ...(entry.data.tags && { "keywords": entry.data.tags.join(", ") })
+};
 ---
 
 <Layout locale="en" switchHref={switchHref} title={`${entry.data.title} - Monessor`} description={entry.data.excerpt}>
+  <Fragment slot="head">
+    <!-- Open Graph & Twitter Cards for LinkedIn/Social Sharing -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={entry.data.title} />
+    <meta property="og:description" content={entry.data.excerpt} />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="article:published_time" content={entry.data.pubDate.toISOString()} />
+    <meta property="article:author" content={entry.data.author || "Alex Turcotte"} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Schema.org BlogPosting Structured Data for Googlebot -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
   <section class="bg-[#F8FAFC] min-h-[calc(100vh-80px)] py-16">
     <article class="max-w-7xl mx-auto px-6 lg:px-8">
       <p class="text-xs uppercase tracking-[0.14em] text-slate-500">
