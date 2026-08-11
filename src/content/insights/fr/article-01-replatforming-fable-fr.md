@@ -61,6 +61,8 @@ La réussite d'une modernisation de plateforme ne se mesure pas au nombre de lig
 
 Avant de trancher entre conversion technique, replatforming, refonte ou approche hybride, l'évaluation du contexte organisationnel, de la maturité des équipes et de la capacité de gestion de produit est tout aussi primordiale que le choix de la stratégie technologique elle-même.
 
+**C’est précisément là qu'interviennent des leaders technologiques d'expérience : évaluer la portée réelle de vos enjeux opérationnels, vous éclairer dans l'arbitrage des compromis sans parti pris, et définir une trajectoire de modernisation pragmatique, adaptée à votre organisation.**
+
 Sans une gestion de produit forte à la table de décision pour imposer des décisions rigoureuses et faire le pont entre la vision d'affaires et l'ingénierie, l'organisation s'expose au pire des scénarios: *dépenser des dizaines de millions de dollars pour sécuriser sa technologie, tout en scellant la paralysie de son modèle opérationnel*.
 
 ---
