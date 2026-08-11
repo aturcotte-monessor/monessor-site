@@ -69,7 +69,7 @@ const jsonLd = {
 };
 ---
 
-<Layout locale="fr" switchHref={switchHref} title={`${entry.data.title} - Monessor`} description={entry.data.excerpt} image="/assets/og-insight-default.png">
+<Layout locale="fr" switchHref={switchHref} title={`${entry.data.title} - Par ${entry.data.author || 'Alex Turcotte'}`} description={entry.data.excerpt} image="/assets/og-insight-default.png">
   <Fragment slot="head">
     <!-- Balises Open Graph & Twitter pour le partage social -->
     <meta property="og:type" content="article" />
