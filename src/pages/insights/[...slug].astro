@@ -69,7 +69,7 @@ const jsonLd = {
 };
 ---
 
-<Layout locale="fr" switchHref={switchHref} title={`${entry.data.title} - Monessor`} description={entry.data.excerpt}>
+<Layout locale="fr" switchHref={switchHref} title={`${entry.data.title} - Monessor`} description={entry.data.excerpt} image="/assets/og-insight-default.png">
   <Fragment slot="head">
     <!-- Balises Open Graph & Twitter pour le partage social -->
     <meta property="og:type" content="article" />
@@ -78,15 +78,18 @@ const jsonLd = {
     <meta property="og:url" content={currentUrl} />
     <meta property="article:published_time" content={entry.data.pubDate.toISOString()} />
     <meta property="article:author" content={entry.data.author || "Alex Turcotte"} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <!-- Données structurées JSON-LD pour Googlebot -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <meta name="twitter:card" content="summary_large_image" />       
+    <meta name="twitter:image" content={`${siteUrl}/assets/og-insight-default.png`} />
+    <meta name="twitter:title" content={entry.data.title} />
+    <meta name="twitter:description" content={entry.data.excerpt} />
+        
     <!-- Images pour Open Graph (LinkedIn) & Twitter -->
-    <meta property="og:image" content={`${siteUrl}/assets/og-insight-default.png`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="627" />
     <meta property="og:image:alt" content="Monessor - Conseil en stratégie technologique & direction TI" />
-    <meta name="twitter:image" content={`${siteUrl}/assets/og-insight-default.png`} />
+    
+    <!-- Schema.org BlogPosting Structured Data for Googlebot -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
 
   <section class="bg-[#F8FAFC] min-h-[calc(100vh-80px)] py-16">
