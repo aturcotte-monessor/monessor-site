@@ -50,6 +50,27 @@ The best architects and engineering leaders do not join highly regulated institu
 
 True governance shouldn't function like a brick wall. It should operate like the brakes on a high-performance race car: installed not to slow the vehicle down, but to provide the control required to drive fast safely.
 
+<div style="background-color: #0d1b2a; border: 1px solid #1e3a8a; border-radius: 8px; padding: 20px 24px; max-width: 420px; width: 100%; margin: 32px auto; font-family: inherit; color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); box-sizing: border-box;">
+  <div style="border-bottom: 1px solid #1e293b; padding-bottom: 12px; margin-bottom: 18px; text-align: center;">
+    <span style="letter-spacing: 1.5px; font-size: 10px; font-weight: 700; color: #2dd4bf; text-transform: uppercase;">Executive Insight</span>
+    <h3 style="margin: 4px 0 0 0; font-size: 15px; font-weight: 600; color: #f8fafc; letter-spacing: 0.5px;">MODERN GOVERNANCE FRAMEWORK</h3>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="background: #132238; border-left: 4px solid #2dd4bf; padding: 12px 14px; border-radius: 0 6px 6px 0;">
+      <div style="font-weight: 700; font-size: 13px; color: #f1f5f9; margin-bottom: 2px;">1. CONTINUOUS AUDITABILITY</div>
+      <div style="font-size: 12px; color: #94a3b8;">Continuous proof <span style="color: #2dd4bf; font-weight: 600;">vs</span> Quarterly spreadsheets</div>
+    </div>
+    <div style="background: #132238; border-left: 4px solid #38bdf8; padding: 12px 14px; border-radius: 0 6px 6px 0;">
+      <div style="font-weight: 700; font-size: 13px; color: #f1f5f9; margin-bottom: 2px;">2. BLAST RADIUS REDUCTION</div>
+      <div style="font-size: 12px; color: #94a3b8;">Isolated domains <span style="color: #38bdf8; font-weight: 600;">vs</span> Systemic dependency</div>
+    </div>
+    <div style="background: #132238; border-left: 4px solid #f97316; padding: 12px 14px; border-radius: 0 6px 6px 0;">
+      <div style="font-weight: 700; font-size: 13px; color: #f1f5f9; margin-bottom: 2px;">3. BUSINESS-CONTROLLED VALUE</div>
+      <div style="font-size: 12px; color: #94a3b8;">Progressive release <span style="color: #f97316; font-weight: 600;">vs</span> Big-Bang deployments</div>
+    </div>
+  </div>
+</div>
+
 High-performing financial institutions do not compromise on compliance. They modernize how it is executed. An effective executive strategy rests on three pillars:
 
 ### 1. Continuous Auditability over Quarterly Bureaucracy

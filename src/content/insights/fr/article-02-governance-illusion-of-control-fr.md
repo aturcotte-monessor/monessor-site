@@ -50,6 +50,28 @@ Les meilleurs architectes et leaders d'ingénierie ne rejoignent pas des institu
 
 Une vraie gouvernance ne devrait pas fonctionner comme un mur de briques. Elle devrait agir comme les freins d'une voiture de course: installés non pas pour ralentir le véhicule, mais pour offrir le contrôle nécessaire pour rouler vite, en toute sécurité.
 
+<div style="background-color: #0d1b2a; border: 1px solid #1e3a8a; border-radius: 8px; padding: 20px 24px; max-width: 420px; width: 100%; margin: 32px auto; font-family: inherit; color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); box-sizing: border-box;">
+  <div style="border-bottom: 1px solid #1e293b; padding-bottom: 12px; margin-bottom: 18px; text-align: center;">
+    <span style="letter-spacing: 1.5px; font-size: 10px; font-weight: 700; color: #2dd4bf; text-transform: uppercase;">Perspective Exécutive</span>
+    <h3 style="margin: 4px 0 0 0; font-size: 15px; font-weight: 600; color: #f8fafc; letter-spacing: 0.5px;">FRAMEWORK DE GOUVERNANCE MODERNE</h3>
+  </div>
+  
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="background: #132238; border-left: 4px solid #2dd4bf; padding: 12px 14px; border-radius: 0 6px 6px 0;">
+      <div style="font-weight: 700; font-size: 13px; color: #f1f5f9; margin-bottom: 2px;">1. AUDITABILITÉ CONTINUELLE</div>
+      <div style="font-size: 12px; color: #94a3b8;">Preuve en continu <span style="color: #2dd4bf; font-weight: 600;">vs</span> Tableaux Excel</div>
+    </div>
+    <div style="background: #132238; border-left: 4px solid #38bdf8; padding: 12px 14px; border-radius: 0 6px 6px 0;">
+      <div style="font-weight: 700; font-size: 13px; color: #f1f5f9; margin-bottom: 2px;">2. RÉDUCTION DU RAYON D'IMPACT</div>
+      <div style="font-size: 12px; color: #94a3b8;">Domaines isolés <span style="color: #38bdf8; font-weight: 600;">vs</span> Dépendance systémique</div>
+    </div>
+    <div style="background: #132238; border-left: 4px solid #f97316; padding: 12px 14px; border-radius: 0 6px 6px 0;">
+      <div style="font-weight: 700; font-size: 13px; color: #f1f5f9; margin-bottom: 2px;">3. LIVRAISON AXÉE AFFAIRES</div>
+      <div style="font-size: 12px; color: #94a3b8;">Lancement progressif <span style="color: #f97316; font-weight: 600;">vs</span> Déploiement Big-Bang</div>
+    </div>
+  </div>
+</div>
+
 Les institutions financières performantes ne transigent pas sur la conformité. Elles modernisent la façon dont elle est exécutée. Une stratégie exécutive efficace repose sur trois piliers :
 
 ### 1. Auditabilité continue plutôt que bureaucratie trimestrielle
