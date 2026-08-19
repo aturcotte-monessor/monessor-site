@@ -90,7 +90,12 @@ const organizationSchema = {
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
-
+    <!-- Fathom Analytics -->
+    <script 
+      src="https://cdn.usefathom.com/script.js" 
+      data-site="LRVBMDAF" 
+      defer>
+    </script>
     <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col">
