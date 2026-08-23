@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import InsightCard from '../../components/InsightCard.astro';
+import ContactCta from '../../components/ContactCta.astro';
 import { ui } from '../../i18n/ui';
 
 const locale = 'en' as const;
@@ -323,9 +324,11 @@ const ctaLabel = ui[locale].exploreAllInsights;
           <a id="email-button" class="btn font-semibold" href="#" aria-label="Send an email">
             Send an email
           </a>
-          <a class="btn btn--outline" href="https://calendar.app.google/jrWp3LMihMCr5qew7" target="_blank" rel="noopener noreferrer" aria-label="Schedule a meeting">
-            Schedule a meeting
-          </a>
+          <ContactCta
+            href="https://calendar.app.google/jrWp3LMihMCr5qew7"
+            label="Schedule a meeting"
+            ariaLabel="Schedule a meeting"
+          />
         </div>
         <p class="small contact-meta contact-meta--phone">
           <span class="contact-label">Phone:</span>

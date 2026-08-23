@@ -1,0 +1,34 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  ariaLabel?: string;
+  className?: string;
+  target?: string;
+  rel?: string;
+  fathomEventName?: string;
+}
+
+const {
+  href,
+  label,
+  ariaLabel = label,
+  className = 'btn btn--outline',
+  target = '_blank',
+  rel = 'noopener noreferrer',
+  fathomEventName = 'Click CTA Contact - Home'
+} = Astro.props;
+
+const onClickHandler = `if (window.fathom) { window.fathom.trackEvent('${fathomEventName}'); }`;
+---
+
+<a
+  class={className}
+  href={href}
+  target={target}
+  rel={rel}
+  aria-label={ariaLabel}
+  onclick={onClickHandler}
+>
+  {label}
+</a>

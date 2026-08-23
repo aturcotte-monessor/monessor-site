@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
+import ContactCta from '../../../components/ContactCta.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('insights', ({ id, data }) => id.startsWith('en/') && data.lang === 'en');
@@ -109,9 +110,15 @@ const jsonLd = {
       <div class="mt-12 rounded-2xl bg-[#23545B] p-8 text-white">
         <h2 class="text-2xl font-semibold">Need executive guidance on these challenges?</h2>
         <p class="mt-3 text-slate-200">Let's discuss your context and technology priorities.</p>
-        <a href="https://calendar.app.google/jrWp3LMihMCr5qew7" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex rounded-full bg-[#FF6F61] px-5 py-3 font-semibold text-white no-underline hover:brightness-95">
-          Schedule a meeting
-        </a>
+        <ContactCta
+          href="https://calendar.app.google/jrWp3LMihMCr5qew7"
+          label="Schedule a meeting"
+          ariaLabel="Schedule a meeting"
+          className="mt-6 inline-flex rounded-full bg-[#FF6F61] px-5 py-3 font-semibold text-white no-underline hover:brightness-95"
+          target="_blank"
+          rel="noopener noreferrer"
+          fathomEventName="Click CTA Contact - Insight"
+        />
       </div>
     </article>
   </section>
