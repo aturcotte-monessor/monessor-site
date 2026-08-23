@@ -1,9 +1,19 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { ui } from '../../i18n/ui';
+
+const locale = 'en' as const;
+const entries = (await getCollection('insights', ({ id, data }) => id.startsWith('en/') && data.lang === locale)).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+).slice(0, 3);
+const insightsHref = '/en/insights/';
+const sectionTitle = ui[locale].perspectivesTitle;
+const ctaLabel = ui[locale].exploreAllInsights;
 ---
 
 <Layout
-  locale="en"
+  locale={locale}
   title="Monessor — Fractional CTO, Tech Strategy & Regulatory Governance"
   description="Executive advisory firm led by Alex Turcotte, specializing in technology strategy, AI integration, fractional CTO services, and IT governance for regulated sectors."
 >
@@ -120,6 +130,27 @@ import Layout from '../../layouts/Layout.astro';
             without immediately hiring a full-time CTO or CPTO.
           </p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSPECTIVES -->
+  <section class="section section--alt" id="perspectives">
+    <div class="container max-w-7xl mx-auto px-6 lg:px-8">
+      <h2>{sectionTitle}</h2>
+      <div class="cards cards--insights">
+        {entries.map((entry) => (
+          <article class="card insight-card">
+            <p class="small muted" style="margin:0; text-transform: uppercase; letter-spacing: 0.12em;">{entry.data.pubDate.toLocaleDateString('en-CA')}</p>
+            <h3 style="margin-top: 12px; margin-bottom: 8px; color: var(--text);">
+              <a href={`/en/insights/${entry.id.replace(/^en\//, '').replace(/\.md$/, '')}/`} class="insight-link">{entry.data.title}</a>
+            </h3>
+            <p>{entry.data.excerpt}</p>
+          </article>
+        ))}
+      </div>
+      <div class="hero-cta" style="margin-top: 22px;">
+        <a class="btn btn--ghost" href={insightsHref}>{ctaLabel}</a>
       </div>
     </div>
   </section>

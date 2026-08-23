@@ -312,15 +312,38 @@ h3{
 .cards--services{
   grid-template-columns: repeat(3, minmax(0,1fr));
 }
+.cards--insights{
+  grid-template-columns: repeat(3, minmax(0,1fr));
+}
 .card{
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: rgba(16,24,39,.45);
   padding: 16px;
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.card:hover{
+  border-color: rgba(136, 216, 176, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 .card p{color: var(--muted); margin: 8px 0 0}
 .card ul{margin: 10px 0 0 18px; color: var(--muted)}
 .card li{margin: 6px 0}
+
+.insight-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.insight-link {
+  color: var(--text);
+  text-decoration: none;
+}
+.insight-link:hover {
+  color: var(--coral);
+  text-decoration: none;
+}
 
 .bullets{
   display:grid;
