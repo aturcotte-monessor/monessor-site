@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import InsightCard from '../../components/InsightCard.astro';
 import { ui } from '../../i18n/ui';
 
 const locale = 'en' as const;
@@ -134,27 +135,6 @@ const ctaLabel = ui[locale].exploreAllInsights;
     </div>
   </section>
 
-  <!-- PERSPECTIVES -->
-  <section class="section section--alt" id="perspectives">
-    <div class="container max-w-7xl mx-auto px-6 lg:px-8">
-      <h2>{sectionTitle}</h2>
-      <div class="cards cards--insights">
-        {entries.map((entry) => (
-          <article class="card insight-card">
-            <p class="small muted" style="margin:0; text-transform: uppercase; letter-spacing: 0.12em;">{entry.data.pubDate.toLocaleDateString('en-CA')}</p>
-            <h3 style="margin-top: 12px; margin-bottom: 8px; color: var(--text);">
-              <a href={`/en/insights/${entry.id.replace(/^en\//, '').replace(/\.md$/, '')}/`} class="insight-link">{entry.data.title}</a>
-            </h3>
-            <p>{entry.data.excerpt}</p>
-          </article>
-        ))}
-      </div>
-      <div class="hero-cta" style="margin-top: 22px;">
-        <a class="btn btn--ghost" href={insightsHref}>{ctaLabel}</a>
-      </div>
-    </div>
-  </section>
-
   <!-- SERVICES -->
   <section class="section section--alt" id="services">
     <div class="container max-w-7xl mx-auto px-6 lg:px-8">
@@ -250,6 +230,26 @@ const ctaLabel = ui[locale].exploreAllInsights;
     </div>
   </section>
 
+  <!-- PERSPECTIVES -->
+  <section class="w-full bg-slate-50 py-16 text-slate-900" id="perspectives">
+    <div class="container max-w-7xl mx-auto px-6 lg:px-8">
+      <h2 class="text-slate-900">{sectionTitle}</h2>
+      <div class="cards cards--insights insights-grid mt-6">
+        {entries.map((entry) => (
+          <InsightCard
+            entry={entry}
+            href={`/en/insights/${entry.id.replace(/^en\//, '').replace(/\.md$/, '')}/`}
+            locale={locale}
+            variant="light"
+          />
+        ))}
+      </div>
+      <div class="mt-8">
+        <a class="inline-flex items-center px-6 py-3 bg-[#88d8b0] text-slate-900 font-semibold rounded-full hover:opacity-90 transition-all" href={insightsHref}>{ctaLabel}</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section class="section section--alt" id="about">
     <div class="container max-w-7xl mx-auto px-6 lg:px-8">
@@ -320,7 +320,7 @@ const ctaLabel = ui[locale].exploreAllInsights;
 
       <div class="contact-box">
         <div class="contact-actions">
-          <a id="email-button" class="btn" href="#" aria-label="Send an email">
+          <a id="email-button" class="btn font-semibold" href="#" aria-label="Send an email">
             Send an email
           </a>
           <a class="btn btn--outline" href="https://calendar.app.google/jrWp3LMihMCr5qew7" target="_blank" rel="noopener noreferrer" aria-label="Schedule a meeting">

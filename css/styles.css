@@ -331,18 +331,62 @@ h3{
 .card ul{margin: 10px 0 0 18px; color: var(--muted)}
 .card li{margin: 6px 0}
 
+.insights-section {
+  background: #ffffff;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+.insights-title {
+  color: #0f172a;
+}
+.insights-grid .card{
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+}
+.insights-grid .card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+}
+.insights-date {
+  margin: 0;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.insights-card-title {
+  margin: 12px 0 8px;
+  color: #0f172a;
+}
+.insights-card-copy {
+  margin: 0;
+  color: #475569;
+}
 .insight-card {
   display: flex;
   flex-direction: column;
   min-height: 100%;
 }
 .insight-link {
-  color: var(--text);
+  color: #0f172a;
   text-decoration: none;
 }
 .insight-link:hover {
   color: var(--coral);
   text-decoration: none;
+}
+.insights-cta {
+  justify-content: flex-start;
+}
+.insights-cta-button {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
+}
+.insights-cta-button:hover {
+  background: #1e293b;
+  color: #ffffff;
 }
 
 .bullets{

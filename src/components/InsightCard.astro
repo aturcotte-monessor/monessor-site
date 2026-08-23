@@ -1,0 +1,31 @@
+---
+type InsightEntry = {
+  id: string;
+  data: {
+    title: string;
+    excerpt: string;
+    pubDate: Date;
+  };
+};
+
+type Props = {
+  entry: InsightEntry;
+  href: string;
+  locale?: 'fr' | 'en';
+  variant?: 'light' | 'default';
+};
+
+const { entry, href, locale = 'fr', variant = 'light' } = Astro.props;
+const titleClass = variant === 'light' ? 'text-[#23545B]' : 'text-slate-900';
+const dateClass = 'text-xs uppercase tracking-[0.14em] text-slate-500';
+const summaryClass = 'mt-2 text-slate-600';
+const formattedDate = entry.data.pubDate.toLocaleDateString(locale === 'fr' ? 'fr-CA' : 'en-CA');
+---
+
+<article class="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm transition-all hover:border-slate-300 hover:shadow-md">
+  <p class={dateClass}>{formattedDate}</p>
+  <h2 class={`mt-2 text-2xl font-semibold transition-colors hover:text-[#FF6F61] ${titleClass}`}>
+    <a href={href} class="no-underline">{entry.data.title}</a>
+  </h2>
+  <p class={summaryClass}>{entry.data.excerpt}</p>
+</article>
