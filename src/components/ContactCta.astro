@@ -19,7 +19,20 @@ const {
   fathomEventName = 'Click CTA Contact - Home'
 } = Astro.props;
 
-const onClickHandler = `if (window.fathom) { window.fathom.trackEvent('${fathomEventName}'); }`;
+const onClickHandler = `(function (event) {
+  try {
+    if (window.fathom && typeof window.fathom.trackEvent === 'function') {
+      window.fathom.trackEvent('${fathomEventName}');
+    }
+  } catch (error) {
+    console.warn('Fathom event failed:', error);
+  }
+
+  if (event.currentTarget.getAttribute('target') === '_blank') {
+    event.preventDefault();
+    window.open(event.currentTarget.href, '_blank', 'noopener,noreferrer');
+  }
+})(event);`;
 ---
 
 <a
