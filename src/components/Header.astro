@@ -26,7 +26,7 @@ const serviceLinks = isFr
       },
       {
         href: '/services/gouvernance-sf-reglementee/',
-        label: 'Secteurs Régulés',
+        label: 'Services Financiers Régulés',
         description: 'Gouvernance TI & Conformité BSIF/OSFI'
       }
     ]
@@ -38,7 +38,7 @@ const serviceLinks = isFr
       },
       {
         href: '/en/services/regulated-fs-governance/',
-        label: 'Regulated Sectors',
+        label: 'Regulated Financial Services',
         description: 'IT Governance & OSFI Compliance'
       }
     ];
@@ -107,7 +107,7 @@ const sectionLinks = isFr
             <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </button>
-        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 absolute left-0 mt-2 w-72 rounded-xl border border-slate-700 bg-slate-900 p-2 shadow-xl transition-opacity">
+        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 absolute left-0 top-full w-72 rounded-xl border border-slate-700 bg-slate-900 p-2 shadow-xl transition-opacity">
           {serviceLinks.map((link) => (
             <a href={link.href} class="block rounded-lg px-3 py-2 hover:bg-slate-800">
               <span class="block font-semibold text-slate-100">{link.label}</span>
