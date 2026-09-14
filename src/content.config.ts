@@ -14,6 +14,7 @@ const insights = defineCollection({
 		translationKey: z.string().optional(),
 		lang: z.enum(['fr', 'en']),
 		tags: z.array(z.string()).optional(),
+		faq: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
 		draft: z.boolean().default(false)
 	})
 });

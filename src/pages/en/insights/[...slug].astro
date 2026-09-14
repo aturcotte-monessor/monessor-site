@@ -55,6 +55,21 @@ const jsonLd = {
   },
   ...(entry.data.tags && { "keywords": entry.data.tags.join(", ") })
 };
+
+const faqSchema = entry.data.faq && entry.data.faq.length > 0
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": entry.data.faq.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
+    }
+  : null;
 ---
 
 <Layout locale="en" title={`${entry.data.title} - Par ${entry.data.author || 'Alex Turcotte'}`} description={entry.data.excerpt} image="/assets/og-insight-default.png">
@@ -78,7 +93,11 @@ const jsonLd = {
     
     <!-- Schema.org BlogPosting Structured Data for Googlebot -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    
+
+    <!-- Schema.org FAQPage Structured Data for AEO (Google AI Overviews, Perplexity, SearchGPT) -->
+    {faqSchema && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    )}
   </Fragment>
 
   <section class="bg-[#F8FAFC] min-h-[calc(100vh-80px)] py-16">
@@ -93,6 +112,27 @@ const jsonLd = {
       <div class="mt-10 max-w-none [&_p]:text-slate-800 [&>p]:mb-6 [&>p]:leading-relaxed [&_h2]:text-[#23545B] [&_h2]:font-semibold [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-[#23545B] [&_h3]:text-[#23545B] [&_h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-3 [&_a]:text-[#23545B] hover:[&_a]:text-[#FF6F61] [&_ul]:text-slate-700 [&>ul]:my-6 [&>ul]:space-y-2 [&>ul]:list-disc [&>ul]:pl-6 [&_ol]:text-slate-700 [&_blockquote]:text-slate-700 [&_li]:text-slate-700">
         <Content />
       </div>
+
+      {entry.data.faq && entry.data.faq.length > 0 && (
+        <div class="mt-12">
+          <h2 class="text-2xl font-bold text-[#23545B]">Frequently Asked Questions</h2>
+          <div class="accordion-container mt-4 rounded-2xl border border-[#23545B]/10 bg-white">
+            {entry.data.faq.map((item, index) => (
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls={`faq-${index}-content`}>
+                  <span>{item.question}</span>
+                  <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="accordion-content" id={`faq-${index}-content`}>
+                  <p class="accordion-text">{item.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div class="mt-12 rounded-2xl bg-[#23545B] p-8 text-white">
         <h2 class="text-2xl font-semibold">Need executive guidance on these challenges?</h2>
@@ -109,4 +149,6 @@ const jsonLd = {
       </div>
     </article>
   </section>
+
+  <script slot="scripts" is:inline src="/scripts/main.js"></script>
 </Layout>
