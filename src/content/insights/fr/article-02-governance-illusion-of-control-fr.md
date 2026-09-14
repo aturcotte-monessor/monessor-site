@@ -9,8 +9,6 @@ translationKey: "governance-speed"
 tags: ["Gouvernance TI", "Gestion des risques", "Architecture logicielle", "Services financiers", "Stratégie exécutive", "Modèle opérationnel"]
 ---
 
-# L’illusion de l’innovation sans risque dans les services financiers : Pourquoi la gouvernance ne doit pas être l’ennemie de la vitesse
-
 Dans les secteurs réglementés, les organisations ont bâti d'impressionnantes forteresses de comités, de cycles d'approbation et de chiffriers de contrôles trimestrielles. Officiellement, on appelle cela la « gestion des risques ».
 
 Dans les faits, c'est souvent une simple **illusion de contrôle**.

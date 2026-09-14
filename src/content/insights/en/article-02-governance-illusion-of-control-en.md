@@ -9,8 +9,6 @@ translationKey: "governance-speed"
 tags: ["IT Governance", "Risk Management", "Software Architecture", "Financial Services", "Executive Strategy", "Operating Model"]
 ---
 
-# The Illusion of Risk-Free Innovation in Financial Services: Why Governance Shouldn’t Be the Enemy of Speed
-
 In regulated markets, organizations have built impressive fortresses of committees, sign-off gates, and quarterly control spreadsheets. Officially, this is labelled "risk management."
 
 In practice, it is often just the **illusion of control**.
