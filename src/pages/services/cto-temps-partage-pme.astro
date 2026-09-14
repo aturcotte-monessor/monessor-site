@@ -1,0 +1,185 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactCta from '../../components/ContactCta.astro';
+
+const locale = 'fr' as const;
+---
+
+<Layout
+  locale={locale}
+  title="CTO à Temps Partagé pour PME Établies ($10M–$100M) | Monessor"
+  description="Diagnostic de maturité TI, gouvernance et CTO à temps partagé pour dirigeants de PME industrielles et de distribution ($10M–$100M CA). Éliminez la dette technique et intégrez l'IA avec rigueur, sans conflit d'intérêts."
+>
+  <!-- HERO -->
+  <section class="section hero">
+    <div class="container">
+      <p class="kicker">Leadership Technologique Exécutif • PME Établies ($10M – $100M)</p>
+      <h1>Sécurisez vos investissements technologiques et accélérez votre croissance sans la lourdeur d'un exécutif permanent.</h1>
+      <p class="lead">
+        Monessor accompagne les équipes de direction des PME industrielles et de distribution pour éliminer la dette
+        technique, arbitrer les projets critiques et intégrer l'intelligence artificielle avec une rigueur d'affaires
+        stricte.
+      </p>
+
+      <div class="microproof">
+        <div class="pill">100 % Indépendant</div>
+        <div class="pill">Zéro Conflit d'Intérêts</div>
+        <div class="pill">Format Exécutif</div>
+      </div>
+
+      <div class="hero-cta">
+        <a class="btn" href="#diagnostic">Évaluer votre maturité TI (Diagnostic 2-3 sem.)</a>
+        <ContactCta
+          href="https://calendar.app.google/jrWp3LMihMCr5qew7"
+          label="Échanger avec Alex Turcotte"
+          ariaLabel="Échanger avec Alex Turcotte"
+          fathomEventName="Click ScheduleMeeting Service-PME-Hero"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- SYMPTOMES D'UN DEFICIT DE GOUVERNANCE -->
+  <section class="section" id="symptomes">
+    <div class="container">
+      <h2>Là où la technologie cesse d'être un levier et devient un risque</h2>
+
+      <div class="cards mt-6">
+        <article class="card">
+          <h3>Projets en dérape &amp; coûts incontrôlés</h3>
+          <p>
+            Des budgets TI et des factures d'infrastructure qui augmentent chaque année sans visibilité claire sur
+            le retour sur investissement (ROI), avec des retards répétés sur les livraisons stratégiques.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Dette technique &amp; dépendance critique</h3>
+          <p>
+            Des systèmes cœurs (ERP, CRM, applications propriétaires) complexes, vulnérables et maintenus par une
+            poignée d'individus clés ou un prestataire unique (vendor lock-in).
+          </p>
+        </article>
+        <article class="card">
+          <h3>Paralysie de l'IA &amp; bruit médiatique</h3>
+          <p>
+            Une pression pour intégrer l'intelligence artificielle sans cas d'affaires (business case) mesurable,
+            au risque d'engager des dépenses élevées sans création de valeur opérationnelle.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Friction entre la Finance et la TI</h3>
+          <p>
+            Un dialogue difficile entre le CFO (soucieux d'optimiser le P&amp;L et le Balance Sheet) et des équipes
+            techniques accaparées par l'extinction d'incendies au quotidien.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFRE D'ENTREE : DIAGNOSTIC DE MATURITE TI & ALIGNEMENT IA -->
+  <section class="section section--alt" id="diagnostic">
+    <div class="container">
+      <p class="kicker">01 / DIAGNOSTIC &amp; ALIGNEMENT</p>
+      <h2>Diagnostic de Maturité TI &amp; Alignement IA</h2>
+      <p class="lead">
+        Un audit stratégique de 2 à 3 semaines pour donner au Comité de Direction et au Conseil d'Administration
+        une visibilité totale sur l'état, les risques et le potentiel de leur parc technologique.
+      </p>
+      <p class="lead" style="font-weight: 800; color: var(--accent);">
+        À partir de 12 500 $ CAD <span class="muted" style="font-weight:400; color: var(--muted);">(Intervention forfaitaire à périmètre fixe)</span>
+      </p>
+
+      <div class="bullets">
+        <div class="bullet">
+          <p class="bullet-title">Audit d'Architecture &amp; Dette Technique</p>
+          <p>
+            Inspection neutre de la stabilité des systèmes cœurs, identification des risques de défaillance
+            opérationnelle et évaluation du coût réel de maintien (TCO).
+          </p>
+        </div>
+        <div class="bullet">
+          <p class="bullet-title">Matrice d'Opportunités IA à Haut ROI</p>
+          <p>
+            Évaluation des processus métier automatisables à court terme avec calcul de rendement financier
+            (vs les projets à effet de mode).
+          </p>
+        </div>
+        <div class="bullet">
+          <p class="bullet-title">Revue de Gouvernance &amp; Revue Contrat Prestataires</p>
+          <p>
+            Challenge indépendant des devis fournisseurs, analyse des coûts Cloud et renégociation des
+            dépendances fournisseurs.
+          </p>
+        </div>
+        <div class="bullet">
+          <p class="bullet-title">Feuille de Route Exécutive (18 mois)</p>
+          <p>
+            Plan de match clair, priorisé et chiffré, prêt à être présenté au Conseil d'administration.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <ContactCta
+          href="https://calendar.app.google/jrWp3LMihMCr5qew7"
+          label="Réserver une session de cadrage pour le Diagnostic →"
+          ariaLabel="Réserver une session de cadrage pour le Diagnostic"
+          className="btn"
+          fathomEventName="Click ScheduleMeeting Service-PME-Diagnostic"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- MODELE D'INTERVENTION CONTINU -->
+  <section class="section" id="approche">
+    <div class="container">
+      <h2>Notre approche par étapes : De l'évaluation à l'exécution</h2>
+
+      <div class="steps">
+        <div class="step">
+          <p class="step-num">01</p>
+          <h3>Diagnostic de Maturité</h3>
+          <p class="small">2 à 3 semaines | Dès 12 500 $</p>
+          <p>Clarifier la situation technologique, auditer la dette et établir la feuille de route stratégique.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">02</p>
+          <h3>Sélection &amp; Arbitrage Vendor</h3>
+          <p class="small">4 à 8 semaines | Dès 15 000 $</p>
+          <p>
+            Rédaction de cahiers de charges neutres, gestion des appels d'offres (RFP), sélection objective des
+            fournisseurs et négociation contractuelle sans conflit d'intérêts.
+          </p>
+        </div>
+        <div class="step">
+          <p class="step-num">03</p>
+          <h3>Direction TI à Temps Partagé (Fractional CTO)</h3>
+          <p class="small">Mensuel | Dès 6 500 $/mois</p>
+          <p>
+            Intégration d'un leadership technologique senior au sein du COMEX (1 à 2 jours/semaine) pour piloter
+            l'exécution, superviser les équipes et rassurer le Conseil d'Administration.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENT DE NEUTRALITE STRICTE -->
+  <section class="section section--alt" id="neutralite">
+    <div class="container">
+      <p class="kicker">Engagement de Neutralité Stricte</p>
+      <h2>Zéro commission. Zéro revente de licences. 100 % de votre côté de la table.</h2>
+
+      <div class="note">
+        <p>
+          « Ce que Monessor n'est pas : une agence de développement sur mesure, un revendeur de logiciels
+          (SaaS/ERP) ou un sous-traitant d'ingénierie. Nous ne percevons aucune commission de référence de la part
+          des fournisseurs. Notre unique incitatif financier est la réussite et la protection des intérêts de
+          votre entreprise. »
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
