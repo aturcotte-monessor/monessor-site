@@ -104,3 +104,8 @@ Moderniser la gouvernance ne nécessite pas une refonte sur plusieurs années. C
 ---
 
 **En résumé :** Si le cadre de gouvernance de votre organisation ressemble à une course d'obstacles, il ne protège pas l'entreprise. Il retarde son évolution. Vitesse et conformité ne s'excluent pas mutuellement. Le véritable leadership consiste à établir une fondation architecturale suffisamment solide pour que la vitesse et la sécurité se renforcent mutuellement.
+
+---
+
+> **Note de transparence :**  
+> *Ce texte a été pensé, structuré et rédigé par Alex Turcotte. L'intelligence artificielle a été utilisée comme outil de traduction et de révision pour corriger la syntaxe et affiner les nuances terminologiques, sans altérer le style, le fond de la pensée ou le retour d'expérience d'affaires.*

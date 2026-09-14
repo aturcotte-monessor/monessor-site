@@ -103,3 +103,8 @@ Modernizing governance does not require a multi-year overhaul. It begins with a 
 ---
 
 **The Bottom Line:** If your organization’s governance framework feels like an obstacle course, it is not protecting the business. It is delaying its evolution. Speed and compliance are not mutually exclusive. True leadership is about establishing an architectural foundation robust enough to make speed and safety mutually reinforcing.
+
+---
+
+> **Transparency note:**  
+> *This text was conceived, structured, and written by Alex Turcotte. Artificial intelligence was used as a translation and review tool to refine syntax and terminology nuances, without altering the style, core ideas, or real-world business experience.*
