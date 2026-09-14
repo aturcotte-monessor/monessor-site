@@ -1,0 +1,193 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ContactCta from '../../../components/ContactCta.astro';
+
+const locale = 'en' as const;
+---
+
+<Layout
+  locale={locale}
+  title="IT Governance & OSFI Compliance | Monessor"
+  description="IT governance review, third-party risk management, and regulatory alignment (OSFI B-10, B-13, E-23) for growing financial institutions and FinTechs."
+>
+  <!-- HERO -->
+  <section class="section hero">
+    <div class="container">
+      <p class="kicker">IT Governance, Risk &amp; Compliance • Financial Services &amp; FinTech</p>
+      <h1>Navigate regulatory rigor without paralyzing your platforms' pace of innovation.</h1>
+      <p class="lead">
+        Monessor designs and validates IT governance frameworks, third-party risk management, and regulatory
+        alignment (OSFI - B-10, B-13, E-23) for growing financial institutions and FinTechs.
+      </p>
+
+      <div class="microproof">
+        <div class="pill">OSFI Alignment</div>
+        <div class="pill">Compliance by Design</div>
+        <div class="pill">Institutional Expertise</div>
+      </div>
+
+      <div class="hero-cta">
+        <ContactCta
+          href="https://calendar.app.google/jrWp3LMihMCr5qew7"
+          label="Schedule a meeting"
+          ariaLabel="Schedule a meeting"
+          className="btn"
+          fathomEventName="Click ScheduleMeeting Service-RegFS-Hero"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- REGULATORY COMPLIANCE CHALLENGES -->
+  <section class="section" id="issues">
+    <div class="container">
+      <h2>Where traditional governance paralyzes execution</h2>
+
+      <div class="cards mt-6">
+        <article class="card">
+          <h3>Mounting OSFI requirements</h3>
+          <p>
+            Growing complexity in complying with cyber risk management guidelines (B-13), operational resilience,
+            and third-party risk (B-10).
+          </p>
+        </article>
+        <article class="card">
+          <h3>The illusion of “paper” compliance</h3>
+          <p>
+            Policies written for auditors but disconnected from the reality of the code deployed to production by
+            engineering teams and Cloud vendors.
+          </p>
+        </article>
+        <article class="card">
+          <h3>AI &amp; Complex Model Risk (E-23)</h3>
+          <p>
+            The challenge of governing the integration of algorithms and automated decision-making models without
+            slowing down digital product development.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Friction between Risk and Delivery</h3>
+          <p>
+            Heavy validation committees that slow down go-to-market cycles and create tension between the
+            Risk/Compliance function and Product teams.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTRY OFFER: IT GOVERNANCE & OSFI COMPLIANCE REVIEW -->
+  <section class="section section--alt" id="review">
+    <div class="container">
+      <p class="kicker">01 / REGULATORY AUDIT &amp; ALIGNMENT</p>
+      <h2>IT Governance &amp; OSFI Compliance Review</h2>
+      <p class="lead">
+        A 3- to 4-week executive mandate to audit technology compliance, identify third-party risk gaps, and
+        deliver a remediation matrix the Risk and Audit Committee can act on directly.
+      </p>
+      <p class="lead" style="font-weight: 800; color: var(--accent);">
+        Starting at $18,500 CAD <span class="muted" style="font-weight:400; color: var(--muted);">(Fixed-scope engagement)</span>
+      </p>
+
+      <div class="bullets">
+        <div class="bullet">
+          <p class="bullet-title">OSFI B-10 / B-13 Gap Analysis</p>
+          <p>
+            Concrete alignment audit of your infrastructure and policies against Canadian regulatory requirements.
+          </p>
+        </div>
+        <div class="bullet">
+          <p class="bullet-title">Third-Party Risk Audit</p>
+          <p>
+            Assessment of critical technology dependencies, vendor contract analysis, and validation of business
+            continuity plans (BCPs).
+          </p>
+        </div>
+        <div class="bullet">
+          <p class="bullet-title">AI &amp; Data Governance Framework (E-23 Alignment)</p>
+          <p>
+            Definition of architectural guardrails and explainability mechanisms for the use of AI in a regulated
+            context.
+          </p>
+        </div>
+        <div class="bullet">
+          <p class="bullet-title">Remediation Matrix &amp; Executive Action Plan</p>
+          <p>
+            Risk-prioritized roadmap to satisfy auditor and regulator requirements.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <ContactCta
+          href="https://calendar.app.google/jrWp3LMihMCr5qew7"
+          label="Schedule a meeting"
+          ariaLabel="Schedule a meeting"
+          className="btn"
+          fathomEventName="Click ScheduleMeeting Service-RegFS-Review"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE PRACTICE AREAS -->
+  <section class="section" id="approach">
+    <div class="container">
+      <h2>Deep expertise for high-risk environments</h2>
+
+      <div class="steps">
+        <div class="step">
+          <p class="step-num">01</p>
+          <h3>Compliance by Design</h3>
+          <p>
+            Automated integration of regulatory constraints (OSFI) directly into deployment pipelines (CI/CD) and
+            Cloud architectures, without slowing down developers.
+          </p>
+        </div>
+        <div class="step">
+          <p class="step-num">02</p>
+          <h3>Support During Regulatory Audits</h3>
+          <p>
+            Consultative presence alongside leadership during internal audit reviews, external audits, or
+            examinations by financial market authorities.
+          </p>
+        </div>
+        <div class="step">
+          <p class="step-num">03</p>
+          <h3>Model Governance &amp; Responsible AI</h3>
+          <p>
+            Oversight of predictive and generative model lifecycles to ensure auditability and security.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS-LINK -->
+  <section class="section" id="established-smbs">
+    <div class="container" style="text-align: center;">
+      <div class="card" style="max-width: 640px; margin: 0 auto;">
+        <p class="lead" style="margin-bottom: 16px;">
+          Leading an industrial or distribution SMB?
+        </p>
+        <a class="btn btn--outline" href="/en/services/fractional-cto-smb/">Discover our IT Diagnostic &amp; AI Alignment offer →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE PRACTICE POSITIONING -->
+  <section class="section section--alt" id="positioning">
+    <div class="container">
+      <p class="kicker">Executive Practice Positioning</p>
+      <h2>Engineering rigor, not just a legal opinion.</h2>
+
+      <div class="note">
+        <p>
+          « Monessor is not a law firm or a traditional accounting audit firm. We combine a deep understanding of
+          OSFI requirements with software architecture expertise to make your systems genuinely compliant in
+          practice, not only on paper. »
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -573,6 +573,19 @@ h3{
   margin: 0;
 }
 
+/* Accordion Contextual CTA */
+.accordion-link {
+  display: inline-flex;
+  margin: 10px 24px 0 24px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--coral);
+}
+
+.accordion-link:hover {
+  text-decoration: underline;
+}
+
 .footer{
   margin-top: 26px;
   padding-top: 18px;
@@ -656,6 +669,10 @@ h3{
   .accordion-text {
     padding: 12px 20px 0 20px;
     font-size: 14px;
+  }
+
+  .accordion-link {
+    margin: 8px 20px 0 20px;
   }
 
   /* Ensure footers and small text remain readable */

@@ -31,15 +31,41 @@ const computedSwitchPath = (() => {
 const switchPath = switchHref ?? computedSwitchPath;
 const contactPath = `${homePath}#contact`;
 
+const serviceLinks = isFr
+  ? [
+      {
+        href: '/services/cto-temps-partage-pme/',
+        label: 'PME Établies',
+        description: 'CTO à temps partagé, IA & Dette technique'
+      },
+      {
+        href: '/services/gouvernance-sf-reglementee/',
+        label: 'Secteurs Régulés',
+        description: 'Gouvernance TI & Conformité BSIF/OSFI'
+      }
+    ]
+  : [
+      {
+        href: '/en/services/fractional-cto-smb/',
+        label: 'Established SMBs',
+        description: 'Fractional CTO, AI & Tech Debt'
+      },
+      {
+        href: '/en/services/regulated-fs-governance/',
+        label: 'Regulated Sectors',
+        description: 'IT Governance & OSFI Compliance'
+      }
+    ];
+
+const servicesLabel = isFr ? 'Services' : 'Services';
+
 const sectionLinks = isFr
   ? [
-      { href: '/#services', label: 'Services' },
       { href: '/#approche', label: 'Approche' },
       { href: '/#apropos', label: 'À propos' },
       { href: insightsPath, label: 'Perspectives' }
     ]
   : [
-      { href: '/en/#services', label: 'Services' },
       { href: '/en/#approach', label: 'Approach' },
       { href: '/en/#about', label: 'About' },
       { href: insightsPath, label: 'Insights' }
@@ -60,8 +86,24 @@ const sectionLinks = isFr
           <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </summary>
-      <div class="absolute right-0 mt-3 w-64 rounded-xl border border-slate-700 bg-slate-900 p-4 shadow-xl">
+      <div class="absolute right-0 mt-3 w-72 rounded-xl border border-slate-700 bg-slate-900 p-4 shadow-xl">
         <div class="flex flex-col gap-3 text-sm text-slate-200">
+          <details>
+            <summary class="list-none cursor-pointer flex items-center justify-between">
+              <span>{servicesLabel}</span>
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <div class="mt-2 ml-3 flex flex-col gap-3 border-l border-slate-700 pl-3">
+              {serviceLinks.map((link) => (
+                <a href={link.href}>
+                  <span class="block font-medium text-slate-100">{link.label}</span>
+                  <span class="block text-xs text-slate-400">{link.description}</span>
+                </a>
+              ))}
+            </div>
+          </details>
           {sectionLinks.map((link) => <a href={link.href}>{link.label}</a>)}
           <a href={switchPath}>{switchLabel}</a>
           <a href={contactPath} class="inline-flex justify-center rounded-full bg-[#6EE7B7] px-4 py-2 font-semibold !text-slate-950 hover:!text-slate-950 no-underline">
@@ -72,6 +114,22 @@ const sectionLinks = isFr
     </details>
 
     <div class="hidden md:flex items-center gap-6 text-sm text-slate-200">
+      <div class="relative group">
+        <button type="button" class="inline-flex items-center gap-1 hover:text-[#6EE7B7] transition-colors" aria-haspopup="true">
+          {servicesLabel}
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 absolute left-0 mt-2 w-72 rounded-xl border border-slate-700 bg-slate-900 p-2 shadow-xl transition-opacity">
+          {serviceLinks.map((link) => (
+            <a href={link.href} class="block rounded-lg px-3 py-2 hover:bg-slate-800">
+              <span class="block font-semibold text-slate-100">{link.label}</span>
+              <span class="block text-xs text-slate-400">{link.description}</span>
+            </a>
+          ))}
+        </div>
+      </div>
       {sectionLinks.map((link) => <a class="hover:text-[#6EE7B7] transition-colors" href={link.href}>{link.label}</a>)}
       <a class="hover:text-[#6EE7B7] transition-colors" href={switchPath}>{switchLabel}</a>
       <a href={contactPath} class="inline-flex items-center rounded-full bg-[#6EE7B7] px-4 py-2 font-semibold !text-slate-950 hover:!text-slate-950 no-underline hover:brightness-95 transition-all">
