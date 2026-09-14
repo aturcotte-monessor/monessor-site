@@ -63,7 +63,7 @@ const jsonLd = {
     "url": siteUrl,
     "logo": {
       "@type": "ImageObject",
-      "url": `${siteUrl}/assets/logo.png`
+      "url": `${siteUrl}/assets/favicon.png`
     }
   },
   ...(entry.data.tags && { "keywords": entry.data.tags.join(", ") })
@@ -90,7 +90,7 @@ const jsonLd = {
     <meta property="og:image:alt" content="Monessor - Technology Strategy & IT Leadership Advisory" />
     
     <!-- Schema.org BlogPosting Structured Data for Googlebot -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     
   </Fragment>
 

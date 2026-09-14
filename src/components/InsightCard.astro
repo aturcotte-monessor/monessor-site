@@ -13,16 +13,18 @@ type Props = {
   href: string;
   locale?: 'fr' | 'en';
   variant?: 'light' | 'default';
+  elevateOnHover?: boolean;
 };
 
-const { entry, href, locale = 'fr', variant = 'light' } = Astro.props;
+const { entry, href, locale = 'fr', variant = 'light', elevateOnHover = true } = Astro.props;
 const titleClass = variant === 'light' ? 'text-[#23545B]' : 'text-slate-900';
 const dateClass = 'text-xs uppercase tracking-[0.14em] text-slate-500';
 const summaryClass = 'mt-2 text-slate-600';
 const formattedDate = entry.data.pubDate.toLocaleDateString(locale === 'fr' ? 'fr-CA' : 'en-CA');
+const articleClass = `rounded-2xl bg-white border border-slate-200 p-6 shadow-sm${elevateOnHover ? ' transition-all hover:border-slate-300 hover:shadow-md' : ''}`;
 ---
 
-<article class="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm transition-all hover:border-slate-300 hover:shadow-md">
+<article class={articleClass}>
   <p class={dateClass}>{formattedDate}</p>
   <h2 class={`mt-2 text-2xl font-semibold transition-colors hover:text-[#FF6F61] ${titleClass}`}>
     <a href={href} class="no-underline">{entry.data.title}</a>

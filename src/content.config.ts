@@ -7,10 +7,14 @@ const insights = defineCollection({
 		title: z.string(),
 		excerpt: z.string(),
 		pubDate: z.coerce.date(),
+		updatedDate: z.coerce.date().optional(),
 		author: z.string().optional(),
+		authorTitle: z.string().optional(),
 		readTime: z.string().optional(),
 		translationKey: z.string().optional(),
-		lang: z.enum(['fr', 'en'])
+		lang: z.enum(['fr', 'en']),
+		tags: z.array(z.string()).optional(),
+		draft: z.boolean().default(false)
 	})
 });
 

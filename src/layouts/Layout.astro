@@ -86,14 +86,17 @@ const organizationSchema = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteImageUrl} />
 
-    <link rel="icon" href="/assets/favicon.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
 
     <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     <!-- Fathom Analytics -->
-    <script 
-      src="https://cdn.usefathom.com/script.js" 
-      data-site="LRVBMDAF" 
+    <script
+      is:inline
+      src="https://cdn.usefathom.com/script.js"
+      data-site="LRVBMDAF"
       defer>
     </script>
     <slot name="head" />

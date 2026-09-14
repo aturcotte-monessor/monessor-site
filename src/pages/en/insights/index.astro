@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
+import InsightCard from '../../../components/InsightCard.astro';
 
 const entries = (await getCollection('insights', ({ id, data }) => id.startsWith('en/') && data.lang === 'en')).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
@@ -21,13 +22,7 @@ const toInsightUrl = (id: string) => `/en/insights/${id.replace(/^en\//, '').rep
 
       <div class="mt-10 grid gap-4 md:grid-cols-2">
         {entries.map((entry) => (
-          <article class="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm">
-            <p class="text-xs uppercase tracking-[0.14em] text-slate-500">{entry.data.pubDate.toLocaleDateString('en-CA')}</p>
-            <h2 class="mt-2 text-2xl font-semibold text-[#23545B] transition-colors hover:text-[#FF6F61]">
-              <a href={toInsightUrl(entry.id)} class="no-underline">{entry.data.title}</a>
-            </h2>
-            <p class="mt-2 text-slate-600">{entry.data.excerpt}</p>
-          </article>
+          <InsightCard entry={entry} href={toInsightUrl(entry.id)} locale="en" elevateOnHover={false} />
         ))}
       </div>
     </div>
