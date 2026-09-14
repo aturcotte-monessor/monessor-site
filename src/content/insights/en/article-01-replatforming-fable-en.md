@@ -7,9 +7,18 @@ readTime: "5 min"
 lang: "en"
 translationKey: "replatforming-fable"
 tags: ["IT Modernization", "Replatforming", "Technical Debt", "Artificial Intelligence", "Governance"]
+faq:
+  - question: "What is the difference between Replatforming (technical conversion) and Redesign (business-value refactoring)?"
+    answer: "Replatforming mechanically translates existing code into a modern language without questioning the underlying business logic — the classic \"COBOL written in Java\" syndrome. Redesign starts from the organization's true operational requirements to cut the noise and reduce the recurring cost structure. The former modernizes syntax; the latter transforms the operating model."
+  - question: "Why isn't artificial intelligence enough to modernize a legacy system?"
+    answer: "AI excels at converting existing code quickly and cheaply, but it cannot perform domain rationalization or business process re-engineering. Without human arbitration, it risks faithfully translating bad practices and locking functional debt into a new technical environment."
+  - question: "What is the Strangler Fig pattern in IT modernization?"
+    answer: "It is a hybrid approach that progressively replaces components of a legacy system one by one while keeping operations running continuously. It allows organizations to combine direct technical conversion on stable modules with full redesign on strategic components, spreading execution risk over time."
+  - question: "Who should arbitrate between technical conversion, replatforming, and full redesign?"
+    answer: "This decision should not rest solely with the engineering team. Neutral IT governance and strong product leadership are needed to assess organizational maturity, bridge business vision with technical execution, and prevent the project from quietly sliding back into a technical conversion with identical functionality."
 ---
 
-When faced with a major capital expenditure often running into tens of millions of dollars, executive teams consistently confront the same strategic dilemma. At the heart of the debate, two philosophies collide. And the chosen trajectory speaks volumes about the maturity of a company’s technology governance.
+When faced with a major capital expenditure often running into tens of millions of dollars, executive teams consistently confront the same strategic dilemma. At the heart of the debate, two philosophies collide. And the chosen trajectory speaks volumes about the maturity of a company's [IT governance](/en/services/regulated-fs-governance/).
 
 Indeed, when an organization relies on a critical platform built 20, 30, or 40 years ago, modernization is never a question of "if"—it is a question of "when". Between a recurring operating cost (run cost / OpEx) that swells year after year, the gradual loss of institutional knowledge, and the shrinking talent pool for legacy technologies, maintaining the status quo quickly becomes an unacceptable operational and financial risk.
 
@@ -49,7 +58,7 @@ When this happens, the organization spends millions simply shifting its technica
 
 ### The Hybrid Path: Product Leadership Trade-Offs
 
-Does this mean automated code conversion or replatforming should be dismissed outright? Not at all. Seasoned technology leaders know that dogmatic positions rarely work in business.
+Does this mean automated code conversion or replatforming should be dismissed outright? Not at all. An experienced [fractional CTO](/en/services/fractional-cto-smb/) knows that dogmatic positions rarely work in business.
 
 In complex enterprise environments, the optimal solution is frequently hybrid. Nothing prevents an organization from choosing direct code conversion for well-defined, stable modules that offer little value in being redesigned, while investing in a full *redesign* for core strategic components where simplification yields an immediate business ROI.
 
@@ -63,7 +72,7 @@ Before deciding between technical conversion, replatforming, redesign, or a hybr
 
 **This is exactly when experienced technology leaders should step in, assess the extent of your operational issues, help you weigh the pros and cons without bias, and define a pragmatic modernization roadmap that fits your organization.**
 
-Without strong product management at the decision-making table to enforce rigorous trade-offs and bridge business vision with engineering, the organization faces the worst-case scenario: *spending multiple millions of dollars to refresh its technology stack, while effectively sealing the paralysis of its operating model*.
+Without [part-time IT leadership](/en/services/fractional-cto-smb/) or strong product management at the decision-making table to enforce rigorous trade-offs and bridge business vision with engineering, the organization faces the worst-case scenario: *spending multiple millions of dollars to refresh its technology stack, while effectively sealing the paralysis of its operating model*.
 
 ---
 

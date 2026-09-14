@@ -7,9 +7,18 @@ readTime: "5 min"
 lang: "fr"
 translationKey: "replatforming-fable"
 tags: ["Modernisation TI", "Replatforming", "Dette Technique", "Intelligence Artificielle", "Gouvernance"]
+faq:
+  - question: "Quelle est la différence entre le Replatforming (conversion technique) et le Redesign (refonte par la valeur d'affaires) ?"
+    answer: "Le Replatforming traduit mécaniquement le code existant vers un langage moderne sans remettre en question la logique métier sous-jacente : c'est le syndrome du « COBOL écrit en Java ». Le Redesign repart des exigences opérationnelles réelles pour éliminer le superflu et réduire la structure de coût récurrente. Le premier modernise la syntaxe; le second transforme le modèle opérationnel."
+  - question: "Pourquoi l'intelligence artificielle ne suffit-elle pas à moderniser un système patrimonial ?"
+    answer: "L'IA excelle à convertir du code existant à grande vitesse et à faible coût, mais elle ne peut pas rationaliser les domaines d'affaires ni réingénierer les processus opérationnels. Sans arbitrage humain, elle risque de traduire fidèlement de mauvaises pratiques et de figer la dette fonctionnelle dans un nouvel environnement technique."
+  - question: "Qu'est-ce que le motif d'étranglement (Strangler Fig pattern) en modernisation TI ?"
+    answer: "C'est une approche hybride qui permet de remplacer progressivement les composants d'un système patrimonial, un par un, tout en maintenant les opérations en continu. Elle permet de combiner conversion technique directe sur les modules stables et refonte complète sur les composants stratégiques, en étalant le risque d'exécution dans le temps."
+  - question: "Qui devrait arbitrer entre conversion technique, replatforming et refonte complète ?"
+    answer: "Cette décision ne devrait pas revenir uniquement à l'équipe d'ingénierie. Une gouvernance TI neutre et une gestion de produit forte sont nécessaires pour évaluer la maturité organisationnelle, faire le pont entre la vision d'affaires et l'exécution technique, et éviter que le projet ne glisse silencieusement vers une simple conversion à fonctionnel identique."
 ---
 
-Face à un investissement majeur se chiffrant souvent en dizaines de millions de dollars, les équipes de direction se retrouvent systématiquement devant le même dilemme stratégique. Au cœur du débat, deux philosophies s'affrontent. Et le choix de la trajectoire en dit souvent long sur la maturité de la gouvernance technologique de l'entreprise.
+Face à un investissement majeur se chiffrant souvent en dizaines de millions de dollars, les équipes de direction se retrouvent systématiquement devant le même dilemme stratégique. Au cœur du débat, deux philosophies s'affrontent. Et le choix de la trajectoire en dit souvent long sur la maturité de la [gouvernance TI](/services/gouvernance-sf-reglementee/) de l'entreprise.
 
 En effet, quand une organisation s'appuie sur une plateforme critique développée il y a 20, 30 ou 40 ans, la question de la modernisation ne se pose pas avec un « si », mais avec un « quand ». Entre le coût de fonctionnement récurrent (*run cost / OpEx*) qui s'alourdit d'année en année, la perte graduelle de la mémoire institutionnelle et la rareté grandissante des compétences sur des technologies devenues obsolètes, le maintien du statu quo devient rapidement un risque opérationnel et financier inacceptable.
 
@@ -49,7 +58,7 @@ Ce faisant, l'organisation dépense des millions pour déplacer sa dette techniq
 
 ### La voie hybride : L'arbitrage d'un leadership produit
 
-Faut-il pour autant rejeter catégoriquement la conversion de code automatisée ou le Replatforming? Absolument pas. Un leadership technologique d'expérience sait qu'une posture dogmatique est rarement la bonne réponse en entreprise.
+Faut-il pour autant rejeter catégoriquement la conversion de code automatisée ou le Replatforming? Absolument pas. Une [direction TI à temps partagé](/services/cto-temps-partage-pme/) expérimentée sait qu'une posture dogmatique est rarement la bonne réponse en entreprise.
 
 Dans la réalité des systèmes complexes, la solution optimale réside souvent dans une approche hybride. Rien n'empêche d'opter pour une conversion de code directe sur certains modules bien définis, stables et présentant peu de valeur ajoutée à être repensés, tout en investissant dans un *redesign* complet sur les composants stratégiques où la simplification génère un ROI d'affaires immédiat.
 
@@ -63,7 +72,7 @@ Avant de trancher entre conversion technique, replatforming, refonte ou approche
 
 **C’est précisément là qu'interviennent des leaders technologiques d'expérience : évaluer la portée réelle de vos enjeux opérationnels, vous éclairer dans l'arbitrage des compromis sans parti pris, et définir une trajectoire de modernisation pragmatique, adaptée à votre organisation.**
 
-Sans une gestion de produit forte à la table de décision pour imposer des décisions rigoureuses et faire le pont entre la vision d'affaires et l'ingénierie, l'organisation s'expose au pire des scénarios: *dépenser plusieurs millions de dollars pour rafraîchir sa technologie, tout en scellant la paralysie de son modèle opérationnel*.
+Sans un [fractional CTO](/services/cto-temps-partage-pme/) ou une gestion de produit forte à la table de décision pour imposer des décisions rigoureuses et faire le pont entre la vision d'affaires et l'ingénierie, l'organisation s'expose au pire des scénarios: *dépenser plusieurs millions de dollars pour rafraîchir sa technologie, tout en scellant la paralysie de son modèle opérationnel*.
 
 ---
 
