@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --color-coral: #FF6F61;
+}
+
 :root {
   color-scheme: dark;
 
@@ -38,7 +42,15 @@ a:hover { opacity: .92; text-decoration: underline; }
 img { max-width: 100%; display: block; }
 
 .prose a {
+  color: var(--coral);
   text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(255, 111, 97, 0.4);
+  transition: text-decoration-color .14s ease, opacity .14s ease;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--coral);
 }
 
 .container{
