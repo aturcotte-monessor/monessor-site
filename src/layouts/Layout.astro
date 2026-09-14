@@ -1,6 +1,7 @@
 ---
 // src/layouts/Layout.astro
 import Header from '../components/Header.astro';
+import { getAlternatePath } from '../utils/i18nRoutes';
 import '../styles/global.css';
 
 interface Props {
@@ -19,14 +20,9 @@ const pathname = Astro.url.pathname;
 // Calcul dynamique des URLs Canoniques et Hreflang
 const canonicalUrl = new URL(pathname, siteUrl).href;
 
-let frPath = pathname;
-let enPath = pathname;
-
-if (pathname.startsWith('/en/')) {
-  frPath = pathname.replace(/^\/en/, '') || '/';
-} else {
-  enPath = `/en${pathname === '/' ? '' : pathname}`;
-}
+const isEnPath = pathname.startsWith('/en/');
+const frPath = isEnPath ? await getAlternatePath(pathname, 'fr') : pathname;
+const enPath = isEnPath ? pathname : await getAlternatePath(pathname, 'en');
 
 const urlFR = new URL(frPath, siteUrl).href;
 const urlEN = new URL(enPath, siteUrl).href;

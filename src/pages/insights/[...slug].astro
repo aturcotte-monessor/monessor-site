@@ -16,19 +16,6 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const metaParts = [entry.data.readTime, entry.data.author].filter(Boolean);
 
-let switchHref = `/en/insights/${entry.id.replace(/^fr\//, '').replace(/\.md$/, '')}/`;
-
-if (entry.data.translationKey) {
-  const counterpart = await getCollection(
-    'insights',
-    ({ id, data }) => id.startsWith('en/') && data.lang === 'en' && data.translationKey === entry.data.translationKey
-  );
-
-  if (counterpart.length > 0) {
-    switchHref = `/en/insights/${counterpart[0].id.replace(/^en\//, '').replace(/\.md$/, '')}/`;
-  }
-}
-
 // --- AJOUTS SEO & DONNÉES STRUCTURÉES ---
 const siteUrl = 'https://www.monessor.com';
 const currentUrl = new URL(Astro.url.pathname, siteUrl).href;
@@ -70,7 +57,7 @@ const jsonLd = {
 };
 ---
 
-<Layout locale="fr" switchHref={switchHref} title={`${entry.data.title} - Par ${entry.data.author || 'Alex Turcotte'}`} description={entry.data.excerpt} image="/assets/og-insight-default.png">
+<Layout locale="fr" title={`${entry.data.title} - Par ${entry.data.author || 'Alex Turcotte'}`} description={entry.data.excerpt} image="/assets/og-insight-default.png">
   <Fragment slot="head">
     <!-- Balises Open Graph & Twitter pour le partage social -->
     <meta property="og:type" content="article" />

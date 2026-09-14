@@ -16,19 +16,6 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const metaParts = [entry.data.readTime, entry.data.author].filter(Boolean);
 
-let switchHref = `/insights/${entry.id.replace(/^en\//, '').replace(/\.md$/, '')}/`;
-
-if (entry.data.translationKey) {
-  const counterpart = await getCollection(
-    'insights',
-    ({ id, data }) => id.startsWith('fr/') && data.lang === 'fr' && data.translationKey === entry.data.translationKey
-  );
-
-  if (counterpart.length > 0) {
-    switchHref = `/insights/${counterpart[0].id.replace(/^fr\//, '').replace(/\.md$/, '')}/`;
-  }
-}
-
 // --- AJOUTS SEO & DONNÉES STRUCTURÉES (VERSION EN) ---
 const siteUrl = 'https://www.monessor.com';
 const currentUrl = new URL(Astro.url.pathname, siteUrl).href;
@@ -70,7 +57,7 @@ const jsonLd = {
 };
 ---
 
-<Layout locale="en" switchHref={switchHref} title={`${entry.data.title} - Par ${entry.data.author || 'Alex Turcotte'}`} description={entry.data.excerpt} image="/assets/og-insight-default.png">
+<Layout locale="en" title={`${entry.data.title} - Par ${entry.data.author || 'Alex Turcotte'}`} description={entry.data.excerpt} image="/assets/og-insight-default.png">
   <Fragment slot="head">
     <!-- Open Graph & Twitter Cards for LinkedIn/Social Sharing -->
     <meta property="og:type" content="article" />

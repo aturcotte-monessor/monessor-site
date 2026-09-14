@@ -1,4 +1,6 @@
 ---
+import { getAlternatePath } from '../utils/i18nRoutes';
+
 interface Props {
   locale?: 'fr' | 'en';
   switchHref?: string;
@@ -12,23 +14,7 @@ const insightsPath = isFr ? '/insights/' : '/en/insights/';
 const switchLabel = isFr ? 'EN' : 'FR';
 const pathname = Astro.url.pathname;
 
-const computedSwitchPath = (() => {
-  if (isFr) {
-    if (pathname.startsWith('/insights/')) {
-      return `/en${pathname}`;
-    }
-
-    return '/en/';
-  }
-
-  if (pathname.startsWith('/en/insights/')) {
-    return pathname.replace(/^\/en/, '') || '/';
-  }
-
-  return '/';
-})();
-
-const switchPath = switchHref ?? computedSwitchPath;
+const switchPath = switchHref ?? (await getAlternatePath(pathname, isFr ? 'en' : 'fr'));
 const contactPath = `${homePath}#contact`;
 
 const serviceLinks = isFr
