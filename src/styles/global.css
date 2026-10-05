@@ -600,6 +600,70 @@ h3{
   text-decoration: underline;
 }
 
+/* Tableaux et matrices dans les articles Insight (Markdown / MDX) */
+.insight-content table {
+  width: 100%;
+  margin: 28px 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid rgba(35, 84, 91, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #FFFFFF;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1e293b;
+}
+
+.insight-content th,
+.insight-content td {
+  padding: 12px 16px;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(35, 84, 91, 0.12);
+}
+
+.insight-content th {
+  text-align: left;
+}
+
+.insight-content thead th {
+  background: var(--light-text);
+  color: #FFFFFF;
+  font-weight: 600;
+  border-bottom: none;
+}
+
+.insight-content tbody tr:nth-child(even) {
+  background: rgba(35, 84, 91, 0.04);
+}
+
+.insight-content tbody tr:last-child td,
+.insight-content tbody tr:last-child th {
+  border-bottom: none;
+}
+
+/* Première colonne : libellé du critère */
+.insight-content tbody td:first-child,
+.insight-content tbody th:first-child {
+  font-weight: 600;
+  color: var(--light-text);
+}
+
+@media (max-width: 640px) {
+  .insight-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 14px;
+  }
+
+  .insight-content th,
+  .insight-content td {
+    min-width: 150px;
+    padding: 10px 12px;
+  }
+}
+
 .footer{
   margin-top: 26px;
   padding-top: 18px;
