@@ -64,6 +64,7 @@ export default defineConfig({
       '/insights/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique',
     '/en/insights/technology-smb-from-cost-center-to-strategic-asset':
       '/en/insights/article-03-technology-sme-from-cost-center-to-strategic-asset',
+    '/en/services/fractional-cto-smb': '/en/services/fractional-cto-sme',
   },
   integrations: [
     sitemap({
