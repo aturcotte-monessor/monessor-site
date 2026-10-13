@@ -10,9 +10,11 @@ interface Props {
   locale?: 'fr' | 'en';
   switchHref?: string;
   image?: string;
+  ogType?: 'website' | 'article';
+  ogTitle?: string;
 }
 
-const { title, description, locale = 'fr', switchHref, image = '/assets/alex.jpg' } = Astro.props;
+const { title, description, locale = 'fr', switchHref, image = '/assets/alex.jpg', ogType = 'website', ogTitle = title } = Astro.props;
 
 const siteUrl = 'https://www.monessor.com';
 const pathname = Astro.url.pathname;
@@ -68,9 +70,9 @@ const organizationSchema = {
     <link rel="alternate" hreflang="x-default" href={urlFR} />
 
     <!-- Open Graph / LinkedIn / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={absoluteImageUrl} />
     <meta property="og:site_name" content="Monessor" />
@@ -78,7 +80,7 @@ const organizationSchema = {
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteImageUrl} />
 
