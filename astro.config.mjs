@@ -61,8 +61,8 @@ function resolveSourceFile(pathname) {
 const STATIC_PAIRS = [
   ['/fr/', '/en/'],
   ['/fr/perspectives/', '/en/insights/'],
-  ['/fr/services/cto-temps-partage-pme/', '/en/services/fractional-cto-sme/'],
-  ['/fr/services/gouvernance-sf-reglementee/', '/en/services/regulated-fs-governance/'],
+  ['/fr/services/pme/', '/en/services/sme/'],
+  ['/fr/services/services-financiers-reglementes/', '/en/services/regulated-financial-services/'],
   ['/fr/approche/', '/en/approach/'],
   ['/fr/a-propos/', '/en/about/'],
   ['/fr/confidentialite/', '/en/privacy/'],

@@ -7,8 +7,8 @@ export type Locale = 'fr' | 'en';
  * (service landing pages and other hand-translated pages, not generated from a shared slug).
  */
 const SERVICE_ROUTE_PAIRS: Array<[fr: string, en: string]> = [
-  ['/fr/services/cto-temps-partage-pme/', '/en/services/fractional-cto-sme/'],
-  ['/fr/services/gouvernance-sf-reglementee/', '/en/services/regulated-fs-governance/'],
+  ['/fr/services/pme/', '/en/services/sme/'],
+  ['/fr/services/services-financiers-reglementes/', '/en/services/regulated-financial-services/'],
   ['/fr/approche/', '/en/approach/'],
   ['/fr/a-propos/', '/en/about/'],
   ['/fr/confidentialite/', '/en/privacy/'],

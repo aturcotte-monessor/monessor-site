@@ -5,7 +5,7 @@ export const MEETING_URL = 'https://calendar.app.google/jrWp3LMihMCr5qew7';
 
 /**
  * Clé de page stable pour les événements Fathom : chemin sans préfixe de langue ni barres obliques.
- * `/fr/` et `/en/` → `home` ; `/en/services/fractional-cto-sme/` → `services/fractional-cto-sme`.
+ * `/fr/` et `/en/` → `home` ; `/en/services/sme/` → `services/sme`.
  */
 export function pageKey(pathname: string): string {
   const key = pathname.replace(/^\/(fr|en)(\/|$)/, '/').replace(/^\/+|\/+$/g, '');
@@ -14,7 +14,7 @@ export function pageKey(pathname: string): string {
 
 /**
  * Nom d'événement Fathom distinct par action, emplacement, langue et page.
- * Ex. : `Click ScheduleMeeting Header [FR] services/cto-temps-partage-pme`.
+ * Ex. : `Click ScheduleMeeting Header [FR] services/pme`.
  */
 export function fathomEvent(
   action: 'ScheduleMeeting' | 'Email' | 'Phone' | 'LinkedIn',

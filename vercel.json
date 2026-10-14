@@ -41,16 +41,6 @@
       "statusCode": 301
     },
     {
-      "source": "/en/services/fractional-cto-smb",
-      "destination": "/en/services/fractional-cto-sme/",
-      "statusCode": 301
-    },
-    {
-      "source": "/en/services/fractional-cto-smb/",
-      "destination": "/en/services/fractional-cto-sme/",
-      "statusCode": 301
-    },
-    {
       "source": "/approche",
       "destination": "/fr/approche/",
       "statusCode": 301
@@ -91,26 +81,6 @@
       "statusCode": 301
     },
     {
-      "source": "/services/cto-temps-partage-pme",
-      "destination": "/fr/services/cto-temps-partage-pme/",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/cto-temps-partage-pme/",
-      "destination": "/fr/services/cto-temps-partage-pme/",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/gouvernance-sf-reglementee",
-      "destination": "/fr/services/gouvernance-sf-reglementee/",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/gouvernance-sf-reglementee/",
-      "destination": "/fr/services/gouvernance-sf-reglementee/",
-      "statusCode": 301
-    },
-    {
       "source": "/insights/article-01-replatforming-fable-fr",
       "destination": "/fr/perspectives/article-01-replatforming-fable-fr/",
       "statusCode": 301
@@ -138,6 +108,91 @@
     {
       "source": "/insights/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
       "destination": "/fr/perspectives/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/cto-temps-partage-pme",
+      "destination": "/fr/services/pme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/cto-temps-partage-pme/",
+      "destination": "/fr/services/pme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/services/cto-temps-partage-pme",
+      "destination": "/fr/services/pme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/services/cto-temps-partage-pme/",
+      "destination": "/fr/services/pme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/gouvernance-sf-reglementee",
+      "destination": "/fr/services/services-financiers-reglementes/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/gouvernance-sf-reglementee/",
+      "destination": "/fr/services/services-financiers-reglementes/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/services/gouvernance-sf-reglementee",
+      "destination": "/fr/services/services-financiers-reglementes/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/services/gouvernance-sf-reglementee/",
+      "destination": "/fr/services/services-financiers-reglementes/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/services/fractional-cto-sme",
+      "destination": "/en/services/sme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/services/fractional-cto-sme/",
+      "destination": "/en/services/sme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/services/fractional-cto-smb",
+      "destination": "/en/services/sme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/services/fractional-cto-smb/",
+      "destination": "/en/services/sme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/services/regulated-fs-governance",
+      "destination": "/en/services/regulated-financial-services/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/services/regulated-fs-governance/",
+      "destination": "/en/services/regulated-financial-services/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/insights",
+      "destination": "/fr/perspectives/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/insights/",
+      "destination": "/fr/perspectives/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/insights/:path(.*)",
+      "destination": "/fr/perspectives/:path",
       "statusCode": 301
     },
     {
