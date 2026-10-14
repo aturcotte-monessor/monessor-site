@@ -15,21 +15,23 @@ const rootDir = path.dirname(fileURLToPath(import.meta.url));
 // so we can stamp <lastmod> with that file's last git commit date.
 function resolveSourceFile(pathname) {
   const segments = pathname.split('/').filter(Boolean);
-  const lang = segments[0] === 'en' ? 'en' : null;
-  const rest = lang ? segments.slice(1) : segments;
+  const lang = segments[0] === 'en' || segments[0] === 'fr' ? segments[0] : null;
+  if (!lang) return null; // la racine redirige selon la langue et n'est pas dans le sitemap
+  const rest = segments.slice(1);
 
-  const pagesDir = lang ? path.join('src/pages', lang) : 'src/pages';
+  const pagesDir = path.join('src/pages', lang);
 
   if (rest.length === 0) {
     return path.join(pagesDir, 'index.astro');
   }
 
-  if (rest[0] === 'insights') {
+  // Section des analyses : /fr/perspectives/ et /en/insights/
+  if (rest[0] === 'insights' || rest[0] === 'perspectives') {
     if (rest.length === 1) {
-      return path.join(pagesDir, 'insights', 'index.astro');
+      return path.join(pagesDir, rest[0], 'index.astro');
     }
     const slug = rest[1];
-    const contentDir = path.join('src/content/insights', lang ?? 'fr');
+    const contentDir = path.join('src/content/insights', lang);
     for (const ext of ['md', 'mdx']) {
       const candidate = path.join(contentDir, `${slug}.${ext}`);
       if (existsSync(path.join(rootDir, candidate))) return candidate;
@@ -57,13 +59,13 @@ function resolveSourceFile(pathname) {
 // Paires FR / EN pour les balises hreflang du sitemap.
 // Pages à slugs traduits (même liste que src/utils/i18nRoutes.ts) + articles appariés par translationKey.
 const STATIC_PAIRS = [
-  ['/', '/en/'],
-  ['/insights/', '/en/insights/'],
-  ['/services/cto-temps-partage-pme/', '/en/services/fractional-cto-sme/'],
-  ['/services/gouvernance-sf-reglementee/', '/en/services/regulated-fs-governance/'],
-  ['/approche/', '/en/approach/'],
-  ['/a-propos/', '/en/about/'],
-  ['/confidentialite/', '/en/privacy/'],
+  ['/fr/', '/en/'],
+  ['/fr/perspectives/', '/en/insights/'],
+  ['/fr/services/pme/', '/en/services/sme/'],
+  ['/fr/services/finance-reglementee/', '/en/services/regulated-finance/'],
+  ['/fr/approche/', '/en/approach/'],
+  ['/fr/a-propos/', '/en/about/'],
+  ['/fr/confidentialite/', '/en/privacy/'],
 ];
 
 function articlePairs() {
@@ -74,7 +76,7 @@ function articlePairs() {
       const key = readFileSync(path.join(dir, file), 'utf8').match(/^translationKey:\s*"?([^"\n]+)"?/m)?.[1];
       if (!key) continue;
       byKey[key] ??= {};
-      byKey[key][lang] = `${lang === 'en' ? '/en' : ''}/insights/${file.replace(/\.mdx?$/, '')}/`;
+      byKey[key][lang] = `/${lang}/${lang === 'fr' ? 'perspectives' : 'insights'}/${file.replace(/\.mdx?$/, '')}/`;
     }
   }
   return Object.values(byKey).filter((pair) => pair.fr && pair.en).map((pair) => [pair.fr, pair.en]);
@@ -85,7 +87,8 @@ for (const [fr, en] of [...STATIC_PAIRS, ...articlePairs()]) {
   const links = [
     { lang: 'fr', url: `https://www.monessor.com${fr}` },
     { lang: 'en', url: `https://www.monessor.com${en}` },
-    { lang: 'x-default', url: `https://www.monessor.com${fr}` },
+    // x-default : la racine pour l'accueil (redirection selon la langue), sinon la version française
+    { lang: 'x-default', url: `https://www.monessor.com${fr === '/fr/' ? '/' : fr}` },
   ];
   HREFLANG.set(fr, links);
   HREFLANG.set(en, links);
@@ -106,17 +109,21 @@ function getGitLastModified(relativePath) {
 
 export default defineConfig({
   site: 'https://www.monessor.com',
-  redirects: {
-    '/insights/technologie-pme-de-centre-de-cout-a-actif-strategique':
-      '/insights/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique',
-    '/en/insights/technology-smb-from-cost-center-to-strategic-asset':
-      '/en/insights/article-03-technology-sme-from-cost-center-to-strategic-asset',
-    '/en/services/fractional-cto-smb': '/en/services/fractional-cto-sme',
+  // Routes symétriques /fr/ et /en/. Les redirections (racine selon la langue, anciennes URL françaises,
+  // anciens slugs) sont de vraies 301/302 servies par Vercel : voir vercel.json.
+  i18n: {
+    locales: ['fr', 'en'],
+    defaultLocale: 'fr',
+    routing: { prefixDefaultLocale: true, redirectToDefaultLocale: false },
   },
   integrations: [
     sitemap({
       // Les pages 404 ne doivent pas être indexées
-      filter: (page) => !/\/404\/?$/.test(new URL(page).pathname),
+      // Ni les pages 404 ni la racine (qui redirige selon la langue) ne sont indexées
+      filter: (page) => {
+        const pathname = new URL(page).pathname;
+        return pathname !== '/' && !/\/404\/?$/.test(pathname);
+      },
       serialize(item) {
         const pathname = new URL(item.url).pathname;
         const sourceFile = resolveSourceFile(pathname);

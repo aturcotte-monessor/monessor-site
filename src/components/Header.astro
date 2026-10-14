@@ -11,8 +11,8 @@ interface Props {
 const { locale = 'fr', switchHref } = Astro.props;
 const isFr = locale === 'fr';
 
-const homePath = isFr ? '/' : '/en/';
-const insightsPath = isFr ? '/insights/' : '/en/insights/';
+const homePath = isFr ? '/fr/' : '/en/';
+const insightsPath = isFr ? '/fr/perspectives/' : '/en/insights/';
 const switchLabel = isFr ? 'EN' : 'FR';
 const switchAria = isFr ? 'English version' : 'Version française';
 const pathname = Astro.url.pathname;
@@ -23,24 +23,24 @@ const meetingLabel = isFr ? 'Planifier une rencontre' : 'Book a meeting';
 const serviceLinks = isFr
   ? [
       {
-        href: '/services/cto-temps-partage-pme/',
+        href: '/fr/services/pme/',
         label: 'PME',
         description: 'CTO à temps partagé, Transformation numérique & IA'
       },
       {
-        href: '/services/gouvernance-sf-reglementee/',
+        href: '/fr/services/finance-reglementee/',
         label: 'Services financiers réglementés',
         description: 'Gouvernance TI & Conformité BSIF/OSFI'
       }
     ]
   : [
       {
-        href: '/en/services/fractional-cto-sme/',
+        href: '/en/services/sme/',
         label: 'SMEs',
         description: 'Fractional CTO, Digital Transformation & AI'
       },
       {
-        href: '/en/services/regulated-fs-governance/',
+        href: '/en/services/regulated-finance/',
         label: 'Regulated Financial Services',
         description: 'IT Governance & OSFI Compliance'
       }
@@ -50,9 +50,9 @@ const servicesLabel = 'Services';
 
 const sectionLinks = isFr
   ? [
-      { href: '/approche/', label: 'Approche' },
+      { href: '/fr/approche/', label: 'Approche' },
       { href: insightsPath, label: 'Perspectives' },
-      { href: '/a-propos/', label: 'À propos' }
+      { href: '/fr/a-propos/', label: 'À propos' }
     ]
   : [
       { href: '/en/approach/', label: 'Approach' },

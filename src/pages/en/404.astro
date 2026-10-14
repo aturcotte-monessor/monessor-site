@@ -2,8 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 
 const links = [
-  { href: '/en/services/fractional-cto-sme/', label: 'SMEs', text: 'Fractional CTO, IT Maturity Diagnostic' },
-  { href: '/en/services/regulated-fs-governance/', label: 'Regulated financial services', text: 'IT governance and OSFI compliance' },
+  { href: '/en/services/sme/', label: 'SMEs', text: 'Fractional CTO, IT Maturity Diagnostic' },
+  { href: '/en/services/regulated-finance/', label: 'Regulated financial services', text: 'IT governance and OSFI compliance' },
   { href: '/en/insights/', label: 'Insights', text: 'Analysis on technology, risk and governance' }
 ];
 ---
@@ -14,6 +14,7 @@ const links = [
   description="This page does not exist or has been moved."
   meeting={false}
   noindex
+  switchHref="/fr/"
 >
   <section class="bg-light py-20 text-ink">
     <div class="mx-auto max-w-3xl px-6 lg:px-8">
@@ -33,7 +34,7 @@ const links = [
       <p class="mt-10">
         <a href="/en/" class="font-semibold text-teal underline underline-offset-4">Back to home</a>
         <span aria-hidden="true"> · </span>
-        <a href="/" lang="fr" class="text-teal underline underline-offset-4">Site en français</a>
+        <a href="/fr/" lang="fr" class="text-teal underline underline-offset-4">Site en français</a>
       </p>
     </div>
   </section>

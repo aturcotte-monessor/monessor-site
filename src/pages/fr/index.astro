@@ -1,0 +1,279 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import InsightCard from '../../components/InsightCard.astro';
+import ContactCta from '../../components/ContactCta.astro';
+import Icon from '../../components/Icon.astro';
+import ChevronLines from '../../components/ChevronLines.astro';
+import { MEETING_URL, fathomEvent } from '../../utils/tracking';
+import { resolveSegment } from '../../utils/insights';
+import { ui } from '../../i18n/ui';
+
+const locale = 'fr' as const;
+const pathname = Astro.url.pathname;
+const allInsights = await getCollection('insights');
+const entries = allInsights
+  .filter(({ id, data }) => id.startsWith('fr/') && data.lang === locale)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const servicePme = '/fr/services/pme/';
+const serviceSf = '/fr/services/finance-reglementee/';
+
+const symptoms = [
+  {
+    icon: 'wallet' as const,
+    title: 'Des budgets TI qui augmentent sans rendement visible',
+    text: 'Logiciels, infonuagique, fournisseurs : les dépenses progressent chaque année, sans que personne puisse dire précisément ce qu’elles rapportent.'
+  },
+  {
+    icon: 'server-cog' as const,
+    title: 'Des systèmes critiques entre trop peu de mains',
+    text: 'Votre ERP, vos applications clés ou vos données dépendent de quelques personnes ou d’un seul fournisseur.'
+  },
+  {
+    icon: 'brain-circuit' as const,
+    title: 'Des décisions sur l’IA prises sous pression',
+    text: 'Les sollicitations se multiplient, sans grille pour distinguer les projets rentables des effets de mode.'
+  }
+];
+
+const sequence = [
+  { step: '01', title: 'Diagnostic de maturité TI', text: 'L’état des lieux, les risques et les priorités, en 2 à 3 semaines.' },
+  { step: '02', title: 'Livrables ciblés', text: 'Deux ou trois mandats précis issus du diagnostic : choix d’un ERP, appel d’offres, plan de modernisation.' },
+  { step: '03', title: 'Direction TI à temps partagé', text: 'Une présence régulière au comité de direction, environ une journée par semaine, pour piloter l’exécution.' }
+];
+
+const situations = [
+  {
+    icon: 'layers' as const,
+    title: 'Une plateforme critique à moderniser',
+    text: 'Votre système central doit évoluer sans compromettre les opérations, la conformité ni la confiance de vos clients.'
+  },
+  {
+    icon: 'scale' as const,
+    title: 'Des investissements à arbitrer',
+    text: 'Plusieurs projets se disputent le même budget et la direction veut un avis indépendant pour trancher entre coût, risque et valeur.'
+  },
+  {
+    icon: 'search-check' as const,
+    title: 'L’IA à évaluer avec méthode',
+    text: 'Vous voulez savoir où l’intelligence artificielle et l’automatisation créeront réellement de la valeur, cas d’affaires à l’appui.'
+  },
+  {
+    icon: 'compass' as const,
+    title: 'Un leadership technologique sans embauche immédiate',
+    text: 'Vous avez besoin d’un CTO d’expérience à la table de direction, sans recruter tout de suite un cadre à temps plein.'
+  }
+];
+
+const steps = [
+  { icon: 'search' as const, step: '01', title: 'Clarifier', text: 'Les enjeux, les contraintes, les risques et les décisions à prendre.' },
+  { icon: 'route' as const, step: '02', title: 'Structurer', text: 'Les options, la trajectoire, la gouvernance et les priorités.' },
+  { icon: 'flag' as const, step: '03', title: 'Exécuter', text: 'L’accompagnement de la mise en œuvre, ou sa direction.' }
+];
+
+const container = 'mx-auto max-w-7xl px-6 lg:px-8';
+---
+
+<Layout
+  locale={locale}
+  meetingId="contact"
+  title="Conseil en gestion stratégique des TI pour PME | Monessor"
+  description="Gouvernez les TI de votre PME avec la rigueur du secteur financier réglementé. Monessor commence par un Diagnostic de maturité TI de 2 à 3 semaines."
+>
+  <!-- HÉROS -->
+  <section class="relative overflow-hidden bg-teal-deep">
+    <ChevronLines class="h-[112px] w-[168px] lg:h-[200px] lg:w-[300px] xl:h-[300px] xl:w-[450px]" />
+    <div class={`relative ${container} pt-20 pb-28 lg:py-28`}>
+      <p class="home-kicker text-coral">Conseil en gestion stratégique des TI</p>
+      <h1 class="home-h1">Gouvernez votre technologie avec la rigueur de vos finances.</h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-light/85">
+        Monessor accompagne les dirigeants de PME avec les pratiques
+        de gouvernance éprouvées dans le secteur financier réglementé : des priorités claires, des risques connus et des
+        investissements technologiques que vous pouvez défendre devant votre conseil d’administration.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <ContactCta
+          href={MEETING_URL}
+          label="Planifier une rencontre"
+          className="btn"
+          fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, pathname)}
+        />
+        <a class="btn btn--outline" href={`${servicePme}#diagnostic`}>Voir le Diagnostic</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTE PME -->
+  <section class="bg-light py-20 text-ink" id="pme">
+    <div class={container}>
+      <p class="home-kicker text-teal">Pour les PME</p>
+      <h2 class="home-h2">Quand la technologie freine la croissance</h2>
+
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
+        {symptoms.map((item) => (
+          <article class="rounded-2xl border border-slate-200 bg-white p-6">
+            <Icon name={item.icon} size={28} class="mb-4 text-teal" />
+            <h3 class="home-h3">{item.title}</h3>
+            <p class="mt-3 leading-relaxed">{item.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-12 grid gap-10 rounded-2xl border border-slate-200 bg-white p-8 lg:grid-cols-[1fr_1.2fr] lg:p-10">
+        <div>
+          <h3 class="home-h3 text-2xl">Le point de départ : le Diagnostic de maturité TI</h3>
+          <p class="mt-4 leading-relaxed">
+            En 2 à 3 semaines, un portrait indépendant de vos systèmes, de vos risques et de vos dépenses technologiques,
+            avec une feuille de route chiffrée sur 18 mois, prête à être présentée à votre conseil d’administration.
+          </p>
+          <p class="mt-4 font-semibold text-teal">Dès 12 500 $, forfait à périmètre fixe.</p>
+          <a class="btn btn--outline-teal mt-6" href={servicePme}>Découvrir l’offre aux PME</a>
+        </div>
+        <ol class="grid gap-6">
+          {sequence.map((item) => (
+            <li class="flex gap-4">
+              <span class="mt-0.5 shrink-0 font-bold tracking-[0.12em] text-teal" aria-hidden="true">{item.step}</span>
+              <div>
+                <h4 class="font-semibold text-teal">{item.title}</h4>
+                <p class="mt-1 leading-relaxed">{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTE SERVICES FINANCIERS -->
+  <section class="bg-light pb-20 text-ink" id="services-financiers">
+    <div class={container}>
+      <div class="flex flex-col gap-6 border-t border-slate-200 pt-12 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-3xl">
+          <h2 class="home-h3 text-2xl">Vous êtes une institution financière ou une FinTech?</h2>
+          <p class="mt-3 leading-relaxed">
+            Monessor aide aussi les institutions financières et les FinTechs à aligner leur gouvernance TI sur les lignes
+            directrices du BSIF : gestion du risque lié aux tiers (B-10), risques technologiques et cyberrisques (B-13),
+            gestion du risque de modélisation (E-23).
+          </p>
+        </div>
+        <a class="shrink-0 font-semibold text-teal underline underline-offset-4" href={serviceSf}>Découvrir la Revue de gouvernance TI →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUAND FAIRE APPEL À MONESSOR -->
+  <section class="bg-white py-20 text-ink" id="situations">
+    <div class={container}>
+      <h2 class="home-h2">Quand faire appel à Monessor</h2>
+      <div class="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">
+        {situations.map((item) => (
+          <div class="flex gap-4">
+            <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-light text-teal">
+              <Icon name={item.icon} size={22} />
+            </span>
+            <div>
+              <h3 class="home-h3">{item.title}</h3>
+              <p class="mt-2 leading-relaxed">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROCHE -->
+  <section class="bg-light py-20 text-ink" id="approche">
+    <div class={container}>
+      <h2 class="home-h2">Approche</h2>
+      <ol class="mt-10 grid gap-4 md:grid-cols-3">
+        {steps.map((item) => (
+          <li class="rounded-2xl border border-slate-200 bg-white p-6">
+            <div class="flex items-center justify-between text-teal">
+              <Icon name={item.icon} size={28} />
+              <span class="font-bold tracking-[0.12em]" aria-hidden="true">{item.step}</span>
+            </div>
+            <h3 class="home-h3 mt-2">{item.title}</h3>
+            <p class="mt-2 leading-relaxed">{item.text}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-8 rounded-2xl bg-teal p-6 text-light md:p-8">
+        <p class="text-lg font-semibold">Zéro commission, zéro revente de licences.</p>
+        <p class="mt-2 text-light/90">
+          Monessor n’est ni une agence de développement ni un revendeur de logiciels. Sa seule rémunération vient de ses
+          clients : ses recommandations n’ont pas d’autre intérêt que le vôtre.
+        </p>
+      </div>
+      <a class="mt-6 inline-block font-semibold text-teal underline underline-offset-4" href="/fr/approche/">Découvrir notre approche →</a>
+    </div>
+  </section>
+
+  <!-- AFFIRMATION -->
+  <section class="relative overflow-hidden bg-teal-deep py-16 lg:py-20">
+    <ChevronLines class="h-[56px] w-[84px] xl:h-[160px] xl:w-[240px]" />
+    <div class={container}>
+      <p class="max-w-4xl text-3xl font-semibold leading-tight text-light md:text-4xl">
+        La rigueur ne freine pas la croissance. Elle la rend <span class="text-coral">durable</span>.
+      </p>
+    </div>
+  </section>
+
+  <!-- PERSPECTIVES -->
+  <section class="bg-light py-20 text-ink" id="perspectives">
+    <div class={container}>
+      <h2 class="home-h2">{ui[locale].perspectivesTitle}</h2>
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
+        {entries.map((entry) => (
+          <InsightCard
+            entry={entry}
+            href={`/fr/perspectives/${entry.id.replace(/^fr\//, '')}/`}
+            locale={locale}
+            segment={resolveSegment(entry, allInsights)}
+            headingLevel={3}
+          />
+        ))}
+      </div>
+      <a class="btn btn--outline-teal mt-8" href="/fr/perspectives/">{ui[locale].exploreAllInsights}</a>
+    </div>
+  </section>
+
+  <!-- PROFIL -->
+  <section class="bg-white py-20 text-ink" id="apropos">
+    <div class={`${container} grid items-center gap-10 md:grid-cols-[220px_1fr] lg:gap-14`}>
+      <img
+        src="/assets/alex.jpg"
+        alt="Portrait d’Alex Turcotte"
+        width="220"
+        height="220"
+        loading="lazy"
+        decoding="async"
+        class="h-[220px] w-[220px] rounded-2xl object-cover"
+      />
+      <div class="max-w-3xl">
+        <p class="home-kicker text-teal">À propos</p>
+        <h2 class="home-h2">Alex Turcotte, associé directeur</h2>
+        <p class="mt-4 leading-relaxed">
+          Depuis plus de vingt ans, Alex Turcotte exerce à la jonction de la technologie, du produit et de la gouvernance,
+          dont plus de quinze ans chez un chef de file des marchés financiers canadiens, où les plateformes sont critiques
+          et la réglementation exigeante. Il
+          travaille aux côtés des dirigeants pour clarifier les priorités, encadrer les risques et traduire les décisions
+          technologiques en résultats d’affaires.
+        </p>
+        <p class="mt-4 leading-relaxed">
+          Chaque mandat est dirigé personnellement par Alex Turcotte, associé directeur. Lorsqu’un mandat exige une
+          expertise très pointue, Monessor fait appel à un spécialiste de son réseau.
+        </p>
+        <a
+          class="btn btn--outline-teal mt-6"
+          href="https://www.linkedin.com/in/turcottealex"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-fathom-event={fathomEvent('LinkedIn', 'Profile', locale, pathname)}
+        >Profil LinkedIn</a>
+        <a class="ml-4 mt-6 inline-block font-semibold text-teal underline underline-offset-4" href="/fr/a-propos/">Lire le profil complet →</a>
+      </div>
+    </div>
+  </section>
+</Layout>

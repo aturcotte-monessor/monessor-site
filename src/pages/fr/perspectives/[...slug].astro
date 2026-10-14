@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import MeetingCta from '../../components/MeetingCta.astro';
+import Layout from '../../../layouts/Layout.astro';
+import MeetingCta from '../../../components/MeetingCta.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('insights', ({ id, data }) => id.startsWith('fr/') && data.lang === 'fr');
