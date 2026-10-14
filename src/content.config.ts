@@ -12,6 +12,8 @@ const insights = defineCollection({
 		authorTitle: z.string().optional(),
 		readTime: z.string().optional(),
 		translationKey: z.string().optional(),
+		// Segment visé, pour adapter la vignette de rendez-vous (pme : PME établies, sf : services financiers régulés)
+		segment: z.enum(['pme', 'sf']).optional(),
 		lang: z.enum(['fr', 'en']),
 		tags: z.array(z.string()).optional(),
 		faq: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),

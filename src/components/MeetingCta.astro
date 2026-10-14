@@ -1,0 +1,97 @@
+---
+// Vignette de prise de rendez-vous : carte sarcelle profonde posée dans une section claire.
+// Le texte s'adapte au contexte (segment PME, segment services financiers ou générique).
+import ContactCta from './ContactCta.astro';
+import { MEETING_URL, fathomEvent } from '../utils/tracking';
+
+export type MeetingVariant = 'generic' | 'article' | 'pme' | 'sf';
+
+interface Props {
+  locale?: 'fr' | 'en';
+  variant?: MeetingVariant;
+  /** Emplacement pour l'événement Fathom (ex. « Vignette », « Article »). */
+  placement?: string;
+  id?: string;
+  /** Sans section englobante, pour l'insérer dans un gabarit déjà sur fond clair (articles). */
+  bare?: boolean;
+}
+
+const { locale = 'fr', variant = 'generic', placement = 'Card', id, bare = false } = Astro.props;
+const pathname = Astro.url.pathname;
+
+const copy = {
+  fr: {
+    generic: {
+      title: 'Parlons de vos enjeux technologiques',
+      text: 'Dites-nous ce que vous essayez d’accomplir et où ça bloque. Une réponse vous sera transmise rapidement.'
+    },
+    article: {
+      title: 'Besoin d’un regard indépendant sur ces enjeux?',
+      text: 'Échangeons sur votre contexte et vos priorités technologiques.'
+    },
+    pme: {
+      title: 'Commencer par un Diagnostic de maturité TI',
+      text: 'En 2 à 3 semaines, une vision claire de l’état, des risques et du potentiel de votre parc technologique, avec une feuille de route priorisée pour votre direction.'
+    },
+    sf: {
+      title: 'Commencer par une Revue de gouvernance TI',
+      text: 'En 3 à 4 semaines, une cartographie de vos écarts face aux attentes du BSIF et une matrice de remédiation priorisée pour votre comité de risques et d’audit.'
+    },
+    button: 'Planifier une rencontre',
+    or: 'Ou écrivez-nous à',
+    email: 'notre adresse courriel',
+    phoneLabel: 'Appeler'
+  },
+  en: {
+    generic: {
+      title: 'Let’s discuss your technology challenges',
+      text: 'Tell us what you are trying to accomplish and where it is blocking you. A response will be provided quickly.'
+    },
+    article: {
+      title: 'Need an independent perspective on these challenges?',
+      text: 'Let’s discuss your context and your technology priorities.'
+    },
+    pme: {
+      title: 'Start with an IT Maturity Diagnostic',
+      text: 'In 2 to 3 weeks, a clear view of the state, risks and potential of your technology estate, with a prioritized roadmap for your leadership team.'
+    },
+    sf: {
+      title: 'Start with an IT Governance Review',
+      text: 'In 3 to 4 weeks, a map of your gaps against OSFI expectations and a prioritized remediation matrix for your risk and audit committee.'
+    },
+    button: 'Book a meeting',
+    or: 'Or write to us at',
+    email: 'our email address',
+    phoneLabel: 'Call'
+  }
+}[locale];
+
+const { title, text } = copy[variant];
+const headingId = `${id ?? 'rdv'}-titre`;
+
+// Sans enveloppe en mode « bare » ; sinon section claire pleine largeur + conteneur centré
+const Wrap = bare ? Fragment : 'section';
+const Inner = bare ? Fragment : 'div';
+const wrapProps = bare ? {} : { class: 'bg-light py-16', id };
+const innerProps = bare ? {} : { class: 'mx-auto max-w-7xl px-6 lg:px-8' };
+---
+
+<Wrap {...wrapProps}>
+  <Inner {...innerProps}>
+    <aside class={`rounded-2xl bg-teal-deep p-8 text-light ${bare ? 'md:p-10' : 'md:p-12'}`} aria-labelledby={headingId} id={bare ? id : undefined}>
+      <h2 id={headingId} class="text-2xl font-semibold text-light md:text-3xl">{title}</h2>
+      <p class="mt-3 max-w-2xl text-light/85">{text}</p>
+      <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
+        <ContactCta href={MEETING_URL} label={copy.button} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', placement, locale, pathname)} />
+        <p class="text-sm text-light/85">
+          {copy.or}{' '}
+          <a data-email-link href="#" class="text-light underline underline-offset-4" data-fathom-event={fathomEvent('Email', placement, locale, pathname)}>
+            <span data-user="info" data-domain="monessor" data-tld="com">{copy.email}</span>
+          </a>
+          {' · '}
+          <span class="phone-secure" data-fathom-event={fathomEvent('Phone', placement, locale, pathname)}>{copy.phoneLabel}</span>
+        </p>
+      </div>
+    </aside>
+  </Inner>
+</Wrap>

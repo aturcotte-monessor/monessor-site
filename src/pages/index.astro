@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import InsightCard from '../components/InsightCard.astro';
-import ContactCta from '../components/ContactCta.astro';
+import { fathomEvent } from '../utils/tracking';
 import { ui } from '../i18n/ui';
 
 const locale = 'fr' as const;
@@ -16,6 +16,7 @@ const ctaLabel = ui[locale].exploreAllInsights;
 
 <Layout
   locale={locale}
+  meetingId="contact"
   title="CTO à temps partagé & Conseil en stratégie technologique | Monessor"
   description="Cabinet-conseil en stratégie technologique mené par Alex Turcotte. Spécialisé en intégration de l'IA, CTO à temps partagé et gouvernance des TI pour secteurs régulés."
 >
@@ -260,7 +261,7 @@ const ctaLabel = ui[locale].exploreAllInsights;
   <section class="section section--alt" id="apropos">
     <div class="container max-w-7xl mx-auto px-6 lg:px-8">
       <h2>Direction de la pratique</h2>
-      <h3 style="margin-top: 0; font-size: 20px; color: var(--muted); margin-bottom: 24px;">Alex Turcotte, Directeur Principal</h3>
+      <h3 style="margin-top: 0; font-size: 20px; color: var(--muted); margin-bottom: 24px;">Alex Turcotte, associé directeur</h3>
 
       <div class="about">
         <div>
@@ -303,14 +304,14 @@ const ctaLabel = ui[locale].exploreAllInsights;
             </div>
             <div class="hero-card-body">
               <p class="name">Alex Turcotte</p>
-              <p class="title">Fondateur - Monessor</p>
+              <p class="title">Fondateur et associé directeur, Monessor</p>
               <p class="small">
                 CTO à temps partagé et conseiller exécutif en stratégie technologique,
                 modernisation de plateformes et gouvernance.
               </p>
               <br />
               <div class="hero-card-links">
-                <a class="libutton" href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&amp;followMember=turcottealex" target="_blank">Suivre sur LinkedIn</a>
+                <a class="libutton" href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&amp;followMember=turcottealex" target="_blank" rel="noopener noreferrer" data-fathom-event={fathomEvent('LinkedIn', 'Profile', locale, Astro.url.pathname)}>Suivre sur LinkedIn</a>
               </div>
             </div>
           </div>
@@ -318,44 +319,4 @@ const ctaLabel = ui[locale].exploreAllInsights;
       </div>
     </div>
   </section>
-
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div class="container max-w-7xl mx-auto px-6 lg:px-8">
-      <h2>Contact</h2>
-      <p class="sublead">
-        Dites-nous ce que vous essayez d’accomplir et où ça bloque.
-        Une réponse vous sera transmise rapidement.
-      </p>
-
-      <div class="contact-box">
-        <div class="contact-actions">
-          <a id="email-button" class="btn font-semibold" href="#" aria-label="Écrire un courriel">
-            Écrire un courriel
-          </a>
-          <ContactCta
-            href="https://calendar.app.google/jrWp3LMihMCr5qew7"
-            label="Planifier une rencontre"
-            ariaLabel="Planifier une rencontre"
-          />
-        </div>
-        <p class="small contact-meta contact-meta--phone">
-          <span class="contact-label">Téléphone :</span>
-          <span class="contact-value"><span class="phone-secure" aria-label="Numéro de téléphone">Appeler</span></span>
-        </p>
-        <p class="small contact-meta">
-          <span class="contact-label">Ou directement :</span>
-          <a id="email-link-2" class="contact-value" href="#" aria-label="Adresse courriel">
-            <span data-user="info" data-domain="monessor" data-tld="com">Contact</span>
-          </a>
-        </p>
-      </div>
-
-      <footer class="footer">
-        <p class="small footer-line">© <span id="year"></span> Services-conseils Monessor inc. <span class="footer-separator" aria-hidden="true"> | </span> <span class="contact-label">Téléphone :</span> <span class="contact-value"><span class="phone-secure" aria-label="Numéro de téléphone">Appeler</span></span></p>
-      </footer>
-    </div>
-  </section>
-
-  <script slot="scripts" is:inline src="/scripts/main.js"></script>
 </Layout>

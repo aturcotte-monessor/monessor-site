@@ -1,0 +1,101 @@
+---
+import { getAlternatePath } from '../utils/i18nRoutes';
+import { fathomEvent } from '../utils/tracking';
+
+interface Props {
+  locale?: 'fr' | 'en';
+  switchHref?: string;
+}
+
+const { locale = 'fr', switchHref } = Astro.props;
+const isFr = locale === 'fr';
+const pathname = Astro.url.pathname;
+const switchPath = switchHref ?? (await getAlternatePath(pathname, isFr ? 'en' : 'fr'));
+const year = new Date().getFullYear();
+
+const t = isFr
+  ? {
+      positioning: 'Leadership technologique exécutif et gouvernance TI pour les PME établies et les services financiers régulés.',
+      nav: 'Pied de page',
+      services: 'Services',
+      links: [
+        { href: '/services/cto-temps-partage-pme/', label: 'PME établies' },
+        { href: '/services/gouvernance-sf-reglementee/', label: 'Services financiers régulés' },
+        { href: '/insights/', label: 'Perspectives' }
+      ],
+      contact: 'Contact',
+      email: 'Courriel',
+      phone: 'Appeler',
+      city: 'Montréal (Québec)',
+      company: 'Services-conseils Monessor inc.',
+      lang: 'English',
+      langCode: 'en'
+    }
+  : {
+      positioning: 'Executive technology leadership and IT governance for established SMEs and regulated financial services.',
+      nav: 'Footer',
+      services: 'Services',
+      links: [
+        { href: '/en/services/fractional-cto-sme/', label: 'Established SMEs' },
+        { href: '/en/services/regulated-fs-governance/', label: 'Regulated financial services' },
+        { href: '/en/insights/', label: 'Insights' }
+      ],
+      contact: 'Contact',
+      email: 'Email',
+      phone: 'Call',
+      city: 'Montreal, Quebec',
+      company: 'Monessor Consulting Services Inc.',
+      lang: 'Français',
+      langCode: 'fr'
+    };
+---
+
+<footer class="bg-teal-deep text-light/85" data-nosnippet>
+  <div class="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
+    <div>
+      <a href={isFr ? '/' : '/en/'} class="inline-flex items-center gap-3 text-light no-underline hover:no-underline">
+        <img src="/assets/monessor-embleme-blanc-corail.svg" alt="" width="34" height="35" class="h-[35px] w-[34px]" />
+        <span class="text-lg font-bold tracking-[0.08em]">MONESSOR</span>
+      </a>
+      <p class="mt-4 max-w-sm text-sm leading-relaxed">{t.positioning}</p>
+    </div>
+
+    <nav aria-label={t.nav}>
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-light">{t.services}</p>
+      <ul class="mt-4 space-y-3 text-sm">
+        {t.links.map((link) => (
+          <li><a href={link.href} class="hover:text-light">{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-light">{t.contact}</p>
+      <ul class="mt-4 space-y-3 text-sm">
+        <li>
+          <a data-email-link href="#" class="hover:text-light" data-fathom-event={fathomEvent('Email', 'Footer', locale, pathname)}>
+            <span data-user="info" data-domain="monessor" data-tld="com">{t.email}</span>
+          </a>
+        </li>
+        <li><span class="phone-secure" data-fathom-event={fathomEvent('Phone', 'Footer', locale, pathname)}>{t.phone}</span></li>
+        <li>{t.city}</li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/turcottealex"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-light"
+            data-fathom-event={fathomEvent('LinkedIn', 'Footer', locale, pathname)}
+          >LinkedIn</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-5 text-xs lg:px-8">
+      <p>© {year} {t.company}</p>
+      <a href={switchPath} lang={t.langCode} class="hover:text-light">{t.lang}</a>
+    </div>
+  </div>
+</footer>

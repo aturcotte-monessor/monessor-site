@@ -1,12 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactCta from '../../components/ContactCta.astro';
+import { MEETING_URL, fathomEvent } from '../../utils/tracking';
 
 const locale = 'fr' as const;
 ---
 
 <Layout
   locale={locale}
+  meeting="pme"
   title="CTO à Temps Partagé & Gouvernance PME | Monessor"
   description="Diagnostic de maturité TI, gouvernance et CTO à temps partagé pour dirigeants de PME industrielles et de distribution ($10M–$100M CA). Éliminez la dette technique et intégrez l'IA avec rigueur, sans conflit d'intérêts."
 >
@@ -29,11 +31,11 @@ const locale = 'fr' as const;
 
       <div class="hero-cta">
         <ContactCta
-          href="https://calendar.app.google/jrWp3LMihMCr5qew7"
+          href={MEETING_URL}
           label="Planifier une rencontre"
           ariaLabel="Planifier une rencontre"
           className="btn"
-          fathomEventName="Click ScheduleMeeting Service-PME-Hero"
+          fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, Astro.url.pathname)}
         />
       </div>
     </div>
@@ -122,11 +124,11 @@ const locale = 'fr' as const;
 
       <div class="hero-cta">
         <ContactCta
-          href="https://calendar.app.google/jrWp3LMihMCr5qew7"
+          href={MEETING_URL}
           label="Planifier une rencontre"
           ariaLabel="Planifier une rencontre"
           className="btn"
-          fathomEventName="Click ScheduleMeeting Service-PME-Diagnostic"
+          fathomEventName={fathomEvent('ScheduleMeeting', 'Offer', locale, Astro.url.pathname)}
         />
       </div>
     </div>

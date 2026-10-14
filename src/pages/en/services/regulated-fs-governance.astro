@@ -1,12 +1,14 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import ContactCta from '../../../components/ContactCta.astro';
+import { MEETING_URL, fathomEvent } from '../../../utils/tracking';
 
 const locale = 'en' as const;
 ---
 
 <Layout
   locale={locale}
+  meeting="sf"
   title="IT Governance & OSFI Compliance | Monessor"
   description="IT governance review, third-party risk management, and regulatory alignment (OSFI B-10, B-13, E-23) for growing financial institutions and FinTechs."
 >
@@ -28,11 +30,11 @@ const locale = 'en' as const;
 
       <div class="hero-cta">
         <ContactCta
-          href="https://calendar.app.google/jrWp3LMihMCr5qew7"
+          href={MEETING_URL}
           label="Schedule a meeting"
           ariaLabel="Schedule a meeting"
           className="btn"
-          fathomEventName="Click ScheduleMeeting Service-RegFS-Hero"
+          fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, Astro.url.pathname)}
         />
       </div>
     </div>
@@ -85,9 +87,6 @@ const locale = 'en' as const;
         A 3- to 4-week executive mandate to audit technology compliance, identify third-party risk gaps, and
         deliver a remediation matrix the Risk and Audit Committee can act on directly.
       </p>
-      <p class="lead" style="font-weight: 800; color: var(--accent);">
-        Starting at $18,500 CAD <span class="muted" style="font-weight:400; color: var(--muted);">(Fixed-scope engagement)</span>
-      </p>
 
       <div class="bullets">
         <div class="bullet">
@@ -120,11 +119,11 @@ const locale = 'en' as const;
 
       <div class="hero-cta">
         <ContactCta
-          href="https://calendar.app.google/jrWp3LMihMCr5qew7"
+          href={MEETING_URL}
           label="Schedule a meeting"
           ariaLabel="Schedule a meeting"
           className="btn"
-          fathomEventName="Click ScheduleMeeting Service-RegFS-Review"
+          fathomEventName={fathomEvent('ScheduleMeeting', 'Offer', locale, Astro.url.pathname)}
         />
       </div>
     </div>
