@@ -11,7 +11,8 @@ const SERVICE_ROUTE_PAIRS: Array<[fr: string, en: string]> = [
   ['/fr/services/gouvernance-sf-reglementee/', '/en/services/regulated-fs-governance/'],
   ['/fr/approche/', '/en/approach/'],
   ['/fr/a-propos/', '/en/about/'],
-  ['/fr/confidentialite/', '/en/privacy/']
+  ['/fr/confidentialite/', '/en/privacy/'],
+  ['/fr/perspectives/', '/en/insights/']
 ];
 
 function normalizePath(path: string): string {
@@ -31,7 +32,7 @@ function matchServiceRoute(path: string, targetLang: Locale): string | null {
 
 async function matchInsightRoute(path: string, targetLang: Locale): Promise<string | null> {
   const normalized = normalizePath(path);
-  const frMatch = normalized.match(/^\/fr\/insights\/([^/]+)\/$/);
+  const frMatch = normalized.match(/^\/fr\/perspectives\/([^/]+)\/$/);
   const enMatch = normalized.match(/^\/en\/insights\/([^/]+)\/$/);
 
   if (!frMatch && !enMatch) return null;
@@ -62,7 +63,7 @@ async function matchInsightRoute(path: string, targetLang: Locale): Promise<stri
     : undefined;
   if (!counterpart) return null;
 
-  return `/fr/insights/${counterpart.id.replace(/^fr\//, '')}/`;
+  return `/fr/perspectives/${counterpart.id.replace(/^fr\//, '')}/`;
 }
 
 function defaultAlternate(path: string, targetLang: Locale): string {

@@ -1,6 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "trailingSlash": true,
   "redirects": [
     {
       "source": "/",
@@ -23,12 +22,12 @@
     },
     {
       "source": "/insights/technologie-pme-de-centre-de-cout-a-actif-strategique",
-      "destination": "/fr/insights/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
+      "destination": "/fr/perspectives/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
       "statusCode": 301
     },
     {
       "source": "/insights/technologie-pme-de-centre-de-cout-a-actif-strategique/",
-      "destination": "/fr/insights/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
+      "destination": "/fr/perspectives/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
       "statusCode": 301
     },
     {
@@ -82,13 +81,73 @@
       "statusCode": 301
     },
     {
-      "source": "/services/:path*",
-      "destination": "/fr/services/:path*",
+      "source": "/insights",
+      "destination": "/fr/perspectives/",
       "statusCode": 301
     },
     {
-      "source": "/insights/:path*",
-      "destination": "/fr/insights/:path*",
+      "source": "/insights/",
+      "destination": "/fr/perspectives/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/cto-temps-partage-pme",
+      "destination": "/fr/services/cto-temps-partage-pme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/cto-temps-partage-pme/",
+      "destination": "/fr/services/cto-temps-partage-pme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/gouvernance-sf-reglementee",
+      "destination": "/fr/services/gouvernance-sf-reglementee/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/gouvernance-sf-reglementee/",
+      "destination": "/fr/services/gouvernance-sf-reglementee/",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/article-01-replatforming-fable-fr",
+      "destination": "/fr/perspectives/article-01-replatforming-fable-fr/",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/article-01-replatforming-fable-fr/",
+      "destination": "/fr/perspectives/article-01-replatforming-fable-fr/",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/article-02-governance-illusion-of-control-fr",
+      "destination": "/fr/perspectives/article-02-governance-illusion-of-control-fr/",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/article-02-governance-illusion-of-control-fr/",
+      "destination": "/fr/perspectives/article-02-governance-illusion-of-control-fr/",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique",
+      "destination": "/fr/perspectives/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
+      "destination": "/fr/perspectives/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/:path(.*)",
+      "destination": "/fr/perspectives/:path",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/:path(.*)",
+      "destination": "/fr/services/:path",
       "statusCode": 301
     }
   ]

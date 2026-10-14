@@ -12,7 +12,7 @@ const { locale = 'fr', switchHref } = Astro.props;
 const isFr = locale === 'fr';
 
 const homePath = isFr ? '/fr/' : '/en/';
-const insightsPath = isFr ? '/fr/insights/' : '/en/insights/';
+const insightsPath = isFr ? '/fr/perspectives/' : '/en/insights/';
 const switchLabel = isFr ? 'EN' : 'FR';
 const switchAria = isFr ? 'English version' : 'Version française';
 const pathname = Astro.url.pathname;

@@ -25,9 +25,10 @@ function resolveSourceFile(pathname) {
     return path.join(pagesDir, 'index.astro');
   }
 
-  if (rest[0] === 'insights') {
+  // Section des analyses : /fr/perspectives/ et /en/insights/
+  if (rest[0] === 'insights' || rest[0] === 'perspectives') {
     if (rest.length === 1) {
-      return path.join(pagesDir, 'insights', 'index.astro');
+      return path.join(pagesDir, rest[0], 'index.astro');
     }
     const slug = rest[1];
     const contentDir = path.join('src/content/insights', lang);
@@ -59,7 +60,7 @@ function resolveSourceFile(pathname) {
 // Pages à slugs traduits (même liste que src/utils/i18nRoutes.ts) + articles appariés par translationKey.
 const STATIC_PAIRS = [
   ['/fr/', '/en/'],
-  ['/fr/insights/', '/en/insights/'],
+  ['/fr/perspectives/', '/en/insights/'],
   ['/fr/services/cto-temps-partage-pme/', '/en/services/fractional-cto-sme/'],
   ['/fr/services/gouvernance-sf-reglementee/', '/en/services/regulated-fs-governance/'],
   ['/fr/approche/', '/en/approach/'],
@@ -75,7 +76,7 @@ function articlePairs() {
       const key = readFileSync(path.join(dir, file), 'utf8').match(/^translationKey:\s*"?([^"\n]+)"?/m)?.[1];
       if (!key) continue;
       byKey[key] ??= {};
-      byKey[key][lang] = `/${lang}/insights/${file.replace(/\.mdx?$/, '')}/`;
+      byKey[key][lang] = `/${lang}/${lang === 'fr' ? 'perspectives' : 'insights'}/${file.replace(/\.mdx?$/, '')}/`;
     }
   }
   return Object.values(byKey).filter((pair) => pair.fr && pair.en).map((pair) => [pair.fr, pair.en]);

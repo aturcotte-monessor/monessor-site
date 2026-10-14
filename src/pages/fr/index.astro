@@ -228,14 +228,14 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
         {entries.map((entry) => (
           <InsightCard
             entry={entry}
-            href={`/fr/insights/${entry.id.replace(/^fr\//, '')}/`}
+            href={`/fr/perspectives/${entry.id.replace(/^fr\//, '')}/`}
             locale={locale}
             segment={resolveSegment(entry, allInsights)}
             headingLevel={3}
           />
         ))}
       </div>
-      <a class="btn btn--outline-teal mt-8" href="/fr/insights/">{ui[locale].exploreAllInsights}</a>
+      <a class="btn btn--outline-teal mt-8" href="/fr/perspectives/">{ui[locale].exploreAllInsights}</a>
     </div>
   </section>
 

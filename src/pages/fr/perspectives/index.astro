@@ -7,7 +7,7 @@ const entries = (await getCollection('insights', ({ id, data }) => id.startsWith
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
-const toInsightUrl = (id: string) => `/fr/insights/${id.replace(/^fr\//, '').replace(/\.md$/, '')}/`;
+const toInsightUrl = (id: string) => `/fr/perspectives/${id.replace(/^fr\//, '').replace(/\.md$/, '')}/`;
 ---
 
 <Layout
