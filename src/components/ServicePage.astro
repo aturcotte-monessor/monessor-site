@@ -25,6 +25,8 @@ interface Props {
   offer: { id: string; kicker: string; title: string; lead: string; price: string; items: Item[] };
   /** Démarche par étapes (PME seulement). */
   path?: { id: string; title: string; intro: string; steps: Item[] };
+  /** Encadré affiché après les offres et les prix (ex. aide financière possible). */
+  note?: { title: string; text: string };
   expertise: { id: string; kicker?: string; title: string; items: Item[]; numbered?: boolean };
   /** translationKey des articles liés, dans l'ordre d'affichage. */
   insights: { title: string; keys: string[]; allLabel: string };
@@ -32,7 +34,7 @@ interface Props {
   other: { id: string; question: string; label: string; href: string };
 }
 
-const { locale, segment, title, description, jsonLd, hero, issues, offer, path, expertise, insights, neutrality, other } = Astro.props;
+const { locale, segment, title, description, jsonLd, hero, issues, offer, path, note, expertise, insights, neutrality, other } = Astro.props;
 const pathname = Astro.url.pathname;
 const container = 'mx-auto max-w-7xl px-6 lg:px-8';
 const meetingLabel = locale === 'fr' ? 'Planifier une rencontre' : 'Book a meeting';
@@ -121,6 +123,12 @@ const insightsBase = locale === 'fr' ? '/insights/' : '/en/insights/';
             </li>
           ))}
         </ol>
+        {note && (
+          <aside class="mt-8 max-w-4xl rounded-2xl border border-slate-200 border-l-4 border-l-coral bg-white p-6" aria-label={note.title}>
+            <p class="home-h3">{note.title}</p>
+            <p class="mt-2 leading-relaxed">{note.text}</p>
+          </aside>
+        )}
       </div>
     </section>
   )}
