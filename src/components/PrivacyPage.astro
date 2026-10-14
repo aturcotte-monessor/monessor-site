@@ -1,0 +1,278 @@
+---
+// Politique de confidentialité / Privacy policy.
+// Rédigée à partir de ce que le site fait réellement (voir l'inventaire dans la PR du lot 4) :
+// aucun formulaire, aucun témoin propre, statistiques Fathom sans témoins, prise de rendez-vous
+// par Google Agenda, liens courriel et téléphone, hébergement Vercel. À mettre à jour si cela change.
+import Layout from '../layouts/Layout.astro';
+import PageHero from './PageHero.astro';
+
+interface Props {
+  locale: 'fr' | 'en';
+}
+
+const { locale } = Astro.props;
+
+type Section = { id: string; title: string; paragraphs?: string[]; list?: string[]; after?: string[] };
+
+const t: { title: string; description: string; kicker: string; h1: string; effective: string; sections: Section[] } = {
+  fr: {
+    title: 'Politique de confidentialité | Monessor',
+    description: 'Comment Services-conseils Monessor inc. recueille, utilise et protège les renseignements personnels, conformément à la loi québécoise (Loi 25).',
+    kicker: 'Confidentialité',
+    h1: 'Politique de confidentialité',
+    effective: 'En vigueur le 14 octobre 2026.',
+    sections: [
+      {
+        id: 'responsable',
+        title: 'Qui sommes-nous',
+        paragraphs: [
+          'Services-conseils Monessor inc. (« Monessor ») est une entreprise de conseil établie à Montréal (Québec). Cette politique explique quels renseignements personnels nous recueillons, par l’intermédiaire du site monessor.com et dans le cadre de nos échanges, pourquoi nous les recueillons et comment nous les protégeons, conformément à la Loi sur la protection des renseignements personnels dans le secteur privé du Québec et, lorsqu’elle s’applique, à la loi fédérale (LPRPDE).',
+          'Responsable de la protection des renseignements personnels : Alex Turcotte, associé directeur. Pour toute question ou demande : info@monessor.com.'
+        ]
+      },
+      {
+        id: 'renseignements',
+        title: 'Renseignements que nous recueillons',
+        list: [
+          'Statistiques de visite : nous utilisons Fathom Analytics, un outil de mesure d’audience sans témoins (cookies) qui produit des données agrégées (pages consultées, site de provenance, type d’appareil, pays) et ne permet pas de vous identifier.',
+          'Données techniques d’hébergement : notre hébergeur, Vercel, traite des journaux techniques (comme l’adresse IP et le type de navigateur) pour faire fonctionner et sécuriser le site.',
+          'Échanges avec nous : lorsque vous nous écrivez ou nous appelez, nous recevons les renseignements que vous choisissez de nous transmettre, comme votre nom, vos coordonnées, votre entreprise et le contenu de votre message.',
+          'Prise de rendez-vous : le bouton « Planifier une rencontre » mène à une page de réservation Google Agenda, exploitée par Google, où vous indiquez votre nom, votre adresse courriel et les renseignements que vous jugez utiles.',
+          'Dans le cadre d’un mandat : les renseignements professionnels nécessaires à sa réalisation et à sa facturation.'
+        ],
+        after: [
+          'Le site ne comporte aucun formulaire, n’installe aucun témoin et n’utilise aucun outil de publicité ciblée.'
+        ]
+      },
+      {
+        id: 'finalites',
+        title: 'Pourquoi nous les utilisons',
+        list: [
+          'Répondre à vos questions et planifier nos rencontres.',
+          'Préparer, réaliser et facturer nos mandats, et administrer la relation d’affaires.',
+          'Respecter nos obligations légales, notamment fiscales et comptables.',
+          'Mesurer l’audience du site de façon agrégée et en assurer le fonctionnement et la sécurité.'
+        ],
+        after: [
+          'Nous n’utilisons pas vos renseignements à d’autres fins sans votre consentement, sauf si la loi le permet ou l’exige. Nous ne les vendons jamais.'
+        ]
+      },
+      {
+        id: 'consentement',
+        title: 'Consentement',
+        paragraphs: [
+          'En nous écrivant, en nous appelant ou en réservant une rencontre, vous consentez à ce que nous utilisions les renseignements transmis aux fins décrites ci-dessus. Vous pouvez retirer votre consentement en tout temps en écrivant à info@monessor.com, sous réserve de nos obligations légales et contractuelles.'
+        ]
+      },
+      {
+        id: 'tiers',
+        title: 'Fournisseurs et transferts hors du Québec',
+        paragraphs: [
+          'Nous faisons appel à quelques fournisseurs qui traitent des renseignements pour notre compte :'
+        ],
+        list: [
+          'Vercel Inc. (hébergement du site), aux États-Unis ;',
+          'Google LLC (page de réservation Google Agenda), dont les serveurs peuvent se trouver hors du Québec ;',
+          'Fathom Analytics (statistiques de visite agrégées, sans renseignements permettant de vous identifier) ;',
+          'nos conseillers professionnels, comme notre comptable, tenus à la confidentialité.'
+        ],
+        after: [
+          'Lorsque des renseignements personnels sont communiqués à l’extérieur du Québec, nous évaluons au préalable si leur protection sera adéquate et nous nous assurons que des engagements contractuels de confidentialité s’appliquent.'
+        ]
+      },
+      {
+        id: 'conservation',
+        title: 'Conservation',
+        paragraphs: [
+          'Nous conservons les renseignements personnels seulement le temps nécessaire aux fins pour lesquelles ils ont été recueillis. Les échanges qui ne mènent pas à un mandat sont conservés au plus deux ans. Les dossiers de mandat et les documents comptables sont conservés pendant la durée exigée par les lois fiscales, soit généralement six ans après la fin de l’année d’imposition visée. Les renseignements sont ensuite détruits ou rendus anonymes.'
+        ]
+      },
+      {
+        id: 'securite',
+        title: 'Sécurité',
+        paragraphs: [
+          'Nous protégeons les renseignements personnels par des mesures raisonnables adaptées à leur sensibilité, notamment l’accès restreint aux seules personnes qui en ont besoin et l’utilisation de services reconnus pour leur sécurité. Aucune transmission sur Internet n’est toutefois entièrement sûre.'
+        ]
+      },
+      {
+        id: 'droits',
+        title: 'Vos droits',
+        paragraphs: ['Vous pouvez, en écrivant à info@monessor.com :'],
+        list: [
+          'savoir si nous détenons des renseignements à votre sujet et y accéder ;',
+          'les faire corriger s’ils sont inexacts, incomplets ou équivoques ;',
+          'retirer votre consentement ou demander que la diffusion de vos renseignements cesse ;',
+          'obtenir, dans un format technologique structuré et couramment utilisé, les renseignements que vous nous avez fournis.'
+        ],
+        after: [
+          'Nous répondons dans un délai de 30 jours. Nous pourrions vous demander de confirmer votre identité. Nous ne prenons aucune décision fondée exclusivement sur un traitement automatisé de vos renseignements.'
+        ]
+      },
+      {
+        id: 'incidents',
+        title: 'Incidents de confidentialité',
+        paragraphs: [
+          'Nous tenons un registre des incidents de confidentialité. Si un incident présente un risque de préjudice sérieux, nous en avisons la Commission d’accès à l’information et les personnes concernées, et nous prenons les mesures nécessaires pour en limiter les conséquences.'
+        ]
+      },
+      {
+        id: 'plaintes',
+        title: 'Questions et plaintes',
+        paragraphs: [
+          'Pour toute question ou plainte concernant vos renseignements personnels, écrivez à notre responsable de la protection des renseignements personnels, Alex Turcotte, à info@monessor.com. Si notre réponse ne vous satisfait pas, vous pouvez vous adresser à la Commission d’accès à l’information du Québec (cai.gouv.qc.ca).'
+        ]
+      },
+      {
+        id: 'liens',
+        title: 'Liens vers d’autres sites',
+        paragraphs: [
+          'Le site contient des liens vers d’autres sites, comme LinkedIn et Google. Leurs pratiques sont régies par leurs propres politiques de confidentialité.'
+        ]
+      },
+      {
+        id: 'modifications',
+        title: 'Modifications',
+        paragraphs: [
+          'Nous pouvons mettre à jour cette politique pour refléter l’évolution de nos pratiques ou de la loi. La date d’entrée en vigueur indiquée en haut de la page fait foi.'
+        ]
+      }
+    ]
+  },
+  en: {
+    title: 'Privacy policy | Monessor',
+    description: 'How Services-conseils Monessor inc. collects, uses and protects personal information, in line with Québec privacy law (Law 25).',
+    kicker: 'Privacy',
+    h1: 'Privacy policy',
+    effective: 'Effective October 14, 2026.',
+    sections: [
+      {
+        id: 'responsable',
+        title: 'Who we are',
+        paragraphs: [
+          'Services-conseils Monessor inc. (“Monessor”) is a consulting firm based in Montréal, Québec. This policy explains what personal information we collect through monessor.com and in the course of our exchanges, why we collect it and how we protect it, in accordance with Québec’s Act respecting the protection of personal information in the private sector and, where it applies, the federal PIPEDA.',
+          'Person in charge of the protection of personal information: Alex Turcotte, Managing Partner. For any question or request: info@monessor.com.'
+        ]
+      },
+      {
+        id: 'renseignements',
+        title: 'Information we collect',
+        list: [
+          'Visit statistics: we use Fathom Analytics, a cookie-free audience measurement tool that produces aggregate data (pages viewed, referring site, device type, country) and cannot identify you.',
+          'Hosting data: our host, Vercel, processes technical logs (such as IP address and browser type) to run and secure the site.',
+          'Exchanges with us: when you email or call us, we receive the information you choose to share, such as your name, contact details, company and the content of your message.',
+          'Booking a meeting: the “Book a meeting” button leads to a Google Calendar booking page, operated by Google, where you provide your name, email address and any information you find useful.',
+          'During an engagement: the business information needed to deliver and invoice it.'
+        ],
+        after: ['The site has no forms, sets no cookies and uses no targeted advertising tools.']
+      },
+      {
+        id: 'finalites',
+        title: 'Why we use it',
+        list: [
+          'To answer your questions and schedule our meetings.',
+          'To prepare, deliver and invoice our engagements, and manage the business relationship.',
+          'To meet our legal obligations, including tax and accounting.',
+          'To measure site audience in aggregate and keep the site running and secure.'
+        ],
+        after: ['We do not use your information for other purposes without your consent, unless the law permits or requires it. We never sell it.']
+      },
+      {
+        id: 'consentement',
+        title: 'Consent',
+        paragraphs: [
+          'By emailing us, calling us or booking a meeting, you consent to our use of the information you provide for the purposes above. You may withdraw your consent at any time by writing to info@monessor.com, subject to our legal and contractual obligations.'
+        ]
+      },
+      {
+        id: 'tiers',
+        title: 'Service providers and transfers outside Québec',
+        paragraphs: ['We rely on a few providers that process information on our behalf:'],
+        list: [
+          'Vercel Inc. (site hosting), in the United States;',
+          'Google LLC (Google Calendar booking page), whose servers may be located outside Québec;',
+          'Fathom Analytics (aggregate visit statistics, with no information that identifies you);',
+          'our professional advisers, such as our accountant, who are bound by confidentiality.'
+        ],
+        after: [
+          'Before personal information is communicated outside Québec, we assess whether it will be adequately protected and make sure contractual confidentiality commitments apply.'
+        ]
+      },
+      {
+        id: 'conservation',
+        title: 'Retention',
+        paragraphs: [
+          'We keep personal information only as long as needed for the purposes for which it was collected. Exchanges that do not lead to an engagement are kept for at most two years. Engagement files and accounting records are kept for the period required by tax law, generally six years after the end of the tax year concerned. The information is then destroyed or anonymized.'
+        ]
+      },
+      {
+        id: 'securite',
+        title: 'Security',
+        paragraphs: [
+          'We protect personal information with reasonable measures suited to its sensitivity, including access limited to those who need it and the use of services recognized for their security. No transmission over the Internet is, however, entirely secure.'
+        ]
+      },
+      {
+        id: 'droits',
+        title: 'Your rights',
+        paragraphs: ['By writing to info@monessor.com, you may:'],
+        list: [
+          'find out whether we hold information about you and access it;',
+          'have it corrected if it is inaccurate, incomplete or equivocal;',
+          'withdraw your consent or ask that the dissemination of your information stop;',
+          'obtain the information you provided to us in a structured, commonly used technological format.'
+        ],
+        after: [
+          'We respond within 30 days and may ask you to confirm your identity. We make no decision based exclusively on automated processing of your information.'
+        ]
+      },
+      {
+        id: 'incidents',
+        title: 'Confidentiality incidents',
+        paragraphs: [
+          'We keep a register of confidentiality incidents. If an incident presents a risk of serious injury, we notify the Commission d’accès à l’information and the people concerned, and take the necessary steps to limit its consequences.'
+        ]
+      },
+      {
+        id: 'plaintes',
+        title: 'Questions and complaints',
+        paragraphs: [
+          'For any question or complaint about your personal information, write to our person in charge of the protection of personal information, Alex Turcotte, at info@monessor.com. If you are not satisfied with our response, you may contact Québec’s Commission d’accès à l’information (cai.gouv.qc.ca).'
+        ]
+      },
+      {
+        id: 'liens',
+        title: 'Links to other sites',
+        paragraphs: ['The site links to other sites, such as LinkedIn and Google. Their practices are governed by their own privacy policies.']
+      },
+      {
+        id: 'modifications',
+        title: 'Changes',
+        paragraphs: [
+          'We may update this policy to reflect changes in our practices or in the law. The effective date at the top of the page applies.'
+        ]
+      }
+    ]
+  }
+}[locale];
+---
+
+<Layout locale={locale} title={t.title} description={t.description} meeting={false}>
+  <PageHero locale={locale} kicker={t.kicker} title={t.h1} lead={t.effective} cta={false} />
+
+  <section class="bg-light py-16 text-ink">
+    <div class="mx-auto max-w-3xl px-6 lg:px-8">
+      {t.sections.map((section) => (
+        <section class="mt-10 first:mt-0" id={section.id}>
+          <h2 class="home-h3 text-xl">{section.title}</h2>
+          {section.paragraphs?.map((paragraph) => <p class="mt-3 leading-relaxed">{paragraph}</p>)}
+          {section.list && (
+            <ul class="mt-3 list-disc space-y-2 pl-6 leading-relaxed">
+              {section.list.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+          {section.after?.map((paragraph) => <p class="mt-3 leading-relaxed">{paragraph}</p>)}
+        </section>
+      ))}
+    </div>
+  </section>
+</Layout>

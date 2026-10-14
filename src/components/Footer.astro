@@ -24,7 +24,12 @@ const t = isFr
         { href: '/services/cto-temps-partage-pme/', label: 'PME établies' },
         { href: '/services/gouvernance-sf-reglementee/', label: 'Services financiers réglementés' }
       ],
-      firmLinks: [{ href: '/insights/', label: 'Perspectives' }],
+      firmLinks: [
+        { href: '/approche/', label: 'Approche' },
+        { href: '/a-propos/', label: 'Profil du fondateur' },
+        { href: '/insights/', label: 'Perspectives' }
+      ],
+      privacy: { href: '/confidentialite/', label: 'Confidentialité' },
       contact: 'Contact',
       email: 'Courriel',
       phone: 'Appeler',
@@ -41,7 +46,12 @@ const t = isFr
         { href: '/en/services/fractional-cto-sme/', label: 'Established SMEs' },
         { href: '/en/services/regulated-fs-governance/', label: 'Regulated financial services' }
       ],
-      firmLinks: [{ href: '/en/insights/', label: 'Insights' }],
+      firmLinks: [
+        { href: '/en/approach/', label: 'Approach' },
+        { href: '/en/about/', label: 'Founder profile' },
+        { href: '/en/insights/', label: 'Insights' }
+      ],
+      privacy: { href: '/en/privacy/', label: 'Privacy' },
       contact: 'Contact',
       email: 'Email',
       phone: 'Call',
@@ -116,7 +126,10 @@ const t = isFr
   <div class="border-t border-white/10">
     <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-5 text-xs lg:px-8">
       <p>© {year} {t.company}</p>
-      <a href={switchPath} lang={t.langCode} class="hover:text-light">{t.lang}</a>
+      <div class="flex items-center gap-5">
+        <a href={t.privacy.href} class="hover:text-light">{t.privacy.label}</a>
+        <a href={switchPath} lang={t.langCode} class="hover:text-light">{t.lang}</a>
+      </div>
     </div>
   </div>
 </footer>

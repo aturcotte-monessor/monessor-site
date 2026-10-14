@@ -4,11 +4,14 @@ export type Locale = 'fr' | 'en';
 
 /**
  * Explicit FR <-> EN pairs for routes whose slugs differ between locales
- * (service landing pages are hand-translated, not generated from a shared slug).
+ * (service landing pages and other hand-translated pages, not generated from a shared slug).
  */
 const SERVICE_ROUTE_PAIRS: Array<[fr: string, en: string]> = [
   ['/services/cto-temps-partage-pme/', '/en/services/fractional-cto-sme/'],
-  ['/services/gouvernance-sf-reglementee/', '/en/services/regulated-fs-governance/']
+  ['/services/gouvernance-sf-reglementee/', '/en/services/regulated-fs-governance/'],
+  ['/approche/', '/en/approach/'],
+  ['/a-propos/', '/en/about/'],
+  ['/confidentialite/', '/en/privacy/']
 ];
 
 function normalizePath(path: string): string {

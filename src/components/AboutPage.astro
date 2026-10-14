@@ -1,0 +1,180 @@
+---
+// Page « Profil du fondateur » / « Founder profile » : la pratique et Alex Turcotte.
+import Layout from '../layouts/Layout.astro';
+import PageHero from './PageHero.astro';
+import Icon from './Icon.astro';
+import { fathomEvent } from '../utils/tracking';
+
+interface Props {
+  locale: 'fr' | 'en';
+}
+
+const { locale } = Astro.props;
+const pathname = Astro.url.pathname;
+const container = 'mx-auto max-w-7xl px-6 lg:px-8';
+const linkedin = 'https://www.linkedin.com/in/turcottealex';
+
+const t = {
+  fr: {
+    title: 'Profil du fondateur | Monessor',
+    description: 'Services-conseils Monessor inc., pratique montréalaise de conseil en gestion stratégique des TI, et le profil d’Alex Turcotte, associé directeur.',
+    hero: {
+      kicker: 'À propos',
+      title: 'Profil du fondateur',
+      lead: 'Services-conseils Monessor inc. est une pratique de conseil en gestion stratégique des TI établie à Montréal.'
+    },
+    practice: {
+      title: 'La pratique',
+      items: [
+        { icon: 'layers', title: 'PME établies', text: 'D’abord les PME de 10 M$ à 100 M$ de chiffre d’affaires, qui veulent gouverner leur technologie avec la même rigueur que leurs finances.' },
+        { icon: 'shield-check', title: 'Services financiers réglementés', text: 'Ensuite les institutions financières et les FinTechs qui doivent concilier les attentes du BSIF et la vitesse d’innovation.' },
+        { icon: 'handshake', title: 'Qui livre les mandats', text: 'Chaque mandat est dirigé personnellement par Alex Turcotte, associé directeur. Lorsqu’un mandat exige une expertise très pointue, Monessor fait appel à un spécialiste de son réseau.' }
+      ]
+    },
+    profile: {
+      kicker: 'Fondateur',
+      name: 'Alex Turcotte, associé directeur',
+      paragraphs: [
+        'Depuis plus de vingt ans, Alex Turcotte exerce à la jonction de la technologie, du produit et de la gouvernance, dont plus de quinze ans chez un chef de file des marchés financiers canadiens, où les plateformes sont critiques et la réglementation exigeante.',
+        'Il y a occupé des rôles de leadership technologique et produit, avec la responsabilité complète de produits numériques utilisés par des acteurs clés des marchés financiers. Cette expérience fonde son approche : la technologie n’a de valeur que lorsqu’elle sert des usages clairs, compris et assumés.',
+        'Il travaille aux côtés des dirigeants pour clarifier les priorités, encadrer les risques et traduire les décisions technologiques en résultats d’affaires, avec un style calme, structuré et pragmatique, particulièrement utile en période de transition, de modernisation ou de croissance.'
+      ],
+      portraitAlt: 'Portrait d’Alex Turcotte',
+      linkedin: 'Profil LinkedIn'
+    },
+    next: {
+      title: 'Pour aller plus loin',
+      links: [
+        { label: 'Notre approche →', href: '/approche/' },
+        { label: 'Offres aux PME établies →', href: '/services/cto-temps-partage-pme/' },
+        { label: 'Offre aux services financiers →', href: '/services/gouvernance-sf-reglementee/' }
+      ]
+    },
+    jobTitle: 'Associé directeur',
+    orgDescription: 'Conseil en gestion stratégique des TI pour les PME établies et les services financiers réglementés.'
+  },
+  en: {
+    title: 'Founder profile | Monessor',
+    description: 'Services-conseils Monessor inc., a Montréal strategic IT management advisory practice, and the profile of Alex Turcotte, Managing Partner.',
+    hero: {
+      kicker: 'About',
+      title: 'Founder profile',
+      lead: 'Services-conseils Monessor inc. is a strategic IT management advisory practice based in Montréal.'
+    },
+    practice: {
+      title: 'The practice',
+      items: [
+        { icon: 'layers', title: 'Established SMEs', text: 'First and foremost, SMEs with $10M to $100M in revenue that want to govern technology with the same rigour as their finances.' },
+        { icon: 'shield-check', title: 'Regulated financial services', text: 'Then financial institutions and FinTechs that must reconcile OSFI expectations with the pace of innovation.' },
+        { icon: 'handshake', title: 'Who delivers', text: 'Every engagement is led personally by Alex Turcotte, Managing Partner. When an engagement calls for highly specialized expertise, Monessor brings in a specialist from its network.' }
+      ]
+    },
+    profile: {
+      kicker: 'Founder',
+      name: 'Alex Turcotte, Managing Partner',
+      paragraphs: [
+        'For more than twenty years, Alex Turcotte has worked where technology, product and governance meet, including more than fifteen years at a leading Canadian capital markets organization, where platforms are critical and regulation is demanding.',
+        'There he held technology and product leadership roles, with full responsibility for digital products used by key capital markets participants. That experience shapes his approach: technology only creates value when it serves clear, shared and well-understood needs.',
+        'He works alongside leadership teams to clarify priorities, keep risk under control and turn technology decisions into business results, with a calm, structured and pragmatic style that is particularly useful in times of transition, modernization or growth.'
+      ],
+      portraitAlt: 'Portrait of Alex Turcotte',
+      linkedin: 'LinkedIn profile'
+    },
+    next: {
+      title: 'Learn more',
+      links: [
+        { label: 'Our approach →', href: '/en/approach/' },
+        { label: 'Offers for established SMEs →', href: '/en/services/fractional-cto-sme/' },
+        { label: 'Financial services offer →', href: '/en/services/regulated-fs-governance/' }
+      ]
+    },
+    jobTitle: 'Managing Partner',
+    orgDescription: 'Strategic IT management advisory for established SMEs and regulated financial services.'
+  }
+}[locale];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Monessor',
+  legalName: 'Services-conseils Monessor inc.',
+  url: 'https://www.monessor.com',
+  logo: 'https://www.monessor.com/assets/monessor-logo.png',
+  description: t.orgDescription,
+  address: { '@type': 'PostalAddress', addressLocality: 'Montréal', addressRegion: 'QC', addressCountry: 'CA' },
+  founder: {
+    '@type': 'Person',
+    name: 'Alex Turcotte',
+    jobTitle: t.jobTitle,
+    image: 'https://www.monessor.com/assets/alex.jpg',
+    // À ajouter quand le site personnel sera en ligne : 'https://alexturcotte.ca'
+    sameAs: [linkedin]
+  }
+};
+---
+
+<Layout locale={locale} title={t.title} description={t.description}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <PageHero locale={locale} kicker={t.hero.kicker} title={t.hero.title} lead={t.hero.lead} />
+
+  <!-- LA PRATIQUE -->
+  <section class="bg-light py-20 text-ink" id="pratique">
+    <div class={container}>
+      <h2 class="home-h2">{t.practice.title}</h2>
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
+        {t.practice.items.map((item) => (
+          <article class="rounded-2xl border border-slate-200 bg-white p-6">
+            <Icon name={item.icon as 'layers'} size={28} class="mb-4 text-teal" />
+            <h3 class="home-h3">{item.title}</h3>
+            <p class="mt-2 leading-relaxed">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFIL -->
+  <section class="bg-white py-20 text-ink" id="profil">
+    <div class={`${container} grid items-start gap-10 md:grid-cols-[260px_1fr] lg:gap-14`}>
+      <img
+        src="/assets/alex.jpg"
+        alt={t.profile.portraitAlt}
+        width="260"
+        height="260"
+        loading="lazy"
+        decoding="async"
+        class="h-[260px] w-[260px] rounded-2xl object-cover"
+      />
+      <div class="max-w-3xl">
+        <p class="home-kicker text-teal">{t.profile.kicker}</p>
+        <h2 class="home-h2">{t.profile.name}</h2>
+        {t.profile.paragraphs.map((paragraph) => <p class="mt-4 leading-relaxed">{paragraph}</p>)}
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a
+            class="btn btn--outline-teal"
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-fathom-event={fathomEvent('LinkedIn', 'Profile', locale, pathname)}
+          >{t.profile.linkedin}</a>
+          <!-- Lien vers le site personnel (alexturcotte.ca) à ajouter ici quand il sera en ligne -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POUR ALLER PLUS LOIN -->
+  <section class="bg-light py-16 text-ink">
+    <div class={container}>
+      <h2 class="home-h3 text-2xl">{t.next.title}</h2>
+      <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-8">
+        {t.next.links.map((link) => (
+          <a class="font-semibold text-teal underline underline-offset-4" href={link.href}>{link.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

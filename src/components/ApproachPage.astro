@@ -1,0 +1,214 @@
+---
+// Page « Approche » / « Approach » : la façon de travailler commune aux deux segments.
+import Layout from '../layouts/Layout.astro';
+import PageHero from './PageHero.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  locale: 'fr' | 'en';
+}
+
+const { locale } = Astro.props;
+const container = 'mx-auto max-w-7xl px-6 lg:px-8';
+
+const t = {
+  fr: {
+    title: 'Approche : une méthode rigoureuse | Monessor',
+    description: 'Clarifier, structurer, exécuter : comment Monessor mène un mandat, de la première rencontre à la direction TI à temps partagé, sans commission ni revente.',
+    hero: {
+      kicker: 'Approche',
+      title: 'Une méthode rigoureuse, du premier échange à l’exécution.',
+      lead: 'Que vous dirigiez une PME établie ou une institution financière, la démarche est la même : comprendre avant de recommander, chiffrer avant de décider, et rester à vos côtés pour l’exécution.'
+    },
+    phases: {
+      title: 'Trois temps',
+      items: [
+        { icon: 'search', title: 'Clarifier', text: 'Les enjeux, les contraintes, les risques et les décisions à prendre. On établit les faits avant de proposer quoi que ce soit.' },
+        { icon: 'route', title: 'Structurer', text: 'Les options, la trajectoire, la gouvernance et les priorités, chiffrées et arbitrées avec la direction.' },
+        { icon: 'flag', title: 'Exécuter', text: 'L’accompagnement de la mise en œuvre, ou sa direction, jusqu’aux résultats attendus.' }
+      ]
+    },
+    engagement: {
+      title: 'Comment se déroule un mandat',
+      steps: [
+        { title: 'Un premier échange', text: 'Pour comprendre votre contexte, vos contraintes et vos priorités, et vérifier que Monessor est le bon interlocuteur.' },
+        { title: 'L’offre d’entrée', text: 'Le Diagnostic de maturité TI pour les PME établies, ou la Revue de gouvernance TI pour les institutions financières et les FinTechs. Périmètre, durée et prix sont fixés d’avance.' },
+        { title: 'Une feuille de route', text: 'Des priorités chiffrées et des décisions claires, présentées à votre comité de direction ou à votre conseil.' },
+        { title: 'L’accompagnement', text: 'Des livrables ciblés issus de la feuille de route, puis, si vous le souhaitez, une direction TI à temps partagé.' }
+      ]
+    },
+    model: {
+      title: 'Modèle d’engagement',
+      items: [
+        { icon: 'file-text', title: 'Forfaits à périmètre fixe', text: 'Diagnostic, revue, sélection de fournisseurs : les livrables, la durée et le prix sont convenus avant le début du mandat.' },
+        { icon: 'route', title: 'Mandat mensuel', text: 'La direction TI à temps partagé, environ une journée par semaine, révisable selon vos besoins.' }
+      ],
+      links: [
+        { label: 'Voir les offres aux PME →', href: '/services/cto-temps-partage-pme/' },
+        { label: 'Voir l’offre aux services financiers →', href: '/services/gouvernance-sf-reglementee/' }
+      ]
+    },
+    neutrality: {
+      title: 'Zéro commission, zéro revente de licences.',
+      text: 'Monessor ne touche aucune commission de fournisseur et ne revend aucune licence. Sa seule rémunération vient de ses clients : ses recommandations n’ont pas d’autre intérêt que le vôtre.'
+    },
+    not: {
+      title: 'Ce que Monessor n’est pas',
+      items: [
+        'Une agence de développement ou un sous-traitant d’ingénierie.',
+        'Un revendeur de logiciels ou de licences (SaaS, ERP).',
+        'Un cabinet d’avocats ou d’audit comptable.'
+      ]
+    },
+    delivery: {
+      title: 'Qui dirige les mandats',
+      text: 'Chaque mandat est dirigé personnellement par Alex Turcotte, associé directeur. Lorsqu’un mandat exige une expertise très pointue, Monessor fait appel à un spécialiste de son réseau.',
+      link: { label: 'Lire le profil du fondateur →', href: '/a-propos/' }
+    }
+  },
+  en: {
+    title: 'Approach: a rigorous method | Monessor',
+    description: 'Clarify, structure, execute: how Monessor runs an engagement, from the first conversation to fractional IT leadership, with no commissions or resale.',
+    hero: {
+      kicker: 'Approach',
+      title: 'A rigorous method, from the first conversation to execution.',
+      lead: 'Whether you lead an established SME or a financial institution, the method is the same: understand before recommending, cost before deciding, and stay with you through execution.'
+    },
+    phases: {
+      title: 'Three phases',
+      items: [
+        { icon: 'search', title: 'Clarify', text: 'The issues, constraints, risks and decisions to be made. Facts come first, before any recommendation.' },
+        { icon: 'route', title: 'Structure', text: 'The options, trajectory, governance and priorities, costed and agreed with leadership.' },
+        { icon: 'flag', title: 'Execute', text: 'Support for delivery, or leading it, through to the expected results.' }
+      ]
+    },
+    engagement: {
+      title: 'How an engagement unfolds',
+      steps: [
+        { title: 'A first conversation', text: 'To understand your context, constraints and priorities, and confirm that Monessor is the right partner.' },
+        { title: 'The entry offer', text: 'The IT Maturity Diagnostic for established SMEs, or the IT Governance Review for financial institutions and FinTechs. Scope, duration and price are set in advance.' },
+        { title: 'A roadmap', text: 'Costed priorities and clear decisions, presented to your leadership team or board.' },
+        { title: 'Ongoing support', text: 'Targeted deliverables drawn from the roadmap, then, if you wish, fractional IT leadership.' }
+      ]
+    },
+    model: {
+      title: 'Engagement model',
+      items: [
+        { icon: 'file-text', title: 'Fixed-scope packages', text: 'Diagnostic, review, vendor selection: deliverables, duration and price are agreed before the engagement starts.' },
+        { icon: 'route', title: 'Monthly engagement', text: 'Fractional IT leadership, about one day a week, adjustable to your needs.' }
+      ],
+      links: [
+        { label: 'See the SME offers →', href: '/en/services/fractional-cto-sme/' },
+        { label: 'See the financial services offer →', href: '/en/services/regulated-fs-governance/' }
+      ]
+    },
+    neutrality: {
+      title: 'No commissions. No software resale.',
+      text: 'Monessor takes no vendor commissions and resells no licences. It is paid by its clients only, so its recommendations serve no interest but yours.'
+    },
+    not: {
+      title: 'What Monessor is not',
+      items: [
+        'A development agency or an engineering subcontractor.',
+        'A software or licence reseller (SaaS, ERP).',
+        'A law firm or an accounting audit firm.'
+      ]
+    },
+    delivery: {
+      title: 'Who leads engagements',
+      text: 'Every engagement is led personally by Alex Turcotte, Managing Partner. When an engagement calls for highly specialized expertise, Monessor brings in a specialist from its network.',
+      link: { label: 'Read the founder profile →', href: '/en/about/' }
+    }
+  }
+}[locale];
+---
+
+<Layout locale={locale} title={t.title} description={t.description}>
+  <PageHero locale={locale} kicker={t.hero.kicker} title={t.hero.title} lead={t.hero.lead} />
+
+  <!-- TROIS TEMPS -->
+  <section class="bg-light py-20 text-ink" id="trois-temps">
+    <div class={container}>
+      <h2 class="home-h2">{t.phases.title}</h2>
+      <ol class="mt-10 grid gap-4 md:grid-cols-3">
+        {t.phases.items.map((item, index) => (
+          <li class="rounded-2xl border border-slate-200 bg-white p-6">
+            <div class="flex items-center justify-between text-teal">
+              <Icon name={item.icon as 'search'} size={28} />
+              <span class="font-bold tracking-[0.12em]" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            </div>
+            <h3 class="home-h3 mt-4">{item.title}</h3>
+            <p class="mt-2 leading-relaxed">{item.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- DÉROULEMENT D'UN MANDAT -->
+  <section class="bg-white py-20 text-ink" id="deroulement">
+    <div class={container}>
+      <h2 class="home-h2">{t.engagement.title}</h2>
+      <ol class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {t.engagement.steps.map((step, index) => (
+          <li class="border-t-2 border-coral pt-5">
+            <p class="font-bold tracking-[0.12em] text-teal" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+            <h3 class="home-h3 mt-2">{step.title}</h3>
+            <p class="mt-2 leading-relaxed">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- MODÈLE D'ENGAGEMENT -->
+  <section class="bg-light py-20 text-ink" id="modele">
+    <div class={container}>
+      <h2 class="home-h2">{t.model.title}</h2>
+      <div class="mt-10 grid gap-4 md:grid-cols-2">
+        {t.model.items.map((item) => (
+          <article class="rounded-2xl border border-slate-200 bg-white p-6">
+            <Icon name={item.icon as 'file-text'} size={28} class="mb-4 text-teal" />
+            <h3 class="home-h3">{item.title}</h3>
+            <p class="mt-2 leading-relaxed">{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-8">
+        {t.model.links.map((link) => (
+          <a class="font-semibold text-teal underline underline-offset-4" href={link.href}>{link.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- NEUTRALITÉ ET CE QUE MONESSOR N'EST PAS -->
+  <section class="bg-white py-20 text-ink" id="neutralite">
+    <div class={`${container} grid gap-8 lg:grid-cols-2`}>
+      <div class="rounded-2xl bg-teal p-6 text-light md:p-8">
+        <p class="text-lg font-semibold">{t.neutrality.title}</p>
+        <p class="mt-2 text-light/90">{t.neutrality.text}</p>
+      </div>
+      <div>
+        <h2 class="home-h3 text-2xl">{t.not.title}</h2>
+        <ul class="mt-4 space-y-3">
+          {t.not.items.map((item) => (
+            <li class="flex gap-3">
+              <span class="mt-2.5 h-px w-4 shrink-0 bg-coral" aria-hidden="true"></span>
+              <span class="leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUI DIRIGE LES MANDATS -->
+  <section class="bg-light py-20 text-ink" id="direction">
+    <div class={container}>
+      <h2 class="home-h2">{t.delivery.title}</h2>
+      <p class="mt-4 max-w-3xl text-lg leading-relaxed">{t.delivery.text}</p>
+      <a class="btn btn--outline-teal mt-6" href={t.delivery.link.href}>{t.delivery.link.label}</a>
+    </div>
+  </section>
+</Layout>
