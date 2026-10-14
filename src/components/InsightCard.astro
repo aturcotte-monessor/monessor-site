@@ -26,7 +26,7 @@ const articleClass = `rounded-2xl bg-white border border-slate-200 p-6 shadow-sm
 
 <article class={articleClass}>
   <p class={dateClass}>{formattedDate}</p>
-  <h2 class={`mt-2 text-2xl font-semibold transition-colors hover:text-[#FF6F61] ${titleClass}`}>
+  <h2 class={`mt-2 text-2xl font-semibold hover:underline underline-offset-4 ${titleClass}`}>
     <a href={href} class="no-underline">{entry.data.title}</a>
   </h2>
   <p class={summaryClass}>{entry.data.excerpt}</p>

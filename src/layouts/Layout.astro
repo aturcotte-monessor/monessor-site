@@ -1,6 +1,8 @@
 ---
 // src/layouts/Layout.astro
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MeetingCta, { type MeetingVariant } from '../components/MeetingCta.astro';
 import { getAlternatePath } from '../utils/i18nRoutes';
 import '../styles/global.css';
 
@@ -12,9 +14,14 @@ interface Props {
   image?: string;
   ogType?: 'website' | 'article';
   ogTitle?: string;
+  /** Vignette de rendez-vous avant le pied de page ; `false` si la page la place elle-même ou n'en veut pas (404). */
+  meeting?: MeetingVariant | false;
+  /** Ancre de la vignette (l'accueil utilise `contact`). */
+  meetingId?: string;
+  noindex?: boolean;
 }
 
-const { title, description, locale = 'fr', switchHref, image = '/assets/alex.jpg', ogType = 'website', ogTitle = title } = Astro.props;
+const { title, description, locale = 'fr', switchHref, image = '/assets/alex.jpg', ogType = 'website', ogTitle = title, meeting = 'generic', meetingId, noindex = false } = Astro.props;
 
 const siteUrl = 'https://www.monessor.com';
 const pathname = Astro.url.pathname;
@@ -39,7 +46,7 @@ const organizationSchema = {
   "logo": `${siteUrl}/assets/monessor-logo.png`,
   "image": absoluteImageUrl,
   "description": locale === 'fr'
-    ? "Cabinet-conseil en stratégie technologique, CTO à temps partagé et gouvernance TI pour secteurs régulés."
+    ? "Cabinet-conseil en stratégie technologique, CTO à temps partagé et gouvernance TI pour secteurs réglementés."
     : "Executive advisory firm specializing in technology strategy, fractional CTO services, and IT governance.",
   "address": {
     "@type": "PostalAddress",
@@ -60,6 +67,7 @@ const organizationSchema = {
     <!-- Title & Meta Description -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     
     <!-- Canonical -->
     <link rel="canonical" href={canonicalUrl} />
@@ -103,7 +111,10 @@ const organizationSchema = {
     <Header locale={locale} switchHref={switchHref} />
     <main class="flex-1">
       <slot />
+      {meeting && <MeetingCta locale={locale} variant={meeting} id={meetingId} />}
     </main>
+    <Footer locale={locale} switchHref={switchHref} />
+    <script is:inline src="/scripts/main.js"></script>
     <slot name="scripts" />
   </body>
 </html>

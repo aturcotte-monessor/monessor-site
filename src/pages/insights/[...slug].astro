@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import ContactCta from '../../components/ContactCta.astro';
+import MeetingCta from '../../components/MeetingCta.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('insights', ({ id, data }) => id.startsWith('fr/') && data.lang === 'fr');
@@ -13,6 +13,12 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+
+// Segment de la vignette : frontmatter de l'article, sinon celui de sa traduction (même translationKey)
+const translations = entry.data.translationKey
+  ? await getCollection('insights', ({ data }) => data.translationKey === entry.data.translationKey)
+  : [];
+const segment = entry.data.segment ?? translations.find((t) => t.data.segment)?.data.segment;
 const { Content } = await render(entry);
 const metaParts = [entry.data.readTime, entry.data.author].filter(Boolean);
 
@@ -35,8 +41,8 @@ const jsonLd = {
   "author": {
     "@type": "Person",
     "name": entry.data.author || "Alex Turcotte",
-    "jobTitle": entry.data.authorTitle || "Directeur principal & CTO à temps partagé",
-    "sameAs": "https://www.linkedin.com/in/alexturcotte/"
+    "jobTitle": entry.data.authorTitle || "Associé directeur & CTO à temps partagé",
+    "sameAs": "https://www.linkedin.com/in/turcottealex"
   },
   "image": {
     "@type": "ImageObject",
@@ -72,7 +78,7 @@ const faqSchema = entry.data.faq && entry.data.faq.length > 0
   : null;
 ---
 
-<Layout locale="fr" title={`${entry.data.title} - Par ${entry.data.author || 'Alex Turcotte'}`} description={entry.data.excerpt} image="/assets/og-insight-default.png" ogType="article" ogTitle={entry.data.title}>
+<Layout locale="fr" title={`${entry.data.title} - Par ${entry.data.author || 'Alex Turcotte'}`} description={entry.data.excerpt} image="/assets/og-insight-default.png" ogType="article" ogTitle={entry.data.title} meeting={false}>
   <Fragment slot="head">
     <!-- Balises Open Graph & Twitter pour le partage social -->
     <meta property="article:published_time" content={entry.data.pubDate.toISOString()} />
@@ -101,23 +107,13 @@ const faqSchema = entry.data.faq && entry.data.faq.length > 0
       <h1 class="mt-2 text-4xl font-semibold tracking-tight text-[#23545B]">{entry.data.title}</h1>
       <p class="mt-4 max-w-3xl text-lg text-slate-700">{entry.data.excerpt}</p>
 
-      <div class="insight-content mt-10 max-w-none [&_p]:text-slate-800 [&>p]:mb-6 [&>p]:leading-relaxed [&_h2]:text-[#23545B] [&_h2]:font-semibold [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-[#23545B] [&_h3]:text-[#23545B] [&_h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-3 [&_a]:text-coral [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-coral/40 [&_a]:transition-colors hover:[&_a]:decoration-coral [&_ul]:text-slate-700 [&>ul]:my-6 [&>ul]:space-y-2 [&>ul]:list-disc [&>ul]:pl-6 [&_ol]:text-slate-700 [&>ol]:my-6 [&>ol]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&_blockquote]:text-slate-700 [&_li]:text-slate-700 [&>hr]:mt-12 [&>hr]:mb-12 [&>hr]:border-slate-200 [&>hr]:opacity-30">
+      <div class="insight-content mt-10 max-w-none [&_p]:text-slate-800 [&>p]:mb-6 [&>p]:leading-relaxed [&_h2]:text-[#23545B] [&_h2]:font-semibold [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-[#23545B] [&_h3]:text-[#23545B] [&_h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-3 [&_a]:text-teal [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-teal/40 [&_a]:transition-colors hover:[&_a]:decoration-teal [&_ul]:text-slate-700 [&>ul]:my-6 [&>ul]:space-y-2 [&>ul]:list-disc [&>ul]:pl-6 [&_ol]:text-slate-700 [&>ol]:my-6 [&>ol]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&_blockquote]:text-slate-700 [&_li]:text-slate-700 [&>hr]:mt-12 [&>hr]:mb-12 [&>hr]:border-slate-200 [&>hr]:opacity-30">
         <Content />
         <p class="mt-8 border-t border-slate-200 pt-4 text-sm italic"><strong>Note de transparence : </strong>Ce texte a été pensé et structuré par {entry.data.author || 'Alex Turcotte'}, puis rédigé avec l'assistance de l'intelligence artificielle, dans une voix calibrée sur ses propres écrits. L'IA a aussi servi à la recherche documentaire et à la traduction. Le fond de la pensée et le retour d'expérience d'affaires sont les siens.</p>
       </div>
 
-      <div class="mt-12 rounded-2xl bg-[#23545B] p-8 text-white">
-        <h2 class="text-2xl font-semibold">Besoin d'un regard indépendant sur ces enjeux?</h2>
-        <p class="mt-3 text-slate-200">Échangeons sur votre contexte et vos priorités technologiques.</p>
-        <ContactCta
-          href="https://calendar.app.google/jrWp3LMihMCr5qew7"
-          label="Planifier une rencontre"
-          ariaLabel="Planifier une rencontre"
-          className="mt-6 inline-flex rounded-full bg-[#FF6F61] px-5 py-3 font-semibold text-white no-underline hover:brightness-95"
-          target="_blank"
-          rel="noopener noreferrer"
-          fathomEventName="Click ScheduleMeeting Insight"
-        />
+      <div class="mt-12">
+        <MeetingCta locale="fr" variant={segment ?? 'article'} placement="Article" bare />
       </div>
 
       {entry.data.faq && entry.data.faq.length > 0 && (
@@ -142,6 +138,4 @@ const faqSchema = entry.data.faq && entry.data.faq.length > 0
       )}
     </article>
   </section>
-
-  <script slot="scripts" is:inline src="/scripts/main.js"></script>
 </Layout>

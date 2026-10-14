@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import InsightCard from '../../components/InsightCard.astro';
-import ContactCta from '../../components/ContactCta.astro';
+import { fathomEvent } from '../../utils/tracking';
 import { ui } from '../../i18n/ui';
 
 const locale = 'en' as const;
@@ -16,6 +16,7 @@ const ctaLabel = ui[locale].exploreAllInsights;
 
 <Layout
   locale={locale}
+  meetingId="contact"
   title="Fractional CTO & Technology Strategy Advisory | Monessor"
   description="Executive advisory firm led by Alex Turcotte, specializing in technology strategy, AI integration, fractional CTO services, and IT governance for regulated sectors."
 >
@@ -296,13 +297,13 @@ const ctaLabel = ui[locale].exploreAllInsights;
             </div>
             <div class="hero-card-body">
               <p class="name">Alex Turcotte</p>
-              <p class="title">Founder - Monessor</p>
+              <p class="title">Founder and Managing Partner, Monessor</p>
               <p class="small">
                 Fractional CTO and executive advisor in technology strategy, platform modernization, and IT governance.
               </p>
               <br />
               <div class="hero-card-links">
-                <a class="libutton" href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&amp;followMember=turcottealex" target="_blank">Follow on LinkedIn</a>
+                <a class="libutton" href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&amp;followMember=turcottealex" target="_blank" rel="noopener noreferrer" data-fathom-event={fathomEvent('LinkedIn', 'Profile', locale, Astro.url.pathname)}>Follow on LinkedIn</a>
               </div>
             </div>
           </div>
@@ -310,44 +311,4 @@ const ctaLabel = ui[locale].exploreAllInsights;
       </div>
     </div>
   </section>
-
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div class="container max-w-7xl mx-auto px-6 lg:px-8">
-      <h2>Contact</h2>
-      <p class="sublead">
-        Tell us what you are trying to accomplish and where it is blocking you.
-        A response will be provided quickly.
-      </p>
-
-      <div class="contact-box">
-        <div class="contact-actions">
-          <a id="email-button" class="btn font-semibold" href="#" aria-label="Send an email">
-            Send an email
-          </a>
-          <ContactCta
-            href="https://calendar.app.google/jrWp3LMihMCr5qew7"
-            label="Schedule a meeting"
-            ariaLabel="Schedule a meeting"
-          />
-        </div>
-        <p class="small contact-meta contact-meta--phone">
-          <span class="contact-label">Phone:</span>
-          <span class="contact-value"><span class="phone-secure" aria-label="Phone number">Call</span></span>
-        </p>
-        <p class="small contact-meta">
-          <span class="contact-label">Or directly:</span>
-          <a id="email-link-2" class="contact-value" href="#" aria-label="Email address">
-            <span data-user="info" data-domain="monessor" data-tld="com">Contact</span>
-          </a>
-        </p>
-      </div>
-
-      <footer class="footer">
-        <p class="small footer-line">© <span id="year"></span> Monessor Consulting Services Inc. <span class="footer-separator" aria-hidden="true"> | </span> <span class="contact-label">Phone:</span> <span class="contact-value"><span class="phone-secure" aria-label="Phone number">Call</span></span></p>
-      </footer>
-    </div>
-  </section>
-
-  <script slot="scripts" is:inline src="/scripts/main.js"></script>
 </Layout>

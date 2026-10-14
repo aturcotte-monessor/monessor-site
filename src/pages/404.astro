@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const links = [
+  { href: '/services/cto-temps-partage-pme/', label: 'PME établies', text: 'CTO à temps partagé, Diagnostic de maturité TI' },
+  { href: '/services/gouvernance-sf-reglementee/', label: 'Services financiers réglementés', text: 'Gouvernance TI et conformité BSIF' },
+  { href: '/insights/', label: 'Perspectives', text: 'Analyses sur la technologie, les risques et la gouvernance' }
+];
+---
+
+<Layout
+  locale="fr"
+  title="Page introuvable | Monessor"
+  description="Cette page n'existe pas ou a été déplacée."
+  meeting={false}
+  noindex
+>
+  <section class="bg-light py-20 text-ink">
+    <div class="mx-auto max-w-3xl px-6 lg:px-8">
+      <p class="text-sm font-semibold uppercase tracking-[0.14em] text-teal">Erreur 404</p>
+      <h1 class="mt-3 text-4xl font-semibold tracking-tight text-teal">Page introuvable</h1>
+      <p class="mt-4 text-lg">Cette page n'existe pas ou a été déplacée. Voici les principales sections du site.</p>
+      <ul class="mt-10 grid gap-4">
+        {links.map((link) => (
+          <li>
+            <a href={link.href} class="block rounded-2xl border border-slate-200 bg-white p-6 hover:border-teal/40 hover:no-underline">
+              <span class="block text-lg font-semibold text-teal">{link.label} →</span>
+              <span class="mt-1 block">{link.text}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-10">
+        <a href="/" class="font-semibold text-teal underline underline-offset-4">Retour à l'accueil</a>
+        <span aria-hidden="true"> · </span>
+        <a href="/en/" lang="en" class="text-teal underline underline-offset-4">English site</a>
+      </p>
+    </div>
+  </section>
+</Layout>

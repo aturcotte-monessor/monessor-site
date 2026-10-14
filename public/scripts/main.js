@@ -1,36 +1,13 @@
 // EMAIL PROTECTION SCRIPT
 (function () {
-  function wireEmail(anchorId) {
-    const a = document.getElementById(anchorId);
-    if (!a) return null;
-
-    const span = a.querySelector("span");
-    if (!span) return null;
-
-    const user = span.dataset.user;
-    const domain = span.dataset.domain;
-    const tld = span.dataset.tld;
-
-    const email = user + "@" + domain + "." + tld;
-
+  // Liens courriel : <a data-email-link><span data-user data-domain data-tld>…</span></a>
+  document.querySelectorAll("a[data-email-link]").forEach(function (a) {
+    const span = a.querySelector("span[data-user]");
+    if (!span) return;
+    const email = span.dataset.user + "@" + span.dataset.domain + "." + span.dataset.tld;
     a.textContent = email;
     a.href = "mailto:" + email;
-
-    return email;
-  }
-
-  // 1) Email link in About section (id="email-link")
-  const emailFromAbout = wireEmail("email-link");
-
-  // 2) Email link in Contact section (id="email-link-2")
-  const emailFromContact = wireEmail("email-link-2");
-
-  // 3) "Send an email" / "Écrire un courriel" button (id="email-button")
-  const btn = document.getElementById("email-button");
-  const email = emailFromContact || emailFromAbout;
-  if (btn && email) {
-    btn.href = "mailto:" + email;
-  }
+  });
 
   function wirePhone(selector) {
     const slots = document.querySelectorAll(selector);
@@ -49,11 +26,28 @@
       link.href = "tel:" + phoneHref;
       link.textContent = phoneDisplay;
       link.setAttribute("aria-label", labelPrefix + phoneDisplay);
+      if (slot.dataset.fathomEvent) link.dataset.fathomEvent = slot.dataset.fathomEvent;
+      if (slot.className && slot.className !== "phone-secure") link.className = slot.className.replace("phone-secure", "").trim();
       slot.replaceWith(link);
     });
   }
 
   wirePhone(".phone-secure");
+})();
+
+// FATHOM : clics courriel, téléphone et LinkedIn (attribut data-fathom-event)
+(function () {
+  document.addEventListener("click", function (event) {
+    const el = event.target.closest && event.target.closest("[data-fathom-event]");
+    if (!el) return;
+    try {
+      if (window.fathom && typeof window.fathom.trackEvent === "function") {
+        window.fathom.trackEvent(el.dataset.fathomEvent);
+      }
+    } catch (error) {
+      console.warn("Fathom event failed:", error);
+    }
+  });
 })();
 
 // YEAR INJECTION SCRIPT
