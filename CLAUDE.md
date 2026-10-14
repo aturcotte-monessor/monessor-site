@@ -2,17 +2,25 @@
 
 ## Pile Technique
 - Framework: Astro.js avec composants MDX
-- Styles: Tailwind CSS (Thème sombre exécutif haut de gamme, accents vert/gold)
-- Anytique: Fathom Analytics (Événement sur CTA Contact)
+- Styles: Tailwind CSS 4 (jetons de couleur dans le `@theme` de `src/styles/global.css`)
+- Analytique: Fathom Analytics (événements nommés par `fathomEvent()` dans `src/utils/tracking.ts`)
 
 ## Règles de Style & Design System
-1. **Thème Visuel :** Conserver la charte "Pratique Exécutive" (fond sombre `#0f2537` / `#111111`, typographies sobres, cartes contrastées).
-2. **Copie & Vocabulaire :**
+1. **Palette (charte Monessor, règle 60-30-10) :**
+   - 60 % clair : fond `#F8FAFC` (`bg-light`) et blanc pour les cartes ; texte courant `#434343` (`text-ink`).
+   - 30 % sarcelle `#23545B` (`text-teal`, `bg-teal`) : titres, liens et structure sur fond clair ; jamais en texte sur fond foncé.
+   - 10 % corail `#FF6F61` (`bg-coral`) : bouton d'action unique (`.btn`) avec texte foncé `#0E1315` (`text-ink-dark`), chiffres clés et accents sur fond foncé.
+   - Sarcelle profonde `#102A2E` (`bg-teal-deep`) pour les bandes et blocs foncés (héros, vignette de rendez-vous, pied de page), texte `#F8FAFC`.
+   - Interdits : texte blanc sur corail, texte corail sur fond clair, menthe (`#88D8B0`, `#6EE7B7`) dans tout élément nouveau ou retouché.
+2. **Thème mixte :** en-tête clair (emblème couleur), sections de contenu claires, bandes foncées pour l'autorité et l'action. L'emblème est en SVG dans `public/assets/` : `monessor-embleme.svg` sur fond clair, `monessor-embleme-blanc-corail.svg` sur fond foncé.
+3. **Conversion :** un seul lien de rendez-vous (`MEETING_URL`). Toute page se termine par la vignette `MeetingCta` (variante `pme`, `sf`, `article` ou `generic`) puis le pied de page global, tous deux rendus par `Layout.astro`. Chaque bouton de rendez-vous porte un événement Fathom distinct par emplacement, langue et page.
+4. **Copie & Vocabulaire :**
    - Utiliser un ton C-Level, sobre et factuel.
    - Ne jamais utiliser de vocabulaire d'agence générique ("funnels", "growth hacking", "boostez vos ventes").
    - Segment A = PME Établies ($10M–$100M CA). Offre d'entrée = *Diagnostic de Maturité TI & IA* (2-3 semaines).
-   - Segment B = Secteurs Régulés (BSIF/OSFI). Offre d'entrée = *Revue de Gouvernance TI* (3-4 semaines).
-3. **Composants :** Réutiliser 100 % des composants UI existants (`Layout.astro`, accordéons, cartes `Services`, bannières d'exclusion) plutôt que d'en recréer de nouveaux.
+   - Segment B = Secteurs Régulés (BSIF/OSFI). Offre d'entrée = *Revue de Gouvernance TI* (3-4 semaines), sans prix public.
+   - Titre d'Alex Turcotte : associé directeur / Managing Partner. LinkedIn : https://www.linkedin.com/in/turcottealex
+5. **Composants :** Réutiliser les composants existants (`Layout.astro`, `Header.astro`, `Footer.astro`, `MeetingCta.astro`, `ContactCta.astro`, accordéons, cartes) plutôt que d'en recréer de nouveaux.
 
 ## Commandes Utiles
 - Build : `npm run build`
