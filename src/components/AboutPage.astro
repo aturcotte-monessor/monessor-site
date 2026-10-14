@@ -4,6 +4,8 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from './PageHero.astro';
 import Icon from './Icon.astro';
 import { fathomEvent } from '../utils/tracking';
+import { Picture } from 'astro:assets';
+import portrait from '../assets/alex.jpg';
 
 interface Props {
   locale: 'fr' | 'en';
@@ -106,7 +108,7 @@ const jsonLd = {
     '@type': 'Person',
     name: 'Alex Turcotte',
     jobTitle: t.jobTitle,
-    image: 'https://www.monessor.com/assets/alex.jpg',
+    image: 'https://www.monessor.com/assets/alex-600.jpg',
     // À ajouter quand le site personnel sera en ligne : 'https://alexturcotte.ca'
     sameAs: [linkedin]
   }
@@ -139,15 +141,7 @@ const jsonLd = {
   <!-- PROFIL -->
   <section class="bg-white py-20 text-ink" id="profil">
     <div class={`${container} grid items-start gap-10 md:grid-cols-[260px_1fr] lg:gap-14`}>
-      <img
-        src="/assets/alex.jpg"
-        alt={t.profile.portraitAlt}
-        width="260"
-        height="260"
-        loading="lazy"
-        decoding="async"
-        class="h-[260px] w-[260px] rounded-2xl object-cover"
-      />
+      <Picture src={portrait} alt={t.profile.portraitAlt} widths={[260, 520]} sizes="260px" width={260} height={260} formats={["avif", "webp"]} loading="lazy" decoding="async" class="h-[260px] w-[260px] rounded-2xl object-cover" />
       <div class="max-w-3xl">
         <p class="home-kicker text-teal">{t.profile.kicker}</p>
         <h2 class="home-h2">{t.profile.name}</h2>

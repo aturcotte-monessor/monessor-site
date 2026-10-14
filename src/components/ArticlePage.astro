@@ -8,7 +8,10 @@ import MeetingCta from './MeetingCta.astro';
 import InsightCard from './InsightCard.astro';
 import { articleSegments, relatedArticles, segmentLabels } from '../utils/articleSegments';
 import { formatDate } from '../utils/dates';
+import { articleSeo } from '../utils/articleSeo';
 import { fathomEvent } from '../utils/tracking';
+import { Picture } from 'astro:assets';
+import portrait from '../assets/alex.jpg';
 
 interface Props {
   entry: CollectionEntry<'insights'>;
@@ -24,6 +27,9 @@ const all = await getCollection('insights', ({ data }) => !data.draft);
 const segments = articleSegments(entry, all);
 const related = relatedArticles(entry, all);
 const { Content } = await render(entry);
+const seo = articleSeo(entry);
+// Image de partage : celle du segment si l'article n'en vise qu'un, sinon celle de l'index
+const shareImage = `/assets/og/${segments.length === 1 ? (locale === 'fr' ? `og-perspectives-${segments[0]}-fr` : `og-insights-${segments[0] === 'pme' ? 'sme' : 'sf'}-en`) : (locale === 'fr' ? 'og-perspectives-fr' : 'og-insights-en')}.jpg`;
 
 const author = entry.data.author || 'Alex Turcotte';
 const base = locale === 'fr' ? '/fr/perspectives/' : '/en/insights/';
@@ -47,8 +53,7 @@ const t = {
     table: 'Tableau défilant',
     related: 'À lire aussi',
     jobTitle: 'Associé directeur',
-    inLanguage: 'fr-CA',
-    imageAlt: 'Monessor, conseil en gestion stratégique des TI'
+    inLanguage: 'fr-CA'
   },
   en: {
     section: 'Insights',
@@ -67,8 +72,7 @@ const t = {
     table: 'Scrollable table',
     related: 'Further reading',
     jobTitle: 'Managing Partner',
-    inLanguage: 'en-CA',
-    imageAlt: 'Monessor, strategic IT management advisory'
+    inLanguage: 'en-CA'
   }
 }[locale];
 
@@ -92,9 +96,10 @@ const articleLd = {
     url: new URL(t.profileHref, siteUrl).href,
     sameAs: ['https://www.linkedin.com/in/turcottealex']
   },
-  image: { '@type': 'ImageObject', url: `${siteUrl}/assets/og-insight-default.png`, width: 1200, height: 627 },
+  image: { '@type': 'ImageObject', url: new URL(shareImage, siteUrl).href, width: 1200, height: 630 },
   publisher: {
     '@type': 'Organization',
+    '@id': `${siteUrl}/#organisation`,
     name: 'Monessor',
     legalName: 'Services-conseils Monessor inc.',
     url: siteUrl,
@@ -124,9 +129,9 @@ const faqLd = faq.length
 
 <Layout
   locale={locale}
-  title={`${entry.data.title} | Monessor`}
-  description={entry.data.excerpt}
-  image="/assets/og-insight-default.png"
+  title={`${seo.title} | Monessor`}
+  description={seo.description}
+  image={shareImage}
   ogType="article"
   ogTitle={entry.data.title}
   meeting={false}
@@ -135,9 +140,6 @@ const faqLd = faq.length
     <meta property="article:published_time" content={entry.data.pubDate.toISOString()} />
     {entry.data.updatedDate && <meta property="article:modified_time" content={entry.data.updatedDate.toISOString()} />}
     <meta property="article:author" content={author} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="627" />
-    <meta property="og:image:alt" content={t.imageAlt} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(articleLd)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
     {faqLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqLd)} />}
@@ -181,7 +183,7 @@ const faqLd = faq.length
 
       <!-- AUTEUR -->
       <aside class="mt-10 flex flex-col gap-5 rounded-2xl border border-slate-200 bg-white p-6 sm:flex-row sm:items-start" aria-label={author}>
-        <img src="/assets/alex.jpg" alt={t.portraitAlt} width="80" height="80" loading="lazy" decoding="async" class="h-20 w-20 shrink-0 rounded-xl object-cover" />
+        <Picture src={portrait} alt={t.portraitAlt} widths={[80, 160]} sizes="80px" width={80} height={80} formats={["avif", "webp"]} loading="lazy" decoding="async" class="h-20 w-20 shrink-0 rounded-xl object-cover" />
         <div>
           <p class="font-semibold text-teal">{author}, {t.authorRole}</p>
           <p class="mt-1 leading-relaxed">{t.authorLine}</p>
