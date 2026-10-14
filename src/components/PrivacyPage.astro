@@ -5,12 +5,20 @@
 // par Google Agenda, liens courriel et téléphone, hébergement Vercel. À mettre à jour si cela change.
 import Layout from '../layouts/Layout.astro';
 import PageHero from './PageHero.astro';
+import EmailLink from './EmailLink.astro';
+import { fathomEvent } from '../utils/tracking';
 
 interface Props {
   locale: 'fr' | 'en';
 }
 
 const { locale } = Astro.props;
+const pathname = Astro.url.pathname;
+
+// Adresse du responsable : jamais en clair dans le HTML (protection contre la collecte automatique).
+// Le texte contient le jeton {email}, remplacé par un lien que public/scripts/main.js assemble au chargement.
+const emailUser = locale === 'fr' ? 'confidentialite' : 'privacy';
+const split = (text: string) => text.split('{email}');
 
 type Section = { id: string; title: string; paragraphs?: string[]; list?: string[]; after?: string[] };
 
@@ -27,7 +35,7 @@ const t: { title: string; description: string; kicker: string; h1: string; effec
         title: 'Qui sommes-nous',
         paragraphs: [
           'Services-conseils Monessor inc. (« Monessor ») est une entreprise de conseil établie à Montréal (Québec). Cette politique explique quels renseignements personnels nous recueillons, par l’intermédiaire du site monessor.com et dans le cadre de nos échanges, pourquoi nous les recueillons et comment nous les protégeons, conformément à la Loi sur la protection des renseignements personnels dans le secteur privé du Québec et, lorsqu’elle s’applique, à la loi fédérale (LPRPDE).',
-          'Alex Turcotte, associé directeur, est la personne ayant la plus haute autorité au sein de Monessor et agit à ce titre comme responsable de la protection des renseignements personnels. Pour toute question ou demande : confidentialite@monessor.com.'
+          'Alex Turcotte, associé directeur, est la personne ayant la plus haute autorité au sein de Monessor et agit à ce titre comme responsable de la protection des renseignements personnels. Pour toute question ou demande : {email}.'
         ]
       },
       {
@@ -62,7 +70,7 @@ const t: { title: string; description: string; kicker: string; h1: string; effec
         id: 'consentement',
         title: 'Consentement',
         paragraphs: [
-          'En nous écrivant, en nous appelant ou en réservant une rencontre, vous consentez à ce que nous utilisions les renseignements transmis aux fins décrites ci-dessus. Vous pouvez retirer votre consentement en tout temps en écrivant à confidentialite@monessor.com, sous réserve de nos obligations légales et contractuelles.'
+          'En nous écrivant, en nous appelant ou en réservant une rencontre, vous consentez à ce que nous utilisions les renseignements transmis aux fins décrites ci-dessus. Vous pouvez retirer votre consentement en tout temps en écrivant à {email}, sous réserve de nos obligations légales et contractuelles.'
         ]
       },
       {
@@ -98,7 +106,7 @@ const t: { title: string; description: string; kicker: string; h1: string; effec
       {
         id: 'droits',
         title: 'Vos droits',
-        paragraphs: ['Vous pouvez, en écrivant à confidentialite@monessor.com :'],
+        paragraphs: ['Vous pouvez, en écrivant à {email} :'],
         list: [
           'savoir si nous détenons des renseignements à votre sujet et y accéder ;',
           'les faire corriger s’ils sont inexacts, incomplets ou équivoques ;',
@@ -120,7 +128,7 @@ const t: { title: string; description: string; kicker: string; h1: string; effec
         id: 'plaintes',
         title: 'Questions et plaintes',
         paragraphs: [
-          'Alex Turcotte, associé directeur, est la personne ayant la plus haute autorité au sein de Monessor et agit à ce titre comme responsable de la protection des renseignements personnels. Pour toute question ou plainte concernant vos renseignements personnels, écrivez-lui à confidentialite@monessor.com. Si notre réponse ne vous satisfait pas, vous pouvez vous adresser à la Commission d’accès à l’information du Québec (cai.gouv.qc.ca).'
+          'Alex Turcotte, associé directeur, est la personne ayant la plus haute autorité au sein de Monessor et agit à ce titre comme responsable de la protection des renseignements personnels. Pour toute question ou plainte concernant vos renseignements personnels, écrivez-lui à {email}. Si notre réponse ne vous satisfait pas, vous pouvez vous adresser à la Commission d’accès à l’information du Québec (cai.gouv.qc.ca).'
         ]
       },
       {
@@ -151,7 +159,7 @@ const t: { title: string; description: string; kicker: string; h1: string; effec
         title: 'Who we are',
         paragraphs: [
           'Services-conseils Monessor inc. (“Monessor”) is a consulting firm based in Montréal, Québec. This policy explains what personal information we collect through monessor.com and in the course of our exchanges, why we collect it and how we protect it, in accordance with Québec’s Act respecting the protection of personal information in the private sector and, where it applies, the federal PIPEDA.',
-          'Alex Turcotte, Managing Partner, is the person with the highest authority at Monessor and, in that capacity, acts as the person in charge of the protection of personal information. For any question or request: privacy@monessor.com.'
+          'Alex Turcotte, Managing Partner, is the person with the highest authority at Monessor and, in that capacity, acts as the person in charge of the protection of personal information. For any question or request: {email}.'
         ]
       },
       {
@@ -182,7 +190,7 @@ const t: { title: string; description: string; kicker: string; h1: string; effec
         id: 'consentement',
         title: 'Consent',
         paragraphs: [
-          'By emailing us, calling us or booking a meeting, you consent to our use of the information you provide for the purposes above. You may withdraw your consent at any time by writing to privacy@monessor.com, subject to our legal and contractual obligations.'
+          'By emailing us, calling us or booking a meeting, you consent to our use of the information you provide for the purposes above. You may withdraw your consent at any time by writing to {email}, subject to our legal and contractual obligations.'
         ]
       },
       {
@@ -216,7 +224,7 @@ const t: { title: string; description: string; kicker: string; h1: string; effec
       {
         id: 'droits',
         title: 'Your rights',
-        paragraphs: ['By writing to privacy@monessor.com, you may:'],
+        paragraphs: ['By writing to {email}, you may:'],
         list: [
           'find out whether we hold information about you and access it;',
           'have it corrected if it is inaccurate, incomplete or equivocal;',
@@ -238,7 +246,7 @@ const t: { title: string; description: string; kicker: string; h1: string; effec
         id: 'plaintes',
         title: 'Questions and complaints',
         paragraphs: [
-          'Alex Turcotte, Managing Partner, is the person with the highest authority at Monessor and, in that capacity, acts as the person in charge of the protection of personal information. For any question or complaint about your personal information, write to him at privacy@monessor.com. If you are not satisfied with our response, you may contact Québec’s Commission d’accès à l’information (cai.gouv.qc.ca).'
+          'Alex Turcotte, Managing Partner, is the person with the highest authority at Monessor and, in that capacity, acts as the person in charge of the protection of personal information. For any question or complaint about your personal information, write to him at {email}. If you are not satisfied with our response, you may contact Québec’s Commission d’accès à l’information (cai.gouv.qc.ca).'
         ]
       },
       {
@@ -266,13 +274,13 @@ const t: { title: string; description: string; kicker: string; h1: string; effec
       {t.sections.map((section) => (
         <section class="mt-10 first:mt-0" id={section.id}>
           <h2 class="home-h3 text-xl">{section.title}</h2>
-          {section.paragraphs?.map((paragraph) => <p class="mt-3 leading-relaxed">{paragraph}</p>)}
+          {section.paragraphs?.map((paragraph) => <p class="mt-3 leading-relaxed">{split(paragraph).map((part, i) => (i === 0 ? part : <Fragment><EmailLink user={emailUser} fathomEvent={fathomEvent('Email', 'Privacy', locale, pathname)} />{part}</Fragment>))}</p>)}
           {section.list && (
             <ul class="mt-3 list-disc space-y-2 pl-6 leading-relaxed">
-              {section.list.map((item) => <li>{item}</li>)}
+              {section.list.map((item) => <li>{split(item).map((part, i) => (i === 0 ? part : <Fragment><EmailLink user={emailUser} fathomEvent={fathomEvent('Email', 'Privacy', locale, pathname)} />{part}</Fragment>))}</li>)}
             </ul>
           )}
-          {section.after?.map((paragraph) => <p class="mt-3 leading-relaxed">{paragraph}</p>)}
+          {section.after?.map((paragraph) => <p class="mt-3 leading-relaxed">{split(paragraph).map((part, i) => (i === 0 ? part : <Fragment><EmailLink user={emailUser} fathomEvent={fathomEvent('Email', 'Privacy', locale, pathname)} />{part}</Fragment>))}</p>)}
         </section>
       ))}
     </div>

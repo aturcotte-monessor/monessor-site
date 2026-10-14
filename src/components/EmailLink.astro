@@ -1,0 +1,16 @@
+---
+// Lien courriel protégé : l'adresse n'apparaît jamais en clair dans le HTML.
+// public/scripts/main.js assemble l'adresse et le lien mailto au chargement (attribut data-email-link).
+// Sans JavaScript, le visiteur voit une forme lisible, ex. « confidentialite [at] monessor.com ».
+interface Props {
+  user: string;
+  domain?: string;
+  tld?: string;
+  class?: string;
+  fathomEvent?: string;
+}
+
+const { user, domain = 'monessor', tld = 'com', class: className = 'font-semibold text-teal underline underline-offset-4', fathomEvent } = Astro.props;
+---
+
+<a data-email-link href="#" class={className} data-fathom-event={fathomEvent}><span data-user={user} data-domain={domain} data-tld={tld}>{user} [at] {domain}.{tld}</span></a>
