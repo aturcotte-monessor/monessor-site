@@ -68,6 +68,8 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      // Les pages 404 ne doivent pas être indexées
+      filter: (page) => !/\/404\/?$/.test(new URL(page).pathname),
       serialize(item) {
         const pathname = new URL(item.url).pathname;
         const sourceFile = resolveSourceFile(pathname);
