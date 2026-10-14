@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import InsightCard from '../../components/InsightCard.astro';
 import ContactCta from '../../components/ContactCta.astro';
+import Icon from '../../components/Icon.astro';
+import ChevronLines from '../../components/ChevronLines.astro';
 import { MEETING_URL, fathomEvent } from '../../utils/tracking';
 import { resolveSegment } from '../../utils/insights';
 import { ui } from '../../i18n/ui';
@@ -20,14 +22,17 @@ const serviceFs = '/en/services/regulated-fs-governance/';
 
 const symptoms = [
   {
+    icon: 'wallet' as const,
     title: 'IT budgets that grow without visible returns',
     text: 'Software, cloud, vendors: spending rises every year, and no one can say precisely what it delivers.'
   },
   {
+    icon: 'server-cog' as const,
     title: 'Critical systems in too few hands',
     text: 'Your ERP, key applications or data depend on a handful of people or a single vendor.'
   },
   {
+    icon: 'brain-circuit' as const,
     title: 'AI decisions made under pressure',
     text: 'Pitches keep coming, with no framework to separate profitable projects from passing trends.'
   }
@@ -41,27 +46,31 @@ const sequence = [
 
 const situations = [
   {
+    icon: 'layers' as const,
     title: 'A critical platform to modernize',
     text: 'Your core system has to evolve without putting operations, compliance or customer trust at risk.'
   },
   {
+    icon: 'scale' as const,
     title: 'Investments to prioritize',
     text: 'Several projects compete for the same budget and leadership wants an independent view on cost, risk and value.'
   },
   {
+    icon: 'search-check' as const,
     title: 'AI to assess with method',
     text: 'You want to know where artificial intelligence and automation will create real value, backed by a business case.'
   },
   {
+    icon: 'compass' as const,
     title: 'Technology leadership without an immediate hire',
     text: 'You need an experienced CTO at the leadership table without recruiting a full-time executive right away.'
   }
 ];
 
 const steps = [
-  { step: '01', title: 'Clarify', text: 'The issues, constraints, risks and decisions to be made.' },
-  { step: '02', title: 'Structure', text: 'The options, trajectory, governance and priorities.' },
-  { step: '03', title: 'Execute', text: 'Support for delivery, or leading it.' }
+  { icon: 'search' as const, step: '01', title: 'Clarify', text: 'The issues, constraints, risks and decisions to be made.' },
+  { icon: 'route' as const, step: '02', title: 'Structure', text: 'The options, trajectory, governance and priorities.' },
+  { icon: 'flag' as const, step: '03', title: 'Execute', text: 'Support for delivery, or leading it.' }
 ];
 
 const container = 'mx-auto max-w-7xl px-6 lg:px-8';
@@ -75,11 +84,8 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
 >
   <!-- HERO -->
   <section class="relative overflow-hidden bg-teal-deep">
-    <!-- Chevrons en filigrane (grand écran seulement ; le conteneur porte « hidden », la règle img globale imposant display:block) -->
-    <div class="pointer-events-none absolute -right-16 top-1/2 hidden w-[420px] -translate-y-1/2 opacity-[0.06] lg:block" aria-hidden="true">
-      <img src="/assets/monessor-embleme-blanc.svg" alt="" width="324" height="329" class="w-full" />
-    </div>
-    <div class={`relative ${container} py-20 lg:py-28`}>
+    <ChevronLines class="h-[112px] w-[168px] lg:h-[200px] lg:w-[300px] xl:h-[300px] xl:w-[450px]" />
+    <div class={`relative ${container} pt-20 pb-28 lg:py-28`}>
       <p class="home-kicker text-coral">Strategic IT management advisory</p>
       <h1 class="home-h1">Govern your technology with the same rigour as your finances.</h1>
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-light/85">
@@ -108,6 +114,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
       <div class="mt-10 grid gap-4 md:grid-cols-3">
         {symptoms.map((item) => (
           <article class="rounded-2xl border border-slate-200 bg-white p-6">
+            <Icon name={item.icon} size={28} class="mb-4 text-teal" />
             <h3 class="home-h3">{item.title}</h3>
             <p class="mt-3 leading-relaxed">{item.text}</p>
           </article>
@@ -161,9 +168,14 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
       <h2 class="home-h2">When to call on Monessor</h2>
       <div class="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">
         {situations.map((item) => (
-          <div class="border-l-2 border-coral pl-5">
-            <h3 class="home-h3">{item.title}</h3>
-            <p class="mt-2 leading-relaxed">{item.text}</p>
+          <div class="flex gap-4">
+            <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-light text-teal">
+              <Icon name={item.icon} size={22} />
+            </span>
+            <div>
+              <h3 class="home-h3">{item.title}</h3>
+              <p class="mt-2 leading-relaxed">{item.text}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -177,7 +189,10 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
       <ol class="mt-10 grid gap-4 md:grid-cols-3">
         {steps.map((item) => (
           <li class="rounded-2xl border border-slate-200 bg-white p-6">
-            <p class="font-bold tracking-[0.12em] text-teal" aria-hidden="true">{item.step}</p>
+            <div class="flex items-center justify-between text-teal">
+              <Icon name={item.icon} size={28} />
+              <span class="font-bold tracking-[0.12em]" aria-hidden="true">{item.step}</span>
+            </div>
             <h3 class="home-h3 mt-2">{item.title}</h3>
             <p class="mt-2 leading-relaxed">{item.text}</p>
           </li>
@@ -194,7 +209,8 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
   </section>
 
   <!-- STATEMENT -->
-  <section class="bg-teal-deep py-16 lg:py-20">
+  <section class="relative overflow-hidden bg-teal-deep py-16 lg:py-20">
+    <ChevronLines class="h-[56px] w-[84px] xl:h-[160px] xl:w-[240px]" />
     <div class={container}>
       <p class="max-w-4xl text-3xl font-semibold leading-tight text-light md:text-4xl">
         Rigour doesn’t slow growth down. It makes it <span class="text-coral">last</span>.

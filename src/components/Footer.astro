@@ -1,6 +1,8 @@
 ---
 import { getAlternatePath } from '../utils/i18nRoutes';
 import { fathomEvent } from '../utils/tracking';
+import Icon from './Icon.astro';
+import ChevronLines from './ChevronLines.astro';
 
 interface Props {
   locale?: 'fr' | 'en';
@@ -50,7 +52,8 @@ const t = isFr
     };
 ---
 
-<footer class="bg-teal-deep text-light/85" data-nosnippet>
+<footer class="relative overflow-hidden bg-teal-deep text-light/85" data-nosnippet>
+  <ChevronLines corner="top-right" tone="subtle" class="h-[52px] w-[78px]" />
   <div class="mx-auto grid max-w-7xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_0.8fr_1fr] lg:px-8">
     <div>
       <a href={isFr ? '/' : '/en/'} class="inline-flex items-center gap-3 text-light no-underline hover:no-underline">
@@ -82,14 +85,22 @@ const t = isFr
     <div>
       <p class="text-xs font-semibold uppercase tracking-[0.14em] text-light">{t.contact}</p>
       <ul class="mt-4 space-y-3 text-sm">
-        <li>
+        <li class="flex items-center gap-2.5">
+          <Icon name="mail" size={16} class="shrink-0 text-coral" />
           <a data-email-link href="#" class="hover:text-light" data-fathom-event={fathomEvent('Email', 'Footer', locale, pathname)}>
             <span data-user="info" data-domain="monessor" data-tld="com">{t.email}</span>
           </a>
         </li>
-        <li><span class="phone-secure" data-fathom-event={fathomEvent('Phone', 'Footer', locale, pathname)}>{t.phone}</span></li>
-        <li>{t.city}</li>
-        <li>
+        <li class="flex items-center gap-2.5">
+          <Icon name="phone" size={16} class="shrink-0 text-coral" />
+          <span class="phone-secure" data-fathom-event={fathomEvent('Phone', 'Footer', locale, pathname)}>{t.phone}</span>
+        </li>
+        <li class="flex items-center gap-2.5">
+          <Icon name="map-pin" size={16} class="shrink-0 text-coral" />
+          <span>{t.city}</span>
+        </li>
+        <li class="flex items-center gap-2.5">
+          <Icon name="user-round" size={16} class="shrink-0 text-coral" />
           <a
             href="https://www.linkedin.com/in/turcottealex"
             target="_blank"

@@ -2,6 +2,7 @@
 // Vignette de prise de rendez-vous : carte sarcelle profonde posée dans une section claire.
 // Le texte s'adapte au contexte (segment PME, segment services financiers ou générique).
 import ContactCta from './ContactCta.astro';
+import ChevronLines from './ChevronLines.astro';
 import { MEETING_URL, fathomEvent } from '../utils/tracking';
 
 export type MeetingVariant = 'generic' | 'article' | 'pme' | 'sf';
@@ -78,7 +79,8 @@ const innerProps = bare ? {} : { class: 'mx-auto max-w-7xl px-6 lg:px-8' };
 
 <Wrap {...wrapProps}>
   <Inner {...innerProps}>
-    <aside class={`rounded-2xl bg-teal-deep p-8 text-light ${bare ? 'md:p-10' : 'md:p-12'}`} aria-labelledby={headingId} id={bare ? id : undefined}>
+    <aside class={`relative overflow-hidden rounded-2xl bg-teal-deep p-8 text-light ${bare ? 'md:p-10' : 'md:p-12'}`} aria-labelledby={headingId} id={bare ? id : undefined}>
+      <ChevronLines class="hidden h-[180px] w-[270px] xl:block" />
       <h2 id={headingId} class="text-2xl font-semibold text-light md:text-3xl">{title}</h2>
       <p class="mt-3 max-w-2xl text-light/85">{text}</p>
       <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
