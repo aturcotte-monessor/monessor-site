@@ -1,235 +1,167 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
-import ContactCta from '../../../components/ContactCta.astro';
-import { MEETING_URL, fathomEvent } from '../../../utils/tracking';
+import ServicePage from '../../../components/ServicePage.astro';
 
-const locale = 'en' as const;
+const url = 'https://www.monessor.com/en/services/fractional-cto-sme/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Strategic IT management advisory for established SMEs',
+  serviceType: 'Strategic IT management advisory',
+  url,
+  provider: { '@type': 'ProfessionalService', name: 'Monessor', url: 'https://www.monessor.com' },
+  areaServed: { '@type': 'Country', name: 'Canada' },
+  availableLanguage: ['en', 'fr'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Offers for established SMEs',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'IT Maturity Diagnostic and AI Alignment' },
+        priceSpecification: { '@type': 'PriceSpecification', minPrice: 12500, priceCurrency: 'CAD' }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Vendor selection and arbitration' },
+        priceSpecification: { '@type': 'PriceSpecification', minPrice: 15000, priceCurrency: 'CAD' }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Fractional IT leadership' },
+        priceSpecification: { '@type': 'UnitPriceSpecification', minPrice: 8000, priceCurrency: 'CAD', unitText: 'month' }
+      }
+    ]
+  }
+};
 ---
 
-<Layout
-  locale={locale}
-  meeting="pme"
-  title="Fractional CTO & SME Governance | Monessor"
-  description="IT maturity diagnostic, governance, and fractional CTO services for leaders of industrial and distribution SMEs ($10M–$100M CAD). Eliminate technical debt and integrate AI with rigor, free of conflicts of interest."
->
-  <!-- HERO -->
-  <section class="section hero">
-    <div class="container">
-      <p class="kicker">Executive Technology Leadership • Established SMEs ($10M – $100M)</p>
-      <h1>Secure your technology investments and accelerate growth without the overhead of a full-time executive.</h1>
-      <p class="lead">
-        Monessor supports the leadership teams of industrial and distribution SMEs to eliminate technical debt,
-        arbitrate critical projects, and integrate artificial intelligence with strict business rigor.
-      </p>
-
-      <div class="microproof">
-        <div class="pill">100% Independent</div>
-        <div class="pill">Zero Conflict of Interest</div>
-        <div class="pill">Executive Format</div>
-      </div>
-
-      <div class="hero-cta">
-        <ContactCta
-          href={MEETING_URL}
-          label="Schedule a meeting"
-          ariaLabel="Schedule a meeting"
-          className="btn"
-          fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, Astro.url.pathname)}
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- SYMPTOMS OF A GOVERNANCE DEFICIT -->
-  <section class="section" id="symptoms">
-    <div class="container">
-      <h2>Where technology stops being a lever and becomes a risk</h2>
-
-      <div class="cards mt-6">
-        <article class="card">
-          <h3>Runaway projects &amp; uncontrolled costs</h3>
-          <p>
-            IT budgets and infrastructure bills that climb every year with no clear visibility into return on
-            investment (ROI), and repeated delays on strategic deliverables.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Technical debt &amp; critical dependency</h3>
-          <p>
-            Core systems (ERP, CRM, proprietary applications) that are complex, vulnerable, and maintained by a
-            handful of key individuals or a single vendor (vendor lock-in).
-          </p>
-        </article>
-        <article class="card">
-          <h3>AI paralysis &amp; media noise</h3>
-          <p>
-            Pressure to integrate artificial intelligence without a measurable business case, risking significant
-            spend with no operational value created.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Friction between Finance and IT</h3>
-          <p>
-            A difficult dialogue between the CFO (focused on optimizing the P&amp;L and balance sheet) and technical
-            teams consumed by daily firefighting.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ENTRY OFFER: IT MATURITY DIAGNOSTIC & AI ALIGNMENT -->
-  <section class="section section--alt" id="diagnostic">
-    <div class="container">
-      <p class="kicker">01 / DIAGNOSTIC &amp; ALIGNMENT</p>
-      <h2>IT Maturity Diagnostic &amp; AI Alignment</h2>
-      <p class="lead">
-        A 2- to 3-week strategic audit that gives the Executive Committee and Board full visibility into the state,
-        risks, and potential of their technology estate.
-      </p>
-      <p class="lead" style="font-weight: 800; color: var(--accent);">
-        Starting at $12,500 CAD <span class="muted" style="font-weight:400; color: var(--muted);">(Fixed-scope engagement)</span>
-      </p>
-
-      <div class="bullets">
-        <div class="bullet">
-          <p class="bullet-title">Architecture &amp; Technical Debt Audit</p>
-          <p>
-            Neutral inspection of core system stability, identification of operational failure risks, and
-            evaluation of the true cost of ownership (TCO).
-          </p>
-        </div>
-        <div class="bullet">
-          <p class="bullet-title">High-ROI AI Opportunity Matrix</p>
-          <p>
-            Assessment of short-term automatable business processes with calculated financial return (versus
-            trend-driven projects).
-          </p>
-        </div>
-        <div class="bullet">
-          <p class="bullet-title">Governance &amp; Vendor Contract Review</p>
-          <p>
-            Independent challenge of vendor quotes, Cloud cost analysis, and renegotiation of vendor dependencies.
-          </p>
-        </div>
-        <div class="bullet">
-          <p class="bullet-title">Executive Roadmap (18 months)</p>
-          <p>
-            A clear, prioritized, and costed plan of action, ready to present to the Board of Directors.
-          </p>
-        </div>
-      </div>
-
-      <div class="hero-cta">
-        <ContactCta
-          href={MEETING_URL}
-          label="Schedule a meeting"
-          ariaLabel="Schedule a meeting"
-          className="btn"
-          fathomEventName={fathomEvent('ScheduleMeeting', 'Offer', locale, Astro.url.pathname)}
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- ONGOING ENGAGEMENT MODEL -->
-  <section class="section" id="approach">
-    <div class="container">
-      <h2>Our phased approach: From assessment to execution</h2>
-
-      <div class="steps">
-        <div class="step">
-          <p class="step-num">01</p>
-          <h3>IT Maturity Diagnostic</h3>
-          <p class="small">2 to 3 weeks | From $12,500</p>
-          <p>Clarify the technology situation, audit debt, and establish the strategic roadmap.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">02</p>
-          <h3>Vendor Selection &amp; Arbitration</h3>
-          <p class="small">4 to 8 weeks | From $15,000</p>
-          <p>
-            Drafting neutral RFPs, managing tender processes, objective vendor selection, and conflict-free
-            contract negotiation.
-          </p>
-        </div>
-        <div class="step">
-          <p class="step-num">03</p>
-          <h3>Fractional CTO / Part-Time IT Leadership</h3>
-          <p class="small">Monthly | From $8,000/month</p>
-          <p>
-            Embedding senior technology leadership within the Executive Committee (typical availability of one
-            day per week) to drive execution, oversee teams, and reassure the Board of Directors.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMPLEMENTARY AREAS OF EXPERTISE -->
-  <section class="section section--alt" id="complementary-expertise">
-    <div class="container">
-      <p class="kicker">02 / STRATEGIC ENGAGEMENT SCENARIOS</p>
-      <h2>Strategic Engagement Scenarios</h2>
-
-      <div class="cards mt-6">
-        <article class="card">
-          <h3>Core Software Selection &amp; Arbitration (ERP/CRM)</h3>
-          <p>
-            Neutral assessment of your business requirements, RFP drafting, tender management, and contract
-            negotiation, free from vendor sales pressure.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Independent Selection of AI Partners</h3>
-          <p>
-            Assessment of your data maturity and qualification of high-return use cases. A neutral filter for
-            choosing the right partners, without giving in to market noise or unrealistic promises.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Transactional Technology Audit (Sale, Acquisition, Succession)</h3>
-          <p>
-            Evaluation of the real value of digital assets, system stability, and technical debt, to secure your
-            sale, acquisition, or business succession transactions.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Breaking Free from Vendor Lock-In</h3>
-          <p>
-            Regaining ownership of access, source code, and data to guarantee your freedom of choice and preserve
-            your company's independence from its vendors.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CROSS-LINK -->
-  <section class="section" id="regulated-sectors">
-    <div class="container" style="text-align: center;">
-      <div class="card" style="max-width: 640px; margin: 0 auto;">
-        <p class="lead" style="margin-bottom: 16px;">
-          Operating in a regulated financial sector (FinTech, Insurance)?
-        </p>
-        <a class="btn btn--outline" href="/en/services/regulated-fs-governance/">Explore our Governance &amp; OSFI Compliance offer →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- STRICT NEUTRALITY COMMITMENT -->
-  <section class="section section--alt" id="neutrality">
-    <div class="container">
-      <p class="kicker">Strict Neutrality Commitment</p>
-      <h2>Zero commission. Zero software resale. 100% on your side of the table.</h2>
-
-      <div class="note">
-        <p>
-          « What Monessor is not: a custom development agency, a software reseller (SaaS/ERP), or an engineering
-          subcontractor. We accept no referral commissions from vendors. Our sole financial incentive is your
-          company's success and the protection of its interests. »
-        </p>
-      </div>
-    </div>
-  </section>
-</Layout>
+<ServicePage
+  locale="en"
+  segment="pme"
+  title="IT Maturity Diagnostic and IT Leadership for SMEs | Monessor"
+  description="A 2-to-3-week IT Maturity Diagnostic from $12,500 for established SMEs ($10M–$100M revenue), then targeted deliverables and fractional IT leadership."
+  jsonLd={jsonLd}
+  hero={{
+    kicker: 'Strategic IT management advisory · Established SMEs',
+    title: 'Take back control of your technology investments.',
+    lead: 'Monessor helps leaders of established SMEs with $10M to $100M in revenue (manufacturers, distributors or service firms, for example) reduce technical debt, prioritize critical projects and govern artificial intelligence with the discipline of regulated financial services.',
+    secondary: { label: 'See the Diagnostic', href: '#diagnostic' }
+  }}
+  issues={{
+    id: 'symptomes',
+    title: 'Where technology stops being a lever and becomes a risk',
+    items: [
+      {
+        icon: 'wallet',
+        title: 'Projects that drift and costs out of control',
+        text: 'IT budgets and infrastructure bills that grow every year with no clear view of the return, and strategic deliveries that keep slipping.'
+      },
+      {
+        icon: 'server-cog',
+        title: 'Technical debt and critical dependencies',
+        text: 'Complex, fragile core systems (ERP, CRM, in-house applications) kept running by a few key people or a single vendor, with no fallback.'
+      },
+      {
+        icon: 'brain-circuit',
+        title: 'AI under pressure, without a business case',
+        text: 'Pressure to adopt artificial intelligence with no measurable return, at the risk of spending heavily without creating operational value.'
+      },
+      {
+        icon: 'scale',
+        title: 'A strained dialogue between finance and IT',
+        text: 'A finance team focused on margins and the balance sheet, facing technical teams absorbed by day-to-day firefighting.'
+      }
+    ]
+  }}
+  offer={{
+    id: 'diagnostic',
+    kicker: 'Starting point',
+    title: 'IT Maturity Diagnostic and AI Alignment',
+    lead: 'A 2-to-3-week engagement that gives your leadership team and board a complete view of the state, risks and potential of your technology.',
+    price: 'From $12,500, fixed-scope engagement.',
+    items: [
+      {
+        icon: 'layers',
+        title: 'Architecture and technical debt review',
+        text: 'An independent look at the stability of core systems, failure risks and total cost of ownership.'
+      },
+      {
+        icon: 'brain-circuit',
+        title: 'AI use-case matrix',
+        text: 'The processes you can automate in the near term, each with its estimated financial return, rather than projects driven by hype.'
+      },
+      {
+        icon: 'handshake',
+        title: 'Governance and vendor contract review',
+        text: 'An independent view of vendor quotes, cloud costs and supplier dependencies, ahead of renegotiation.'
+      },
+      {
+        icon: 'map',
+        title: '18-month roadmap',
+        text: 'A clear, prioritized and costed plan, ready to present to your board.'
+      }
+    ]
+  }}
+  path={{
+    id: 'approche',
+    title: 'After the diagnostic: a step-by-step path',
+    intro: 'The diagnostic sets the direction. Two or three targeted deliverables produce the first results. Fractional IT leadership is the natural next step, once trust is established.',
+    steps: [
+      {
+        title: 'IT Maturity Diagnostic',
+        meta: '2 to 3 weeks · from $12,500',
+        text: 'Where you stand: technical debt, risks and roadmap.'
+      },
+      {
+        title: 'Vendor selection and arbitration',
+        meta: '4 to 8 weeks · from $15,000',
+        text: 'Neutral requirements, a managed tender, an objective choice and negotiation, free of conflicts of interest.'
+      },
+      {
+        title: 'Fractional IT leadership',
+        meta: 'Monthly · from $8,000 a month',
+        text: 'A seat on your leadership team, about one day a week, to steer execution, guide the teams and report to the board.'
+      }
+    ]
+  }}
+  expertise={{
+    id: 'expertise-complementaire',
+    title: 'Targeted engagements and critical situations',
+    items: [
+      {
+        icon: 'list-checks',
+        title: 'Core software selection (ERP, CRM)',
+        text: 'A neutral assessment of your needs, requirements, a managed tender and negotiation, shielded from reseller pressure.'
+      },
+      {
+        icon: 'brain-circuit',
+        title: 'Independent selection of AI partners',
+        text: 'An assessment of your data maturity and high-return use cases, to choose the right partners without buying into unrealistic promises.'
+      },
+      {
+        icon: 'search-check',
+        title: 'Transaction technology due diligence (sale, acquisition, succession)',
+        text: 'The real value of digital assets, system stability and technical debt, assessed to secure the transaction.'
+      },
+      {
+        icon: 'key-round',
+        title: 'Regaining control from technology dependence',
+        text: 'Recovering access, source code and data, so you keep your freedom of choice with your vendors.'
+      }
+    ]
+  }}
+  insights={{ title: 'Related insights', keys: ['sme-technology-strategy', 'replatforming-fable'], allLabel: 'Explore all insights' }}
+  neutrality={{
+    id: 'neutralite',
+    title: 'No commissions. No software resale. Entirely on your side of the table.',
+    text: 'Monessor is not a development agency, a software reseller (SaaS, ERP) or an engineering subcontractor. It takes no vendor commissions: it is paid by its clients only, so its recommendations serve no interest but yours.',
+    delivery: 'Every engagement is led personally by Alex Turcotte, Managing Partner. When an engagement calls for highly specialized expertise, Monessor brings in a specialist from its network.'
+  }}
+  other={{
+    id: 'secteurs-regules',
+    question: 'A financial institution or a FinTech?',
+    label: 'Explore the IT Governance Review →',
+    href: '/en/services/regulated-fs-governance/'
+  }}
+/>

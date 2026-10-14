@@ -1,239 +1,167 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ContactCta from '../../components/ContactCta.astro';
-import { MEETING_URL, fathomEvent } from '../../utils/tracking';
+import ServicePage from '../../components/ServicePage.astro';
 
-const locale = 'fr' as const;
+const url = 'https://www.monessor.com/services/cto-temps-partage-pme/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Conseil en gestion stratégique des TI pour PME établies',
+  serviceType: 'Conseil en gestion stratégique des TI',
+  url,
+  provider: { '@type': 'ProfessionalService', name: 'Monessor', url: 'https://www.monessor.com' },
+  areaServed: { '@type': 'Country', name: 'Canada' },
+  availableLanguage: ['fr', 'en'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Offres aux PME établies',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Diagnostic de maturité TI et alignement IA' },
+        priceSpecification: { '@type': 'PriceSpecification', minPrice: 12500, priceCurrency: 'CAD' }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Sélection et arbitrage des fournisseurs' },
+        priceSpecification: { '@type': 'PriceSpecification', minPrice: 15000, priceCurrency: 'CAD' }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Direction TI à temps partagé' },
+        priceSpecification: { '@type': 'UnitPriceSpecification', minPrice: 8000, priceCurrency: 'CAD', unitText: 'mois' }
+      }
+    ]
+  }
+};
 ---
 
-<Layout
-  locale={locale}
-  meeting="pme"
-  title="CTO à Temps Partagé & Gouvernance PME | Monessor"
-  description="Diagnostic de maturité TI, gouvernance et CTO à temps partagé pour dirigeants de PME industrielles et de distribution ($10M–$100M CA). Éliminez la dette technique et intégrez l'IA avec rigueur, sans conflit d'intérêts."
->
-  <!-- HERO -->
-  <section class="section hero">
-    <div class="container">
-      <p class="kicker">Leadership Technologique Exécutif • PME Établies ($10M – $100M)</p>
-      <h1>Sécurisez vos investissements technologiques et accélérez votre croissance sans la lourdeur d'un exécutif permanent.</h1>
-      <p class="lead">
-        Monessor accompagne les équipes de direction des PME industrielles et de distribution pour éliminer la dette
-        technique, arbitrer les projets critiques et intégrer l'intelligence artificielle avec une rigueur d'affaires
-        stricte.
-      </p>
-
-      <div class="microproof">
-        <div class="pill">100 % Indépendant</div>
-        <div class="pill">Zéro Conflit d'Intérêts</div>
-        <div class="pill">Format Exécutif</div>
-      </div>
-
-      <div class="hero-cta">
-        <ContactCta
-          href={MEETING_URL}
-          label="Planifier une rencontre"
-          ariaLabel="Planifier une rencontre"
-          className="btn"
-          fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, Astro.url.pathname)}
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- SYMPTOMES D'UN DEFICIT DE GOUVERNANCE -->
-  <section class="section" id="symptomes">
-    <div class="container">
-      <h2>Là où la technologie cesse d'être un levier et devient un risque</h2>
-
-      <div class="cards mt-6">
-        <article class="card">
-          <h3>Projets en dérape &amp; coûts incontrôlés</h3>
-          <p>
-            Des budgets TI et des factures d'infrastructure qui augmentent chaque année sans visibilité claire sur
-            le retour sur investissement (ROI), avec des retards répétés sur les livraisons stratégiques.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Dette technique &amp; dépendance critique</h3>
-          <p>
-            Des systèmes cœurs (ERP, CRM, applications propriétaires) complexes, vulnérables et maintenus par une
-            poignée d'individus clés ou un fournisseur unique, sans réelle possibilité de rechange.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Paralysie de l'IA &amp; bruit médiatique</h3>
-          <p>
-            Une pression pour intégrer l'intelligence artificielle sans cas d'affaires mesurable, au risque
-            d'engager des dépenses élevées sans création de valeur opérationnelle.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Friction entre la Finance et la TI</h3>
-          <p>
-            Un dialogue difficile entre la direction financière, soucieuse d'optimiser l'état des résultats et le
-            bilan, et des équipes techniques accaparées par l'extinction d'incendies au quotidien.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- OFFRE D'ENTREE : DIAGNOSTIC DE MATURITE TI & ALIGNEMENT IA -->
-  <section class="section section--alt" id="diagnostic">
-    <div class="container">
-      <p class="kicker">01 / DIAGNOSTIC &amp; ALIGNEMENT</p>
-      <h2>Diagnostic de Maturité TI &amp; Alignement IA</h2>
-      <p class="lead">
-        Un audit stratégique de 2 à 3 semaines pour donner au Comité de Direction et au Conseil d'Administration
-        une visibilité totale sur l'état, les risques et le potentiel de leur parc technologique.
-      </p>
-      <p class="lead" style="font-weight: 800; color: var(--accent);">
-        À partir de 12 500 $ CAD <span class="muted" style="font-weight:400; color: var(--muted);">(Intervention forfaitaire à périmètre fixe)</span>
-      </p>
-
-      <div class="bullets">
-        <div class="bullet">
-          <p class="bullet-title">Audit d'Architecture &amp; Dette Technique</p>
-          <p>
-            Inspection neutre de la stabilité des systèmes cœurs, identification des risques de défaillance
-            opérationnelle et évaluation du coût total de possession (TCO).
-          </p>
-        </div>
-        <div class="bullet">
-          <p class="bullet-title">Matrice d'Opportunités IA à Haut ROI</p>
-          <p>
-            Évaluation des processus métier automatisables à court terme avec calcul de rendement financier,
-            plutôt que la poursuite de projets à effet de mode.
-          </p>
-        </div>
-        <div class="bullet">
-          <p class="bullet-title">Revue de Gouvernance &amp; Revue Contrat Prestataires</p>
-          <p>
-            Challenge indépendant des devis fournisseurs, analyse des coûts d'infonuagique et renégociation des
-            dépendances fournisseurs.
-          </p>
-        </div>
-        <div class="bullet">
-          <p class="bullet-title">Feuille de Route Exécutive (18 mois)</p>
-          <p>
-            Plan de match clair, priorisé et chiffré, prêt à être présenté au Conseil d'administration.
-          </p>
-        </div>
-      </div>
-
-      <div class="hero-cta">
-        <ContactCta
-          href={MEETING_URL}
-          label="Planifier une rencontre"
-          ariaLabel="Planifier une rencontre"
-          className="btn"
-          fathomEventName={fathomEvent('ScheduleMeeting', 'Offer', locale, Astro.url.pathname)}
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- MODELE D'INTERVENTION CONTINU -->
-  <section class="section" id="approche">
-    <div class="container">
-      <h2>Notre approche par étapes : De l'évaluation à l'exécution</h2>
-
-      <div class="steps">
-        <div class="step">
-          <p class="step-num">01</p>
-          <h3>Diagnostic de Maturité</h3>
-          <p class="small">2 à 3 semaines | Dès 12 500 $</p>
-          <p>Clarifier la situation technologique, auditer la dette et établir la feuille de route stratégique.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">02</p>
-          <h3>Sélection et Arbitrage des Fournisseurs</h3>
-          <p class="small">4 à 8 semaines | Dès 15 000 $</p>
-          <p>
-            Rédaction de cahiers de charges neutres, pilotage des appels d'offres, sélection objective des
-            fournisseurs et négociation contractuelle sans conflit d'intérêts.
-          </p>
-        </div>
-        <div class="step">
-          <p class="step-num">03</p>
-          <h3>Direction TI à Temps Partagé</h3>
-          <p class="small">Mensuel | Dès 8 000 $/mois</p>
-          <p>
-            Intégration d'un leadership technologique senior au sein du comité de direction (disponibilité type
-            d'un jour par semaine) pour piloter l'exécution, superviser les équipes et rassurer le Conseil
-            d'Administration.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CHAMPS D'EXPERTISE COMPLEMENTAIRES -->
-  <section class="section section--alt" id="expertise-complementaire">
-    <div class="container">
-      <p class="kicker">02 / MANDATS SPÉCIFIQUES &amp; SITUATIONS CRITIQUES</p>
-      <h2>Mandats Spécifiques &amp; Situations Critiques</h2>
-
-      <div class="cards mt-6">
-        <article class="card">
-          <h3>Choix et Arbitrage de Logiciels Cœurs (ERP/CRM)</h3>
-          <p>
-            Évaluation neutre de vos besoins d'affaires, rédaction du cahier des charges, pilotage de l'appel
-            d'offres et négociation contractuelle, à l'abri de toute pression commerciale des revendeurs.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Sélection Indépendante de Partenaires en Intelligence Artificielle</h3>
-          <p>
-            Analyse de la maturité de vos données et qualification des cas d'usage à haut rendement. Un filtre
-            neutre pour retenir les bons partenaires, sans céder au bruit du marché ni aux promesses irréalistes.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Audit Technologique Transactionnel (Vente, Acquisition, Relève)</h3>
-          <p>
-            Évaluation de la valeur réelle des actifs numériques, de la stabilité des systèmes et de la dette
-            technique, pour sécuriser vos transactions de vente, d'acquisition ou de relève d'entreprise.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Reprise de Contrôle Face à la Dépendance Technologique</h3>
-          <p>
-            Reprise de possession des accès, du code source et des données pour garantir votre liberté de choix
-            et préserver l'indépendance de votre entreprise face à ses fournisseurs.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- MAILLAGE RECIPROQUE -->
-  <section class="section" id="secteurs-regules">
-    <div class="container" style="text-align: center;">
-      <div class="card" style="max-width: 640px; margin: 0 auto;">
-        <p class="lead" style="margin-bottom: 16px;">
-          Vous évoluez dans le secteur financier réglementé (FinTech, Assurances) ?
-        </p>
-        <a class="btn btn--outline" href="/services/gouvernance-sf-reglementee/">Consulter notre offre Gouvernance &amp; Conformité BSIF →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ENGAGEMENT DE NEUTRALITE STRICTE -->
-  <section class="section section--alt" id="neutralite">
-    <div class="container">
-      <p class="kicker">Engagement de Neutralité Stricte</p>
-      <h2>Zéro commission. Zéro revente de licences. 100 % de votre côté de la table.</h2>
-
-      <div class="note">
-        <p>
-          « Ce que Monessor n'est pas : une agence de développement sur mesure, un revendeur de logiciels
-          (SaaS/ERP) ou un sous-traitant d'ingénierie. Nous ne percevons aucune commission de référence de la part
-          des fournisseurs. Notre unique incitatif financier est la réussite et la protection des intérêts de
-          votre entreprise. »
-        </p>
-      </div>
-    </div>
-  </section>
-</Layout>
+<ServicePage
+  locale="fr"
+  segment="pme"
+  title="Diagnostic de maturité TI et direction TI pour PME | Monessor"
+  description="Diagnostic de maturité TI de 2 à 3 semaines, dès 12 500 $, pour les PME établies de 10 M$ à 100 M$. Puis livrables ciblés et direction TI à temps partagé."
+  jsonLd={jsonLd}
+  hero={{
+    kicker: 'Conseil en gestion stratégique des TI · PME établies',
+    title: 'Reprenez le contrôle de vos investissements technologiques.',
+    lead: 'Monessor aide les dirigeants de PME établies, de 10 M$ à 100 M$ de chiffre d’affaires (manufacturières, de distribution ou de services, par exemple), à réduire la dette technique, à arbitrer les projets critiques et à encadrer l’intelligence artificielle avec la rigueur de gouvernance du secteur financier réglementé.',
+    secondary: { label: 'Voir le Diagnostic', href: '#diagnostic' }
+  }}
+  issues={{
+    id: 'symptomes',
+    title: 'Là où la technologie cesse d’être un levier et devient un risque',
+    items: [
+      {
+        icon: 'wallet',
+        title: 'Des projets qui dérapent et des coûts sans contrôle',
+        text: 'Des budgets TI et des factures d’infrastructure qui augmentent chaque année sans visibilité sur le rendement, et des livraisons stratégiques sans cesse retardées.'
+      },
+      {
+        icon: 'server-cog',
+        title: 'Une dette technique et des dépendances critiques',
+        text: 'Des systèmes centraux (ERP, CRM, applications maison) complexes et vulnérables, maintenus par quelques personnes clés ou un seul fournisseur, sans solution de rechange.'
+      },
+      {
+        icon: 'brain-circuit',
+        title: 'L’IA sous pression, sans cas d’affaires',
+        text: 'Une pression pour intégrer l’intelligence artificielle sans rendement mesurable, au risque de dépenser beaucoup sans créer de valeur opérationnelle.'
+      },
+      {
+        icon: 'scale',
+        title: 'Un dialogue difficile entre finance et TI',
+        text: 'Une direction financière attentive aux marges et au bilan, face à des équipes techniques absorbées par les urgences du quotidien.'
+      }
+    ]
+  }}
+  offer={{
+    id: 'diagnostic',
+    kicker: 'Point de départ',
+    title: 'Diagnostic de maturité TI et alignement IA',
+    lead: 'Un mandat de 2 à 3 semaines qui donne à votre comité de direction et à votre conseil d’administration une vision complète de l’état, des risques et du potentiel de vos technologies.',
+    price: 'Dès 12 500 $, forfait à périmètre fixe.',
+    items: [
+      {
+        icon: 'layers',
+        title: 'Revue de l’architecture et de la dette technique',
+        text: 'Examen indépendant de la stabilité des systèmes centraux, des risques de défaillance et du coût total de possession.'
+      },
+      {
+        icon: 'brain-circuit',
+        title: 'Matrice des cas d’usage de l’IA',
+        text: 'Les processus automatisables à court terme, chacun avec son rendement financier estimé, plutôt que des projets à la mode.'
+      },
+      {
+        icon: 'handshake',
+        title: 'Revue de la gouvernance et des contrats fournisseurs',
+        text: 'Un regard indépendant sur les soumissions, les coûts d’infonuagique et les dépendances envers vos fournisseurs, en vue de les renégocier.'
+      },
+      {
+        icon: 'map',
+        title: 'Feuille de route sur 18 mois',
+        text: 'Un plan clair, priorisé et chiffré, prêt à être présenté à votre conseil d’administration.'
+      }
+    ]
+  }}
+  path={{
+    id: 'approche',
+    title: 'Après le diagnostic : une démarche par étapes',
+    intro: 'Le diagnostic fixe la direction. Deux ou trois livrables ciblés produisent les premiers résultats. La direction TI à temps partagé en est la suite naturelle, une fois la confiance établie.',
+    steps: [
+      {
+        title: 'Diagnostic de maturité TI',
+        meta: '2 à 3 semaines · dès 12 500 $',
+        text: 'L’état des lieux, la dette technique, les risques et la feuille de route.'
+      },
+      {
+        title: 'Sélection et arbitrage des fournisseurs',
+        meta: '4 à 8 semaines · dès 15 000 $',
+        text: 'Cahier des charges neutre, conduite de l’appel d’offres, choix objectif et négociation, sans conflit d’intérêts.'
+      },
+      {
+        title: 'Direction TI à temps partagé',
+        meta: 'Mensuel · dès 8 000 $ par mois',
+        text: 'Une présence au comité de direction, environ une journée par semaine, pour piloter l’exécution, encadrer les équipes et rendre compte au conseil.'
+      }
+    ]
+  }}
+  expertise={{
+    id: 'expertise-complementaire',
+    title: 'Mandats ciblés et situations critiques',
+    items: [
+      {
+        icon: 'list-checks',
+        title: 'Choix et arbitrage d’un logiciel central (ERP, CRM)',
+        text: 'Analyse neutre de vos besoins, cahier des charges, conduite de l’appel d’offres et négociation, à l’abri de la pression des revendeurs.'
+      },
+      {
+        icon: 'brain-circuit',
+        title: 'Sélection indépendante de partenaires en IA',
+        text: 'Évaluation de la maturité de vos données et des cas d’usage à fort rendement, pour retenir les bons partenaires sans céder aux promesses irréalistes.'
+      },
+      {
+        icon: 'search-check',
+        title: 'Audit technologique transactionnel (vente, acquisition, relève)',
+        text: 'Évaluation de la valeur réelle des actifs numériques, de la stabilité des systèmes et de la dette technique, pour sécuriser la transaction.'
+      },
+      {
+        icon: 'key-round',
+        title: 'Reprise de contrôle face à la dépendance technologique',
+        text: 'Récupération des accès, du code source et des données, pour préserver votre liberté de choix face à vos fournisseurs.'
+      }
+    ]
+  }}
+  insights={{ title: 'Analyses liées', keys: ['sme-technology-strategy', 'replatforming-fable'], allLabel: 'Explorer toutes les analyses' }}
+  neutrality={{
+    id: 'neutralite',
+    title: 'Zéro commission. Zéro revente de licences. Entièrement de votre côté de la table.',
+    text: 'Monessor n’est ni une agence de développement, ni un revendeur de logiciels (SaaS, ERP), ni un sous-traitant d’ingénierie. Aucune commission de fournisseur : sa seule rémunération vient de ses clients, et ses recommandations n’ont pas d’autre intérêt que le vôtre.',
+    delivery: 'Chaque mandat est dirigé personnellement par Alex Turcotte, associé directeur. Lorsqu’un mandat exige une expertise très pointue, Monessor fait appel à un spécialiste de son réseau.'
+  }}
+  other={{
+    id: 'secteurs-regules',
+    question: 'Vous êtes une institution financière ou une FinTech?',
+    label: 'Découvrir la Revue de gouvernance TI →',
+    href: '/services/gouvernance-sf-reglementee/'
+  }}
+/>

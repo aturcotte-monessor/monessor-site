@@ -1,197 +1,126 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ContactCta from '../../components/ContactCta.astro';
-import { MEETING_URL, fathomEvent } from '../../utils/tracking';
+import ServicePage from '../../components/ServicePage.astro';
 
-const locale = 'fr' as const;
+const url = 'https://www.monessor.com/services/gouvernance-sf-reglementee/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Revue de gouvernance TI et conformité BSIF',
+  serviceType: 'Gouvernance TI et conformité réglementaire',
+  url,
+  provider: { '@type': 'ProfessionalService', name: 'Monessor', url: 'https://www.monessor.com' },
+  areaServed: { '@type': 'Country', name: 'Canada' },
+  audience: { '@type': 'BusinessAudience', name: 'Institutions financières et FinTechs' },
+  availableLanguage: ['fr', 'en'],
+  offers: {
+    '@type': 'Offer',
+    itemOffered: { '@type': 'Service', name: 'Revue de gouvernance TI et conformité BSIF' },
+    description: 'Forfait à périmètre fixe, tarif sur demande.'
+  }
+};
 ---
 
-<Layout
-  locale={locale}
-  meeting="sf"
-  title="Gouvernance TI & Conformité BSIF | Monessor"
-  description="Revue de gouvernance TI, gestion du risque de sous-traitance et alignement réglementaire (BSIF/OSFI B-10, B-13, E-23) pour institutions financières et FinTechs en croissance."
->
-  <!-- HERO -->
-  <section class="section hero">
-    <div class="container">
-      <p class="kicker">Gouvernance TI, Risques &amp; Conformité • Services Financiers &amp; FinTech</p>
-      <h1>Naviguez la rigueur réglementaire sans paralyser la vitesse d'innovation de vos plateformes.</h1>
-      <p class="lead">
-        Monessor conçoit et valide les cadres de gouvernance TI, la gestion des risques de sous-traitance et
-        l'alignement réglementaire (BSIF / OSFI - B-10, B-13, E-23) pour les institutions financières et FinTechs
-        en croissance.
-      </p>
-
-      <div class="microproof">
-        <div class="pill">Alignement BSIF / OSFI</div>
-        <div class="pill">Conformité par le Design</div>
-        <div class="pill">Expertise Institutionnelle</div>
-      </div>
-
-      <div class="hero-cta">
-        <ContactCta
-          href={MEETING_URL}
-          label="Planifier une rencontre"
-          ariaLabel="Planifier une rencontre"
-          className="btn"
-          fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, Astro.url.pathname)}
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- ENJEUX DE CONFORMITE REGLEMENTAIRE -->
-  <section class="section" id="enjeux">
-    <div class="container">
-      <h2>Là où la gouvernance traditionnelle paralyse l'exécution</h2>
-
-      <div class="cards mt-6">
-        <article class="card">
-          <h3>Pression accrue des exigences BSIF</h3>
-          <p>
-            Une complexité grandissante pour se conformer aux lignes directrices sur la gestion du risque cyber
-            (B-13), la résilience opérationnelle et le risque de sous-traitance (B-10).
-          </p>
-        </article>
-        <article class="card">
-          <h3>L'illusion de la conformité « sur papier »</h3>
-          <p>
-            Des politiques rédigées pour les auditeurs mais déconnectées de la réalité du code déployé en
-            production par les équipes d'ingénierie et les fournisseurs Cloud.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Risques liés à l'IA &amp; Modèles Complexes (E-23)</h3>
-          <p>
-            Le défi d'encadrer l'intégration d'algorithmes et de modèles décisionnels automatisés sans ralentir le
-            développement des produits numériques.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Friction entre Risque et Livraison</h3>
-          <p>
-            Des comités de validation lourds qui ralentissent les cycles de mise en marché et créent des tensions
-            entre la direction des risques/conformité et les équipes Produit.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- OFFRE D'ENTREE : REVUE DE GOUVERNANCE TI & CONFORMITE BSIF -->
-  <section class="section section--alt" id="revue">
-    <div class="container">
-      <p class="kicker">01 / AUDIT &amp; ALIGNEMENT RÉGLEMENTAIRE</p>
-      <h2>Revue de Gouvernance TI &amp; Conformité BSIF</h2>
-      <p class="lead">
-        Un mandat exécutif de 3 à 4 semaines pour auditer la conformité technologique, identifier les failles de
-        sous-traitance et fournir une matrice de remédiation directement exploitable par le Comité de Risques et
-        d'Audit.
-      </p>
-
-      <div class="bullets">
-        <div class="bullet">
-          <p class="bullet-title">Cartographie d'Écart (Gap Analysis) BSIF B-10 / B-13</p>
-          <p>
-            Audit d'alignement concret de votre infrastructure et de vos politiques avec les exigences
-            réglementaires canadiennes.
-          </p>
-        </div>
-        <div class="bullet">
-          <p class="bullet-title">Audit du Risque de Sous-traitance (Third-Party Risk)</p>
-          <p>
-            Évaluation des dépendances technologiques critiques, analyse des contrats fournisseurs et validation
-            des plans de continuité des affaires (PCA).
-          </p>
-        </div>
-        <div class="bullet">
-          <p class="bullet-title">Cadre de Gouvernance IA &amp; Données (Alignement E-23)</p>
-          <p>
-            Définition des garde-fous d'architecture et des mécanismes d'explicabilité pour l'utilisation de l'IA
-            en contexte réglementé.
-          </p>
-        </div>
-        <div class="bullet">
-          <p class="bullet-title">Matrice de Remédiation &amp; Plan d'Action COMEX</p>
-          <p>
-            Feuille de route priorisée par niveau de risque pour satisfaire aux exigences des auditeurs et
-            régulateurs.
-          </p>
-        </div>
-      </div>
-
-      <div class="hero-cta">
-        <ContactCta
-          href={MEETING_URL}
-          label="Planifier une rencontre"
-          ariaLabel="Planifier une rencontre"
-          className="btn"
-          fathomEventName={fathomEvent('ScheduleMeeting', 'Offer', locale, Astro.url.pathname)}
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- DOMAINES D'INTERVENTION EXECUTIFS -->
-  <section class="section" id="approche">
-    <div class="container">
-      <h2>Une expertise de pointe pour les environnements à haut risque</h2>
-
-      <div class="steps">
-        <div class="step">
-          <p class="step-num">01</p>
-          <h3>Conformité par le Design (Compliance by Design)</h3>
-          <p>
-            Intégration automatisée des contraintes réglementaires (BSIF) directement dans les pipelines de
-            déploiement (CI/CD) et les architectures Cloud, sans ralentir les développeurs.
-          </p>
-        </div>
-        <div class="step">
-          <p class="step-num">02</p>
-          <h3>Accompagnement lors des Audits Réglementaires</h3>
-          <p>
-            Présence consultative aux côtés de la direction lors des revues d'audit interne, externe ou des
-            vérifications des autorités de marchés financiers.
-          </p>
-        </div>
-        <div class="step">
-          <p class="step-num">03</p>
-          <h3>Gouvernance des Modèles et IA Responsable</h3>
-          <p>
-            Encadrement des cycles de vie des modèles prédictifs et génératifs pour garantir leur auditabilité et
-            leur sécurité.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MAILLAGE RECIPROQUE -->
-  <section class="section" id="pme-etablies">
-    <div class="container" style="text-align: center;">
-      <div class="card" style="max-width: 640px; margin: 0 auto;">
-        <p class="lead" style="margin-bottom: 16px;">
-          Vous dirigez une PME industrielle ou de distribution ?
-        </p>
-        <a class="btn btn--outline" href="/services/cto-temps-partage-pme/">Découvrir notre offre Diagnostic TI &amp; Alignement IA →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- POSITIONNEMENT DE PRATIQUE EXECUTIVE -->
-  <section class="section section--alt" id="neutralite">
-    <div class="container">
-      <p class="kicker">Positionnement de Pratique Exécutive</p>
-      <h2>Une rigueur d'ingénierie, pas seulement un rapport d'avocat.</h2>
-
-      <div class="note">
-        <p>
-          « Monessor n'est pas un cabinet d'avocats ni un cabinet d'audit comptable traditionnel. Nous combinons
-          une compréhension approfondie des exigences BSIF/OSFI avec une expertise d'architecture logicielle pour
-          rendre vos systèmes réellement conformes sur le terrain, et pas uniquement sur le papier. »
-        </p>
-      </div>
-    </div>
-  </section>
-</Layout>
+<ServicePage
+  locale="fr"
+  segment="sf"
+  title="Gouvernance TI et conformité BSIF | Monessor"
+  description="Revue de gouvernance TI pour institutions financières et FinTechs : risque lié aux tiers (B-10), risques technologiques (B-13), risque de modélisation (E-23)."
+  jsonLd={jsonLd}
+  hero={{
+    kicker: 'Gouvernance TI, risques et conformité · Services financiers',
+    title: 'Respectez la rigueur réglementaire sans freiner l’innovation de vos plateformes.',
+    lead: 'Monessor conçoit et valide des cadres de gouvernance TI alignés sur les lignes directrices du BSIF (gestion du risque lié aux tiers, B-10 ; gestion des risques technologiques et du cyberrisque, B-13 ; gestion du risque de modélisation, E-23) pour les institutions financières et les FinTechs en croissance.',
+    secondary: { label: 'Voir la Revue', href: '#revue' }
+  }}
+  issues={{
+    id: 'enjeux',
+    title: 'Là où la gouvernance traditionnelle freine l’exécution',
+    items: [
+      {
+        icon: 'shield-check',
+        title: 'Des exigences du BSIF de plus en plus lourdes',
+        text: 'Une complexité croissante pour se conformer aux attentes en matière de risques technologiques et de cyberrisque (B-13), de résilience opérationnelle et de gestion du risque lié aux tiers (B-10).'
+      },
+      {
+        icon: 'file-text',
+        title: 'L’illusion de la conformité « sur papier »',
+        text: 'Des politiques rédigées pour les auditeurs, mais déconnectées du code déployé en production par les équipes et les fournisseurs infonuagiques.'
+      },
+      {
+        icon: 'brain-circuit',
+        title: 'Le risque de modélisation et l’IA (E-23)',
+        text: 'Encadrer les algorithmes et les modèles décisionnels automatisés sans ralentir le développement des produits numériques.'
+      },
+      {
+        icon: 'scale',
+        title: 'La friction entre risque et livraison',
+        text: 'Des comités de validation lourds qui allongent les délais de mise en marché et créent des tensions entre la gestion des risques, la conformité et les équipes produit.'
+      }
+    ]
+  }}
+  offer={{
+    id: 'revue',
+    kicker: 'Point de départ',
+    title: 'Revue de gouvernance TI et conformité BSIF',
+    lead: 'Un mandat de 3 à 4 semaines pour évaluer votre conformité technologique, repérer les failles liées aux tiers et remettre une matrice de remédiation directement utilisable par votre comité de risques et d’audit.',
+    price: 'Forfait à périmètre fixe, tarif sur demande.',
+    items: [
+      {
+        icon: 'search-check',
+        title: 'Analyse des écarts (B-10 et B-13)',
+        text: 'Une évaluation concrète de l’alignement de votre infrastructure et de vos politiques sur les attentes du BSIF.'
+      },
+      {
+        icon: 'handshake',
+        title: 'Évaluation du risque lié aux tiers',
+        text: 'Les dépendances technologiques critiques, les contrats fournisseurs et les plans de continuité des affaires.'
+      },
+      {
+        icon: 'brain-circuit',
+        title: 'Cadre de gestion du risque de modélisation (E-23)',
+        text: 'Des garde-fous d’architecture et des mécanismes d’explicabilité pour l’utilisation de modèles et de l’IA en contexte réglementé.'
+      },
+      {
+        icon: 'list-checks',
+        title: 'Matrice de remédiation et plan d’action',
+        text: 'Une feuille de route priorisée par niveau de risque, pour répondre aux attentes des auditeurs et des autorités de réglementation.'
+      }
+    ]
+  }}
+  expertise={{
+    id: 'approche',
+    title: 'Une expertise pour les environnements à haut risque',
+    numbered: true,
+    items: [
+      {
+        icon: 'layers',
+        title: 'Conformité dès la conception',
+        text: 'Les contraintes réglementaires intégrées directement aux pipelines de déploiement (CI/CD) et aux architectures infonuagiques, sans ralentir les développeurs.'
+      },
+      {
+        icon: 'shield-check',
+        title: 'Accompagnement lors des audits',
+        text: 'Une présence aux côtés de la direction lors des audits internes et externes et des inspections des autorités de réglementation.'
+      },
+      {
+        icon: 'brain-circuit',
+        title: 'Gouvernance des modèles et IA responsable',
+        text: 'L’encadrement du cycle de vie des modèles prédictifs et génératifs, pour en garantir l’auditabilité et la sécurité.'
+      }
+    ]
+  }}
+  insights={{ title: 'Analyses liées', keys: ['governance-speed', 'replatforming-fable'], allLabel: 'Explorer toutes les analyses' }}
+  neutrality={{
+    id: 'neutralite',
+    title: 'Une rigueur d’ingénierie, pas seulement un avis juridique.',
+    text: 'Monessor n’est ni un cabinet d’avocats ni un cabinet d’audit comptable. Elle combine une compréhension approfondie des attentes du BSIF et une expertise en architecture logicielle pour rendre vos systèmes réellement conformes sur le terrain, et pas seulement sur papier.',
+    delivery: 'Chaque mandat est dirigé personnellement par Alex Turcotte, associé directeur. Lorsqu’un mandat exige une expertise très pointue, Monessor fait appel à un spécialiste de son réseau.'
+  }}
+  other={{
+    id: 'pme-etablies',
+    question: 'Vous dirigez une PME établie?',
+    label: 'Découvrir le Diagnostic de maturité TI →',
+    href: '/services/cto-temps-partage-pme/'
+  }}
+/>
