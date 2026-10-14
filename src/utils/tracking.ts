@@ -5,10 +5,10 @@ export const MEETING_URL = 'https://calendar.app.google/jrWp3LMihMCr5qew7';
 
 /**
  * Clé de page stable pour les événements Fathom : chemin sans préfixe de langue ni barres obliques.
- * `/` et `/en/` → `home` ; `/en/services/fractional-cto-sme/` → `services/fractional-cto-sme`.
+ * `/fr/` et `/en/` → `home` ; `/en/services/fractional-cto-sme/` → `services/fractional-cto-sme`.
  */
 export function pageKey(pathname: string): string {
-  const key = pathname.replace(/^\/en(\/|$)/, '/').replace(/^\/+|\/+$/g, '');
+  const key = pathname.replace(/^\/(fr|en)(\/|$)/, '/').replace(/^\/+|\/+$/g, '');
   return key === '' ? 'home' : key;
 }
 

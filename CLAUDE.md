@@ -3,6 +3,7 @@
 ## Pile Technique
 - Framework: Astro.js avec composants MDX
 - Styles: Tailwind CSS 4 (jetons de couleur dans le `@theme` de `src/styles/global.css`)
+- Routes : symétriques `/fr/...` et `/en/...` (pages FR dans `src/pages/fr/`). La racine `/` et les anciennes URL françaises sont redirigées par `vercel.json` (302 selon la langue du navigateur, 301 pour les anciennes URL) ; toute page renommée doit y ajouter sa 301.
 - Analytique: Fathom Analytics (événements nommés par `fathomEvent()` dans `src/utils/tracking.ts`)
 
 ## Règles de Style & Design System

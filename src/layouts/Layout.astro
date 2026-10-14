@@ -35,6 +35,8 @@ const enPath = isEnPath ? pathname : await getAlternatePath(pathname, 'en');
 
 const urlFR = new URL(frPath, siteUrl).href;
 const urlEN = new URL(enPath, siteUrl).href;
+// x-default : la racine pour l'accueil (elle redirige selon la langue du navigateur), sinon la version française
+const urlDefault = frPath === '/fr/' ? new URL('/', siteUrl).href : urlFR;
 const absoluteImageUrl = new URL(image, siteUrl).href;
 
 // Données structurées JSON-LD pour l'entité Monessor
@@ -75,7 +77,7 @@ const organizationSchema = {
     <!-- Dynamic Hreflang Tags -->
     <link rel="alternate" hreflang="fr" href={urlFR} />
     <link rel="alternate" hreflang="en" href={urlEN} />
-    <link rel="alternate" hreflang="x-default" href={urlFR} />
+    <link rel="alternate" hreflang="x-default" href={urlDefault} />
 
     <!-- Open Graph / LinkedIn / Facebook -->
     <meta property="og:type" content={ogType} />

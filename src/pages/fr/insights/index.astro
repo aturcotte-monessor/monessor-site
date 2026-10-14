@@ -1,13 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import InsightCard from '../../components/InsightCard.astro';
+import Layout from '../../../layouts/Layout.astro';
+import InsightCard from '../../../components/InsightCard.astro';
 
 const entries = (await getCollection('insights', ({ id, data }) => id.startsWith('fr/') && data.lang === 'fr')).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
-const toInsightUrl = (id: string) => `/insights/${id.replace(/^fr\//, '').replace(/\.md$/, '')}/`;
+const toInsightUrl = (id: string) => `/fr/insights/${id.replace(/^fr\//, '').replace(/\.md$/, '')}/`;
 ---
 
 <Layout

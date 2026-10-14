@@ -7,11 +7,11 @@ export type Locale = 'fr' | 'en';
  * (service landing pages and other hand-translated pages, not generated from a shared slug).
  */
 const SERVICE_ROUTE_PAIRS: Array<[fr: string, en: string]> = [
-  ['/services/cto-temps-partage-pme/', '/en/services/fractional-cto-sme/'],
-  ['/services/gouvernance-sf-reglementee/', '/en/services/regulated-fs-governance/'],
-  ['/approche/', '/en/approach/'],
-  ['/a-propos/', '/en/about/'],
-  ['/confidentialite/', '/en/privacy/']
+  ['/fr/services/cto-temps-partage-pme/', '/en/services/fractional-cto-sme/'],
+  ['/fr/services/gouvernance-sf-reglementee/', '/en/services/regulated-fs-governance/'],
+  ['/fr/approche/', '/en/approach/'],
+  ['/fr/a-propos/', '/en/about/'],
+  ['/fr/confidentialite/', '/en/privacy/']
 ];
 
 function normalizePath(path: string): string {
@@ -31,7 +31,7 @@ function matchServiceRoute(path: string, targetLang: Locale): string | null {
 
 async function matchInsightRoute(path: string, targetLang: Locale): Promise<string | null> {
   const normalized = normalizePath(path);
-  const frMatch = normalized.match(/^\/insights\/([^/]+)\/$/);
+  const frMatch = normalized.match(/^\/fr\/insights\/([^/]+)\/$/);
   const enMatch = normalized.match(/^\/en\/insights\/([^/]+)\/$/);
 
   if (!frMatch && !enMatch) return null;
@@ -62,29 +62,20 @@ async function matchInsightRoute(path: string, targetLang: Locale): Promise<stri
     : undefined;
   if (!counterpart) return null;
 
-  return `/insights/${counterpart.id.replace(/^fr\//, '')}/`;
+  return `/fr/insights/${counterpart.id.replace(/^fr\//, '')}/`;
 }
 
 function defaultAlternate(path: string, targetLang: Locale): string {
   const normalized = normalizePath(path);
-
-  if (targetLang === 'en') {
-    if (normalized.startsWith('/en/')) return normalized;
-    return normalized === '/' ? '/en/' : `/en${normalized}`;
-  }
-
-  if (normalized.startsWith('/en/')) {
-    const stripped = normalized.replace(/^\/en/, '');
-    return stripped === '' ? '/' : stripped;
-  }
-
-  return normalized;
+  // Routes symétriques : /fr/... <-> /en/... ; la racine (redirigée selon la langue) mène à l'accueil.
+  const rest = normalized.replace(/^\/(fr|en)(?=\/)/, '');
+  return `/${targetLang}${rest === '' ? '/' : rest}`;
 }
 
 /**
  * Resolves the equivalent path of `currentPath` in `targetLang`.
  * Order of resolution: explicit service route map -> insights translationKey lookup
- * -> default /en/ prefix toggle (assumes matching slugs).
+ * -> default /fr/ <-> /en/ prefix swap (assumes matching slugs).
  */
 export async function getAlternatePath(currentPath: string, targetLang: Locale): Promise<string> {
   const serviceMatch = matchServiceRoute(currentPath, targetLang);

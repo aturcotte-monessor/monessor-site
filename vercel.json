@@ -1,0 +1,95 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": {
+            "pre": "en"
+          }
+        }
+      ],
+      "destination": "/en/",
+      "statusCode": 302
+    },
+    {
+      "source": "/",
+      "destination": "/fr/",
+      "statusCode": 302
+    },
+    {
+      "source": "/insights/technologie-pme-de-centre-de-cout-a-actif-strategique",
+      "destination": "/fr/insights/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/technologie-pme-de-centre-de-cout-a-actif-strategique/",
+      "destination": "/fr/insights/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/insights/technology-smb-from-cost-center-to-strategic-asset",
+      "destination": "/en/insights/article-03-technology-sme-from-cost-center-to-strategic-asset/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/insights/technology-smb-from-cost-center-to-strategic-asset/",
+      "destination": "/en/insights/article-03-technology-sme-from-cost-center-to-strategic-asset/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/services/fractional-cto-smb",
+      "destination": "/en/services/fractional-cto-sme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/services/fractional-cto-smb/",
+      "destination": "/en/services/fractional-cto-sme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/approche",
+      "destination": "/fr/approche/",
+      "statusCode": 301
+    },
+    {
+      "source": "/approche/",
+      "destination": "/fr/approche/",
+      "statusCode": 301
+    },
+    {
+      "source": "/a-propos",
+      "destination": "/fr/a-propos/",
+      "statusCode": 301
+    },
+    {
+      "source": "/a-propos/",
+      "destination": "/fr/a-propos/",
+      "statusCode": 301
+    },
+    {
+      "source": "/confidentialite",
+      "destination": "/fr/confidentialite/",
+      "statusCode": 301
+    },
+    {
+      "source": "/confidentialite/",
+      "destination": "/fr/confidentialite/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/:path*",
+      "destination": "/fr/services/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/:path*",
+      "destination": "/fr/insights/:path*",
+      "statusCode": 301
+    }
+  ]
+}
