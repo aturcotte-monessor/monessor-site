@@ -2,312 +2,256 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import InsightCard from '../../components/InsightCard.astro';
-import { fathomEvent } from '../../utils/tracking';
+import ContactCta from '../../components/ContactCta.astro';
+import { MEETING_URL, fathomEvent } from '../../utils/tracking';
+import { resolveSegment } from '../../utils/insights';
 import { ui } from '../../i18n/ui';
 
 const locale = 'en' as const;
-const entries = (await getCollection('insights', ({ id, data }) => id.startsWith('en/') && data.lang === locale)).sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
-).slice(0, 3);
-const insightsHref = '/en/insights/';
-const sectionTitle = ui[locale].perspectivesTitle;
-const ctaLabel = ui[locale].exploreAllInsights;
+const pathname = Astro.url.pathname;
+const allInsights = await getCollection('insights');
+const entries = allInsights
+  .filter(({ id, data }) => id.startsWith('en/') && data.lang === locale)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const serviceSme = '/en/services/fractional-cto-sme/';
+const serviceFs = '/en/services/regulated-fs-governance/';
+
+const symptoms = [
+  {
+    title: 'IT budgets that grow without visible returns',
+    text: 'Software, cloud, vendors: spending rises every year, and no one can say precisely what it delivers.'
+  },
+  {
+    title: 'Critical systems in too few hands',
+    text: 'Your ERP, key applications or data depend on a handful of people or a single vendor.'
+  },
+  {
+    title: 'AI decisions made under pressure',
+    text: 'Pitches keep coming, with no framework to separate profitable projects from passing trends.'
+  }
+];
+
+const sequence = [
+  { step: '01', title: 'IT Maturity Diagnostic', text: 'Where you stand, the risks and the priorities, in 2 to 3 weeks.' },
+  { step: '02', title: 'Targeted deliverables', text: 'Two or three focused engagements that follow from the diagnostic: ERP selection, a vendor tender, a modernization plan.' },
+  { step: '03', title: 'Fractional IT leadership', text: 'A regular seat on your leadership team, about one day a week, to steer execution.' }
+];
+
+const situations = [
+  {
+    title: 'A critical platform to modernize',
+    text: 'Your core system has to evolve without putting operations, compliance or customer trust at risk.'
+  },
+  {
+    title: 'Investments to prioritize',
+    text: 'Several projects compete for the same budget and leadership wants an independent view on cost, risk and value.'
+  },
+  {
+    title: 'AI to assess with method',
+    text: 'You want to know where artificial intelligence and automation will create real value, backed by a business case.'
+  },
+  {
+    title: 'Technology leadership without an immediate hire',
+    text: 'You need an experienced CTO at the leadership table without recruiting a full-time executive right away.'
+  }
+];
+
+const steps = [
+  { step: '01', title: 'Clarify', text: 'The issues, constraints, risks and decisions to be made.' },
+  { step: '02', title: 'Structure', text: 'The options, trajectory, governance and priorities.' },
+  { step: '03', title: 'Execute', text: 'Support for delivery, or leading it.' }
+];
+
+const container = 'mx-auto max-w-7xl px-6 lg:px-8';
 ---
 
 <Layout
   locale={locale}
   meetingId="contact"
-  title="Fractional CTO & Technology Strategy Advisory | Monessor"
-  description="Executive advisory firm led by Alex Turcotte, specializing in technology strategy, AI integration, fractional CTO services, and IT governance for regulated sectors."
+  title="Strategic IT Management Advisory for SMEs | Monessor"
+  description="Monessor helps leaders of established SMEs govern technology with the rigour of regulated financial services, starting with an IT Maturity Diagnostic."
 >
   <!-- HERO -->
-  <section class="section hero">
-    <div class="container hero-grid max-w-7xl mx-auto px-6 lg:px-8">
-      <div>
-<p class="kicker">Executive Practice • Fractional CTO & IT Governance Advisory</p>
-        <h1>
-        <span class="block text-base font-semibold uppercase tracking-wider text-accent mb-2">
-          Technology Strategy & IT Leadership Advisory
-        </span>
-        Clarity. Governance. Execution.
-      </h1>
-        <p class="lead">
-            Monessor supports executive teams navigating complex technology challenges: 
-            <strong>Fractional CTO services</strong>, strategic <strong>AI integration</strong>, and platform modernization in regulated environments.
-        </p>
-        <p class="hero-synthesis hero-synthesis--desktop" aria-hidden="false">
-          Monessor is engaged when technology and product become strategic issues and executive trade-offs
-          are no longer clear. The objective is to restore a sustainable trajectory without compromising
-          stability, compliance, or impact.
-        </p>
-        <p class="hero-synthesis hero-synthesis--mobile" aria-hidden="true">
-          Monessor is engaged when technology and product become strategic and clear executive trade-offs are required.
-        </p>
-        <p class="hero-detail">
-          Working alongside executive teams, Monessor clarifies priorities and trade-offs across product,
-          technology, and risk while stabilizing critical platforms and guiding modernization efforts to
-          translate technology decisions into durable business results.
-        </p>
-        <div class="hero-cta">
-          <a class="btn" href="#contact">Get in touch</a>
-          <a class="btn btn--ghost" href="#situations">View situations</a>
-        </div>
-
-        <div class="microproof">
-          <div class="pill">Montreal</div>
-          <div class="pill">Quebec & Canada</div>
-          <div class="pill">Complex environments</div>
-        </div>
-      </div>
+  <section class="relative overflow-hidden bg-teal-deep">
+    <!-- Chevrons en filigrane (grand écran seulement ; le conteneur porte « hidden », la règle img globale imposant display:block) -->
+    <div class="pointer-events-none absolute -right-16 top-1/2 hidden w-[420px] -translate-y-1/2 opacity-[0.06] lg:block" aria-hidden="true">
+      <img src="/assets/monessor-embleme-blanc.svg" alt="" width="324" height="329" class="w-full" />
     </div>
-  </section>
-
-  <!-- SITUATIONS -->
-  <section class="section" id="situations">
-    <div class="container max-w-7xl mx-auto px-6 lg:px-8">
-      <h2>Areas of intervention</h2>
-      <p class="sublead">
-        When technology becomes a strategic, operational, or governance issue.
+    <div class={`relative ${container} py-20 lg:py-28`}>
+      <p class="home-kicker text-coral">Strategic IT management advisory</p>
+      <h1 class="home-h1">Govern your technology with the same rigour as your finances.</h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-light/85">
+        Monessor works with leaders of established SMEs, from $10M to $100M in revenue, bringing governance practices
+        proven in regulated financial services: clear priorities, known risks, and technology investments you can
+        defend in front of your board.
       </p>
-
-      <div class="cards">
-        <article class="card">
-          <h3>Platforms under strain</h3>
-          <p>Critical systems, technical debt and unpredictable delivery.</p>
-        </article>
-        <article class="card">
-          <h3>Artificial Intelligence & Automation</h3>
-          <p>Evaluating AI/ML opportunities, building business cases, and strategic integration in regulated environments.</p>
-        </article>
-        <article class="card">
-          <h3>Modernization</h3>
-          <p>Legacy → target trajectory, cost / risk / value trade-offs.</p>
-        </article>
-        <article class="card">
-          <h3>Governance & decisions</h3>
-          <p>Aligning executive leadership, IT and risk.</p>
-        </article>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <ContactCta
+          href={MEETING_URL}
+          label="Book a meeting"
+          className="btn"
+          fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, pathname)}
+        />
+        <a class="btn btn--outline" href={`${serviceSme}#diagnostic`}>See the Diagnostic</a>
       </div>
     </div>
   </section>
 
-  <section class="section" id="useful">
-    <div class="container max-w-7xl mx-auto px-6 lg:px-8">
-      <h2>When Monessor creates the most value</h2>
-      <div class="cards">
-        <article class="card">
-          <p>
-            When technology has become critical to the organization, but priorities,
-            risks and accountabilities are no longer clearly aligned.
+  <!-- SME -->
+  <section class="bg-light py-20 text-ink" id="sme">
+    <div class={container}>
+      <p class="home-kicker text-teal">Established SMEs</p>
+      <h2 class="home-h2">When technology holds growth back</h2>
+
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
+        {symptoms.map((item) => (
+          <article class="rounded-2xl border border-slate-200 bg-white p-6">
+            <h3 class="home-h3">{item.title}</h3>
+            <p class="mt-3 leading-relaxed">{item.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-12 grid gap-10 rounded-2xl border border-slate-200 bg-white p-8 lg:grid-cols-[1fr_1.2fr] lg:p-10">
+        <div>
+          <h3 class="home-h3 text-2xl">The starting point: the IT Maturity Diagnostic</h3>
+          <p class="mt-4 leading-relaxed">
+            In 2 to 3 weeks, an independent picture of your systems, risks and technology spending, with a costed
+            18-month roadmap ready to present to your board.
           </p>
-        </article>
-        <article class="card">
-          <p>
-            When a core platform needs to be modernized without compromising stability,
-            regulatory compliance or stakeholder trust.
-          </p>
-        </article>
-        <article class="card">
-          <p>
-            When an organization wants to evaluate the potential of artificial intelligence and
-            automation, ensuring investments are driven by solid business cases rather than hype.
-          </p>
-        </article>
-        <article class="card">
-          <p>
-            When teams are working hard, yet real impact is difficult to measure or
-            clearly articulate at the executive level.
-          </p>
-        </article>
-        <article class="card">
-          <p>
-            When persistent tension exists between product, technology and operations,
-            without a clear framework for trade-off decisions.
-          </p>
-        </article>
-        <article class="card">
-          <p>
-            When an organization needs senior technology and product leadership,
-            without immediately hiring a full-time CTO or CPTO.
-          </p>
-        </article>
+          <p class="mt-4 font-semibold text-teal">From $12,500, fixed-scope engagement.</p>
+          <a class="btn btn--outline-teal mt-6" href={serviceSme}>Explore the SME offer</a>
+        </div>
+        <ol class="grid gap-6">
+          {sequence.map((item) => (
+            <li class="flex gap-4">
+              <span class="mt-0.5 shrink-0 font-bold tracking-[0.12em] text-teal" aria-hidden="true">{item.step}</span>
+              <div>
+                <h4 class="font-semibold text-teal">{item.title}</h4>
+                <p class="mt-1 leading-relaxed">{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="section section--alt" id="services">
-    <div class="container max-w-7xl mx-auto px-6 lg:px-8">
-      <h2>Services</h2>
-
-      <div class="trust-badges">
-        <div class="badge">
-          <div class="badge-value">20+</div>
-          <div class="badge-label">Years of senior technology leadership</div>
+  <!-- FINANCIAL SERVICES -->
+  <section class="bg-light pb-20 text-ink" id="financial-services">
+    <div class={container}>
+      <div class="flex flex-col gap-6 border-t border-slate-200 pt-12 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-3xl">
+          <h2 class="home-h3 text-2xl">A financial institution or a FinTech?</h2>
+          <p class="mt-3 leading-relaxed">
+            Monessor also helps financial institutions and FinTechs align their IT governance with OSFI guidelines:
+            third-party risk management (B-10), technology and cyber risk (B-13), and model and AI risk (E-23).
+          </p>
         </div>
-        <div class="badge">
-          <div class="badge-value">Pragmatic</div>
-          <div class="badge-label">Results-oriented executive approach</div>
-        </div>
-        <div class="badge">
-          <div class="badge-value">100%</div>
-          <div class="badge-label">Delivery by seasoned expert consortium</div>
-        </div>
+        <a class="shrink-0 font-semibold text-teal underline underline-offset-4" href={serviceFs}>Explore the IT Governance Review →</a>
       </div>
+    </div>
+  </section>
 
-      <div class="accordion-container">
-        <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" aria-controls="service-1-content">
-            <span>Fractional CTO</span>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="accordion-content" id="service-1-content">
-            <p class="accordion-text">
-              Senior technology leadership embedded within your executive team to align product roadmap with business objectives. We guide 30–60–90 day planning, crisis management, and technical team stabilization without the cost of a full-time executive.
-            </p>
-            <a class="accordion-link" href="/en/services/fractional-cto-sme/">Explore the Established SME offer ($10M–$100M) →</a>
+  <!-- WHEN TO CALL ON MONESSOR -->
+  <section class="bg-white py-20 text-ink" id="situations">
+    <div class={container}>
+      <h2 class="home-h2">When to call on Monessor</h2>
+      <div class="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">
+        {situations.map((item) => (
+          <div class="border-l-2 border-coral pl-5">
+            <h3 class="home-h3">{item.title}</h3>
+            <p class="mt-2 leading-relaxed">{item.text}</p>
           </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" aria-controls="service-2-content">
-            <span>Strategy &amp; Governance</span>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="accordion-content" id="service-2-content">
-            <p class="accordion-text">
-              Translating business vision into robust and secure architectures. We design the decision-making frameworks needed to navigate highly regulated environments (BSIF / OSFI), optimize team structure, and architect AI and automation initiatives.
-            </p>
-            <a class="accordion-link" href="/en/services/regulated-fs-governance/">View the Regulated Sectors framework (OSFI) →</a>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" aria-controls="service-3-content">
-            <span>Platform Modernization</span>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="accordion-content" id="service-3-content">
-            <p class="accordion-text">
-              Pragmatic <em>build vs. buy</em> arbitrage, legacy technical debt reduction, and platform viability assessment. We secure migration trajectories to minimize operational risk and maximize return on your technology investments.
-            </p>
-            <a class="accordion-link" href="/en/services/fractional-cto-sme/">Assess your technology maturity →</a>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- APPROACH -->
-  <section class="section" id="approach">
-    <div class="container max-w-7xl mx-auto px-6 lg:px-8">
-      <h2>Approach</h2>
-
-      <div class="steps">
-        <div class="step">
-          <p class="step-num">01</p>
-          <h3>Clarify</h3>
-          <p>Issues, constraints, risks and structuring decisions.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">02</p>
-          <h3>Structure</h3>
-          <p>Options, trajectory, governance and prioritization.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">03</p>
-          <h3>Execute</h3>
-          <p>Execution support and leadership.</p>
-        </div>
-      </div>
-
-      <div class="note">
-        <p><strong>What Monessor is not:</strong> a development agency or a buzzword factory.</p>
+  <section class="bg-light py-20 text-ink" id="approach">
+    <div class={container}>
+      <h2 class="home-h2">Approach</h2>
+      <ol class="mt-10 grid gap-4 md:grid-cols-3">
+        {steps.map((item) => (
+          <li class="rounded-2xl border border-slate-200 bg-white p-6">
+            <p class="font-bold tracking-[0.12em] text-teal" aria-hidden="true">{item.step}</p>
+            <h3 class="home-h3 mt-2">{item.title}</h3>
+            <p class="mt-2 leading-relaxed">{item.text}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-8 rounded-2xl bg-teal p-6 text-light md:p-8">
+        <p class="text-lg font-semibold">No commissions. No software resale.</p>
+        <p class="mt-2 text-light/90">
+          Monessor is neither a development agency nor a software reseller. It is paid by its clients only, so its
+          recommendations serve no interest but yours.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- PERSPECTIVES -->
-  <section class="w-full bg-slate-50 py-16 text-slate-900" id="perspectives">
-    <div class="container max-w-7xl mx-auto px-6 lg:px-8">
-      <h2 class="text-slate-900">{sectionTitle}</h2>
-      <div class="cards cards--insights insights-grid mt-6">
+  <!-- STATEMENT -->
+  <section class="bg-teal-deep py-16 lg:py-20">
+    <div class={container}>
+      <p class="max-w-4xl text-3xl font-semibold leading-tight text-light md:text-4xl">
+        Rigour doesn’t slow growth down. It makes it <span class="text-coral">last</span>.
+      </p>
+    </div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section class="bg-light py-20 text-ink" id="perspectives">
+    <div class={container}>
+      <h2 class="home-h2">{ui[locale].perspectivesTitle}</h2>
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
         {entries.map((entry) => (
           <InsightCard
             entry={entry}
-            href={`/en/insights/${entry.id.replace(/^en\//, '').replace(/\.md$/, '')}/`}
+            href={`/en/insights/${entry.id.replace(/^en\//, '')}/`}
             locale={locale}
-            variant="light"
+            segment={resolveSegment(entry, allInsights)}
+            headingLevel={3}
           />
         ))}
       </div>
-      <div class="mt-8">
-        <a class="inline-flex items-center px-6 py-3 bg-[#88d8b0] text-slate-900 font-semibold rounded-full hover:opacity-90 transition-all" href={insightsHref}>{ctaLabel}</a>
-      </div>
+      <a class="btn btn--outline-teal mt-8" href="/en/insights/">{ui[locale].exploreAllInsights}</a>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="section section--alt" id="about">
-    <div class="container max-w-7xl mx-auto px-6 lg:px-8">
-      <h2>Practice leadership</h2>
-      <h3 style="margin-top: 0; font-size: 20px; color: var(--muted); margin-bottom: 24px;">Alex Turcotte, Managing Partner</h3>
-
-      <div class="about">
-        <div>
-          <p class="lead">
-            Alex Turcotte leads the Monessor practice as a CTO / CPTO for executive teams navigating complex
-            technology, product, and organizational challenges. The practice combines senior leadership with
-            an agile ecosystem of specialists to structure and deliver mandates with rigor.
-          </p>
-          <p>
-            Drawing on more than twenty years of experience at the intersection of technology, product, and governance,
-            Alex works primarily in organizations where platforms are critical, regulatory constraints are significant,
-            and technology decisions are tightly linked to business outcomes. The role is to bring clarity where complexity has accumulated:
-            unclear priorities, misunderstood technical debt, tensions between short-term delivery and long-term sustainability,
-            or the evaluation of artificial intelligence and automation opportunities in settings where compliance and governance are non-negotiable.
-          </p>
-          <p>
-            Between 2018 and 2021, Alex held product leadership roles as Product Lead and Squad Lead, with full responsibility for defining,
-            delivering, and scaling digital products used by key participants in financial markets. That experience continues to shape his approach:
-            technology only creates value when it serves clear, shared, and well-understood use cases.
-          </p>
-          <p>
-            He is known for a calm, structured, and pragmatic leadership style, particularly useful in contexts of transition,
-            modernization, or constrained growth. Monessor draws on a network of seasoned experts and specialized partners to mobilize the
-            right capabilities according to the nature and scale of the challenge.
-          </p>
-        </div>
-        <div class="about-box">
-          <div class="hero-card">
-            <div class="portrait">
-                <img 
-                    src="/assets/alex.jpg"
-                    alt="Alex Turcotte, Fractional CTO and Founder of Monessor" 
-                    width="400" 
-                    height="400" 
-                    loading="eager"
-                />
-            </div>
-            <div class="hero-card-body">
-              <p class="name">Alex Turcotte</p>
-              <p class="title">Founder and Managing Partner, Monessor</p>
-              <p class="small">
-                Fractional CTO and executive advisor in technology strategy, platform modernization, and IT governance.
-              </p>
-              <br />
-              <div class="hero-card-links">
-                <a class="libutton" href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&amp;followMember=turcottealex" target="_blank" rel="noopener noreferrer" data-fathom-event={fathomEvent('LinkedIn', 'Profile', locale, Astro.url.pathname)}>Follow on LinkedIn</a>
-              </div>
-            </div>
-          </div>
-        </div>
+  <!-- PROFILE -->
+  <section class="bg-white py-20 text-ink" id="about">
+    <div class={`${container} grid items-center gap-10 md:grid-cols-[220px_1fr] lg:gap-14`}>
+      <img
+        src="/assets/alex.jpg"
+        alt="Portrait of Alex Turcotte"
+        width="220"
+        height="220"
+        loading="lazy"
+        decoding="async"
+        class="h-[220px] w-[220px] rounded-2xl object-cover"
+      />
+      <div class="max-w-3xl">
+        <p class="home-kicker text-teal">About</p>
+        <h2 class="home-h2">Alex Turcotte, Managing Partner</h2>
+        <p class="mt-4 leading-relaxed">
+          For more than twenty years, Alex Turcotte has worked where technology, product and governance meet, notably in
+          capital markets, where platforms are critical and regulation is demanding. He works alongside leadership teams
+          to clarify priorities, keep risk under control and turn technology decisions into business results.
+        </p>
+        <p class="mt-4 leading-relaxed">
+          Every engagement is led personally by Alex Turcotte, Managing Partner. When an engagement calls for highly
+          specialized expertise, Monessor brings in a specialist from its network.
+        </p>
+        <a
+          class="btn btn--outline-teal mt-6"
+          href="https://www.linkedin.com/in/turcottealex"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-fathom-event={fathomEvent('LinkedIn', 'Profile', locale, pathname)}
+        >LinkedIn profile</a>
       </div>
     </div>
   </section>
