@@ -44,6 +44,7 @@ const t = {
     profileHref: '/fr/a-propos/',
     portraitAlt: 'Portrait d’Alex Turcotte',
     faq: 'Questions fréquentes',
+    table: 'Tableau défilant',
     related: 'À lire aussi',
     jobTitle: 'Associé directeur',
     inLanguage: 'fr-CA',
@@ -63,6 +64,7 @@ const t = {
     profileHref: '/en/about/',
     portraitAlt: 'Portrait of Alex Turcotte',
     faq: 'Frequently asked questions',
+    table: 'Scrollable table',
     related: 'Further reading',
     jobTitle: 'Managing Partner',
     inLanguage: 'en-CA',
@@ -142,7 +144,7 @@ const faqLd = faq.length
   </Fragment>
 
   <section class="bg-light py-12 text-ink md:py-16">
-    <article class="mx-auto max-w-3xl px-6">
+    <article class="mx-auto max-w-3xl px-6 lg:px-8">
       <!-- FIL D'ARIANE -->
       <nav aria-label={t.breadcrumb} class="text-sm">
         <ol class="flex flex-wrap items-center gap-2 text-slate-600">
@@ -172,7 +174,7 @@ const faqLd = faq.length
       </header>
 
       <!-- CORPS : colonne de lecture d'environ 70 caractères -->
-      <div class="insight-content article-prose mt-10 max-w-[70ch] [&_p]:text-slate-800 [&>p]:mb-6 [&>p]:leading-relaxed [&_h2]:text-teal [&_h2]:font-semibold [&>h2]:mt-10 [&>h2]:mb-4 [&_h3]:text-teal [&_h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-3 [&_a]:text-teal [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-teal/40 [&_a]:transition-colors hover:[&_a]:decoration-teal [&_ul]:text-slate-700 [&>ul]:my-6 [&>ul]:space-y-2 [&>ul]:list-disc [&>ul]:pl-6 [&_ol]:text-slate-700 [&>ol]:my-6 [&>ol]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&_blockquote]:text-slate-700 [&_li]:text-slate-700 [&>hr]:mt-12 [&>hr]:mb-12 [&>hr]:border-slate-200 [&>hr]:opacity-30">
+      <div data-tables-label={t.table} class="insight-content article-prose mt-10 max-w-[70ch] [&_p]:text-slate-800 [&>p]:mb-6 [&>p]:leading-relaxed [&_h2]:text-teal [&_h2]:font-semibold [&>h2]:mt-10 [&>h2]:mb-4 [&_h3]:text-teal [&_h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-3 [&_a]:text-teal [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-teal/40 [&_a]:transition-colors hover:[&_a]:decoration-teal [&_ul]:text-slate-700 [&>ul]:my-6 [&>ul]:space-y-2 [&>ul]:list-disc [&>ul]:pl-6 [&_ol]:text-slate-700 [&>ol]:my-6 [&>ol]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&_blockquote]:text-slate-700 [&_li]:text-slate-700 [&>hr]:mt-12 [&>hr]:mb-12 [&>hr]:border-slate-200 [&>hr]:opacity-30">
         <Content />
         <p class="mt-8 border-t border-slate-200 pt-4 text-sm italic"><strong>{t.transparencyLabel}</strong>{t.transparency}</p>
       </div>
@@ -228,7 +230,7 @@ const faqLd = faq.length
   <!-- ARTICLES LIÉS -->
   {related.length > 0 && (
     <section class="bg-white py-14 text-ink">
-      <div class="mx-auto max-w-5xl px-6">
+      <div class="mx-auto max-w-3xl px-6 lg:px-8">
         <h2 class="article-section-title">{t.related}</h2>
         <div class="mt-6 grid gap-4 md:grid-cols-2">
           {related.map((e) => (
@@ -239,3 +241,18 @@ const faqLd = faq.length
     </section>
   )}
 </Layout>
+
+<script>
+  // Tableaux des articles : sur mobile ils défilent horizontalement ; on les place dans une zone défilante atteignable au clavier
+  document.querySelectorAll<HTMLElement>('[data-tables-label]').forEach((body) => {
+    body.querySelectorAll('table').forEach((table) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'table-scroll';
+      wrap.tabIndex = 0;
+      wrap.setAttribute('role', 'region');
+      wrap.setAttribute('aria-label', body.dataset.tablesLabel ?? '');
+      table.replaceWith(wrap);
+      wrap.append(table);
+    });
+  });
+</script>

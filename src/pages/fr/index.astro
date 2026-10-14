@@ -134,7 +134,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
         <ol class="grid gap-6">
           {sequence.map((item) => (
             <li class="flex gap-4">
-              <span class="mt-0.5 shrink-0 font-bold tracking-[0.12em] text-teal" aria-hidden="true">{item.step}</span>
+              <span class="mt-0.5 shrink-0 font-bold tracking-[0.12em] text-teal">{item.step}</span>
               <div>
                 <h4 class="font-semibold text-teal">{item.title}</h4>
                 <p class="mt-1 leading-relaxed">{item.text}</p>
@@ -192,7 +192,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
           <li class="rounded-2xl border border-slate-200 bg-white p-6">
             <div class="flex items-center justify-between text-teal">
               <Icon name={item.icon} size={28} />
-              <span class="font-bold tracking-[0.12em]" aria-hidden="true">{item.step}</span>
+              <span class="font-bold tracking-[0.12em]">{item.step}</span>
             </div>
             <h3 class="home-h3 mt-2">{item.title}</h3>
             <p class="mt-2 leading-relaxed">{item.text}</p>
