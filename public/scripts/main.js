@@ -58,40 +58,6 @@
   }
 })();
 
-// NAV TOGGLE SCRIPT
-(function () {
-  const nav = document.querySelector('.nav');
-  const toggle = document.querySelector('.nav-toggle');
-  if (!nav || !toggle) return;
-
-  function closeNav() {
-    nav.classList.remove('nav-open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }
-
-  function openNav() {
-    nav.classList.add('nav-open');
-    toggle.setAttribute('aria-expanded', 'true');
-  }
-
-  toggle.addEventListener('click', function (e) {
-    const isOpen = nav.classList.contains('nav-open');
-    if (isOpen) closeNav(); else openNav();
-  });
-
-  // close when clicking a link
-  nav.addEventListener('click', function (e) {
-    if (e.target.tagName === 'A' && nav.classList.contains('nav-open')) {
-      closeNav();
-    }
-  });
-
-  // close on Escape
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeNav();
-  });
-})();
-
 // ACCORDION SCRIPT
 (function () {
   const triggers = document.querySelectorAll('.accordion-trigger');

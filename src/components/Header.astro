@@ -69,39 +69,33 @@ const sectionLinks = isFr
     <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between gap-4" aria-label={isFr ? 'Navigation principale' : 'Main navigation'}>
       <a href={homePath} class="flex items-center gap-3 text-teal no-underline hover:no-underline hover:opacity-100">
         <img src="/assets/monessor-embleme.svg" alt="" width="34" height="35" class="h-[35px] w-[34px]" />
-        <span class="text-lg font-bold tracking-[0.08em]">MONESSOR</span>
+        <span class="wordmark text-lg">MONESSOR</span>
       </a>
 
       <!-- Mobile -->
       <details class="md:hidden relative" data-mobile-menu>
-        <summary class="list-none inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-300 text-teal cursor-pointer">
+        <summary aria-controls="mobile-menu-panel" class="list-none inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-300 text-teal cursor-pointer">
           <span class="sr-only">Menu</span>
           <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" aria-hidden="true">
             <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </summary>
-        <div class="absolute right-0 mt-3 w-72 rounded-xl border border-slate-200 bg-white p-3 shadow-xl">
+        <div id="mobile-menu-panel" class="absolute right-0 mt-3 w-72 max-w-[calc(100vw-48px)] rounded-xl border border-slate-200 bg-white p-3 shadow-xl">
           <div class="flex flex-col text-[15px] text-ink">
-            <details>
-              <summary class="list-none cursor-pointer flex min-h-11 items-center justify-between rounded-md px-3 hover:bg-light">
-                <span>{servicesLabel}</span>
-                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </summary>
-              <div class="ml-3 flex flex-col border-l border-slate-200 pl-2">
-                {serviceLinks.map((link) => (
-                  <a href={link.href} class="block rounded-md px-3 py-2 hover:bg-light hover:no-underline">
-                    <span class="block font-medium text-teal">{link.label}</span>
-                    <span class="block text-xs text-slate-600">{link.description}</span>
-                  </a>
-                ))}
-              </div>
-            </details>
+            <p class="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">{servicesLabel}</p>
+            <div class="mb-1 flex flex-col">
+              {serviceLinks.map((link) => (
+                <a href={link.href} class="flex min-h-11 flex-col justify-center rounded-md px-3 py-2 hover:bg-light hover:no-underline">
+                  <span class="block font-medium text-teal">{link.label}</span>
+                  <span class="block text-xs text-slate-600">{link.description}</span>
+                </a>
+              ))}
+            </div>
+            <hr class="my-1 border-slate-200" />
             {sectionLinks.map((link) => (
               <a href={link.href} class="flex min-h-11 items-center rounded-md px-3 hover:bg-light hover:text-teal">{link.label}</a>
             ))}
-            <a href={switchPath} lang={isFr ? 'en' : 'fr'} aria-label={switchAria} class="flex min-h-11 items-center rounded-md px-3 hover:bg-light hover:text-teal">{switchLabel}</a>
+            <a href={switchPath} lang={isFr ? 'en' : 'fr'} class="flex min-h-11 items-center rounded-md px-3 hover:bg-light hover:text-teal">{switchLabel}<span class="sr-only">, {switchAria}</span></a>
             <ContactCta
               href={MEETING_URL}
               label={meetingLabel}
@@ -117,7 +111,7 @@ const sectionLinks = isFr
         <div class="relative" data-services-menu>
           <button
             type="button"
-            class="inline-flex items-center gap-1 py-2 hover:text-teal transition-colors"
+            class="inline-flex min-h-11 items-center gap-1 hover:text-teal transition-colors"
             aria-expanded="false"
             aria-controls="services-menu-desktop"
           >
@@ -131,7 +125,7 @@ const sectionLinks = isFr
             class="hidden absolute left-0 top-full w-72 rounded-xl border border-slate-200 bg-white p-2 shadow-xl"
           >
             {serviceLinks.map((link) => (
-              <a href={link.href} class="block rounded-lg px-3 py-2 hover:bg-light hover:no-underline">
+              <a href={link.href} class="block min-h-11 rounded-lg px-3 py-2 hover:bg-light hover:no-underline">
                 <span class="block font-semibold text-teal">{link.label}</span>
                 <span class="block text-xs text-slate-600">{link.description}</span>
               </a>
@@ -139,7 +133,7 @@ const sectionLinks = isFr
           </div>
         </div>
         {sectionLinks.map((link) => <a class="py-3 hover:text-teal transition-colors" href={link.href}>{link.label}</a>)}
-        <a class="py-3 hover:text-teal transition-colors" href={switchPath} lang={isFr ? 'en' : 'fr'} aria-label={switchAria}>{switchLabel}</a>
+        <a class="py-3 hover:text-teal transition-colors" href={switchPath} lang={isFr ? 'en' : 'fr'}>{switchLabel}<span class="sr-only">, {switchAria}</span></a>
         <ContactCta
           href={MEETING_URL}
           label={meetingLabel}
@@ -170,8 +164,16 @@ const sectionLinks = isFr
     mobile.addEventListener('click', (event) => {
       if ((event.target as HTMLElement).closest('a')) mobile.open = false;
     });
+    // Échap ferme le menu et rend le focus au bouton ; le menu se ferme aussi quand le focus en sort
+    const summary = mobile.querySelector('summary');
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') mobile.open = false;
+      if (event.key === 'Escape' && mobile.open) {
+        mobile.open = false;
+        summary?.focus();
+      }
+    });
+    mobile.addEventListener('focusout', (event) => {
+      if (mobile.open && event.relatedTarget && !mobile.contains(event.relatedTarget as Node)) mobile.open = false;
     });
   }
 
@@ -194,7 +196,10 @@ const sectionLinks = isFr
       if (!services.contains(event.relatedTarget as Node)) setOpen(false);
     });
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') setOpen(false);
+      if (event.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        trigger.focus();
+      }
     });
   }
 </script>

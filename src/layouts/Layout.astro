@@ -94,6 +94,9 @@ const organizationSchema = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteImageUrl} />
 
+    <link rel="preload" href="/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/montserrat-wordmark-700.woff2" as="font" type="font/woff2" crossorigin />
+
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -110,8 +113,9 @@ const organizationSchema = {
     <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col">
+    <a href="#contenu" class="skip-link">{locale === 'fr' ? 'Aller au contenu' : 'Skip to content'}</a>
     <Header locale={locale} switchHref={switchHref} />
-    <main class="flex-1">
+    <main id="contenu" class="flex-1" tabindex="-1">
       <slot />
       {meeting && <MeetingCta locale={locale} variant={meeting} id={meetingId} />}
     </main>

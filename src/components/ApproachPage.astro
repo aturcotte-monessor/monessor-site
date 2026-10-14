@@ -32,7 +32,7 @@ const t = {
       title: 'Comment se déroule un mandat',
       steps: [
         { title: 'Un premier échange', text: 'Pour comprendre votre contexte, vos contraintes et vos priorités, et vérifier que Monessor est le bon interlocuteur.' },
-        { title: 'L’offre d’entrée', text: 'Le Diagnostic de maturité TI pour les PME, ou la Revue de gouvernance TI pour les institutions financières et les FinTechs. Périmètre, durée et prix sont fixés d’avance.' },
+        { title: 'L’offre d’entrée', text: 'Le Diagnostic de maturité TI pour les PME, ou la Revue de gouvernance TI pour les institutions financières et les FinTechs. Périmètre, durée et prix sont fixés d’avance.' },
         { title: 'Une feuille de route', text: 'Des priorités chiffrées et des décisions claires, présentées à votre comité de direction ou à votre conseil.' },
         { title: 'L’accompagnement', text: 'Des livrables ciblés issus de la feuille de route, puis, si vous le souhaitez, une direction TI à temps partagé.' }
       ]
@@ -86,7 +86,7 @@ const t = {
       title: 'How an engagement unfolds',
       steps: [
         { title: 'A first conversation', text: 'To understand your context, constraints and priorities, and confirm that Monessor is the right partner.' },
-        { title: 'The entry offer', text: 'The IT Maturity Diagnostic for SMEs, or the IT Governance Review for financial institutions and FinTechs. Scope, duration and price are set in advance.' },
+        { title: 'The entry offer', text: 'The IT Maturity Diagnostic for SMEs, or the IT Governance Review for financial institutions and FinTechs. Scope, duration and price are set in advance.' },
         { title: 'A roadmap', text: 'Costed priorities and clear decisions, presented to your leadership team or board.' },
         { title: 'Ongoing support', text: 'Targeted deliverables drawn from the roadmap, then, if you wish, fractional IT leadership.' }
       ]
@@ -135,7 +135,7 @@ const t = {
           <li class="rounded-2xl border border-slate-200 bg-white p-6">
             <div class="flex items-center justify-between text-teal">
               <Icon name={item.icon as 'search'} size={28} />
-              <span class="font-bold tracking-[0.12em]" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span class="font-bold tracking-[0.12em]">{String(index + 1).padStart(2, '0')}</span>
             </div>
             <h3 class="home-h3 mt-4">{item.title}</h3>
             <p class="mt-2 leading-relaxed">{item.text}</p>
@@ -152,7 +152,7 @@ const t = {
       <ol class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
         {t.engagement.steps.map((step, index) => (
           <li class="border-t-2 border-coral pt-5">
-            <p class="font-bold tracking-[0.12em] text-teal" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+            <p class="font-bold tracking-[0.12em] text-teal">{String(index + 1).padStart(2, '0')}</p>
             <h3 class="home-h3 mt-2">{step.title}</h3>
             <p class="mt-2 leading-relaxed">{step.text}</p>
           </li>

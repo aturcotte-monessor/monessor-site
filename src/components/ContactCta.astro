@@ -12,12 +12,14 @@ interface Props {
 const {
   href,
   label,
-  ariaLabel = label,
+  ariaLabel,
   className = 'btn btn--outline',
   target = '_blank',
   rel = 'noopener noreferrer',
   fathomEventName = 'Click ScheduleMeeting Home'
 } = Astro.props;
+
+const newTab = target === '_blank' ? (Astro.currentLocale === 'en' ? ' (opens in a new tab)' : ' (nouvel onglet)') : '';
 
 const onClickHandler = `(function (event) {
   try {
@@ -43,5 +45,5 @@ const onClickHandler = `(function (event) {
   aria-label={ariaLabel}
   onclick={onClickHandler}
 >
-  {label}
+  {label}{newTab && <span class="sr-only">{newTab}</span>}
 </a>
