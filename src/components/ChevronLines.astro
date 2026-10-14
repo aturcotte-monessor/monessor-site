@@ -1,0 +1,44 @@
+---
+// Motif au trait pour les bandes foncées : un faisceau de lignes fines qui montent vers la droite,
+// à la pente des chevrons de l'emblème (2:3), dans sa direction (vers le haut et la droite : l'essor).
+// Corail d'abord, puis une ou deux lignes blanches très pâles. Décoratif, sans animation.
+//
+// Le SVG n'a pas de viewBox : les coordonnées sont en pixels, donc l'épaisseur (1 px) et l'écart
+// entre les lignes (`gap`) restent identiques quelle que soit la taille du cadre. La première ligne
+// part du coin inférieur gauche du cadre ; avec un cadre au ratio 3:2, elle aboutit au coin supérieur droit.
+// Le parent doit être `relative overflow-hidden` ; la taille du cadre se règle par classes.
+
+interface Props {
+  corner?: 'bottom-right' | 'top-right';
+  tone?: 'normal' | 'subtle';
+  /** Nombre de lignes blanches après la ligne corail (1 ou 2). */
+  whites?: 1 | 2;
+  /** Écart horizontal entre deux lignes, en pixels ; 13 px donne ≈ 7 px perpendiculairement. */
+  gap?: number;
+  class?: string;
+}
+
+const { corner = 'bottom-right', tone = 'normal', whites = 2, gap = 13, class: className = '' } = Astro.props;
+const position = corner === 'top-right' ? 'top-0 right-0' : 'bottom-0 right-0';
+const coral = tone === 'subtle' ? 0.45 : 0.8;
+const white = tone === 'subtle' ? 0.06 : 0.16;
+const lines = [
+  { offset: 0, color: '#FF6F61', opacity: coral },
+  ...Array.from({ length: whites }, (_, i) => ({ offset: gap * (i + 1), color: '#F8FAFC', opacity: white * (1 - i * 0.3) }))
+];
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+  class={`pointer-events-none absolute ${position} ${className}`}
+>
+  <!-- Repère placé au coin inférieur gauche du cadre ; chaque ligne monte de 2 px pour 3 px vers la droite -->
+  <svg x="0" y="100%" overflow="visible">
+    {lines.map((line) => (
+      <line x1={line.offset - 1500} y1="1000" x2={line.offset + 1500} y2="-1000" stroke={line.color} stroke-opacity={line.opacity} stroke-width="1" />
+    ))}
+  </svg>
+</svg>
