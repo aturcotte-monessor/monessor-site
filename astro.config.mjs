@@ -119,10 +119,10 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Les pages 404 ne doivent pas être indexées
-      // Ni les pages 404 ni la racine (qui redirige selon la langue) ne sont indexées
+      // Ni les pages 404, ni la racine (qui redirige selon la langue), ni les pages de travail /fr/dev/ ne sont indexées
       filter: (page) => {
         const pathname = new URL(page).pathname;
-        return pathname !== '/' && !/\/404\/?$/.test(pathname);
+        return pathname !== '/' && !/\/404\/?$/.test(pathname) && !pathname.startsWith('/fr/dev/');
       },
       serialize(item) {
         const pathname = new URL(item.url).pathname;
