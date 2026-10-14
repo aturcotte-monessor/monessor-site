@@ -8,7 +8,7 @@ import InsightCard from './InsightCard.astro';
 import Icon from './Icon.astro';
 import ChevronLines from './ChevronLines.astro';
 import { MEETING_URL, fathomEvent } from '../utils/tracking';
-import { resolveSegment } from '../utils/insights';
+import { articleSegments } from '../utils/articleSegments';
 
 type IconName = Parameters<typeof Icon>[0]['name'];
 type Item = { icon?: IconName; title: string; text: string; meta?: string };
@@ -164,7 +164,7 @@ const insightsBase = locale === 'fr' ? '/fr/perspectives/' : '/en/insights/';
               entry={entry}
               href={`${insightsBase}${entry.id.replace(/^(fr|en)\//, '')}/`}
               locale={locale}
-              segment={resolveSegment(entry, all)}
+              segments={articleSegments(entry, all)}
               headingLevel={3}
             />
           ))}

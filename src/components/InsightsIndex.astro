@@ -1,0 +1,55 @@
+---
+// Index des analyses : /fr/perspectives/ et /en/insights/.
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import PageHero from './PageHero.astro';
+import InsightCard from './InsightCard.astro';
+import { articleSegments } from '../utils/articleSegments';
+
+interface Props {
+  locale: 'fr' | 'en';
+}
+
+const { locale } = Astro.props;
+const all = await getCollection('insights', ({ data }) => !data.draft);
+const entries = all
+  .filter((e) => e.data.lang === locale)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const base = locale === 'fr' ? '/fr/perspectives/' : '/en/insights/';
+
+const t = {
+  fr: {
+    title: 'Perspectives : analyses de gestion des TI | Monessor',
+    description: 'Analyses sur la gouvernance des TI, la modernisation, l’intelligence artificielle et le risque, pour les dirigeants de PME et de la finance réglementée.',
+    kicker: 'Perspectives',
+    h1: 'Analyses pour décider avec rigueur',
+    lead: 'Gouvernance des TI, modernisation, intelligence artificielle et risque : des analyses sourcées pour les dirigeants de PME et de la finance réglementée.'
+  },
+  en: {
+    title: 'Insights: strategic IT management analysis | Monessor',
+    description: 'Analysis on IT governance, modernization, artificial intelligence and risk, for leaders of SMEs and regulated financial institutions.',
+    kicker: 'Insights',
+    h1: 'Analysis for rigorous decisions',
+    lead: 'IT governance, modernization, artificial intelligence and risk: sourced analysis for leaders of SMEs and regulated financial institutions.'
+  }
+}[locale];
+---
+
+<Layout locale={locale} title={t.title} description={t.description}>
+  <PageHero locale={locale} kicker={t.kicker} title={t.h1} lead={t.lead} cta={false} />
+
+  <section class="bg-light py-16 text-ink">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {entries.map((entry) => (
+          <InsightCard
+            entry={entry}
+            href={`${base}${entry.id.replace(/^(fr|en)\//, '')}/`}
+            locale={locale}
+            segments={articleSegments(entry, all)}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

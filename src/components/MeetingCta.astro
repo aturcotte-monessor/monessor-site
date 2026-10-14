@@ -15,9 +15,11 @@ interface Props {
   id?: string;
   /** Sans section englobante, pour l'insérer dans un gabarit déjà sur fond clair (articles). */
   bare?: boolean;
+  /** Ajoute un lien vers la page de service du segment (variantes pme et sf). */
+  serviceLink?: boolean;
 }
 
-const { locale = 'fr', variant = 'generic', placement = 'Card', id, bare = false } = Astro.props;
+const { locale = 'fr', variant = 'generic', placement = 'Card', id, bare = false, serviceLink = false } = Astro.props;
 const pathname = Astro.url.pathname;
 
 const copy = {
@@ -68,6 +70,18 @@ const copy = {
 }[locale];
 
 const { title, text } = copy[variant];
+
+const services = {
+  fr: {
+    pme: { label: 'Découvrir l’offre aux PME →', href: '/fr/services/pme/' },
+    sf: { label: 'Découvrir l’offre en finance réglementée →', href: '/fr/services/finance-reglementee/' }
+  },
+  en: {
+    pme: { label: 'Explore the SME offer →', href: '/en/services/sme/' },
+    sf: { label: 'Explore the regulated finance offer →', href: '/en/services/regulated-finance/' }
+  }
+}[locale];
+const service = serviceLink && (variant === 'pme' || variant === 'sf') ? services[variant] : undefined;
 const headingId = `${id ?? 'rdv'}-titre`;
 
 // Sans enveloppe en mode « bare » ; sinon section claire pleine largeur + conteneur centré
@@ -83,6 +97,7 @@ const innerProps = bare ? {} : { class: 'mx-auto max-w-7xl px-6 lg:px-8' };
       <ChevronLines class="hidden h-[180px] w-[270px] xl:block" />
       <h2 id={headingId} class="text-2xl font-semibold text-light md:text-3xl">{title}</h2>
       <p class="mt-3 max-w-2xl text-light/85">{text}</p>
+      {service && <a class="mt-3 inline-block font-semibold text-light underline underline-offset-4" href={service.href}>{service.label}</a>}
       <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
         <ContactCta href={MEETING_URL} label={copy.button} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', placement, locale, pathname)} />
         <p class="text-sm text-light/85">
