@@ -11,7 +11,9 @@ interface Props {
   description: string;
   locale?: 'fr' | 'en';
   switchHref?: string;
+  /** Image de partage 1200×630 ; par défaut, celle de la langue (public/assets/og/). */
   image?: string;
+  imageAlt?: string;
   ogType?: 'website' | 'article';
   ogTitle?: string;
   /** Vignette de rendez-vous avant le pied de page ; `false` si la page la place elle-même ou n'en veut pas (404). */
@@ -21,7 +23,7 @@ interface Props {
   noindex?: boolean;
 }
 
-const { title, description, locale = 'fr', switchHref, image = '/assets/alex.jpg', ogType = 'website', ogTitle = title, meeting = 'generic', meetingId, noindex = false } = Astro.props;
+const { title, description, locale = 'fr', switchHref, image = `/assets/og/og-${locale}.jpg`, imageAlt, ogType = 'website', ogTitle = title, meeting = 'generic', meetingId, noindex = false } = Astro.props;
 
 const siteUrl = 'https://www.monessor.com';
 const pathname = Astro.url.pathname;
@@ -38,24 +40,37 @@ const urlEN = new URL(enPath, siteUrl).href;
 // x-default : la racine pour l'accueil (elle redirige selon la langue du navigateur), sinon la version française
 const urlDefault = frPath === '/fr/' ? new URL('/', siteUrl).href : urlFR;
 const absoluteImageUrl = new URL(image, siteUrl).href;
+const ogImageAlt = imageAlt ?? (locale === 'fr' ? 'Monessor, conseil en gestion stratégique des TI' : 'Monessor, strategic IT management advisory');
 
 // Données structurées JSON-LD pour l'entité Monessor
+// Même @id sur toutes les pages : les autres blocs (Service, BlogPosting) y renvoient.
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": `${siteUrl}/#organisation`,
   "name": "Monessor",
+  "legalName": "Services-conseils Monessor inc.",
   "url": siteUrl,
   "logo": `${siteUrl}/assets/monessor-logo.png`,
-  "image": absoluteImageUrl,
+  "image": new URL(`/assets/og/og-${locale}.jpg`, siteUrl).href,
   "description": locale === 'fr'
-    ? "Cabinet-conseil en stratégie technologique, CTO à temps partagé et gouvernance TI pour secteurs réglementés."
-    : "Executive advisory firm specializing in technology strategy, fractional CTO services, and IT governance.",
+    ? "Conseil en gestion stratégique des TI pour les PME et les services financiers réglementés."
+    : "Strategic IT management advisory for SMEs and regulated financial services.",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Montréal",
     "addressRegion": "QC",
     "addressCountry": "CA"
   },
+  "areaServed": [{ "@type": "AdministrativeArea", "name": "Québec" }, { "@type": "Country", "name": "Canada" }],
+  "founder": {
+    "@type": "Person",
+    "name": "Alex Turcotte",
+    "jobTitle": locale === 'fr' ? "Associé directeur" : "Managing Partner",
+    "url": new URL(locale === 'fr' ? '/fr/a-propos/' : '/en/about/', siteUrl).href,
+    "sameAs": ["https://www.linkedin.com/in/turcottealex"]
+  },
+  "sameAs": ["https://www.linkedin.com/in/turcottealex"],
   "knowsLanguage": ["fr", "en"]
 };
 ---
@@ -85,14 +100,19 @@ const organizationSchema = {
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={absoluteImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:site_name" content="Monessor" />
-    <meta property="og:locale" content={locale === 'fr' ? 'fr_CA' : 'en_US'} />
+    <meta property="og:locale" content={locale === 'fr' ? 'fr_CA' : 'en_CA'} />
+    <meta property="og:locale:alternate" content={locale === 'fr' ? 'en_CA' : 'fr_CA'} />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <link rel="preload" href="/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/montserrat-wordmark-700.woff2" as="font" type="font/woff2" crossorigin />
