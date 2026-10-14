@@ -14,20 +14,37 @@ type Props = {
   locale?: 'fr' | 'en';
   variant?: 'light' | 'default';
   elevateOnHover?: boolean;
+  /** Segment visé, affiché en étiquette (PME / SF). */
+  segment?: 'pme' | 'sf';
+  /** Niveau du titre : 2 sur l'index Perspectives, 3 dans une section de l'accueil. */
+  headingLevel?: 2 | 3;
 };
 
-const { entry, href, locale = 'fr', variant = 'light', elevateOnHover = true } = Astro.props;
+const { entry, href, locale = 'fr', variant = 'light', elevateOnHover = true, segment, headingLevel = 2 } = Astro.props;
 const titleClass = variant === 'light' ? 'text-[#23545B]' : 'text-slate-900';
 const dateClass = 'text-xs uppercase tracking-[0.14em] text-slate-500';
 const summaryClass = 'mt-2 text-slate-600';
 const formattedDate = entry.data.pubDate.toLocaleDateString(locale === 'fr' ? 'fr-CA' : 'en-CA');
-const articleClass = `rounded-2xl bg-white border border-slate-200 p-6 shadow-sm${elevateOnHover ? ' transition-all hover:border-slate-300 hover:shadow-md' : ''}`;
+const articleClass = `relative rounded-2xl bg-white border border-slate-200 p-6 shadow-sm${elevateOnHover ? ' transition-all hover:border-slate-300 hover:shadow-md' : ''}`;
+const segmentLabels = {
+  fr: { pme: 'PME', sf: 'Services financiers' },
+  en: { pme: 'SMEs', sf: 'Financial services' }
+};
+const Heading = headingLevel === 3 ? 'h3' : 'h2';
 ---
 
 <article class={articleClass}>
-  <p class={dateClass}>{formattedDate}</p>
-  <h2 class={`mt-2 text-2xl font-semibold hover:underline underline-offset-4 ${titleClass}`}>
-    <a href={href} class="no-underline">{entry.data.title}</a>
-  </h2>
+  <p class={`flex flex-wrap items-center gap-3 ${dateClass}`}>
+    <span>{formattedDate}</span>
+    {segment && (
+      <span class="rounded-full border border-teal/30 px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.08em] text-teal">
+        {segmentLabels[locale][segment]}
+      </span>
+    )}
+  </p>
+  <Heading class={`mt-2 text-2xl font-semibold ${titleClass}`}>
+    <!-- Le lien couvre toute la carte (pseudo-élément) -->
+    <a href={href} class="no-underline hover:underline underline-offset-4 after:absolute after:inset-0 after:content-['']">{entry.data.title}</a>
+  </Heading>
   <p class={summaryClass}>{entry.data.excerpt}</p>
 </article>
