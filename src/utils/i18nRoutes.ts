@@ -8,7 +8,7 @@ export type Locale = 'fr' | 'en';
  */
 const SERVICE_ROUTE_PAIRS: Array<[fr: string, en: string]> = [
   ['/fr/services/pme/', '/en/services/sme/'],
-  ['/fr/services/services-financiers-reglementes/', '/en/services/regulated-financial-services/'],
+  ['/fr/services/finance-reglementee/', '/en/services/regulated-finance/'],
   ['/fr/approche/', '/en/approach/'],
   ['/fr/a-propos/', '/en/about/'],
   ['/fr/confidentialite/', '/en/privacy/'],

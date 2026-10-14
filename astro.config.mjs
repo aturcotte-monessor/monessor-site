@@ -62,7 +62,7 @@ const STATIC_PAIRS = [
   ['/fr/', '/en/'],
   ['/fr/perspectives/', '/en/insights/'],
   ['/fr/services/pme/', '/en/services/sme/'],
-  ['/fr/services/services-financiers-reglementes/', '/en/services/regulated-financial-services/'],
+  ['/fr/services/finance-reglementee/', '/en/services/regulated-finance/'],
   ['/fr/approche/', '/en/approach/'],
   ['/fr/a-propos/', '/en/about/'],
   ['/fr/confidentialite/', '/en/privacy/'],

@@ -132,22 +132,22 @@
     },
     {
       "source": "/services/gouvernance-sf-reglementee",
-      "destination": "/fr/services/services-financiers-reglementes/",
+      "destination": "/fr/services/finance-reglementee/",
       "statusCode": 301
     },
     {
       "source": "/services/gouvernance-sf-reglementee/",
-      "destination": "/fr/services/services-financiers-reglementes/",
+      "destination": "/fr/services/finance-reglementee/",
       "statusCode": 301
     },
     {
       "source": "/fr/services/gouvernance-sf-reglementee",
-      "destination": "/fr/services/services-financiers-reglementes/",
+      "destination": "/fr/services/finance-reglementee/",
       "statusCode": 301
     },
     {
       "source": "/fr/services/gouvernance-sf-reglementee/",
-      "destination": "/fr/services/services-financiers-reglementes/",
+      "destination": "/fr/services/finance-reglementee/",
       "statusCode": 301
     },
     {
@@ -172,12 +172,32 @@
     },
     {
       "source": "/en/services/regulated-fs-governance",
-      "destination": "/en/services/regulated-financial-services/",
+      "destination": "/en/services/regulated-finance/",
       "statusCode": 301
     },
     {
       "source": "/en/services/regulated-fs-governance/",
-      "destination": "/en/services/regulated-financial-services/",
+      "destination": "/en/services/regulated-finance/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/services/services-financiers-reglementes",
+      "destination": "/fr/services/finance-reglementee/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/services/services-financiers-reglementes/",
+      "destination": "/fr/services/finance-reglementee/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/services/regulated-financial-services",
+      "destination": "/en/services/regulated-finance/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/services/regulated-financial-services/",
+      "destination": "/en/services/regulated-finance/",
       "statusCode": 301
     },
     {
