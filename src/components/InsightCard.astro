@@ -1,10 +1,14 @@
 ---
+import { segmentLabels, type Segment } from '../utils/articleSegments';
+import { formatDate } from '../utils/dates';
+
 type InsightEntry = {
   id: string;
   data: {
     title: string;
     excerpt: string;
     pubDate: Date;
+    readTime?: string;
   };
 };
 
@@ -12,39 +16,36 @@ type Props = {
   entry: InsightEntry;
   href: string;
   locale?: 'fr' | 'en';
-  variant?: 'light' | 'default';
   elevateOnHover?: boolean;
-  /** Segment visé, affiché en étiquette (PME / SF). */
-  segment?: 'pme' | 'sf';
-  /** Niveau du titre : 2 sur l'index Perspectives, 3 dans une section de l'accueil. */
+  /** Segments visés, affichés en étiquettes (PME, Finance réglementée). */
+  segments?: Segment[];
+  /** Niveau du titre : 2 sur l'index Perspectives, 3 dans une section de page. */
   headingLevel?: 2 | 3;
 };
 
-const { entry, href, locale = 'fr', variant = 'light', elevateOnHover = true, segment, headingLevel = 2 } = Astro.props;
-const titleClass = variant === 'light' ? 'text-[#23545B]' : 'text-slate-900';
-const dateClass = 'text-xs uppercase tracking-[0.14em] text-slate-500';
-const summaryClass = 'mt-2 text-slate-600';
-const formattedDate = entry.data.pubDate.toLocaleDateString(locale === 'fr' ? 'fr-CA' : 'en-CA');
-const articleClass = `relative rounded-2xl bg-white border border-slate-200 p-6 shadow-sm${elevateOnHover ? ' transition-all hover:border-slate-300 hover:shadow-md' : ''}`;
-const segmentLabels = {
-  fr: { pme: 'PME', sf: 'Services financiers' },
-  en: { pme: 'SMEs', sf: 'Financial services' }
-};
+const { entry, href, locale = 'fr', elevateOnHover = true, segments = [], headingLevel = 2 } = Astro.props;
+const readLabel = locale === 'fr' ? 'de lecture' : 'read';
+const articleClass = `relative flex h-full flex-col rounded-2xl bg-white border border-slate-200 p-6 shadow-sm${elevateOnHover ? ' transition-all hover:border-slate-300 hover:shadow-md' : ''}`;
 const Heading = headingLevel === 3 ? 'h3' : 'h2';
 ---
 
 <article class={articleClass}>
-  <p class={`flex flex-wrap items-center gap-3 ${dateClass}`}>
-    <span>{formattedDate}</span>
-    {segment && (
-      <span class="rounded-full border border-teal/30 px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.08em] text-teal">
-        {segmentLabels[locale][segment]}
-      </span>
-    )}
-  </p>
-  <Heading class={`mt-2 text-2xl font-semibold ${titleClass}`}>
+  {segments.length > 0 && (
+    <p class="flex flex-wrap gap-2">
+      {segments.map((s) => (
+        <span class="rounded-full border border-teal/30 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-teal">
+          {segmentLabels[locale][s]}
+        </span>
+      ))}
+    </p>
+  )}
+  <Heading class="insight-card-title">
     <!-- Le lien couvre toute la carte (pseudo-élément) -->
     <a href={href} class="no-underline hover:underline underline-offset-4 after:absolute after:inset-0 after:content-['']">{entry.data.title}</a>
   </Heading>
-  <p class={summaryClass}>{entry.data.excerpt}</p>
+  <p class="mt-2 flex-1 text-slate-600">{entry.data.excerpt}</p>
+  <p class="mt-4 text-sm text-slate-600">
+    <time datetime={entry.data.pubDate.toISOString().slice(0, 10)}>{formatDate(entry.data.pubDate, locale)}</time>
+    {entry.data.readTime && <span> · {entry.data.readTime} {readLabel}</span>}
+  </p>
 </article>

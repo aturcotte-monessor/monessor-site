@@ -6,7 +6,7 @@ import ContactCta from '../../components/ContactCta.astro';
 import Icon from '../../components/Icon.astro';
 import ChevronLines from '../../components/ChevronLines.astro';
 import { MEETING_URL, fathomEvent } from '../../utils/tracking';
-import { resolveSegment } from '../../utils/insights';
+import { articleSegments } from '../../utils/articleSegments';
 import { ui } from '../../i18n/ui';
 
 const locale = 'en' as const;
@@ -229,7 +229,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
             entry={entry}
             href={`/en/insights/${entry.id.replace(/^en\//, '')}/`}
             locale={locale}
-            segment={resolveSegment(entry, allInsights)}
+            segments={articleSegments(entry, allInsights)}
             headingLevel={3}
           />
         ))}

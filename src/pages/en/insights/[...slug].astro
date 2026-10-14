@@ -1,141 +1,16 @@
 ---
-import { getCollection, render } from 'astro:content';
-import Layout from '../../../layouts/Layout.astro';
-import MeetingCta from '../../../components/MeetingCta.astro';
+import { getCollection } from 'astro:content';
+import ArticlePage from '../../../components/ArticlePage.astro';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('insights', ({ id, data }) => id.startsWith('en/') && data.lang === 'en');
-
+  const entries = await getCollection('insights', ({ id, data }) => id.startsWith('en/') && data.lang === 'en' && !data.draft);
   return entries.map((entry) => ({
-    params: { slug: entry.id.replace(/^en\//, '').replace(/\.md$/, '') },
+    params: { slug: entry.id.replace(/^en\//, '') },
     props: { entry }
   }));
 }
 
 const { entry } = Astro.props;
-
-// Segment de la vignette : frontmatter de l'article, sinon celui de sa traduction (même translationKey)
-const translations = entry.data.translationKey
-  ? await getCollection('insights', ({ data }) => data.translationKey === entry.data.translationKey)
-  : [];
-const segment = entry.data.segment ?? translations.find((t) => t.data.segment)?.data.segment;
-const { Content } = await render(entry);
-const metaParts = [entry.data.readTime, entry.data.author].filter(Boolean);
-
-// --- AJOUTS SEO & DONNÉES STRUCTURÉES (VERSION EN) ---
-const siteUrl = 'https://www.monessor.com';
-const currentUrl = new URL(Astro.url.pathname, siteUrl).href;
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": currentUrl
-  },
-  "headline": entry.data.title,
-  "description": entry.data.excerpt,
-  "inLanguage": "en-US",
-  "datePublished": entry.data.pubDate.toISOString(),
-  "dateModified": (entry.data.updatedDate || entry.data.pubDate).toISOString(),
-  "author": {
-    "@type": "Person",
-    "name": entry.data.author || "Alex Turcotte",
-    "jobTitle": entry.data.authorTitle || "Managing Partner & Fractional CTO",
-    "sameAs": "https://www.linkedin.com/in/turcottealex"
-  },
-  "image": {
-    "@type": "ImageObject",
-    "url": `${siteUrl}/assets/og-insight-default.png`,
-    "width": "1200",
-    "height": "627"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Monessor",
-    "url": siteUrl,
-    "logo": {
-      "@type": "ImageObject",
-      "url": `${siteUrl}/assets/monessor-logo.png`
-    }
-  },
-  ...(entry.data.tags && { "keywords": entry.data.tags.join(", ") })
-};
-
-const faqSchema = entry.data.faq && entry.data.faq.length > 0
-  ? {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": entry.data.faq.map((item) => ({
-        "@type": "Question",
-        "name": item.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": item.answer
-        }
-      }))
-    }
-  : null;
 ---
 
-<Layout locale="en" title={`${entry.data.title} - By ${entry.data.author || 'Alex Turcotte'}`} description={entry.data.excerpt} image="/assets/og-insight-default.png" ogType="article" ogTitle={entry.data.title} meeting={false}>
-  <Fragment slot="head">
-    <!-- Open Graph & Twitter Cards for LinkedIn/Social Sharing -->
-    <meta property="article:published_time" content={entry.data.pubDate.toISOString()} />
-    <meta property="article:author" content={entry.data.author || "Alex Turcotte"} />
-
-    <!-- Images pour Open Graph (LinkedIn) & Twitter -->
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="627" />
-    <meta property="og:image:alt" content="Monessor - Technology Strategy & IT Leadership Advisory" />
-
-    <!-- Schema.org BlogPosting Structured Data for Googlebot -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
-    <!-- Schema.org FAQPage Structured Data for AEO (Google AI Overviews, Perplexity, SearchGPT) -->
-    {faqSchema && (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-    )}
-  </Fragment>
-
-  <section class="bg-[#F8FAFC] min-h-[calc(100vh-80px)] py-16">
-    <article class="max-w-7xl mx-auto px-6 lg:px-8">
-      <p class="text-xs uppercase tracking-[0.14em] text-slate-500">
-        {entry.data.pubDate.toLocaleDateString('en-CA')}
-        {metaParts.length > 0 ? ` • ${metaParts.join(' • ')}` : ''}
-      </p>
-      <h1 class="mt-2 text-4xl font-semibold tracking-tight text-[#23545B]">{entry.data.title}</h1>
-      <p class="mt-4 max-w-3xl text-lg text-slate-700">{entry.data.excerpt}</p>
-
-      <div class="insight-content mt-10 max-w-none [&_p]:text-slate-800 [&>p]:mb-6 [&>p]:leading-relaxed [&_h2]:text-[#23545B] [&_h2]:font-semibold [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-[#23545B] [&_h3]:text-[#23545B] [&_h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-3 [&_a]:text-teal [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-teal/40 [&_a]:transition-colors hover:[&_a]:decoration-teal [&_ul]:text-slate-700 [&>ul]:my-6 [&>ul]:space-y-2 [&>ul]:list-disc [&>ul]:pl-6 [&_ol]:text-slate-700 [&>ol]:my-6 [&>ol]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&_blockquote]:text-slate-700 [&_li]:text-slate-700 [&>hr]:mt-12 [&>hr]:mb-12 [&>hr]:border-slate-200 [&>hr]:opacity-30">
-        <Content />
-        <p class="mt-8 border-t border-slate-200 pt-4 text-sm italic"><strong>Transparency note: </strong>This text was conceived and structured by {entry.data.author || 'Alex Turcotte'}, then written with the assistance of artificial intelligence, in a voice calibrated on his own writing. AI was also used for background research and translation. The core ideas and the real-world business experience are his own.</p>
-      </div>
-
-      <div class="mt-12">
-        <MeetingCta locale="en" variant={segment ?? 'article'} placement="Article" bare />
-      </div>
-
-      {entry.data.faq && entry.data.faq.length > 0 && (
-        <div class="mt-12">
-          <h2 class="text-2xl font-bold text-[#23545B]">Frequently Asked Questions</h2>
-          <div class="accordion-container mt-4 rounded-2xl border border-[#23545B]/10 bg-white">
-            {entry.data.faq.map((item, index) => (
-              <div class="accordion-item">
-                <button class="accordion-trigger" aria-expanded="false" aria-controls={`faq-${index}-content`}>
-                  <span>{item.question}</span>
-                  <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </button>
-                <div class="accordion-content" id={`faq-${index}-content`}>
-                  <p class="accordion-text">{item.answer}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-    </article>
-  </section>
-</Layout>
+<ArticlePage entry={entry} />
