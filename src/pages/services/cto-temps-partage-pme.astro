@@ -6,7 +6,7 @@ const url = 'https://www.monessor.com/services/cto-temps-partage-pme/';
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Conseil en gestion stratégique des TI pour PME établies',
+  name: 'Conseil en gestion stratégique des TI pour PME',
   serviceType: 'Conseil en gestion stratégique des TI',
   url,
   provider: { '@type': 'ProfessionalService', name: 'Monessor', url: 'https://www.monessor.com' },
@@ -14,7 +14,7 @@ const jsonLd = {
   availableLanguage: ['fr', 'en'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Offres aux PME établies',
+    name: 'Offres aux PME',
     itemListElement: [
       {
         '@type': 'Offer',
@@ -40,12 +40,12 @@ const jsonLd = {
   locale="fr"
   segment="pme"
   title="Diagnostic de maturité TI et direction TI pour PME | Monessor"
-  description="Diagnostic de maturité TI de 2 à 3 semaines, dès 12 500 $, pour les PME établies de 10 M$ à 100 M$. Puis livrables ciblés et direction TI à temps partagé."
+  description="Diagnostic de maturité TI de 2 à 3 semaines, dès 12 500 $, pour les PME. Puis livrables ciblés et direction TI à temps partagé."
   jsonLd={jsonLd}
   hero={{
-    kicker: 'Conseil en gestion stratégique des TI · PME établies',
+    kicker: 'Conseil en gestion stratégique des TI · PME',
     title: 'Reprenez le contrôle de vos investissements technologiques.',
-    lead: 'Monessor aide les dirigeants de PME établies, de 10 M$ à 100 M$ de chiffre d’affaires (manufacturières, de distribution ou de services, par exemple), à réduire la dette technique, à arbitrer les projets critiques et à encadrer l’intelligence artificielle avec la rigueur de gouvernance du secteur financier réglementé.',
+    lead: 'Monessor aide les dirigeants de PME à réduire la dette technique, à arbitrer les projets critiques et à encadrer l’intelligence artificielle avec la rigueur de gouvernance du secteur financier réglementé. Nos clients réalisent le plus souvent entre 5 et 100 millions de dollars de chiffre d’affaires, dans la fabrication, la distribution ou les services.',
     secondary: { label: 'Voir le Diagnostic', href: '#diagnostic' }
   }}
   issues={{
@@ -124,6 +124,10 @@ const jsonLd = {
         text: 'Une présence au comité de direction, environ une journée par semaine, pour piloter l’exécution, encadrer les équipes et rendre compte au conseil.'
       }
     ]
+  }}
+  note={{
+    title: 'Aide financière possible',
+    text: 'Selon le projet, un diagnostic numérique, une sélection de systèmes ou la mise en œuvre d’un plan numérique peut être admissible au programme ESSOR d’Investissement Québec, qui rembourse jusqu’à 50 % des dépenses admissibles. La demande doit être déposée avant le début du mandat, l’acceptation n’est pas garantie et le programme prend fin le 31 mars 2027. Nous pouvons vous aider à évaluer si votre projet s’y prête.'
   }}
   expertise={{
     id: 'expertise-complementaire',

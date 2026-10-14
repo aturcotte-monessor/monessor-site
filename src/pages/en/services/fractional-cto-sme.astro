@@ -6,7 +6,7 @@ const url = 'https://www.monessor.com/en/services/fractional-cto-sme/';
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Strategic IT management advisory for established SMEs',
+  name: 'Strategic IT management advisory for SMEs',
   serviceType: 'Strategic IT management advisory',
   url,
   provider: { '@type': 'ProfessionalService', name: 'Monessor', url: 'https://www.monessor.com' },
@@ -14,7 +14,7 @@ const jsonLd = {
   availableLanguage: ['en', 'fr'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Offers for established SMEs',
+    name: 'Offers for SMEs',
     itemListElement: [
       {
         '@type': 'Offer',
@@ -40,12 +40,12 @@ const jsonLd = {
   locale="en"
   segment="pme"
   title="IT Maturity Diagnostic and IT Leadership for SMEs | Monessor"
-  description="A 2-to-3-week IT Maturity Diagnostic from $12,500 for established SMEs ($10M–$100M revenue), then targeted deliverables and fractional IT leadership."
+  description="A 2-to-3-week IT Maturity Diagnostic from $12,500 for SMEs, then targeted deliverables and fractional IT leadership."
   jsonLd={jsonLd}
   hero={{
-    kicker: 'Strategic IT management advisory · Established SMEs',
+    kicker: 'Strategic IT management advisory · SMEs',
     title: 'Take back control of your technology investments.',
-    lead: 'Monessor helps leaders of established SMEs with $10M to $100M in revenue (manufacturers, distributors or service firms, for example) reduce technical debt, prioritize critical projects and govern artificial intelligence with the discipline of regulated financial services.',
+    lead: 'Monessor helps SME leaders reduce technical debt, prioritize critical projects and govern artificial intelligence with the discipline of regulated financial services. Our clients typically have between $5 million and $100 million in revenue, in manufacturing, distribution or services.',
     secondary: { label: 'See the Diagnostic', href: '#diagnostic' }
   }}
   issues={{
@@ -124,6 +124,10 @@ const jsonLd = {
         text: 'A seat on your leadership team, about one day a week, to steer execution, guide the teams and report to the board.'
       }
     ]
+  }}
+  note={{
+    title: 'Possible financial assistance',
+    text: 'Depending on the project, a digital diagnostic, a system selection or the implementation of a digital plan may be eligible for Investissement Québec’s ESSOR program, which covers up to 50% of eligible expenses. The application must be filed before the engagement begins, approval is not guaranteed and the program ends on March 31, 2027. We can help you assess whether your project qualifies.'
   }}
   expertise={{
     id: 'expertise-complementaire',

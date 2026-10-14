@@ -17,7 +17,7 @@
 4. **Copie & Vocabulaire :**
    - Utiliser un ton C-Level, sobre et factuel.
    - Ne jamais utiliser de vocabulaire d'agence générique ("funnels", "growth hacking", "boostez vos ventes").
-   - Segment A = PME Établies ($10M–$100M CA). Offre d'entrée = *Diagnostic de Maturité TI & IA* (2-3 semaines).
+   - Segment A = PME. Offre d'entrée = *Diagnostic de maturité TI & IA* (2-3 semaines). Clients typiques : 5 M$ à 100 M$ de chiffre d'affaires, mentionné une seule fois dans le texte de la page PME ; jamais « établies » ni la fourchette dans les menus, titres, méta ou données structurées.
    - Segment B = Secteurs Régulés (BSIF/OSFI). Offre d'entrée = *Revue de Gouvernance TI* (3-4 semaines), sans prix public.
    - Titre d'Alex Turcotte : associé directeur / Managing Partner. LinkedIn : https://www.linkedin.com/in/turcottealex
 5. **Composants :** Réutiliser les composants existants (`Layout.astro`, `Header.astro`, `Footer.astro`, `MeetingCta.astro`, `ContactCta.astro`, accordéons, cartes) plutôt que d'en recréer de nouveaux.
