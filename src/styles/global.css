@@ -74,8 +74,20 @@ body {
   h3 { margin: 0 0 8px 0; font-size: 18px; }
 }
 
-/* Mot-symbole MONESSOR : police inchangée en attendant le choix de la police de marque */
-.wordmark { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; }
+/* Mot-symbole MONESSOR : Montserrat Bold, sous-ensemble limité aux lettres M O N E S R (licence SIL OFL : /fonts/Montserrat-OFL.txt).
+   Espacement naturel : l'écart entre les lettres reproduit celui du logo d'origine. */
+@font-face {
+  font-family: "Montserrat Wordmark";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/montserrat-wordmark-700.woff2") format("woff2");
+}
+.wordmark {
+  font-family: "Montserrat Wordmark", "Montserrat", var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0;
+}
 
 /* Focus clavier visible partout */
 .bg-teal-deep, .bg-teal, footer { --focus-ring: var(--color-coral); }
