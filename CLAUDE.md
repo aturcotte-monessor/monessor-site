@@ -10,7 +10,7 @@
 1. **Palette (charte Monessor, règle 60-30-10) :**
    - 60 % clair : fond `#F8FAFC` (`bg-light`) et blanc pour les cartes ; texte courant `#434343` (`text-ink`).
    - 30 % sarcelle `#23545B` (`text-teal`, `bg-teal`) : titres, liens et structure sur fond clair ; jamais en texte sur fond foncé.
-   - 10 % corail `#FF6F61` (`bg-coral`) : bouton d'action unique (`.btn`) avec texte foncé `#0E1315` (`text-ink-dark`), chiffres clés et accents sur fond foncé.
+   - 10 % corail `#FF6F61` (`bg-coral`) : bouton d'action unique (`.btn`) avec texte sarcelle profonde `#102A2E` (5,5:1), chiffres clés et accents sur fond foncé.
    - Sarcelle profonde `#102A2E` (`bg-teal-deep`) pour les bandes et blocs foncés (héros, vignette de rendez-vous, pied de page), texte `#F8FAFC`.
    - Corail foncé `#C6483C` (`text-coral-text`), même teinte : seule façon d'utiliser le corail en texte ou en icône sur fond clair (4,6:1).
    - Interdits : texte blanc sur corail, corail `#FF6F61` en texte sur fond clair (2,6:1), toute autre couleur hors charte (menthe, verts, or).
