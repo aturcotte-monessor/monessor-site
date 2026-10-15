@@ -1,5 +1,11 @@
 import type { Locale } from './i18nRoutes';
 
+/** Fiche Person d'Alex Turcotte sur son site personnel : founder et author y renvoient par ce même @id. */
+export const PERSON_ID = 'https://www.alexturcotte.ca/#alex-turcotte';
+
+/** Site personnel d'Alex Turcotte, dans la langue de la page. */
+export const personalSiteUrl = (locale: Locale) => `https://www.alexturcotte.ca/${locale}/`;
+
 /** Lien de prise de rendez-vous (Google Agenda), utilisé par tous les boutons « Planifier une rencontre ». */
 export const MEETING_URL = 'https://calendar.app.google/jrWp3LMihMCr5qew7';
 
@@ -17,7 +23,7 @@ export function pageKey(pathname: string): string {
  * Ex. : `Click ScheduleMeeting Header [FR] services/pme`.
  */
 export function fathomEvent(
-  action: 'ScheduleMeeting' | 'Email' | 'Phone' | 'LinkedIn',
+  action: 'ScheduleMeeting' | 'Email' | 'Phone' | 'LinkedIn' | 'PersonalSite',
   placement: string,
   locale: Locale,
   pathname: string
