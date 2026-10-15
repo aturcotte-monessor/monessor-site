@@ -35,7 +35,7 @@ const t = {
 }[locale];
 ---
 
-<Layout locale={locale} title={t.title} description={t.description}>
+<Layout locale={locale} title={t.title} description={t.description} image={locale === 'fr' ? '/assets/og/og-perspectives-fr.jpg' : '/assets/og/og-insights-en.jpg'}>
   <PageHero locale={locale} kicker={t.kicker} title={t.h1} lead={t.lead} cta={false} />
 
   <section class="bg-light py-16 text-ink">

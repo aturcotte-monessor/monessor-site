@@ -8,6 +8,8 @@ import ChevronLines from '../../components/ChevronLines.astro';
 import { MEETING_URL, fathomEvent } from '../../utils/tracking';
 import { articleSegments } from '../../utils/articleSegments';
 import { ui } from '../../i18n/ui';
+import { Picture } from 'astro:assets';
+import portrait from '../../assets/alex.jpg';
 
 const locale = 'en' as const;
 const pathname = Astro.url.pathname;
@@ -241,15 +243,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
   <!-- PROFILE -->
   <section class="bg-white py-20 text-ink" id="about">
     <div class={`${container} grid items-center gap-10 md:grid-cols-[220px_1fr] lg:gap-14`}>
-      <img
-        src="/assets/alex.jpg"
-        alt="Portrait of Alex Turcotte"
-        width="220"
-        height="220"
-        loading="lazy"
-        decoding="async"
-        class="h-[220px] w-[220px] rounded-2xl object-cover"
-      />
+      <Picture src={portrait} alt="Portrait of Alex Turcotte" widths={[220, 440]} sizes="220px" width={220} height={220} formats={["avif", "webp"]} loading="lazy" decoding="async" class="h-[220px] w-[220px] rounded-2xl object-cover" />
       <div class="max-w-3xl">
         <p class="home-kicker text-teal">About</p>
         <h2 class="home-h2">Alex Turcotte, Managing Partner</h2>

@@ -224,6 +224,11 @@
       "source": "/services/:path(.*)",
       "destination": "/fr/services/:path",
       "statusCode": 301
+    },
+    {
+      "source": "/:path((?:fr|en)(?:/[^.]*[^/.])?)",
+      "destination": "/:path/",
+      "statusCode": 301
     }
   ]
 }
