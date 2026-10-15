@@ -3,7 +3,7 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from './PageHero.astro';
 import Icon from './Icon.astro';
-import { fathomEvent } from '../utils/tracking';
+import { PERSON_ID, fathomEvent, personalSiteUrl } from '../utils/tracking';
 import { Picture } from 'astro:assets';
 import portrait from '../assets/alex.jpg';
 
@@ -42,7 +42,8 @@ const t = {
         'Il travaille aux côtés des dirigeants pour clarifier les priorités, encadrer les risques et traduire les décisions technologiques en résultats d’affaires, avec un style calme, structuré et pragmatique, particulièrement utile en période de transition, de modernisation ou de croissance.'
       ],
       portraitAlt: 'Portrait d’Alex Turcotte',
-      linkedin: 'Profil LinkedIn'
+      linkedin: 'Profil LinkedIn',
+      fullProfile: 'Profil complet sur alexturcotte.ca'
     },
     next: {
       title: 'Pour aller plus loin',
@@ -80,7 +81,8 @@ const t = {
         'He works alongside leadership teams to clarify priorities, keep risk under control and turn technology decisions into business results, with a calm, structured and pragmatic style that is particularly useful in times of transition, modernization or growth.'
       ],
       portraitAlt: 'Portrait of Alex Turcotte',
-      linkedin: 'LinkedIn profile'
+      linkedin: 'LinkedIn profile',
+      fullProfile: 'Full profile on alexturcotte.ca'
     },
     next: {
       title: 'Learn more',
@@ -106,11 +108,11 @@ const jsonLd = {
   address: { '@type': 'PostalAddress', addressLocality: 'Montréal', addressRegion: 'QC', addressCountry: 'CA' },
   founder: {
     '@type': 'Person',
+    '@id': PERSON_ID,
     name: 'Alex Turcotte',
     jobTitle: t.jobTitle,
     image: 'https://www.monessor.com/assets/alex-600.jpg',
-    // À ajouter quand le site personnel sera en ligne : 'https://alexturcotte.ca'
-    sameAs: [linkedin]
+    sameAs: [linkedin, 'https://www.alexturcotte.ca/']
   }
 };
 ---
@@ -154,7 +156,11 @@ const jsonLd = {
             rel="noopener noreferrer"
             data-fathom-event={fathomEvent('LinkedIn', 'Profile', locale, pathname)}
           >{t.profile.linkedin}</a>
-          <!-- Lien vers le site personnel (alexturcotte.ca) à ajouter ici quand il sera en ligne -->
+          <a
+            class="btn btn--outline-teal"
+            href={personalSiteUrl(locale)}
+            data-fathom-event={fathomEvent('PersonalSite', 'Profile', locale, pathname)}
+          >{t.profile.fullProfile}</a>
         </div>
       </div>
     </div>

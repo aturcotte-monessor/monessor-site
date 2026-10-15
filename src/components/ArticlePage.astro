@@ -9,7 +9,7 @@ import InsightCard from './InsightCard.astro';
 import { articleSegments, relatedArticles, segmentLabels } from '../utils/articleSegments';
 import { formatDate } from '../utils/dates';
 import { articleSeo } from '../utils/articleSeo';
-import { fathomEvent } from '../utils/tracking';
+import { PERSON_ID, fathomEvent, personalSiteUrl } from '../utils/tracking';
 import { Picture } from 'astro:assets';
 import portrait from '../assets/alex.jpg';
 
@@ -91,10 +91,11 @@ const articleLd = {
   dateModified: isoDay(entry.data.updatedDate || entry.data.pubDate),
   author: {
     '@type': 'Person',
+    '@id': PERSON_ID,
     name: author,
     jobTitle: t.jobTitle,
     url: new URL(t.profileHref, siteUrl).href,
-    sameAs: ['https://www.linkedin.com/in/turcottealex']
+    sameAs: ['https://www.linkedin.com/in/turcottealex', 'https://www.alexturcotte.ca/']
   },
   image: { '@type': 'ImageObject', url: new URL(shareImage, siteUrl).href, width: 1200, height: 630 },
   publisher: {
@@ -196,6 +197,11 @@ const faqLd = faq.length
               class="font-semibold text-teal underline underline-offset-4"
               data-fathom-event={fathomEvent('LinkedIn', 'Author', locale, pathname)}
             >LinkedIn</a>
+            <a
+              href={personalSiteUrl(locale)}
+              class="font-semibold text-teal underline underline-offset-4"
+              data-fathom-event={fathomEvent('PersonalSite', 'Author', locale, pathname)}
+            >alexturcotte.ca</a>
           </p>
         </div>
       </aside>

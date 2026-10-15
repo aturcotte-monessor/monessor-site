@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MeetingCta, { type MeetingVariant } from '../components/MeetingCta.astro';
 import { getAlternatePath } from '../utils/i18nRoutes';
+import { PERSON_ID } from '../utils/tracking';
 import '../styles/global.css';
 
 interface Props {
@@ -65,10 +66,11 @@ const organizationSchema = {
   "areaServed": [{ "@type": "AdministrativeArea", "name": "Québec" }, { "@type": "Country", "name": "Canada" }],
   "founder": {
     "@type": "Person",
+    "@id": PERSON_ID,
     "name": "Alex Turcotte",
     "jobTitle": locale === 'fr' ? "Associé directeur" : "Managing Partner",
     "url": new URL(locale === 'fr' ? '/fr/a-propos/' : '/en/about/', siteUrl).href,
-    "sameAs": ["https://www.linkedin.com/in/turcottealex"]
+    "sameAs": ["https://www.linkedin.com/in/turcottealex", "https://www.alexturcotte.ca/"]
   },
   "sameAs": ["https://www.linkedin.com/in/turcottealex"],
   "knowsLanguage": ["fr", "en"]
