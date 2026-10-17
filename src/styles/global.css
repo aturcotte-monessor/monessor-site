@@ -360,6 +360,15 @@ body {
   color: var(--color-teal);
 }
 
+/* Sous-titres d'une offre détaillée (solutions sur mesure) */
+.offer-h3{
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--color-teal);
+}
+
 /* Cartes d'analyses (index Perspectives, accueil, pages de service, articles liés) */
 .insight-card-title{
   margin: 12px 0 0;

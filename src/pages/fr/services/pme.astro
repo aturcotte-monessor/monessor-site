@@ -23,6 +23,11 @@ const jsonLd = {
       },
       {
         '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Solutions logicielles sur mesure' },
+        priceSpecification: { '@type': 'PriceSpecification', minPrice: 15000, priceCurrency: 'CAD' }
+      },
+      {
+        '@type': 'Offer',
         itemOffered: { '@type': 'Service', name: 'Sélection et arbitrage des fournisseurs' },
         priceSpecification: { '@type': 'PriceSpecification', minPrice: 15000, priceCurrency: 'CAD' }
       },
@@ -40,12 +45,12 @@ const jsonLd = {
   locale="fr"
   segment="pme"
   title="Diagnostic de maturité TI et direction TI pour PME | Monessor"
-  description="Diagnostic de maturité TI de 2 à 3 semaines, dès 12 500 $, pour les PME. Puis livrables ciblés et direction TI à temps partagé."
+  description="Pour les PME : Diagnostic de maturité TI dès 12 500 $, solutions logicielles sur mesure développées avec l’IA dès 15 000 $, direction TI à temps partagé."
   jsonLd={jsonLd}
   hero={{
     kicker: 'Conseil en gestion stratégique des TI · PME',
     title: 'Reprenez le contrôle de vos investissements technologiques.',
-    lead: 'Monessor aide les dirigeants de PME à réduire la dette technique, à arbitrer les projets critiques et à encadrer l’intelligence artificielle avec la rigueur de gouvernance du secteur financier réglementé. Nos clients réalisent le plus souvent entre 5 et 100 millions de dollars de chiffre d’affaires, dans la fabrication, la distribution ou les services.',
+    lead: 'Monessor aide les dirigeants de PME à réduire la dette technique, à arbitrer les projets critiques, à encadrer l’intelligence artificielle et à livrer des outils sur mesure, avec la rigueur de gouvernance du secteur financier réglementé. Nos clients réalisent le plus souvent entre 5 et 100 millions de dollars de chiffre d’affaires, dans la fabrication, la distribution ou les services.',
     secondary: { label: 'Par où commencer', href: '#diagnostic' }
   }}
   issues={{
@@ -103,15 +108,86 @@ const jsonLd = {
       }
     ]
   }}
+  solutions={{
+    id: 'solutions',
+    kicker: 'Un premier gain concret',
+    title: 'Solutions logicielles sur mesure',
+    subtitle: 'Développées avec l’IA, livrées avec toutes les expertises d’un vrai produit logiciel.',
+    promise: 'Un outil sur mesure qui règle un point de friction précis, livré en quelques semaines avec la rigueur d’un produit logiciel.',
+    price: 'Dès 15 000 $, à prix fixe, en 2 à 6 semaines.',
+    ai: {
+      title: 'L’IA, à deux niveaux',
+      items: [
+        {
+          icon: 'brain-circuit',
+          title: 'Dans l’outil',
+          text: 'L’outil peut lire des factures, classer des documents, normaliser des données ou répondre aux questions sur les données de votre entreprise.'
+        },
+        {
+          icon: 'rocket',
+          title: 'Pour le construire',
+          text: 'L’IA accélère le développement, ce qui rend un outil sur mesure abordable pour une PME. La rigueur d’ingénierie garde le résultat fiable et facile à maintenir.'
+        }
+      ]
+    },
+    examples: {
+      title: 'Exemples',
+      items: [
+        { icon: 'calculator', title: 'Automatiser une tâche comptable répétitive', text: 'Par exemple, la saisie et le rapprochement des factures fournisseurs.' },
+        { icon: 'database', title: 'Préparer vos données pour un ERP ou un CRM', text: 'Nettoyer, normaliser et préparer les données avant leur importation.' },
+        { icon: 'puzzle', title: 'Ajouter une extension à votre ERP ou CRM', text: 'Par exemple, un calcul de soumission ou un rapport qui manque.' },
+        { icon: 'wrench', title: 'Créer un petit outil interne', text: 'Pour faire gagner du temps à une équipe, ou distinguer votre entreprise auprès de ses clients.' }
+      ]
+    },
+    included: {
+      title: 'La rigueur, sans angle mort',
+      items: [
+        { icon: 'target', title: 'Un gain mesuré avant de coder', text: 'Une courte étape de cadrage de 2 à 3 jours, toujours incluse, précise le point de friction et mesure le gain attendu avant tout développement.' },
+        { icon: 'lock', title: 'Sécurité et renseignements personnels dès la conception', text: 'Les accès, les données et la conformité à la Loi 25 sont traités dès le départ, pas après coup.' },
+        { icon: 'file-text', title: 'Tests, documentation et transfert', text: 'Le code est testé et documenté, puis remis à votre équipe, avec la possibilité de former des responsables internes.' },
+        { icon: 'key-round', title: 'Votre code, vos données', text: 'Le code et les données vous appartiennent et sont hébergés dans votre environnement.' }
+      ]
+    },
+    disciplines: {
+      title: 'Toutes les expertises d’un vrai produit logiciel',
+      intro: 'Un outil fiable exige plus que du code. Une seule personne responsable couvre ici chacune des expertises :',
+      items: [
+        { icon: 'layers', title: 'Architecture de solution', text: 'L’outil s’intègre à vos systèmes existants et reste disponible, rapide et sûr à mesure que l’entreprise grandit.' },
+        { icon: 'code', title: 'Développement logiciel', text: 'Un code testé, lisible et documenté.' },
+        { icon: 'workflow', title: 'DevOps', text: 'Le déploiement, la surveillance et les sauvegardes, dès le premier jour.' },
+        { icon: 'users', title: 'Expérience utilisateur', text: 'Par le fondateur du centre d’excellence UX d’un chef de file des marchés financiers canadiens : un outil que les équipes adoptent.' },
+        { icon: 'shield-check', title: 'Gouvernance TI et cybersécurité', text: 'Par un ancien directeur TI : les accès, les données et les risques restent sous contrôle.' }
+      ]
+    },
+    limits: {
+      title: 'Cadre et limites',
+      items: [
+        'Des applications de petite taille : de 2 à 6 semaines, à prix fixe.',
+        'Au-delà d’environ 40 000 $ ou de 6 semaines, le mandat est découpé en phases ou confié à un partenaire de développement.',
+        'Soutien et maintenance mensuels en option, tarif sur demande.',
+        'Formation de responsables internes en option : une ou quelques personnes apprennent à utiliser, à faire évoluer et à maintenir l’outil, et à repérer les prochains gains de l’IA. Le but est votre autonomie, pas votre dépendance. Tarif sur demande, ou inclus dans les plus grands projets.',
+        'Monessor ne revend aucun logiciel et ne touche aucune commission : les outils tiers sont choisis pour vous et à votre nom.'
+      ]
+    },
+    strategy: {
+      text: 'Votre stratégie IA se définit dans le Diagnostic de maturité TI et alignement IA, qui produit une feuille de route IA priorisée. Cette offre en livre un élément, ou règle directement un point de friction que vous connaissez déjà.',
+      link: { label: 'Le Diagnostic de maturité TI ↑', href: '#diagnostic' }
+    }
+  }}
   path={{
     id: 'approche',
     title: 'Après le diagnostic : une démarche par étapes',
-    intro: 'Le diagnostic fixe la direction. Deux ou trois livrables ciblés produisent les premiers résultats. La direction TI à temps partagé en est la suite naturelle, une fois la confiance établie.',
+    intro: 'Le diagnostic fixe la direction. Un premier gain concret, outil sur mesure ou sélection de fournisseurs, produit des résultats rapides. La direction TI à temps partagé en est la suite naturelle, une fois la confiance établie.',
     steps: [
       {
-        title: 'Diagnostic de maturité TI',
+        title: 'Diagnostic de maturité TI et alignement IA',
         meta: '2 à 3 semaines · dès 12 500 $',
-        text: 'L’état des lieux, la dette technique, les risques et la feuille de route.'
+        text: 'Le point de départ recommandé : l’état des lieux, la dette technique, les risques et la feuille de route, IA comprise.'
+      },
+      {
+        title: 'Solutions logicielles sur mesure',
+        meta: '2 à 6 semaines · dès 15 000 $',
+        text: 'Un outil qui règle un point de friction précis. Il peut aussi servir de point de départ quand le problème est déjà connu.'
       },
       {
         title: 'Sélection et arbitrage des fournisseurs',
@@ -159,7 +235,7 @@ const jsonLd = {
   neutrality={{
     id: 'neutralite',
     title: 'Zéro commission. Zéro revente de licences. Entièrement de votre côté de la table.',
-    text: 'Monessor n’est ni une agence de développement, ni un revendeur de logiciels (SaaS, ERP), ni un sous-traitant d’ingénierie. Aucune commission de fournisseur : sa seule rémunération vient de ses clients, et ses recommandations n’ont pas d’autre intérêt que le vôtre.',
+    text: 'Monessor ne revend aucun logiciel (SaaS, ERP) et ne touche aucune commission de fournisseur : sa seule rémunération vient de ses clients. Quand il développe, ce sont des outils ciblés, pas des plateformes, dont vous possédez le code ; et le diagnostic peut tout aussi bien recommander un produit du marché.',
     delivery: 'Chaque mandat est dirigé personnellement par Alex Turcotte, associé directeur. Lorsqu’un mandat exige une expertise très pointue, Monessor fait appel à un spécialiste de son réseau.'
   }}
   other={{
