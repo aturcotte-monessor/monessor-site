@@ -23,6 +23,21 @@ interface Props {
   hero: { kicker: string; title: string; lead: string; secondary: { label: string; href: string } };
   issues: { id: string; title: string; items: Item[] };
   offer: { id: string; kicker: string; title: string; lead: string; price: string; items: Item[] };
+  /** Deuxième offre : solutions logicielles sur mesure (PME seulement). */
+  solutions?: {
+    id: string;
+    kicker: string;
+    title: string;
+    subtitle: string;
+    promise: string;
+    price: string;
+    ai: { title: string; items: Item[] };
+    examples: { title: string; items: Item[] };
+    included: { title: string; items: Item[] };
+    disciplines: { title: string; intro: string; items: Item[] };
+    limits: { title: string; items: string[] };
+    strategy: { text: string; link: { label: string; href: string } };
+  };
   /** Démarche par étapes (PME seulement). */
   path?: { id: string; title: string; intro: string; steps: Item[] };
   /** Encadré affiché après les offres et les prix (ex. aide financière possible). */
@@ -34,7 +49,9 @@ interface Props {
   other: { id: string; question: string; label: string; href: string };
 }
 
-const { locale, segment, title, description, jsonLd, hero, issues, offer, path, note, expertise, insights, neutrality, other } = Astro.props;
+const { locale, segment, title, description, jsonLd, hero, issues, offer, solutions, path, note, expertise, insights, neutrality, other } = Astro.props;
+// Alternance des fonds clair / blanc : la section des solutions décale les suivantes d'un cran
+const shade = (index: number) => ((index + (solutions ? 1 : 0)) % 2 === 0 ? 'bg-light' : 'bg-white');
 const pathname = Astro.url.pathname;
 const container = 'mx-auto max-w-7xl px-6 lg:px-8';
 const meetingLabel = locale === 'fr' ? 'Planifier une rencontre' : 'Book a meeting';
@@ -110,13 +127,101 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
     </div>
   </section>
 
+  <!-- SOLUTIONS LOGICIELLES SUR MESURE -->
+  {solutions && (
+    <section class="bg-light py-20 text-ink" id={solutions.id}>
+      <div class={container}>
+        <p class="home-kicker text-teal">{solutions.kicker}</p>
+        <h2 class="home-h2">{solutions.title}</h2>
+        <p class="mt-3 max-w-3xl text-lg font-semibold leading-relaxed text-teal">{solutions.subtitle}</p>
+        <p class="mt-4 max-w-3xl text-lg leading-relaxed">{solutions.promise}</p>
+        <p class="mt-4 font-semibold text-teal">{solutions.price}</p>
+
+        <div class="mt-14"><h3 class="offer-h3">{solutions.ai.title}</h3></div>
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
+          {solutions.ai.items.map((item) => (
+            <article class="rounded-2xl border border-slate-200 bg-white p-6">
+              {item.icon && <Icon name={item.icon} size={28} class="text-teal" />}
+              <h4 class="home-h3 mt-4">{item.title}</h4>
+              <p class="mt-2 leading-relaxed">{item.text}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-14"><h3 class="offer-h3">{solutions.examples.title}</h3></div>
+        <div class="mt-6 grid gap-x-10 gap-y-8 md:grid-cols-2">
+          {solutions.examples.items.map((item) => (
+            <div class="flex gap-4">
+              <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-teal">
+                {item.icon && <Icon name={item.icon} size={22} />}
+              </span>
+              <div>
+                <h4 class="home-h3">{item.title}</h4>
+                <p class="mt-2 leading-relaxed">{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-14"><h3 class="offer-h3">{solutions.included.title}</h3></div>
+        <div class="mt-6 grid gap-x-10 gap-y-8 md:grid-cols-2">
+          {solutions.included.items.map((item) => (
+            <div class="flex gap-4">
+              <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-teal">
+                {item.icon && <Icon name={item.icon} size={22} />}
+              </span>
+              <div>
+                <h4 class="home-h3">{item.title}</h4>
+                <p class="mt-2 leading-relaxed">{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-14"><h3 class="offer-h3">{solutions.disciplines.title}</h3></div>
+        <p class="mt-3 max-w-3xl leading-relaxed">{solutions.disciplines.intro}</p>
+        <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {solutions.disciplines.items.map((item) => (
+            <article class="rounded-2xl border border-slate-200 bg-white p-6">
+              {item.icon && <Icon name={item.icon} size={28} class="text-teal" />}
+              <h4 class="home-h3 mt-4">{item.title}</h4>
+              <p class="mt-2 leading-relaxed">{item.text}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-12 grid gap-8 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <h3 class="offer-h3">{solutions.limits.title}</h3>
+            <ul class="mt-4 space-y-3">
+              {solutions.limits.items.map((line) => (
+                <li class="flex gap-3 leading-relaxed">
+                  <span class="mt-2.5 h-px w-4 shrink-0 bg-coral" aria-hidden="true"></span>
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <aside class="self-start rounded-2xl border border-slate-200 border-l-4 border-l-coral bg-white p-6">
+            <p class="leading-relaxed">{solutions.strategy.text}</p>
+            <a class="mt-3 inline-block font-semibold text-teal underline underline-offset-4" href={solutions.strategy.link.href}>{solutions.strategy.link.label}</a>
+          </aside>
+        </div>
+
+        <div class="mt-10">
+          <ContactCta href={MEETING_URL} label={meetingLabel} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', 'Solutions', locale, pathname)} />
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- DÉMARCHE PAR ÉTAPES -->
   {path && (
-    <section class="bg-light py-20 text-ink" id={path.id}>
+    <section class={`${shade(0)} py-20 text-ink`} id={path.id}>
       <div class={container}>
         <h2 class="home-h2">{path.title}</h2>
         <p class="mt-4 max-w-3xl leading-relaxed">{path.intro}</p>
-        <ol class="mt-10 grid gap-4 md:grid-cols-3">
+        <ol class={`mt-10 grid gap-4 ${path.steps.length === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3'}`}>
           {path.steps.map((step, index) => (
             <li class="rounded-2xl border border-slate-200 bg-white p-6">
               <p class="font-bold tracking-[0.12em] text-teal">{String(index + 1).padStart(2, '0')}</p>
@@ -127,7 +232,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
           ))}
         </ol>
         {note && (
-          <aside class="mt-8 max-w-4xl rounded-2xl border border-slate-200 border-l-4 border-l-coral bg-white p-6" aria-label={note.title}>
+          <aside class={`mt-8 max-w-4xl rounded-2xl border border-slate-200 border-l-4 border-l-coral ${shade(0) === 'bg-white' ? 'bg-light' : 'bg-white'} p-6`} aria-label={note.title}>
             <p class="home-h3">{note.title}</p>
             <p class="mt-2 leading-relaxed">{note.text}</p>
           </aside>
@@ -137,7 +242,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
   )}
 
   <!-- MANDATS CIBLÉS OU EXPERTISE -->
-  <section class={`${path ? 'bg-white' : 'bg-light'} py-20 text-ink`} id={expertise.id}>
+  <section class={`${shade(path ? 1 : 0)} py-20 text-ink`} id={expertise.id}>
     <div class={container}>
       {expertise.kicker && <p class="home-kicker text-teal">{expertise.kicker}</p>}
       <h2 class="home-h2">{expertise.title}</h2>
@@ -158,7 +263,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
 
   <!-- ANALYSES LIÉES -->
   {related.length > 0 && (
-    <section class={`${path ? 'bg-light' : 'bg-white'} py-20 text-ink`} id="perspectives">
+    <section class={`${shade(path ? 2 : 1)} py-20 text-ink`} id="perspectives">
       <div class={container}>
         <h2 class="home-h2">{insights.title}</h2>
         <div class="mt-10 grid gap-4 md:grid-cols-2">
@@ -178,7 +283,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
   )}
 
   <!-- NEUTRALITÉ -->
-  <section class={`${path ? 'bg-white' : 'bg-light'} py-20 text-ink`} id={neutrality.id}>
+  <section class={`${shade(path ? 3 : 2)} py-20 text-ink`} id={neutrality.id}>
     <div class={container}>
       <div class="rounded-2xl bg-teal p-6 text-light md:p-8">
         <p class="text-lg font-semibold">{neutrality.title}</p>

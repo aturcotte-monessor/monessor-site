@@ -23,6 +23,11 @@ const jsonLd = {
       },
       {
         '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Custom Software Solutions' },
+        priceSpecification: { '@type': 'PriceSpecification', minPrice: 15000, priceCurrency: 'CAD' }
+      },
+      {
+        '@type': 'Offer',
         itemOffered: { '@type': 'Service', name: 'Vendor selection and arbitration' },
         priceSpecification: { '@type': 'PriceSpecification', minPrice: 15000, priceCurrency: 'CAD' }
       },
@@ -40,12 +45,12 @@ const jsonLd = {
   locale="en"
   segment="pme"
   title="IT Maturity Diagnostic and IT Leadership for SMEs | Monessor"
-  description="A 2-to-3-week IT Maturity Diagnostic from $12,500 for SMEs, then targeted deliverables and fractional IT leadership to steer execution."
+  description="For SMEs: an IT Maturity Diagnostic from $12,500, custom software solutions built with AI from $15,000, and fractional IT leadership."
   jsonLd={jsonLd}
   hero={{
     kicker: 'Strategic IT management advisory · SMEs',
     title: 'Take back control of your technology investments.',
-    lead: 'Monessor helps SME leaders reduce technical debt, prioritize critical projects and govern artificial intelligence with the discipline of regulated financial services. Our clients typically have between $5 million and $100 million in revenue, in manufacturing, distribution or services.',
+    lead: 'Monessor helps SME leaders reduce technical debt, prioritize critical projects, govern artificial intelligence and deliver custom tools, with the discipline of regulated financial services. Our clients typically have between $5 million and $100 million in revenue, in manufacturing, distribution or services.',
     secondary: { label: 'Where to start', href: '#diagnostic' }
   }}
   issues={{
@@ -103,15 +108,86 @@ const jsonLd = {
       }
     ]
   }}
+  solutions={{
+    id: 'solutions',
+    kicker: 'A first concrete gain',
+    title: 'Custom Software Solutions',
+    subtitle: 'Built with AI, delivered with every discipline a real software product needs.',
+    promise: 'A custom tool that removes one specific friction point, delivered in weeks with the rigour of a software product.',
+    price: 'From $15,000, fixed price, in 2 to 6 weeks.',
+    ai: {
+      title: 'AI, at two levels',
+      items: [
+        {
+          icon: 'brain-circuit',
+          title: 'In the tool',
+          text: 'The tool can read invoices, classify documents, normalize data or answer questions about your company’s data.'
+        },
+        {
+          icon: 'rocket',
+          title: 'To build it',
+          text: 'AI speeds up development, which makes a custom tool affordable for an SME. Engineering rigour keeps the result reliable and easy to maintain.'
+        }
+      ]
+    },
+    examples: {
+      title: 'Examples',
+      items: [
+        { icon: 'calculator', title: 'Automate a repetitive accounting task', text: 'For example, entering and reconciling supplier invoices.' },
+        { icon: 'database', title: 'Prepare your data for an ERP or CRM', text: 'Clean, normalize and prepare data before it is imported.' },
+        { icon: 'puzzle', title: 'Add an extension to your ERP or CRM', text: 'For example, a quote calculation or a missing report.' },
+        { icon: 'wrench', title: 'Build a small internal tool', text: 'To save a team time, or to set your company apart with its clients.' }
+      ]
+    },
+    included: {
+      title: 'The rigour, with no blind spots',
+      items: [
+        { icon: 'target', title: 'A measured gain before any code', text: 'A short 2-to-3-day scoping step, always included, pins down the friction point and measures the expected gain before any development.' },
+        { icon: 'lock', title: 'Security and personal information by design', text: 'Access, data and compliance with Quebec’s Law 25 are handled from the start, not as an afterthought.' },
+        { icon: 'file-text', title: 'Tests, documentation and handover', text: 'The code is tested and documented, then handed over to your team, with the option to train internal champions.' },
+        { icon: 'key-round', title: 'Your code, your data', text: 'The code and the data belong to you and are hosted in your environment.' }
+      ]
+    },
+    disciplines: {
+      title: 'Every discipline of a real software product',
+      intro: 'A reliable tool takes more than code. Here, one accountable person covers each discipline:',
+      items: [
+        { icon: 'layers', title: 'Solution architecture', text: 'The tool integrates with your existing systems and stays available, fast and secure as the company grows.' },
+        { icon: 'code', title: 'Software development', text: 'Tested, readable and documented code.' },
+        { icon: 'workflow', title: 'DevOps', text: 'Deployment, monitoring and backups from day one.' },
+        { icon: 'users', title: 'User experience', text: 'By the founder of the UX centre of excellence at a leading Canadian capital markets organization: a tool teams actually adopt.' },
+        { icon: 'shield-check', title: 'IT governance and cybersecurity', text: 'By a former IT director: access, data and risks stay under control.' }
+      ]
+    },
+    limits: {
+      title: 'Scope and limits',
+      items: [
+        'Small applications only: 2 to 6 weeks, at a fixed price.',
+        'Beyond about $40,000 or 6 weeks, the engagement is split into phases or handed to a development partner.',
+        'Optional monthly support and maintenance, price on request.',
+        'Optional internal champions training: one or a few staff learn to use, evolve and maintain the tool, and to spot the next AI gains. The goal is your autonomy, not dependence on us. Price on request, or included in larger projects.',
+        'Monessor resells no software and takes no commission: third-party tools are chosen for you and in your name.'
+      ]
+    },
+    strategy: {
+      text: 'Your AI strategy is set in the IT Maturity Diagnostic and AI Alignment, which produces a prioritized AI roadmap. This offer delivers one item of that roadmap, or directly removes a friction point you already know.',
+      link: { label: 'The IT Maturity Diagnostic ↑', href: '#diagnostic' }
+    }
+  }}
   path={{
     id: 'approche',
     title: 'After the diagnostic: a step-by-step path',
-    intro: 'The diagnostic sets the direction. Two or three targeted deliverables produce the first results. Fractional IT leadership is the natural next step, once trust is established.',
+    intro: 'The diagnostic sets the direction. A first concrete gain, a custom tool or a vendor selection, produces quick results. Fractional IT leadership is the natural next step, once trust is established.',
     steps: [
       {
-        title: 'IT Maturity Diagnostic',
+        title: 'IT Maturity Diagnostic and AI Alignment',
         meta: '2 to 3 weeks · from $12,500',
-        text: 'Where you stand: technical debt, risks and roadmap.'
+        text: 'The recommended starting point: where you stand, technical debt, risks and the roadmap, AI included.'
+      },
+      {
+        title: 'Custom Software Solutions',
+        meta: '2 to 6 weeks · from $15,000',
+        text: 'A tool that removes one specific friction point. It can also be the starting point when the problem is already known.'
       },
       {
         title: 'Vendor selection and arbitration',
@@ -159,7 +235,7 @@ const jsonLd = {
   neutrality={{
     id: 'neutralite',
     title: 'No commissions. No software resale. Entirely on your side of the table.',
-    text: 'Monessor is not a development agency, a software reseller (SaaS, ERP) or an engineering subcontractor. It takes no vendor commissions: it is paid by its clients only, so its recommendations serve no interest but yours.',
+    text: 'Monessor resells no software (SaaS, ERP) and takes no vendor commissions: it is paid by its clients only. When it builds, it builds targeted tools, not platforms, and you own the code; the diagnostic can just as well recommend an off-the-shelf product.',
     delivery: 'Every engagement is led personally by Alex Turcotte, Managing Partner. When an engagement calls for highly specialized expertise, Monessor brings in a specialist from its network.'
   }}
   other={{
