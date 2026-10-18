@@ -3,15 +3,13 @@
 // Le texte s'adapte au contexte (segment PME, segment services financiers ou générique).
 import ContactCta from './ContactCta.astro';
 import ChevronLines from './ChevronLines.astro';
-import { MEETING_URL, fathomEvent } from '../utils/tracking';
+import { MEETING_URL } from '../utils/tracking';
 
 export type MeetingVariant = 'generic' | 'article' | 'pme' | 'sf';
 
 interface Props {
   locale?: 'fr' | 'en';
   variant?: MeetingVariant;
-  /** Emplacement pour l'événement Fathom (ex. « Vignette », « Article »). */
-  placement?: string;
   id?: string;
   /** Sans section englobante, pour l'insérer dans un gabarit déjà sur fond clair (articles). */
   bare?: boolean;
@@ -19,8 +17,7 @@ interface Props {
   serviceLink?: boolean;
 }
 
-const { locale = 'fr', variant = 'generic', placement = 'Card', id, bare = false, serviceLink = false } = Astro.props;
-const pathname = Astro.url.pathname;
+const { locale = 'fr', variant = 'generic', id, bare = false, serviceLink = false } = Astro.props;
 
 const copy = {
   fr: {
@@ -99,14 +96,14 @@ const innerProps = bare ? {} : { class: 'mx-auto max-w-7xl px-6 lg:px-8' };
       <p class="mt-3 max-w-2xl text-light/85">{text}</p>
       {service && <a class="mt-3 inline-block font-semibold text-light underline underline-offset-4" href={service.href}>{service.label}</a>}
       <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
-        <ContactCta href={MEETING_URL} label={copy.button} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', placement, locale, pathname)} />
+        <ContactCta href={MEETING_URL} label={copy.button} className="btn" />
         <p class="text-sm text-light/85">
           {copy.or}{' '}
-          <a data-email-link href="#" class="text-light underline underline-offset-4" data-fathom-event={fathomEvent('Email', placement, locale, pathname)}>
+          <a data-email-link href="#" class="text-light underline underline-offset-4" data-fathom-event="Email Clicked">
             <span data-user="info" data-domain="monessor" data-tld="com">{copy.email}</span>
           </a>
           {' · '}
-          <span class="phone-secure" data-fathom-event={fathomEvent('Phone', placement, locale, pathname)}>{copy.phoneLabel}</span>
+          <span class="phone-secure" data-fathom-event="Phone Clicked">{copy.phoneLabel}</span>
         </p>
       </div>
     </aside>

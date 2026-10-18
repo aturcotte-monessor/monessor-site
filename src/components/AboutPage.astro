@@ -3,7 +3,7 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from './PageHero.astro';
 import Icon from './Icon.astro';
-import { PERSON_ID, fathomEvent, personalSiteUrl } from '../utils/tracking';
+import { PERSON_ID, personalSiteUrl } from '../utils/tracking';
 import { Picture } from 'astro:assets';
 import portrait from '../assets/alex.jpg';
 
@@ -12,7 +12,6 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const pathname = Astro.url.pathname;
 const container = 'mx-auto max-w-7xl px-6 lg:px-8';
 const linkedin = 'https://www.linkedin.com/in/turcottealex';
 
@@ -156,12 +155,12 @@ const jsonLd = {
             href={linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            data-fathom-event={fathomEvent('LinkedIn', 'Profile', locale, pathname)}
+            data-fathom-event="LinkedIn Clicked"
           >{t.profile.linkedin}</a>
           <a
             class="btn btn--outline-teal"
             href={personalSiteUrl(locale)}
-            data-fathom-event={fathomEvent('PersonalSite', 'Profile', locale, pathname)}
+            data-fathom-event="Personal Site Clicked"
           >{t.profile.fullProfile}</a>
         </div>
       </div>
