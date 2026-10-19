@@ -10,16 +10,20 @@ interface Props {
 const { locale, href } = Astro.props;
 const t = {
   fr: {
-    text: 'Peut être admissible à un remboursement jusqu’à 50 % (programme ESSOR, jusqu’au 31 mars 2027). Demande à déposer avant le mandat ; acceptation non garantie.',
+    before: 'Peut être admissible à un remboursement ',
+    strong: 'jusqu’à 50 %',
+    after: ' (programme ESSOR, jusqu’au 31 mars 2027). Demande à déposer avant le mandat ; acceptation non garantie.',
     link: 'Détails'
   },
   en: {
-    text: 'May qualify for a reimbursement of up to 50% (ESSOR program, until March 31, 2027). The application must be filed before the engagement; approval is not guaranteed.',
+    before: 'May qualify for a reimbursement of ',
+    strong: 'up to 50%',
+    after: ' (ESSOR program, until March 31, 2027). The application must be filed before the engagement; approval is not guaranteed.',
     link: 'Details'
   }
 }[locale];
 ---
 
-<p class="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">
-  {t.text} <a class="font-semibold text-teal underline underline-offset-4" href={href}>{t.link}</a>
+<p class="mt-2 max-w-xl leading-relaxed text-teal">
+  {t.before}<strong>{t.strong}</strong>{t.after} <a class="font-semibold text-teal underline underline-offset-4" href={href}>{t.link}</a>
 </p>
