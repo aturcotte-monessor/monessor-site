@@ -12,18 +12,22 @@ const t = {
   fr: {
     before: 'Peut être admissible à un remboursement ',
     strong: 'jusqu’à 50 %',
-    after: ' (programme ESSOR, jusqu’au 31 mars 2027). Demande à déposer avant le mandat ; acceptation non garantie.',
+    after: ' (programme ESSOR, jusqu’au 31 mars 2027).',
+    caveat: 'Demande à déposer avant le mandat ; acceptation non garantie.',
     link: 'Détails'
   },
   en: {
     before: 'May qualify for a reimbursement of ',
     strong: 'up to 50%',
-    after: ' (ESSOR program, until March 31, 2027). The application must be filed before the engagement; approval is not guaranteed.',
+    after: ' (ESSOR program, until March 31, 2027).',
+    caveat: 'The application must be filed before the engagement; approval is not guaranteed.',
     link: 'Details'
   }
 }[locale];
 ---
 
-<p class="mt-2 max-w-xl leading-relaxed text-teal">
-  {t.before}<strong>{t.strong}</strong>{t.after} <a class="font-semibold text-teal underline underline-offset-4" href={href}>{t.link}</a>
+<!-- Deux lignes sur grand écran : l'avantage, puis la condition et le lien ; sur mobile, chacune revient à la ligne naturellement -->
+<p class="mt-2 max-w-3xl leading-relaxed text-teal">
+  <span class="block">{t.before}<strong>{t.strong}</strong>{t.after}</span>
+  <span class="block">{t.caveat} <a class="font-semibold text-teal underline underline-offset-4" href={href}>{t.link}</a></span>
 </p>
