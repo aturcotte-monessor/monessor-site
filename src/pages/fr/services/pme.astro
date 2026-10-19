@@ -50,12 +50,13 @@ const jsonLd = {
   hero={{
     kicker: 'Conseil en gestion stratégique des TI · PME',
     title: 'Reprenez le contrôle de vos investissements technologiques.',
-    lead: 'Monessor aide les dirigeants de PME à réduire la dette technique, à arbitrer les projets critiques, à encadrer l’intelligence artificielle et à livrer des outils sur mesure, avec la rigueur de gouvernance du secteur financier réglementé. Nos clients réalisent le plus souvent entre 5 et 100 millions de dollars de chiffre d’affaires, dans la fabrication, la distribution ou les services.',
+    lead: 'Monessor aide les dirigeants de PME à réduire la dette technique, à arbitrer les projets critiques, à encadrer l’intelligence artificielle et à livrer des outils sur mesure, avec la rigueur de gouvernance du secteur financier réglementé. Nos clients sont surtout dans la fabrication, la distribution ou les services.',
     secondary: { label: 'Par où commencer', href: '#diagnostic' }
   }}
   issues={{
     id: 'symptomes',
     title: 'Là où la technologie cesse d’être un levier et devient un risque',
+    audience: 'Le plus souvent des entreprises de 20 à 250 employés.',
     items: [
       {
         icon: 'wallet',
@@ -76,6 +77,16 @@ const jsonLd = {
         icon: 'scale',
         title: 'Un dialogue difficile entre finance et TI',
         text: 'Une direction financière attentive aux marges et au bilan, face à des équipes techniques absorbées par les urgences du quotidien.'
+      },
+      {
+        icon: 'workflow',
+        title: 'Production et inventaire',
+        text: 'Un ERP de production vieillissant, l’inventaire suivi dans Excel, des bons de travail sur papier.'
+      },
+      {
+        icon: 'lock',
+        title: 'Une cybersécurité jamais mise à l’épreuve',
+        text: 'Un rançongiciel arrêterait la production : les sauvegardes et les accès n’ont jamais été testés.'
       }
     ]
   }}
@@ -85,6 +96,7 @@ const jsonLd = {
     title: 'Diagnostic de maturité TI et alignement IA',
     lead: 'Un mandat de 2 à 3 semaines qui donne à votre comité de direction une vision complète de l’état, des risques et du potentiel de vos technologies.',
     price: 'Dès 12 500 $, forfait à périmètre fixe.',
+    essor: true,
     items: [
       {
         icon: 'layers',
@@ -136,7 +148,8 @@ const jsonLd = {
         { icon: 'calculator', title: 'Automatiser une tâche comptable répétitive', text: 'Par exemple, la saisie et le rapprochement des factures fournisseurs.' },
         { icon: 'database', title: 'Préparer vos données pour un ERP ou un CRM', text: 'Nettoyer, normaliser et préparer les données avant leur importation.' },
         { icon: 'puzzle', title: 'Ajouter une extension à votre ERP ou CRM', text: 'Par exemple, un calcul de soumission ou un rapport qui manque.' },
-        { icon: 'wrench', title: 'Créer un petit outil interne', text: 'Pour faire gagner du temps à une équipe, ou distinguer votre entreprise auprès de ses clients.' }
+        { icon: 'wrench', title: 'Créer un petit outil interne', text: 'Pour faire gagner du temps à une équipe, ou distinguer votre entreprise auprès de ses clients.' },
+        { icon: 'list-checks', title: 'Fabrication', text: 'Suivre la production, préparer les soumissions ou numériser les bons de travail.' }
       ]
     },
     included: {
@@ -202,6 +215,7 @@ const jsonLd = {
     ]
   }}
   note={{
+    id: 'essor',
     title: 'Aide financière possible',
     text: 'Selon le projet, un diagnostic numérique, une sélection de systèmes ou la mise en œuvre d’un plan numérique peut être admissible au programme ESSOR d’Investissement Québec, qui rembourse jusqu’à 50 % des dépenses admissibles. La demande doit être déposée avant le début du mandat, l’acceptation n’est pas garantie et le programme prend fin le 31 mars 2027. Nous pouvons vous aider à évaluer si votre projet s’y prête.'
   }}

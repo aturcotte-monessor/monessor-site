@@ -50,12 +50,13 @@ const jsonLd = {
   hero={{
     kicker: 'Strategic IT management advisory · SMEs',
     title: 'Take back control of your technology investments.',
-    lead: 'Monessor helps SME leaders reduce technical debt, prioritize critical projects, govern artificial intelligence and deliver custom tools, with the discipline of regulated financial services. Our clients typically have between $5 million and $100 million in revenue, in manufacturing, distribution or services.',
+    lead: 'Monessor helps SME leaders reduce technical debt, prioritize critical projects, govern artificial intelligence and deliver custom tools, with the discipline of regulated financial services. Our clients are mostly in manufacturing, distribution or services.',
     secondary: { label: 'Where to start', href: '#diagnostic' }
   }}
   issues={{
     id: 'symptomes',
     title: 'Where technology stops being a lever and becomes a risk',
+    audience: 'Most often, companies with 20 to 250 employees.',
     items: [
       {
         icon: 'wallet',
@@ -76,6 +77,16 @@ const jsonLd = {
         icon: 'scale',
         title: 'A strained dialogue between finance and IT',
         text: 'A finance team focused on margins and the balance sheet, facing technical teams absorbed by day-to-day firefighting.'
+      },
+      {
+        icon: 'workflow',
+        title: 'Production and inventory',
+        text: 'An ageing production ERP, inventory tracked in Excel, paper work orders.'
+      },
+      {
+        icon: 'lock',
+        title: 'Cybersecurity never put to the test',
+        text: 'Ransomware would stop production: backups and access have never been tested.'
       }
     ]
   }}
@@ -85,6 +96,7 @@ const jsonLd = {
     title: 'IT Maturity Diagnostic and AI Alignment',
     lead: 'A 2-to-3-week engagement that gives your leadership team a complete view of the state, risks and potential of your technology.',
     price: 'From $12,500, fixed-scope engagement.',
+    essor: true,
     items: [
       {
         icon: 'layers',
@@ -136,7 +148,8 @@ const jsonLd = {
         { icon: 'calculator', title: 'Automate a repetitive accounting task', text: 'For example, entering and reconciling supplier invoices.' },
         { icon: 'database', title: 'Prepare your data for an ERP or CRM', text: 'Clean, normalize and prepare data before it is imported.' },
         { icon: 'puzzle', title: 'Add an extension to your ERP or CRM', text: 'For example, a quote calculation or a missing report.' },
-        { icon: 'wrench', title: 'Build a small internal tool', text: 'To save a team time, or to set your company apart with its clients.' }
+        { icon: 'wrench', title: 'Build a small internal tool', text: 'To save a team time, or to set your company apart with its clients.' },
+        { icon: 'list-checks', title: 'Manufacturing', text: 'Track production, prepare quotes or digitize work orders.' }
       ]
     },
     included: {
@@ -202,6 +215,7 @@ const jsonLd = {
     ]
   }}
   note={{
+    id: 'essor',
     title: 'Possible financial assistance',
     text: 'Depending on the project, a digital diagnostic, a system selection or the implementation of a digital plan may be eligible for Investissement Québec’s ESSOR program, which covers up to 50% of eligible expenses. The application must be filed before the engagement begins, approval is not guaranteed and the program ends on March 31, 2027. We can help you assess whether your project qualifies.'
   }}

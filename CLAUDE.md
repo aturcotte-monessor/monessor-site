@@ -20,7 +20,8 @@
 4. **Copie & Vocabulaire :**
    - Utiliser un ton C-Level, sobre et factuel.
    - Ne jamais utiliser de vocabulaire d'agence générique ("funnels", "growth hacking", "boostez vos ventes").
-   - Segment A = PME. Offre d'entrée = *Diagnostic de maturité TI & IA* (2-3 semaines). Clients typiques : 5 M$ à 100 M$ de chiffre d'affaires, mentionné une seule fois dans le texte de la page PME ; jamais « établies » ni la fourchette dans les menus, titres, méta ou données structurées.
+   - Segment A = PME. Offre d'entrée = *Diagnostic de maturité TI & IA* (2-3 semaines). Repère de taille : « le plus souvent des entreprises de 20 à 250 employés », une seule fois, dans le corps de la page PME (section des enjeux) ; aucune fourchette de chiffre d'affaires, et jamais « établies » ni de repère de taille dans les menus, titres, bannières, méta ou données structurées.
+   - Bouton de réservation : « Réserver un appel sans frais » / « Book a free call », lien par langue centralisé dans `src/utils/tracking.ts` (`meetingUrl`, `meetingLabel`).
    - Segment B = Secteurs Régulés (BSIF/OSFI). Offre d'entrée = *Revue de Gouvernance TI* (3-4 semaines), sans prix public.
    - Titre d'Alex Turcotte : associé directeur / Managing Partner. LinkedIn : https://www.linkedin.com/in/turcottealex
 5. **Accessibilité (WCAG 2.2 AA) :** contraste d'au moins 4,5:1 (3:1 pour le grand texte et les icônes) ; anneau de focus global (sarcelle sur fond clair, corail sur fond foncé), jamais `outline: none` ; cibles tactiles d'au moins 44 px ; pas d'`aria-hidden` sur du texte visible ; un `aria-label` doit contenir le texte visible ; mouvements désactivés sous `prefers-reduced-motion`. Vérifier avec axe-core avant chaque livraison.

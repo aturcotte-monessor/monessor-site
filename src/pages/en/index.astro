@@ -4,8 +4,9 @@ import Layout from '../../layouts/Layout.astro';
 import InsightCard from '../../components/InsightCard.astro';
 import ContactCta from '../../components/ContactCta.astro';
 import Icon from '../../components/Icon.astro';
+import EssorPriceNote from '../../components/EssorPriceNote.astro';
 import ChevronLines from '../../components/ChevronLines.astro';
-import { MEETING_URL, fathomEvent } from '../../utils/tracking';
+import { meetingUrl, meetingLabel, fathomEvent } from '../../utils/tracking';
 import { articleSegments } from '../../utils/articleSegments';
 import { ui } from '../../i18n/ui';
 import { Picture } from 'astro:assets';
@@ -98,8 +99,8 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <ContactCta
-          href={MEETING_URL}
-          label="Book a meeting"
+          href={meetingUrl(locale)}
+          label={meetingLabel(locale)}
           className="btn"
           fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, pathname)}
         />
@@ -113,6 +114,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
     <div class={container}>
       <p class="home-kicker text-teal">For SMEs</p>
       <h2 class="home-h2">When technology holds growth back</h2>
+      <p class="mt-4 max-w-3xl text-lg leading-relaxed">In manufacturing, distribution and services SMEs, these three signs come up again and again.</p>
 
       <div class="mt-10 grid gap-4 md:grid-cols-3">
         {symptoms.map((item) => (
@@ -132,7 +134,16 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
             18-month roadmap ready to present to your leadership team.
           </p>
           <p class="mt-4 font-semibold text-teal">From $12,500, fixed-scope engagement.</p>
-          <a class="btn btn--outline-teal mt-6" href={serviceSme}>Explore the SME offer</a>
+          <EssorPriceNote locale={locale} href={`${serviceSme}#essor`} />
+          <div class="mt-6 flex flex-wrap gap-3">
+            <ContactCta
+              href={meetingUrl(locale)}
+              label={meetingLabel(locale)}
+              className="btn"
+              fathomEventName={fathomEvent('ScheduleMeeting', 'Diagnostic', locale, pathname)}
+            />
+            <a class="btn btn--outline-teal" href={serviceSme}>Explore the SME offer</a>
+          </div>
         </div>
         <ol class="grid gap-6">
           {sequence.map((item) => (

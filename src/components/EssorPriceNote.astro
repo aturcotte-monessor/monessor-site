@@ -1,0 +1,25 @@
+---
+// Mention ESSOR sous un prix du Diagnostic (accueil et page PME), avec un lien vers l'encadré détaillé
+// de la page PME (#essor). Autonome : ne dépend que de la langue et de la cible du lien.
+interface Props {
+  locale: 'fr' | 'en';
+  /** Cible du lien vers l'encadré ESSOR : « #essor » sur la page PME, l'URL complète ailleurs. */
+  href: string;
+}
+
+const { locale, href } = Astro.props;
+const t = {
+  fr: {
+    text: 'Peut être admissible à un remboursement jusqu’à 50 % (programme ESSOR, jusqu’au 31 mars 2027). Demande à déposer avant le mandat ; acceptation non garantie.',
+    link: 'Détails'
+  },
+  en: {
+    text: 'May qualify for a reimbursement of up to 50% (ESSOR program, until March 31, 2027). The application must be filed before the engagement; approval is not guaranteed.',
+    link: 'Details'
+  }
+}[locale];
+---
+
+<p class="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">
+  {t.text} <a class="font-semibold text-teal underline underline-offset-4" href={href}>{t.link}</a>
+</p>

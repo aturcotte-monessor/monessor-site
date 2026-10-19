@@ -7,7 +7,8 @@ import ContactCta from './ContactCta.astro';
 import InsightCard from './InsightCard.astro';
 import Icon from './Icon.astro';
 import ChevronLines from './ChevronLines.astro';
-import { MEETING_URL, fathomEvent } from '../utils/tracking';
+import EssorPriceNote from './EssorPriceNote.astro';
+import { meetingUrl, meetingLabel as bookingLabel, fathomEvent } from '../utils/tracking';
 import { articleSegments } from '../utils/articleSegments';
 
 type IconName = Parameters<typeof Icon>[0]['name'];
@@ -21,8 +22,10 @@ interface Props {
   /** Données structurées Service / Offer. */
   jsonLd: Record<string, unknown>;
   hero: { kicker: string; title: string; lead: string; secondary: { label: string; href: string } };
-  issues: { id: string; title: string; items: Item[] };
-  offer: { id: string; kicker: string; title: string; lead: string; price: string; items: Item[] };
+  /** `audience` : repère de taille des clients, affiché sous le titre. */
+  issues: { id: string; title: string; audience?: string; items: Item[] };
+  /** `essor` : mention ESSOR sous le prix, liée à l'encadré `note` (id « essor »). */
+  offer: { id: string; kicker: string; title: string; lead: string; price: string; essor?: boolean; items: Item[] };
   /** Deuxième offre : solutions logicielles sur mesure (PME seulement). */
   solutions?: {
     id: string;
@@ -41,7 +44,7 @@ interface Props {
   /** Démarche par étapes (PME seulement). */
   path?: { id: string; title: string; intro: string; steps: Item[] };
   /** Encadré affiché après les offres et les prix (ex. aide financière possible). */
-  note?: { title: string; text: string };
+  note?: { id?: string; title: string; text: string };
   expertise: { id: string; kicker?: string; title: string; items: Item[]; numbered?: boolean };
   /** translationKey des articles liés, dans l'ordre d'affichage. */
   insights: { title: string; keys: string[]; allLabel: string };
@@ -54,7 +57,8 @@ const { locale, segment, title, description, jsonLd, hero, issues, offer, soluti
 const shade = (index: number) => ((index + (solutions ? 1 : 0)) % 2 === 0 ? 'bg-light' : 'bg-white');
 const pathname = Astro.url.pathname;
 const container = 'mx-auto max-w-7xl px-6 lg:px-8';
-const meetingLabel = locale === 'fr' ? 'Planifier une rencontre' : 'Book a meeting';
+const meetingLabel = bookingLabel(locale);
+const meetingHref = meetingUrl(locale);
 
 const all = await getCollection('insights');
 const related = insights.keys
@@ -79,7 +83,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
       <h1 class="home-h1">{hero.title}</h1>
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-light/85">{hero.lead}</p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <ContactCta href={MEETING_URL} label={meetingLabel} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, pathname)} />
+        <ContactCta href={meetingHref} label={meetingLabel} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, pathname)} />
         <a class="btn btn--outline" href={hero.secondary.href}>{hero.secondary.label}</a>
       </div>
     </div>
@@ -89,6 +93,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
   <section class="bg-light py-20 text-ink" id={issues.id}>
     <div class={container}>
       <h2 class="home-h2">{issues.title}</h2>
+      {issues.audience && <p class="mt-4 max-w-3xl text-lg leading-relaxed">{issues.audience}</p>}
       <div class="mt-10 grid gap-4 md:grid-cols-2">
         {issues.items.map((item) => (
           <article class="rounded-2xl border border-slate-200 bg-white p-6">
@@ -108,6 +113,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
       <h2 class="home-h2">{offer.title}</h2>
       <p class="mt-4 max-w-3xl text-lg leading-relaxed">{offer.lead}</p>
       <p class="mt-4 font-semibold text-teal">{offer.price}</p>
+      {offer.essor && <EssorPriceNote locale={locale} href="#essor" />}
       <div class="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">
         {offer.items.map((item) => (
           <div class="flex gap-4">
@@ -122,7 +128,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
         ))}
       </div>
       <div class="mt-10">
-        <ContactCta href={MEETING_URL} label={meetingLabel} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', 'Offer', locale, pathname)} />
+        <ContactCta href={meetingHref} label={meetingLabel} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', 'Offer', locale, pathname)} />
       </div>
     </div>
   </section>
@@ -209,7 +215,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
         </div>
 
         <div class="mt-10">
-          <ContactCta href={MEETING_URL} label={meetingLabel} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', 'Solutions', locale, pathname)} />
+          <ContactCta href={meetingHref} label={meetingLabel} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', 'Solutions', locale, pathname)} />
         </div>
       </div>
     </section>
@@ -232,7 +238,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
           ))}
         </ol>
         {note && (
-          <aside class={`mt-8 max-w-4xl rounded-2xl border border-slate-200 border-l-4 border-l-coral ${shade(0) === 'bg-white' ? 'bg-light' : 'bg-white'} p-6`} aria-label={note.title}>
+          <aside class={`mt-8 max-w-4xl rounded-2xl border border-slate-200 border-l-4 border-l-coral ${shade(0) === 'bg-white' ? 'bg-light' : 'bg-white'} p-6`} aria-label={note.title} id={note.id}>
             <p class="home-h3">{note.title}</p>
             <p class="mt-2 leading-relaxed">{note.text}</p>
           </aside>

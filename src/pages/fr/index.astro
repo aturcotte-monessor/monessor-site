@@ -4,8 +4,9 @@ import Layout from '../../layouts/Layout.astro';
 import InsightCard from '../../components/InsightCard.astro';
 import ContactCta from '../../components/ContactCta.astro';
 import Icon from '../../components/Icon.astro';
+import EssorPriceNote from '../../components/EssorPriceNote.astro';
 import ChevronLines from '../../components/ChevronLines.astro';
-import { MEETING_URL, fathomEvent } from '../../utils/tracking';
+import { meetingUrl, meetingLabel, fathomEvent } from '../../utils/tracking';
 import { articleSegments } from '../../utils/articleSegments';
 import { ui } from '../../i18n/ui';
 import { Picture } from 'astro:assets';
@@ -98,8 +99,8 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <ContactCta
-          href={MEETING_URL}
-          label="Planifier une rencontre"
+          href={meetingUrl(locale)}
+          label={meetingLabel(locale)}
           className="btn"
           fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, pathname)}
         />
@@ -113,6 +114,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
     <div class={container}>
       <p class="home-kicker text-teal">Pour les PME</p>
       <h2 class="home-h2">Quand la technologie freine la croissance</h2>
+      <p class="mt-4 max-w-3xl text-lg leading-relaxed">Dans les PME de fabrication, de distribution et de services, ces trois signes reviennent souvent.</p>
 
       <div class="mt-10 grid gap-4 md:grid-cols-3">
         {symptoms.map((item) => (
@@ -132,7 +134,16 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
             avec une feuille de route chiffrée sur 18 mois, prête à être présentée à votre comité de direction.
           </p>
           <p class="mt-4 font-semibold text-teal">Dès 12 500 $, forfait à périmètre fixe.</p>
-          <a class="btn btn--outline-teal mt-6" href={servicePme}>Découvrir l’offre aux PME</a>
+          <EssorPriceNote locale={locale} href={`${servicePme}#essor`} />
+          <div class="mt-6 flex flex-wrap gap-3">
+            <ContactCta
+              href={meetingUrl(locale)}
+              label={meetingLabel(locale)}
+              className="btn"
+              fathomEventName={fathomEvent('ScheduleMeeting', 'Diagnostic', locale, pathname)}
+            />
+            <a class="btn btn--outline-teal" href={servicePme}>Découvrir l’offre aux PME</a>
+          </div>
         </div>
         <ol class="grid gap-6">
           {sequence.map((item) => (
