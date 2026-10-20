@@ -6,14 +6,13 @@ import ContactCta from '../../components/ContactCta.astro';
 import Icon from '../../components/Icon.astro';
 import EssorPriceNote from '../../components/EssorPriceNote.astro';
 import ChevronLines from '../../components/ChevronLines.astro';
-import { meetingUrl, meetingLabel, fathomEvent } from '../../utils/tracking';
+import { meetingUrl, meetingLabel } from '../../utils/tracking';
 import { articleSegments } from '../../utils/articleSegments';
 import { ui } from '../../i18n/ui';
 import { Picture } from 'astro:assets';
 import portrait from '../../assets/alex.jpg';
 
 const locale = 'fr' as const;
-const pathname = Astro.url.pathname;
 const allInsights = await getCollection('insights');
 const entries = allInsights
   .filter(({ id, data }) => id.startsWith('fr/') && data.lang === locale)
@@ -102,9 +101,8 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
           href={meetingUrl(locale)}
           label={meetingLabel(locale)}
           className="btn"
-          fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, pathname)}
         />
-        <a class="btn btn--outline" href={`${servicePme}#diagnostic`}>Par où commencer</a>
+        <a class="btn btn--outline" href={`${servicePme}#diagnostic`} data-fathom-event="Service Page Clicked | PME">Par où commencer</a>
       </div>
     </div>
   </section>
@@ -140,9 +138,8 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
               href={meetingUrl(locale)}
               label={meetingLabel(locale)}
               className="btn"
-              fathomEventName={fathomEvent('ScheduleMeeting', 'Diagnostic', locale, pathname)}
             />
-            <a class="btn btn--outline-teal" href={servicePme}>Découvrir l’offre aux PME</a>
+            <a class="btn btn--outline-teal" href={servicePme} data-fathom-event="Service Page Clicked | PME">Découvrir l’offre aux PME</a>
           </div>
         </div>
         <ol class="grid gap-6">
@@ -172,7 +169,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
             gestion du risque de modélisation (E-23).
           </p>
         </div>
-        <a class="shrink-0 font-semibold text-teal underline underline-offset-4" href={serviceSf}>Découvrir la Revue de gouvernance TI →</a>
+        <a class="shrink-0 font-semibold text-teal underline underline-offset-4" href={serviceSf} data-fathom-event="Service Page Clicked | Regulated Finance">Découvrir la Revue de gouvernance TI →</a>
       </div>
     </div>
   </section>
@@ -277,7 +274,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
           href="https://www.linkedin.com/in/turcottealex"
           target="_blank"
           rel="noopener noreferrer"
-          data-fathom-event={fathomEvent('LinkedIn', 'Profile', locale, pathname)}
+          data-fathom-event="LinkedIn Clicked"
         >Profil LinkedIn</a>
         <a class="ml-4 mt-6 inline-block font-semibold text-teal underline underline-offset-4" href="/fr/a-propos/">Lire le profil complet →</a>
       </div>

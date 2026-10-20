@@ -35,18 +35,44 @@
   wirePhone(".phone-secure");
 })();
 
-// FATHOM : clics courriel, téléphone et LinkedIn (attribut data-fathom-event)
+// FATHOM : un seul mécanisme, l'attribut data-fathom-event (noms fermés : voir src/utils/tracking.ts).
+// Le script Fathom est chargé en defer : les appels qui ne suivent pas un clic attendent l'événement load.
 (function () {
-  document.addEventListener("click", function (event) {
-    const el = event.target.closest && event.target.closest("[data-fathom-event]");
-    if (!el) return;
+  function track(name) {
     try {
       if (window.fathom && typeof window.fathom.trackEvent === "function") {
-        window.fathom.trackEvent(el.dataset.fathomEvent);
+        window.fathom.trackEvent(name);
       }
     } catch (error) {
       console.warn("Fathom event failed:", error);
     }
+  }
+
+  // Clics : l'écouteur délégué ne bloque pas la navigation (target=_blank reste natif).
+  document.addEventListener("click", function (event) {
+    const el = event.target.closest && event.target.closest("[data-fathom-event]");
+    if (el) track(el.dataset.fathomEvent);
+  });
+
+  window.addEventListener("load", function () {
+    // Vues : ex. « 404 Viewed », une fois par chargement.
+    document.querySelectorAll("[data-fathom-view]").forEach(function (el) {
+      track(el.dataset.fathomView);
+    });
+
+    // ?fathom=off exclut ce navigateur des statistiques ; ?fathom=on le réinclut.
+    const url = new URL(window.location.href);
+    const mode = url.searchParams.get("fathom");
+    if (mode !== "off" && mode !== "on") return;
+    try {
+      if (mode === "off") window.fathom.blockTrackingForMe();
+      else window.fathom.enableTrackingForMe();
+      console.info(mode === "off" ? "Fathom : suivi désactivé pour ce navigateur." : "Fathom : suivi réactivé pour ce navigateur.");
+    } catch (error) {
+      console.warn("Fathom tracking toggle failed:", error);
+    }
+    url.searchParams.delete("fathom");
+    history.replaceState(history.state, "", url.pathname + url.search + url.hash);
   });
 })();
 

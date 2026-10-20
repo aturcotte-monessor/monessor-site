@@ -1,4 +1,6 @@
 ---
+import { meetingEvent } from '../utils/tracking';
+
 interface Props {
   href: string;
   label: string;
@@ -6,7 +8,6 @@ interface Props {
   className?: string;
   target?: string;
   rel?: string;
-  fathomEventName?: string;
 }
 
 const {
@@ -15,26 +16,12 @@ const {
   ariaLabel,
   className = 'btn btn--outline',
   target = '_blank',
-  rel = 'noopener noreferrer',
-  fathomEventName = 'Click ScheduleMeeting Home'
+  rel = 'noopener noreferrer'
 } = Astro.props;
 
 const newTab = target === '_blank' ? (Astro.currentLocale === 'en' ? ' (opens in a new tab)' : ' (nouvel onglet)') : '';
-
-const onClickHandler = `(function (event) {
-  try {
-    if (window.fathom && typeof window.fathom.trackEvent === 'function') {
-      window.fathom.trackEvent('${fathomEventName}');
-    }
-  } catch (error) {
-    console.warn('Fathom event failed:', error);
-  }
-
-  if (event.currentTarget.getAttribute('target') === '_blank') {
-    event.preventDefault();
-    window.open(event.currentTarget.href, '_blank', 'noopener,noreferrer');
-  }
-})(event);`;
+// Le clic est compté par l'écouteur délégué de public/scripts/main.js ; le canal vient de la page du clic.
+const fathomEventName = meetingEvent(Astro.url.pathname);
 ---
 
 <a
@@ -43,7 +30,7 @@ const onClickHandler = `(function (event) {
   target={target}
   rel={rel}
   aria-label={ariaLabel}
-  onclick={onClickHandler}
+  data-fathom-event={fathomEventName}
 >
   {label}{newTab && <span class="sr-only">{newTab}</span>}
 </a>

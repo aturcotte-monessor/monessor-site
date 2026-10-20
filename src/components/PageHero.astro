@@ -2,7 +2,7 @@
 // Héros foncé des pages de contenu (Approche, À propos, Confidentialité), avec le faisceau de lignes.
 import ContactCta from './ContactCta.astro';
 import ChevronLines from './ChevronLines.astro';
-import { meetingUrl, meetingLabel, fathomEvent } from '../utils/tracking';
+import { meetingUrl, meetingLabel } from '../utils/tracking';
 
 interface Props {
   locale: 'fr' | 'en';
@@ -14,7 +14,6 @@ interface Props {
 }
 
 const { locale, kicker, title, lead, cta = true } = Astro.props;
-const pathname = Astro.url.pathname;
 ---
 
 <section class="relative overflow-hidden bg-teal-deep">
@@ -29,7 +28,6 @@ const pathname = Astro.url.pathname;
           href={meetingUrl(locale)}
           label={meetingLabel(locale)}
           className="btn"
-          fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, pathname)}
         />
       </div>
     )}

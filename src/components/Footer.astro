@@ -1,6 +1,5 @@
 ---
 import { getAlternatePath } from '../utils/i18nRoutes';
-import { fathomEvent } from '../utils/tracking';
 import Icon from './Icon.astro';
 import ChevronLines from './ChevronLines.astro';
 
@@ -97,13 +96,13 @@ const t = isFr
       <ul class="mt-4 space-y-3 text-sm">
         <li class="flex items-center gap-2.5">
           <Icon name="mail" size={16} class="shrink-0 text-coral" />
-          <a data-email-link href="#" class="hover:text-light" data-fathom-event={fathomEvent('Email', 'Footer', locale, pathname)}>
+          <a data-email-link href="#" class="hover:text-light" data-fathom-event="Email Clicked">
             <span data-user="info" data-domain="monessor" data-tld="com">{t.email}</span>
           </a>
         </li>
         <li class="flex items-center gap-2.5">
           <Icon name="phone" size={16} class="shrink-0 text-coral" />
-          <span class="phone-secure" data-fathom-event={fathomEvent('Phone', 'Footer', locale, pathname)}>{t.phone}</span>
+          <span class="phone-secure" data-fathom-event="Phone Clicked">{t.phone}</span>
         </li>
         <li class="flex items-center gap-2.5">
           <Icon name="map-pin" size={16} class="shrink-0 text-coral" />
@@ -116,7 +115,7 @@ const t = isFr
             target="_blank"
             rel="noopener noreferrer"
             class="hover:text-light"
-            data-fathom-event={fathomEvent('LinkedIn', 'Footer', locale, pathname)}
+            data-fathom-event="LinkedIn Clicked"
           >LinkedIn</a>
         </li>
       </ul>

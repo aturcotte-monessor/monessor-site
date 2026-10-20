@@ -9,7 +9,7 @@ import InsightCard from './InsightCard.astro';
 import { articleSegments, relatedArticles, segmentLabels } from '../utils/articleSegments';
 import { formatDate } from '../utils/dates';
 import { articleSeo } from '../utils/articleSeo';
-import { PERSON_ID, fathomEvent, personalSiteUrl } from '../utils/tracking';
+import { PERSON_ID, personalSiteUrl } from '../utils/tracking';
 import { Picture } from 'astro:assets';
 import portrait from '../assets/alex.jpg';
 
@@ -195,12 +195,12 @@ const faqLd = faq.length
               target="_blank"
               rel="noopener noreferrer"
               class="font-semibold text-teal underline underline-offset-4"
-              data-fathom-event={fathomEvent('LinkedIn', 'Author', locale, pathname)}
+              data-fathom-event="LinkedIn Clicked"
             >LinkedIn</a>
             <a
               href={personalSiteUrl(locale)}
               class="font-semibold text-teal underline underline-offset-4"
-              data-fathom-event={fathomEvent('PersonalSite', 'Author', locale, pathname)}
+              data-fathom-event="Personal Site Clicked"
             >alexturcotte.ca</a>
           </p>
         </div>
@@ -208,7 +208,7 @@ const faqLd = faq.length
 
       <!-- VIGNETTE DE RENDEZ-VOUS DU SEGMENT -->
       <div class="mt-10">
-        <MeetingCta locale={locale} variant={segments[0] ?? 'article'} placement="Article" bare serviceLink />
+        <MeetingCta locale={locale} variant={segments[0] ?? 'article'} bare serviceLink />
       </div>
 
       <!-- FAQ -->

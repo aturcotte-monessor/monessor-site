@@ -6,14 +6,13 @@ import ContactCta from '../../components/ContactCta.astro';
 import Icon from '../../components/Icon.astro';
 import EssorPriceNote from '../../components/EssorPriceNote.astro';
 import ChevronLines from '../../components/ChevronLines.astro';
-import { meetingUrl, meetingLabel, fathomEvent } from '../../utils/tracking';
+import { meetingUrl, meetingLabel } from '../../utils/tracking';
 import { articleSegments } from '../../utils/articleSegments';
 import { ui } from '../../i18n/ui';
 import { Picture } from 'astro:assets';
 import portrait from '../../assets/alex.jpg';
 
 const locale = 'en' as const;
-const pathname = Astro.url.pathname;
 const allInsights = await getCollection('insights');
 const entries = allInsights
   .filter(({ id, data }) => id.startsWith('en/') && data.lang === locale)
@@ -102,9 +101,8 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
           href={meetingUrl(locale)}
           label={meetingLabel(locale)}
           className="btn"
-          fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, pathname)}
         />
-        <a class="btn btn--outline" href={`${serviceSme}#diagnostic`}>Where to start</a>
+        <a class="btn btn--outline" href={`${serviceSme}#diagnostic`} data-fathom-event="Service Page Clicked | PME">Where to start</a>
       </div>
     </div>
   </section>
@@ -140,9 +138,8 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
               href={meetingUrl(locale)}
               label={meetingLabel(locale)}
               className="btn"
-              fathomEventName={fathomEvent('ScheduleMeeting', 'Diagnostic', locale, pathname)}
             />
-            <a class="btn btn--outline-teal" href={serviceSme}>Explore the SME offer</a>
+            <a class="btn btn--outline-teal" href={serviceSme} data-fathom-event="Service Page Clicked | PME">Explore the SME offer</a>
           </div>
         </div>
         <ol class="grid gap-6">
@@ -171,7 +168,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
             third-party risk management (B-10), technology and cyber risk (B-13), and model risk management (E-23).
           </p>
         </div>
-        <a class="shrink-0 font-semibold text-teal underline underline-offset-4" href={serviceFs}>Explore the IT Governance Review →</a>
+        <a class="shrink-0 font-semibold text-teal underline underline-offset-4" href={serviceFs} data-fathom-event="Service Page Clicked | Regulated Finance">Explore the IT Governance Review →</a>
       </div>
     </div>
   </section>
@@ -274,7 +271,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
           href="https://www.linkedin.com/in/turcottealex"
           target="_blank"
           rel="noopener noreferrer"
-          data-fathom-event={fathomEvent('LinkedIn', 'Profile', locale, pathname)}
+          data-fathom-event="LinkedIn Clicked"
         >LinkedIn profile</a>
         <a class="ml-4 mt-6 inline-block font-semibold text-teal underline underline-offset-4" href="/en/about/">Read the full profile →</a>
       </div>

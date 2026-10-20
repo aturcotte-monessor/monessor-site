@@ -4,7 +4,7 @@
 - Framework: Astro.js avec composants MDX
 - Styles: Tailwind CSS 4 (jetons de couleur dans le `@theme` de `src/styles/global.css`)
 - Routes : symétriques `/fr/...` et `/en/...` (pages FR dans `src/pages/fr/`, analyses FR sous `/fr/perspectives/`, EN sous `/en/insights/`). La racine `/` et les anciennes URL françaises sont redirigées par `vercel.json` (302 selon la langue du navigateur, 301 pour les anciennes URL) ; toute page renommée doit y ajouter sa 301.
-- Analytique: Fathom Analytics (événements nommés par `fathomEvent()` dans `src/utils/tracking.ts`)
+- Analytique: Fathom Analytics (liste fermée `FathomEvent` dans `src/utils/tracking.ts` ; règles dans la section « Fathom » du README : ne jamais renommer un nom en production)
 
 ## Règles de Style & Design System
 1. **Palette (charte Monessor, règle 60-30-10) :**
@@ -16,7 +16,7 @@
    - Interdits : texte blanc sur corail, corail `#FF6F61` en texte sur fond clair (2,6:1), toute autre couleur hors charte (menthe, verts, or).
    - Typographie : Montserrat Bold pour le mot-symbole MONESSOR (classe `.wordmark`, interlettrage 0,08em, sous-ensemble limité à ses lettres) ; Inter, police variable, pour tout le reste. Les deux sont auto-hébergées dans `public/fonts/` et préchargées dans `Layout.astro` ; aucun appel à Google Fonts.
 2. **Thème mixte :** en-tête clair (emblème couleur), sections de contenu claires, bandes foncées pour l'autorité et l'action. L'emblème est en SVG dans `public/assets/` : `monessor-embleme.svg` sur fond clair, `monessor-embleme-blanc-corail.svg` sur fond foncé.
-3. **Conversion :** un seul lien de rendez-vous (`MEETING_URL`). Toute page se termine par la vignette `MeetingCta` (variante `pme`, `sf`, `article` ou `generic`) puis le pied de page global, tous deux rendus par `Layout.astro`. Chaque bouton de rendez-vous porte un événement Fathom distinct par emplacement, langue et page.
+3. **Conversion :** un lien de réservation par langue (`meetingUrl(locale)` dans `src/utils/tracking.ts`). Toute page se termine par la vignette `MeetingCta` (variante `pme`, `sf`, `article` ou `generic`) puis le pied de page global, tous deux rendus par `Layout.astro`. Chaque bouton de rendez-vous envoie `Meeting Clicked | <canal>`, le canal venant de la page du clic (Home, PME, Regulated Finance, Other).
 4. **Copie & Vocabulaire :**
    - Utiliser un ton C-Level, sobre et factuel.
    - Ne jamais utiliser de vocabulaire d'agence générique ("funnels", "growth hacking", "boostez vos ventes").

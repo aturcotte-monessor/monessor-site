@@ -6,14 +6,12 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from './PageHero.astro';
 import EmailLink from './EmailLink.astro';
-import { fathomEvent } from '../utils/tracking';
 
 interface Props {
   locale: 'fr' | 'en';
 }
 
 const { locale } = Astro.props;
-const pathname = Astro.url.pathname;
 
 // Adresse du responsable : jamais en clair dans le HTML (protection contre la collecte automatique).
 // Le texte contient le jeton {email}, remplacé par un lien que public/scripts/main.js assemble au chargement.
@@ -274,13 +272,13 @@ const t: { title: string; description: string; kicker: string; h1: string; effec
       {t.sections.map((section) => (
         <section class="mt-10 first:mt-0" id={section.id}>
           <h2 class="home-h3 text-xl">{section.title}</h2>
-          {section.paragraphs?.map((paragraph) => <p class="mt-3 leading-relaxed">{split(paragraph).map((part, i) => (i === 0 ? part : <Fragment><EmailLink user={emailUser} fathomEvent={fathomEvent('Email', 'Privacy', locale, pathname)} />{part}</Fragment>))}</p>)}
+          {section.paragraphs?.map((paragraph) => <p class="mt-3 leading-relaxed">{split(paragraph).map((part, i) => (i === 0 ? part : <Fragment><EmailLink user={emailUser} fathomEvent="Email Clicked" />{part}</Fragment>))}</p>)}
           {section.list && (
             <ul class="mt-3 list-disc space-y-2 pl-6 leading-relaxed">
-              {section.list.map((item) => <li>{split(item).map((part, i) => (i === 0 ? part : <Fragment><EmailLink user={emailUser} fathomEvent={fathomEvent('Email', 'Privacy', locale, pathname)} />{part}</Fragment>))}</li>)}
+              {section.list.map((item) => <li>{split(item).map((part, i) => (i === 0 ? part : <Fragment><EmailLink user={emailUser} fathomEvent="Email Clicked" />{part}</Fragment>))}</li>)}
             </ul>
           )}
-          {section.after?.map((paragraph) => <p class="mt-3 leading-relaxed">{split(paragraph).map((part, i) => (i === 0 ? part : <Fragment><EmailLink user={emailUser} fathomEvent={fathomEvent('Email', 'Privacy', locale, pathname)} />{part}</Fragment>))}</p>)}
+          {section.after?.map((paragraph) => <p class="mt-3 leading-relaxed">{split(paragraph).map((part, i) => (i === 0 ? part : <Fragment><EmailLink user={emailUser} fathomEvent="Email Clicked" />{part}</Fragment>))}</p>)}
         </section>
       ))}
     </div>

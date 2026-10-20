@@ -1,7 +1,7 @@
 ---
 import { getAlternatePath } from '../utils/i18nRoutes';
 import ContactCta from './ContactCta.astro';
-import { meetingUrl, meetingLabel as bookingLabel, fathomEvent } from '../utils/tracking';
+import { meetingUrl, meetingLabel as bookingLabel } from '../utils/tracking';
 
 interface Props {
   locale?: 'fr' | 'en';
@@ -101,7 +101,6 @@ const sectionLinks = isFr
               href={meetingHref}
               label={meetingLabel}
               className="btn mt-2 min-h-11"
-              fathomEventName={fathomEvent('ScheduleMeeting', 'Header-Mobile', locale, pathname)}
             />
           </div>
         </div>
@@ -139,7 +138,6 @@ const sectionLinks = isFr
           href={meetingHref}
           label={meetingLabel}
           className="btn"
-          fathomEventName={fathomEvent('ScheduleMeeting', 'Header', locale, pathname)}
         />
       </div>
     </nav>

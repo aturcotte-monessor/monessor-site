@@ -1,103 +1,106 @@
 ---
-title: "L’illusion de l’innovation sans risque dans les services financiers : Pourquoi la gouvernance ne doit pas être l’ennemie de la vitesse"
-excerpt: "Pourquoi la gouvernance traditionnelle paralyse l'innovation et comment moderniser la gestion des risques grâce à des garde-fous architecturaux."
+title: "Gouvernance TI dans les services financiers : quand le contrôle devient le risque"
+excerpt: "L'approbation par comité rend une organisation 2,6 fois plus susceptible de mal livrer, sans réduire les échecs. Le BSIF ne l'exige pas."
 pubDate: 2026-08-17
+updatedDate: 2026-10-13
 author: "Alex Turcotte"
-readTime: "5 min"
+readTime: "7 min"
 lang: "fr"
 translationKey: "governance-speed"
-tags: ["Gouvernance TI", "Gestion des risques", "Architecture logicielle", "Services financiers", "Stratégie exécutive", "Modèle opérationnel"]
+segment: "sf"
+tags: ["Gouvernance TI", "Gestion des risques", "BSIF", "Ligne directrice B-13", "Architecture logicielle", "Services financiers", "Modèle opérationnel"]
 faq:
-  - question: "Pourquoi la gouvernance TI traditionnelle ralentit-elle l'innovation dans les services financiers ?"
-    answer: "Parce qu'elle repose sur des cycles d'approbation par comité et des chiffriers de contrôle trimestriels conçus pour couvrir la responsabilité de l'organisation plutôt que pour réduire réellement le risque. Cette bureaucratie retarde le changement jusqu'à ce que le risque de faire du surplace devienne lui-même le principal danger opérationnel."
-  - question: "Quelle est la différence entre un « garde-fou » architectural et un « barrage » de gouvernance ?"
-    answer: "Un barrage bloque uniformément toute initiative en exigeant le même niveau d'approbation, peu importe le risque réel. Un garde-fou architectural, lui, confine l'impact d'un changement à un domaine d'affaires isolé, permettant d'ajuster la rigueur de la revue au risque réel plutôt qu'à la complexité totale du système hérité."
-  - question: "Comment moderniser la conformité réglementaire sans multiplier les comités d'approbation ?"
-    answer: "En intégrant les vérifications de politiques (analyses de sécurité, contrôles d'accès) directement dans la chaîne de livraison logicielle. Cela crée un chemin d'audit continu et automatisé, rendant l'entreprise prête pour un audit en tout temps plutôt que de dépendre d'une photo de conformité prise une fois par trimestre."
-  - question: "Pourquoi une taxonomie de risques mal entretenue nuit-elle à la vitesse d'exécution ?"
-    answer: "Lorsque les classifications de risque ne sont pas révisées régulièrement, plus personne ne leur fait confiance. L'entreprise choisit alors par défaut la voie de gouvernance la plus conservatrice pour tous ses projets, traitant un composant infonuagique moderne avec la même rigueur bureaucratique qu'un système monolithique hérité."
+  - question: "Pourquoi la gouvernance TI traditionnelle ralentit-elle l'innovation dans les services financiers?"
+    answer: "La gouvernance TI traditionnelle repose sur des cycles d'approbation par comité et des chiffriers de contrôle trimestriels, conçus pour couvrir la responsabilité de l'organisation plutôt que pour réduire le risque. Selon le rapport Accelerate: State of DevOps de 2019, les organisations qui exigent l'approbation d'un comité ou d'un cadre supérieur sont 2,6 fois plus susceptibles de figurer parmi les moins performantes en livraison logicielle, sans que leur taux d'échec soit plus faible."
+  - question: "La ligne directrice B-13 du BSIF exige-t-elle un comité d'approbation des changements?"
+    answer: "La ligne directrice B-13 du BSIF n'exige aucun comité d'approbation. Elle demande que les changements soient documentés, évalués, mis à l'essai, approuvés et vérifiés de façon contrôlée, que les tâches soient séparées et que chaque changement soit traçable. Une revue par les pairs consignée dans la chaîne de livraison logicielle, appuyée par des vérifications automatisées, peut satisfaire ces trois exigences."
+  - question: "Quelle est la différence entre un garde-fou architectural et un barrage de gouvernance?"
+    answer: "Un barrage de gouvernance bloque toute initiative en exigeant le même niveau d'approbation, peu importe le risque réel. Un garde-fou architectural confine l'effet d'un changement à un domaine d'affaires isolé, ce qui permet d'ajuster la rigueur de la revue au risque réel plutôt qu'à la complexité de l'ensemble du système hérité."
+  - question: "Comment moderniser la conformité réglementaire sans multiplier les comités d'approbation?"
+    answer: "La conformité se modernise en intégrant les vérifications de politiques, comme les analyses de sécurité et les contrôles d'accès, à la chaîne de livraison logicielle. Chaque changement laisse alors une preuve d'audit continue et automatisée. L'institution est prête pour un audit en tout temps, au lieu de dépendre d'un portrait de conformité dressé une fois par trimestre."
+  - question: "Pourquoi une taxonomie de risques mal entretenue nuit-elle à la vitesse d'exécution?"
+    answer: "Lorsque les classifications de risque ne sont pas révisées régulièrement, plus personne ne leur fait confiance. L'organisation retient alors par défaut la voie de gouvernance la plus prudente pour tous ses projets et traite un composant infonuagique récent avec la même lourdeur qu'un système monolithique hérité."
 ---
 
-Dans les [secteurs réglementés](/services/gouvernance-sf-reglementee/), les organisations ont bâti d'impressionnantes forteresses de comités, de cycles d'approbation et de chiffriers de contrôles trimestrielles. Officiellement, on appelle cela la « gestion des risques ».
+Les organisations qui soumettent leurs changements technologiques à un comité d'approbation ou à un cadre supérieur sont 2,6 fois plus susceptibles de figurer parmi les moins performantes en livraison logicielle. Leur taux d'échec n'est pas plus faible pour autant ([*Accelerate: State of DevOps*, 2019](https://services.google.com/fh/files/misc/state-of-devops-2019.pdf)).
 
-Dans les faits, c'est souvent une simple **illusion de contrôle**.
+Dans les services financiers, ces comités, ces cycles d'approbation et ces chiffriers de contrôle trimestriels portent le nom de gestion des risques. Lorsque le contrôle ralentit la livraison sans réduire les échecs, est-ce simplement le prix de la conformité ou plutôt une illusion de contrôle?
 
-Dans l'ensemble des marchés des capitaux et des institutions financières, les équipes exécutives font face à un paradoxe tenace : la pression du marché pour innover n'a jamais été aussi forte, pourtant la gouvernance interne censée protéger l'entreprise est devenue son principal goulot d'étranglement.
+## La gouvernance par comité : le prix de la sécurité?
 
-## La réalité derrière la paperasse
+Que répond une équipe de direction à qui l'on fait remarquer la lenteur de sa gouvernance? Le plus souvent, qu'il s'agit d'une « taxe de sécurité », soit une dépense nécessaire à la stabilité de l'institution.
 
-Pour satisfaire aux contrôles généraux informatiques (ITGC) et aux cadres d'audit hérités, les dirigeants passent d'innombrables heures à naviguer à travers des points de contrôle bureaucratiques.
+Cette réponse se comprend. Une institution financière répond de ses contrôles généraux informatiques (ITGC) devant ses auditeurs et de sa résilience devant son autorité de surveillance. Dans ces circonstances, chaque signature ajoutée paraît réduire le risque, et aucun dirigeant ne veut être celui qui en a retiré une.
 
-Chaque livraison exige une chaîne d'approbations et de signatures conçues davantage pour couvrir la responsabilité de l'organisation que pour réduire réellement les risques. Chaque trimestre, les équipes se prêtent au rituel familier des tableaux de contrôle, signant une conformité sur papier tout en reconnaissant en privé la fragilité réelle des systèmes sous-jacents.
+Toutefois, la chaîne d'approbations qui en résulte est conçue davantage pour couvrir la responsabilité de l'organisation que pour réduire le risque. Chaque trimestre, les équipes signent une conformité sur papier tout en reconnaissant, en privé, la fragilité des systèmes sous-jacents. Le conseil d'administration y trouve une piste de preuve rassurante. J'y ai observé deux risques opérationnels qu'elle masque.
 
-Ce « théâtre de la sécurité » offre un chemin de preuve confortable pour le conseil d'administration. Mais il masque deux risques opérationnels majeurs:
+- **L'accumulation de la dette technique.** J'ai vu des organisations consacrer des mois, parfois des années, à débattre d'architectures cibles, pour ensuite exiger des échéanciers impossibles une fois le projet approuvé. Le résultat est prévisible : les équipes prennent des raccourcis, contournent les contrôles de conformité intégrés et livrent des produits chargés de dette technique.
+- **Les contournements.** J'ai vu des gestionnaires de livraison chevronnés contraints de fermer les yeux sur des gestes non conformes pour respecter une date. Il s'agit rarement d'une question d'intégrité personnelle. Lorsque le processus est trop lourd, il faut enfreindre les règles pour livrer ou échouer, et la plupart choisissent de livrer.
 
-* **L'accumulation de la dette technique :** J'ai vu des organisations brûler des mois (parfois des années !) à débattre d'architectures cibles, pour ensuite exiger des échéanciers d'exécution impossibles une fois le projet approuvé. Le résultat est prévisible: les équipes coupent les coins ronds, contournent les garde-fous de conformité intégrés et lancent des produits truffés de dette technique. Le processus de gouvernance censé protéger l'entreprise finit par garantir l'échec même qu'il cherchait à éviter.
-* **Friction systémique et contournements :** Lorsque la gouvernance est synonyme de friction, elle engendre une culture de négligence tactique. J'ai vu des gestionnaires de livraison chevronnés contraints de fermer les yeux sur des actions non conformes simplement pour respecter une date de livraison. C'est rarement une question d'intégrité personnelle; c'est un mécanisme de survie. Lorsque le processus est trop lourd, soit vous brisez les règles pour livrer de la valeur, soit vous échouez. La plupart choisissent la première option.
+**Le processus de gouvernance censé protéger l'institution finit ainsi par produire l'échec qu'il devait prévenir.**
 
-> **L'erreur fondamentale :** Une gouvernance lourde axée sur des comités n'élimine pas le risque. Elle ne fait que retarder le changement jusqu'à ce que le risque de faire du surplace devienne fatal.
+## Approbations par comité : ce que mesurent les travaux de DORA
 
-## Le coût élevé de l'inaction : Taxe invisible et fuite des talents
+Les approbations lourdes ne réduisent pas le taux d'échec des changements. C'est la conclusion du programme de recherche DORA, qui a recueilli en six ans les réponses de plus de 31 000 professionnels. Son rapport de 2019 compare deux façons d'approuver un changement : la revue par les pairs, légère et intégrée au développement, et l'approbation formelle par une instance externe à l'équipe.
 
-Plusieurs équipes exécutives voient la gouvernance lente comme une « taxe de sécurité »: une dépense nécessaire pour assurer la stabilité institutionnelle. C'est un calcul erroné. Déconnectée des pratiques de livraison modernes, la gouvernance devient une taxe invisible qui s'accumule aux dépens de votre avantage concurrentiel.
+D'une part, les chercheurs ne trouvent aucun lien entre l'approbation formelle et un taux d'échec plus faible. D'autre part, ils confirment le mécanisme inverse. Plus les approbations s'accumulent, plus les changements attendent et se regroupent en lots volumineux, livrés moins souvent. Or, un lot volumineux touche davantage de composants à la fois, et il échoue plus souvent.
 
-Chaque comité redondant et chaque mois de retard représentent un coût d'opportunité réel. Dans les services financiers, la voie « sécuritaire » de l'approbation lente par comité est en réalité la plus risquée, laissant l'entreprise vulnérable face à des concurrents plus agiles et nés dans le numérique.
+Les auteurs en tirent une mise en garde. Lorsqu'une mise en production tourne mal, le réflexe d'une organisation est d'ajouter un palier d'approbation, et selon leur analyse, ce réflexe aggrave la situation. Ils recommandent plutôt la revue par les pairs, appuyée par des tests et une surveillance automatisés. Le comité conserve un rôle : arbitrer les décisions d'affaires qui opposent le délai de mise en marché au risque.
 
-Au-delà du bilan financier, il existe un coût plus silencieux et plus corrosif : **la fuite du capital humain**.
+## Ce que la ligne directrice B-13 du BSIF exige, et ce qu'elle n'exige pas
 
-Les meilleurs architectes et leaders d'ingénierie ne rejoignent pas des institutions hautement réglementées pour gérer des approbations sur Excel. Ils viennent pour bâtir des systèmes complexes et résilients. Lorsque la culture institutionnelle priorise la conformité procédurale au détriment de l'excellence technique, les meilleurs talents quittent le navire. En imposant une gouvernance obsolète, les organisations filtrent et éliminent précisément les innovateurs dont elles ont le plus besoin.
+La ligne directrice B-13 du BSIF, en vigueur depuis le 1er janvier 2024, n'exige aucun comité d'approbation des changements. Son principe 8 demande que les changements apportés aux actifs technologiques soient documentés, évalués, mis à l'essai, approuvés, mis en œuvre et vérifiés de façon contrôlée. Il y ajoute deux exigences, soit la séparation des tâches et la traçabilité de chaque changement ([BSIF, ligne directrice B-13](https://www.osfi-bsif.gc.ca/fr/consignes/repertoire-consignes/gestion-du-risque-lie-technologies-du-cyberrisque)).
 
-## Redéfinir la gouvernance : Passer du barrage au garde-fou
+Le texte fixe donc le résultat attendu et laisse à l'institution le choix du moyen. Il précise du reste qu'il doit être mis en œuvre dans une optique fondée sur le risque, qui permet aux institutions d'être concurrentielles et de tirer pleinement parti de l'innovation numérique.
 
-Une vraie gouvernance ne devrait pas fonctionner comme un mur de briques. Elle devrait agir comme les freins d'une voiture de course: installés non pas pour ralentir le véhicule, mais pour offrir le contrôle nécessaire pour rouler vite, en toute sécurité.
+**Le comité est un moyen parmi d'autres de satisfaire la ligne directrice, et les travaux de DORA indiquent que c'est le moins efficace.** Une revue par les pairs consignée dans la chaîne de livraison répond à la séparation des tâches. Le journal de cette même chaîne répond à la traçabilité.
 
-<div style="background-color: #0d1b2a; border: 1px solid #1e3a8a; border-radius: 8px; padding: 20px 24px; max-width: 420px; width: 100%; margin: 32px auto; font-family: inherit; color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); box-sizing: border-box;">
-  <div style="border-bottom: 1px solid #1e293b; padding-bottom: 12px; margin-bottom: 18px; text-align: center;">
-    <span style="letter-spacing: 1.5px; font-size: 10px; font-weight: 700; color: #2dd4bf; text-transform: uppercase;">Perspective Exécutive</span>
-    <h3 style="margin: 4px 0 0 0; font-size: 15px; font-weight: 600; color: #f8fafc; letter-spacing: 0.5px;">FRAMEWORK DE GOUVERNANCE MODERNE</h3>
-  </div>
-  
-  <div style="display: flex; flex-direction: column; gap: 10px;">
-    <div style="background: #132238; border-left: 4px solid #2dd4bf; padding: 12px 14px; border-radius: 0 6px 6px 0;">
-      <div style="font-weight: 700; font-size: 13px; color: #f1f5f9; margin-bottom: 2px;">1. AUDITABILITÉ CONTINUELLE</div>
-      <div style="font-size: 12px; color: #94a3b8;">Preuve en continu <span style="color: #2dd4bf; font-weight: 600;">vs</span> Tableaux Excel</div>
-    </div>
-    <div style="background: #132238; border-left: 4px solid #38bdf8; padding: 12px 14px; border-radius: 0 6px 6px 0;">
-      <div style="font-weight: 700; font-size: 13px; color: #f1f5f9; margin-bottom: 2px;">2. RÉDUCTION DU RAYON D'IMPACT</div>
-      <div style="font-size: 12px; color: #94a3b8;">Domaines isolés <span style="color: #38bdf8; font-weight: 600;">vs</span> Dépendance systémique</div>
-    </div>
-    <div style="background: #132238; border-left: 4px solid #f97316; padding: 12px 14px; border-radius: 0 6px 6px 0;">
-      <div style="font-weight: 700; font-size: 13px; color: #f1f5f9; margin-bottom: 2px;">3. LIVRAISON AXÉE AFFAIRES</div>
-      <div style="font-size: 12px; color: #94a3b8;">Lancement progressif <span style="color: #f97316; font-weight: 600;">vs</span> Déploiement Big-Bang</div>
-    </div>
-  </div>
-</div>
+## Le coût d'une gouvernance lente : délais et départs
 
-Les institutions financières performantes ne transigent pas sur la conformité. Elles modernisent la façon dont elle est exécutée. Une stratégie exécutive efficace repose sur trois piliers :
+Une gouvernance lente coûte d'abord des délais. Chaque comité redondant et chaque mois de retard représentent un coût d'opportunité, que l'institution paie face à des concurrents nés dans le numérique. La voie jugée sécuritaire se révèle ainsi la plus risquée sur le plan concurrentiel.
 
-### 1. Auditabilité continue plutôt que bureaucratie trimestrielle
-Les rapports manuels créent une « photo » de la conformité qui est obsolète au moment même où elle est signée. Une [gouvernance TI](/services/gouvernance-sf-reglementee/) moderne déplace le fardeau des personnes vers les systèmes. En intégrant les vérifications de politiques (analyses de sécurité, contrôles d'accès) directement dans la chaîne de livraison logicielle, vous créez un chemin d'audit irréfutable et en temps réel. L'entreprise est prête pour un audit en tout temps, plutôt que de devoir se démener avant une réunion trimestrielle.
+Elle coûte ensuite des départs. Les meilleurs architectes et gestionnaires d'ingénierie se joignent à une institution réglementée pour bâtir des systèmes complexes et résilients. Lorsque la conformité procédurale passe avant l'excellence technique, ils partent, et l'institution perd précisément les personnes dont sa modernisation dépend.
 
-### 2. Confinement plutôt que couplage (Gérer le « rayon d'impact »)
-Dans les architectures héritées, un changement mineur dans un module peut déclencher une défaillance en cascade. C'est pourquoi chaque mise à jour exige actuellement une cascade d'approbations. En compartimentant les domaines d'affaires, nous veillons à ce qu'un changement dans une zone ne puisse pas déstabiliser l'ensemble. Lorsque le risque est démontrablement isolé, la bureaucratie devrait l'être aussi. La rigueur de la revue doit s'ajuster au risque d'affaires réel, non à la complexité totale du système hérité.
+## Du barrage au garde-fou : trois principes de gouvernance TI
 
-### 3. Livraison de valeur contrôlée par les affaires
-La gouvernance traditionnelle impose un déploiement « Big Bang », une mise en production stressante du tout-ou-rien. Nous devons séparer le déploiement technique de l'activation d'affaires. En modernisant nos méthodes de livraison, l'équipe TI peut déployer le code silencieusement tout en gardant la fonctionnalité inactive. Les leaders d'affaires obtiennent ainsi l'autonomie d'activer des fonctionnalités selon les réalités du marché. La gestion des risques n'est plus un événement TI à haut risque ; elle devient une décision stratégique contrôlée.
+Une [gouvernance TI](/fr/services/finance-reglementee/) efficace agit comme les freins d'une voiture de course : ils sont là pour permettre de rouler vite en gardant le contrôle. Les institutions performantes ne transigent pas sur la conformité. Elles en modernisent l'exécution, selon trois principes.
 
-## Le piège de la taxonomie : Quand la classification devient un handicap
+| Principe | Pratique héritée | Pratique moderne |
+| --- | --- | --- |
+| Auditabilité continue | Chiffriers de contrôle trimestriels | Preuve produite à chaque changement |
+| Réduction du rayon d'impact | Dépendances à l'échelle du système | Domaines d'affaires isolés |
+| Livraison contrôlée par les affaires | Déploiement en bloc | Activation progressive |
 
-La plupart des organisations sont fières de leur « taxonomie des risques ». Sur papier, chaque système et interface est soigneusement catégorisé. En réalité, cette taxonomie est fréquemment un fardeau stagnant.
+### Auditabilité continue plutôt que contrôle trimestriel
 
-J'ai vu des organisations où les classifications de risques n'avaient pas été révisées sérieusement depuis des années. Parce que personne ne fait confiance aux étiquettes, l'entreprise choisit par défaut la voie de gouvernance la plus conservatrice. Nous finissons par traiter un composant moderne et natif de l'infonuagique avec la même rigueur bureaucratique paralysante qu'un système monolithique hérité, simplement parce qu'une étiquette de classification datant de trois ans n'a jamais été mise à jour.
+Un rapport manuel donne un portrait de la conformité qui est périmé au moment où il est signé. L'auditabilité continue déplace le fardeau des personnes vers les systèmes. Les vérifications de politiques, comme les analyses de sécurité et les contrôles d'accès, sont intégrées à la chaîne de livraison logicielle, et chaque changement laisse une preuve horodatée. L'institution est alors prête pour un audit en tout temps.
 
-Lorsqu'une taxonomie n'est pas un ensemble de données vivant, elle devient un outil contondant. Elle force l'entreprise à traiter chaque initiative comme étant à « haut risque », ce qui paralyse l'innovation sous prétexte de conformité.
+### Confinement plutôt que couplage
 
-## La feuille de route exécutive
+Dans une architecture héritée, un changement mineur dans un module peut déclencher une défaillance en cascade, et c'est pourquoi chaque mise à jour y exige une cascade d'approbations. Le cloisonnement des domaines d'affaires limite le rayon d'impact : un changement dans une zone ne peut plus déstabiliser l'ensemble. Lorsque le risque est démontrablement isolé, la rigueur de la revue doit s'ajuster au risque d'affaires réel, et non à la complexité du système entier.
 
-Moderniser la gouvernance ne nécessite pas une refonte sur plusieurs années. Cela commence souvent par une [revue de gouvernance TI](/services/gouvernance-sf-reglementee/) : une évaluation lucide de votre modèle de livraison actuel qui couvre :
+### Livraison contrôlée par les affaires
 
-* **Auditer les points d'étranglement :** Identifier les jalons d'approbation qui préviennent réellement les pannes par rapport à ceux qui ne font qu'ajouter du délai.
-* **Séparer le haut risque du bas risque :** Réarchitecturer les interfaces système pour que les fonctionnalités à faible impact évoluent à la vitesse du marché, sans déclencher des revues institutionnelles complètes.
-* **Automatiser la collecte de preuves :** Collaborer tôt avec les équipes de risques et conformité pour définir les règles sous forme de code, transformant les exigences d'audit en jalons automatisés dans le pipeline.
+La gouvernance traditionnelle mène au déploiement en bloc, où tout est mis en production d'un seul coup. La solution consiste à séparer le déploiement technique de l'activation d'affaires. L'équipe TI déploie le code sans l'activer, puis les responsables d'affaires activent chaque fonctionnalité au moment qui convient au marché. La mise en production cesse d'être un événement à haut risque, et l'activation devient une décision d'affaires.
 
-**En résumé :** Si le cadre de gouvernance de votre organisation ressemble à une course d'obstacles, il ne protège pas l'entreprise. Il retarde son évolution. Vitesse et conformité ne s'excluent pas mutuellement. Le véritable leadership consiste à établir une fondation architecturale suffisamment solide pour que la vitesse et la sécurité se renforcent mutuellement.
+## Taxonomie des risques : quand la classification devient un frein
+
+La plupart des institutions tiennent une taxonomie des risques où chaque système et chaque interface est catégorisé. Le principe 5 de la ligne directrice B-13 demande d'ailleurs un inventaire à jour des actifs technologiques, classés selon leur criticité.
+
+En pratique, la mise à jour fait souvent défaut. J'ai vu des organisations où les classifications de risque n'avaient pas été révisées sérieusement depuis des années. Comme plus personne ne se fie aux étiquettes, l'organisation retient par défaut la voie de gouvernance la plus prudente. Un composant infonuagique récent y est traité avec la même lourdeur qu'un système monolithique hérité, parce qu'une classification vieille de trois ans n'a jamais été revue.
+
+**Une taxonomie qui n'est pas tenue à jour force l'institution à traiter chaque initiative comme étant à haut risque.**
+
+## Par où commencer : mesurer ce que chaque approbation prévient
+
+Une première mesure se fait sans aide extérieure. Relevez, pour les dix derniers changements mis en production, le délai entre la demande et la mise en service, le nombre d'approbations exigées et le nombre de fois où une approbation a modifié le changement. Un palier qui n'a jamais rien modifié ajoute du délai sans réduire le risque.
+
+La suite tient en trois chantiers, qui ne demandent pas une refonte de plusieurs années :
+
+- **Les points d'étranglement.** Distinguer les jalons d'approbation qui préviennent réellement des pannes de ceux qui ne font qu'ajouter du délai.
+- **La séparation du haut et du bas risque.** Revoir les interfaces entre systèmes pour que les fonctionnalités à faible impact évoluent sans déclencher une revue institutionnelle complète.
+- **La collecte de preuves.** Définir tôt, avec les équipes de risque et de conformité, les règles sous forme de code, afin que les exigences d'audit deviennent des vérifications automatisées.
+
+L'ordre de ces chantiers dépend de votre architecture, de vos constats d'audit et de vos engagements envers le BSIF. Une [revue de gouvernance TI](/fr/services/finance-reglementee/) sert à l'établir.
+
+Si vous voulez savoir lesquels de vos contrôles réduisent réellement le risque et lesquels ne font que retarder vos livraisons, prenons le temps d'en discuter.
