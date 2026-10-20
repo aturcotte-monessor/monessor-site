@@ -7,7 +7,7 @@ import ContactCta from './ContactCta.astro';
 import InsightCard from './InsightCard.astro';
 import Icon from './Icon.astro';
 import ChevronLines from './ChevronLines.astro';
-import { MEETING_URL, fathomEvent } from '../utils/tracking';
+import { MEETING_URL } from '../utils/tracking';
 import { articleSegments } from '../utils/articleSegments';
 
 type IconName = Parameters<typeof Icon>[0]['name'];
@@ -52,7 +52,6 @@ interface Props {
 const { locale, segment, title, description, jsonLd, hero, issues, offer, solutions, path, note, expertise, insights, neutrality, other } = Astro.props;
 // Alternance des fonds clair / blanc : la section des solutions décale les suivantes d'un cran
 const shade = (index: number) => ((index + (solutions ? 1 : 0)) % 2 === 0 ? 'bg-light' : 'bg-white');
-const pathname = Astro.url.pathname;
 const container = 'mx-auto max-w-7xl px-6 lg:px-8';
 const meetingLabel = locale === 'fr' ? 'Planifier une rencontre' : 'Book a meeting';
 
@@ -79,7 +78,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
       <h1 class="home-h1">{hero.title}</h1>
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-light/85">{hero.lead}</p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <ContactCta href={MEETING_URL} label={meetingLabel} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', 'Hero', locale, pathname)} />
+        <ContactCta href={MEETING_URL} label={meetingLabel} className="btn" />
         <a class="btn btn--outline" href={hero.secondary.href}>{hero.secondary.label}</a>
       </div>
     </div>
@@ -122,7 +121,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
         ))}
       </div>
       <div class="mt-10">
-        <ContactCta href={MEETING_URL} label={meetingLabel} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', 'Offer', locale, pathname)} />
+        <ContactCta href={MEETING_URL} label={meetingLabel} className="btn" />
       </div>
     </div>
   </section>
@@ -209,7 +208,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
         </div>
 
         <div class="mt-10">
-          <ContactCta href={MEETING_URL} label={meetingLabel} className="btn" fathomEventName={fathomEvent('ScheduleMeeting', 'Solutions', locale, pathname)} />
+          <ContactCta href={MEETING_URL} label={meetingLabel} className="btn" />
         </div>
       </div>
     </section>
