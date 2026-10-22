@@ -50,17 +50,18 @@ const jsonLd = {
   hero={{
     kicker: 'Conseil en gestion stratégique des TI · PME',
     title: 'Reprenez le contrôle de vos investissements technologiques.',
-    lead: 'Monessor aide les dirigeants de PME à réduire la dette technique, à arbitrer les projets critiques, à encadrer l’intelligence artificielle et à livrer des outils sur mesure, avec la rigueur de gouvernance du secteur financier réglementé. Nos clients réalisent le plus souvent entre 5 et 100 millions de dollars de chiffre d’affaires, dans la fabrication, la distribution ou les services.',
+    lead: 'Monessor vous aide à moderniser des systèmes vieillissants, à choisir les bons projets, à encadrer l’intelligence artificielle et à en tirer profit, et à livrer des outils sur mesure, avec pragmatisme et rigueur. Nos clients sont surtout dans la fabrication, la distribution ou les services.',
     secondary: { label: 'Par où commencer', href: '#diagnostic' }
   }}
   issues={{
     id: 'symptomes',
     title: 'Là où la technologie cesse d’être un levier et devient un risque',
+    audience: 'Le plus souvent des entreprises de 20 à 250 employés.',
     items: [
       {
         icon: 'wallet',
         title: 'Des projets qui dérapent et des coûts sans contrôle',
-        text: 'Des budgets TI et des factures d’infrastructure qui augmentent chaque année sans visibilité sur le rendement, et des livraisons stratégiques sans cesse retardées.'
+        text: 'Des budgets TI et des factures d’infrastructure qui augmentent chaque année sans visibilité sur le rendement, et des projets importants sans cesse retardés.'
       },
       {
         icon: 'server-cog',
@@ -76,6 +77,16 @@ const jsonLd = {
         icon: 'scale',
         title: 'Un dialogue difficile entre finance et TI',
         text: 'Une direction financière attentive aux marges et au bilan, face à des équipes techniques absorbées par les urgences du quotidien.'
+      },
+      {
+        icon: 'workflow',
+        title: 'Production et inventaire',
+        text: 'L’inventaire et les bons de travail vivent dans Excel ou sur papier : les chiffres de production arrivent trop tard pour décider.'
+      },
+      {
+        icon: 'lock',
+        title: 'Une cybersécurité jamais mise à l’épreuve',
+        text: 'Un rançongiciel arrêterait la production : les sauvegardes et les accès n’ont jamais été testés.'
       }
     ]
   }}
@@ -83,28 +94,29 @@ const jsonLd = {
     id: 'diagnostic',
     kicker: 'Point de départ',
     title: 'Diagnostic de maturité TI et alignement IA',
-    lead: 'Un mandat de 2 à 3 semaines qui donne à votre comité de direction une vision complète de l’état, des risques et du potentiel de vos technologies.',
+    lead: 'Un mandat de 2 à 3 semaines qui vous donne une vision complète de vos technologies : l’état des lieux, les risques et ce qu’elles peuvent apporter à votre rentabilité.',
     price: 'Dès 12 500 $, forfait à périmètre fixe.',
+    essor: true,
     items: [
       {
         icon: 'layers',
-        title: 'Revue de l’architecture et de la dette technique',
-        text: 'Examen indépendant de la stabilité des systèmes centraux, des risques de défaillance et du coût total de possession.'
+        title: 'L’état réel de vos systèmes',
+        text: 'Un examen indépendant de la stabilité de vos systèmes centraux, des risques de panne et de ce qu’ils vous coûtent vraiment, licences, entretien et soutien compris.'
       },
       {
         icon: 'brain-circuit',
-        title: 'Matrice des cas d’usage de l’IA',
+        title: 'Où l’IA vous fera gagner du temps ou de l’argent',
         text: 'Les processus automatisables à court terme, chacun avec son rendement financier estimé, plutôt que des projets à la mode.'
       },
       {
         icon: 'handshake',
-        title: 'Revue de la gouvernance et des contrats fournisseurs',
+        title: 'Vos contrats et vos fournisseurs à la loupe',
         text: 'Un regard indépendant sur les soumissions, les coûts d’infonuagique et les dépendances envers vos fournisseurs, en vue de les renégocier.'
       },
       {
         icon: 'map',
         title: 'Feuille de route sur 18 mois',
-        text: 'Un plan clair, priorisé et chiffré, prêt à être présenté à votre comité de direction.'
+        text: 'Un plan clair, priorisé et chiffré : où investir, dans quel ordre et pour quel rendement.'
       }
     ]
   }}
@@ -135,8 +147,9 @@ const jsonLd = {
       items: [
         { icon: 'calculator', title: 'Automatiser une tâche comptable répétitive', text: 'Par exemple, la saisie et le rapprochement des factures fournisseurs.' },
         { icon: 'database', title: 'Préparer vos données pour un ERP ou un CRM', text: 'Nettoyer, normaliser et préparer les données avant leur importation.' },
+        { icon: 'wrench', title: 'Créer un petit outil interne', text: 'Pour faire gagner du temps à une équipe, ou distinguer votre entreprise auprès de ses clients.' },
         { icon: 'puzzle', title: 'Ajouter une extension à votre ERP ou CRM', text: 'Par exemple, un calcul de soumission ou un rapport qui manque.' },
-        { icon: 'wrench', title: 'Créer un petit outil interne', text: 'Pour faire gagner du temps à une équipe, ou distinguer votre entreprise auprès de ses clients.' }
+        { icon: 'list-checks', title: 'Fabrication', text: 'Suivre la production, préparer les soumissions ou numériser les bons de travail.' }
       ]
     },
     included: {
@@ -152,10 +165,10 @@ const jsonLd = {
       title: 'Toutes les expertises d’un vrai produit logiciel',
       intro: 'Un outil fiable exige plus que du code. Une seule personne responsable couvre ici chacune des expertises :',
       items: [
-        { icon: 'layers', title: 'Architecture de solution', text: 'L’outil s’intègre à vos systèmes existants et reste disponible, rapide et sûr à mesure que l’entreprise grandit.' },
+        { icon: 'layers', title: 'Intégration à vos systèmes', text: 'Architecture de solution : l’outil s’intègre à vos systèmes existants et reste disponible, rapide et sûr à mesure que l’entreprise grandit.' },
         { icon: 'code', title: 'Développement logiciel', text: 'Un code testé, lisible et documenté.' },
-        { icon: 'workflow', title: 'DevOps', text: 'Le déploiement, la surveillance et les sauvegardes, dès le premier jour.' },
-        { icon: 'users', title: 'Expérience utilisateur', text: 'Par le fondateur du centre d’excellence UX d’un chef de file des marchés financiers canadiens : un outil que les équipes adoptent.' },
+        { icon: 'workflow', title: 'Mise en service et suivi', text: 'DevOps : le déploiement, la surveillance et les sauvegardes, dès le premier jour.' },
+        { icon: 'users', title: 'Expérience utilisateur', text: 'Par le fondateur du centre d’excellence en expérience utilisateur d’un chef de file des marchés financiers canadiens : un outil que les équipes adoptent.' },
         { icon: 'shield-check', title: 'Gouvernance TI et cybersécurité', text: 'Par un ancien directeur TI : les accès, les données et les risques restent sous contrôle.' }
       ]
     },
@@ -182,7 +195,7 @@ const jsonLd = {
       {
         title: 'Diagnostic de maturité TI et alignement IA',
         meta: '2 à 3 semaines · dès 12 500 $',
-        text: 'Le point de départ recommandé : l’état des lieux, la dette technique, les risques et la feuille de route, IA comprise.'
+        text: 'Le point de départ recommandé : l’état de vos systèmes, leurs faiblesses, les risques et la feuille de route, IA comprise.'
       },
       {
         title: 'Solutions logicielles sur mesure',
@@ -197,11 +210,12 @@ const jsonLd = {
       {
         title: 'Direction TI à temps partagé',
         meta: 'Mensuel · dès 8 000 $ par mois',
-        text: 'Une présence au comité de direction, environ une journée par semaine, pour piloter l’exécution, encadrer les équipes et rendre compte à la direction.'
+        text: 'Une présence au comité de direction, environ une journée par semaine, pour piloter l’exécution, encadrer les équipes et vous rendre des comptes.'
       }
     ]
   }}
   note={{
+    id: 'essor',
     title: 'Aide financière possible',
     text: 'Selon le projet, un diagnostic numérique, une sélection de systèmes ou la mise en œuvre d’un plan numérique peut être admissible au programme ESSOR d’Investissement Québec, qui rembourse jusqu’à 50 % des dépenses admissibles. La demande doit être déposée avant le début du mandat, l’acceptation n’est pas garantie et le programme prend fin le 31 mars 2027. Nous pouvons vous aider à évaluer si votre projet s’y prête.'
   }}
@@ -217,12 +231,12 @@ const jsonLd = {
       {
         icon: 'brain-circuit',
         title: 'Sélection indépendante de partenaires en IA',
-        text: 'Évaluation de la maturité de vos données et des cas d’usage à fort rendement, pour retenir les bons partenaires sans céder aux promesses irréalistes.'
+        text: 'Évaluation de vos données et des usages de l’IA les plus rentables, pour retenir les bons partenaires sans céder aux promesses irréalistes.'
       },
       {
         icon: 'search-check',
-        title: 'Audit technologique transactionnel (vente, acquisition, relève)',
-        text: 'Évaluation de la valeur réelle des actifs numériques, de la stabilité des systèmes et de la dette technique, pour sécuriser la transaction.'
+        title: 'Évaluation technologique avant une vente, une acquisition ou une relève',
+        text: 'La valeur réelle des actifs numériques, la stabilité des systèmes et ce qu’il faudra réinvestir pour les remettre à niveau, pour sécuriser la transaction.'
       },
       {
         icon: 'key-round',

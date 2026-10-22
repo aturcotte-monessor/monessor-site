@@ -4,8 +4,9 @@ import Layout from '../../layouts/Layout.astro';
 import InsightCard from '../../components/InsightCard.astro';
 import ContactCta from '../../components/ContactCta.astro';
 import Icon from '../../components/Icon.astro';
+import EssorPriceNote from '../../components/EssorPriceNote.astro';
 import ChevronLines from '../../components/ChevronLines.astro';
-import { MEETING_URL } from '../../utils/tracking';
+import { meetingUrl, meetingLabel } from '../../utils/tracking';
 import { articleSegments } from '../../utils/articleSegments';
 import { ui } from '../../i18n/ui';
 import { Picture } from 'astro:assets';
@@ -55,12 +56,12 @@ const situations = [
   {
     icon: 'scale' as const,
     title: 'Investments to prioritize',
-    text: 'Several projects compete for the same budget and leadership wants an independent view on cost, risk and value.'
+    text: 'Several projects compete for the same budget and you want an independent view on cost, risk and value.'
   },
   {
     icon: 'search-check' as const,
     title: 'AI to assess with method',
-    text: 'You want to know where artificial intelligence and automation will create real value, backed by a business case.'
+    text: 'You want to know where artificial intelligence and automation will create real value, with the numbers to back it.'
   },
   {
     icon: 'compass' as const,
@@ -97,8 +98,8 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <ContactCta
-          href={MEETING_URL}
-          label="Book a meeting"
+          href={meetingUrl(locale)}
+          label={meetingLabel(locale)}
           className="btn"
         />
         <a class="btn btn--outline" href={`${serviceSme}#diagnostic`} data-fathom-event="Service Page Clicked | PME">Where to start</a>
@@ -111,6 +112,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
     <div class={container}>
       <p class="home-kicker text-teal">For SMEs</p>
       <h2 class="home-h2">When technology holds growth back</h2>
+      <p class="mt-4 max-w-3xl text-lg leading-relaxed">In manufacturing, distribution and services SMEs, these three signs come up again and again.</p>
 
       <div class="mt-10 grid gap-4 md:grid-cols-3">
         {symptoms.map((item) => (
@@ -127,10 +129,18 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
           <h3 class="home-h3 text-2xl">The starting point: the IT Maturity Diagnostic</h3>
           <p class="mt-4 leading-relaxed">
             In 2 to 3 weeks, an independent picture of your systems, risks and technology spending, with a costed
-            18-month roadmap ready to present to your leadership team.
+            18-month roadmap: where to invest, in what order and for what return.
           </p>
           <p class="mt-4 font-semibold text-teal">From $12,500, fixed-scope engagement.</p>
-          <a class="btn btn--outline-teal mt-6" href={serviceSme} data-fathom-event="Service Page Clicked | PME">Explore the SME offer</a>
+          <EssorPriceNote locale={locale} href={`${serviceSme}#essor`} />
+          <div class="mt-6 flex flex-wrap gap-3">
+            <ContactCta
+              href={meetingUrl(locale)}
+              label={meetingLabel(locale)}
+              className="btn"
+            />
+            <a class="btn btn--outline-teal" href={serviceSme} data-fathom-event="Service Page Clicked | PME">Explore the SME offer</a>
+          </div>
         </div>
         <ol class="grid gap-6">
           {sequence.map((item) => (
@@ -249,7 +259,7 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
         <p class="mt-4 leading-relaxed">
           For more than twenty years, Alex Turcotte has worked where technology, product and governance meet, including
           more than fifteen years at a leading Canadian capital markets organization, where platforms are critical and
-          regulation is demanding. He works alongside leadership teams
+          regulation is demanding. Running platforms where downtime is not an option is exactly the discipline an SME that cannot stop operating needs: reliable systems, known risks and every dollar justified. He works alongside leadership teams
           to clarify priorities, keep risk under control and turn technology decisions into business results.
         </p>
         <p class="mt-4 leading-relaxed">

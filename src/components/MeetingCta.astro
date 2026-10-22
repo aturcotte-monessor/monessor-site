@@ -3,7 +3,7 @@
 // Le texte s'adapte au contexte (segment PME, segment services financiers ou générique).
 import ContactCta from './ContactCta.astro';
 import ChevronLines from './ChevronLines.astro';
-import { MEETING_URL } from '../utils/tracking';
+import { meetingUrl, meetingLabel } from '../utils/tracking';
 
 export type MeetingVariant = 'generic' | 'article' | 'pme' | 'sf';
 
@@ -23,7 +23,7 @@ const copy = {
   fr: {
     generic: {
       title: 'Parlons de vos enjeux technologiques',
-      text: 'Dites-nous ce que vous essayez d’accomplir et où ça bloque. Une réponse vous sera transmise rapidement.'
+      text: ''
     },
     article: {
       title: 'Besoin d’un regard indépendant sur ces enjeux?',
@@ -31,13 +31,18 @@ const copy = {
     },
     pme: {
       title: 'Commencer par un Diagnostic de maturité TI',
-      text: 'En 2 à 3 semaines, une vision claire de l’état, des risques et du potentiel de votre parc technologique, avec une feuille de route priorisée pour votre direction.'
+      text: 'En 2 à 3 semaines, une vision claire de vos technologies, de leurs risques et de ce qu’elles peuvent apporter à votre rentabilité, avec une feuille de route priorisée.'
     },
     sf: {
       title: 'Commencer par une Revue de gouvernance TI',
       text: 'En 3 à 4 semaines, une cartographie de vos écarts face aux attentes du BSIF et une matrice de remédiation priorisée pour votre comité de risques et d’audit.'
     },
-    button: 'Planifier une rencontre',
+    // Ce que la personne obtient en réservant, affiché sous le bouton
+    promise: [
+      '30 minutes, par visioconférence.',
+      'Vous repartez avec une première lecture de votre situation et les prochaines étapes possibles.',
+      'Aucun engagement, aucun argumentaire de vente.'
+    ],
     or: 'Ou écrivez-nous à',
     email: 'notre adresse courriel',
     phoneLabel: 'Appeler'
@@ -45,7 +50,7 @@ const copy = {
   en: {
     generic: {
       title: 'Let’s discuss your technology challenges',
-      text: 'Tell us what you are trying to accomplish and where it is blocking you. A response will be provided quickly.'
+      text: ''
     },
     article: {
       title: 'Need an independent perspective on these challenges?',
@@ -53,13 +58,17 @@ const copy = {
     },
     pme: {
       title: 'Start with an IT Maturity Diagnostic',
-      text: 'In 2 to 3 weeks, a clear view of the state, risks and potential of your technology estate, with a prioritized roadmap for your leadership team.'
+      text: 'In 2 to 3 weeks, a clear view of your technology, its risks and what it can do for your profitability, with a prioritized roadmap.'
     },
     sf: {
       title: 'Start with an IT Governance Review',
       text: 'In 3 to 4 weeks, a map of your gaps against OSFI expectations and a prioritized remediation matrix for your risk and audit committee.'
     },
-    button: 'Book a meeting',
+    promise: [
+      '30 minutes, by video call.',
+      'You leave with a first read of your situation and the possible next steps.',
+      'No commitment, no sales pitch.'
+    ],
     or: 'Or write to us at',
     email: 'our email address',
     phoneLabel: 'Call'
@@ -93,10 +102,10 @@ const innerProps = bare ? {} : { class: 'mx-auto max-w-7xl px-6 lg:px-8' };
     <aside class={`relative overflow-hidden rounded-2xl bg-teal-deep p-8 text-light ${bare ? 'md:p-10' : 'md:p-12'}`} aria-labelledby={headingId} id={bare ? id : undefined}>
       <ChevronLines class="hidden h-[180px] w-[270px] xl:block" />
       <h2 id={headingId} class="text-2xl font-semibold text-light md:text-3xl">{title}</h2>
-      <p class="mt-3 max-w-2xl text-light/85">{text}</p>
+      {text && <p class="mt-3 max-w-2xl text-light/85">{text}</p>}
       {service && <a class="mt-3 inline-block font-semibold text-light underline underline-offset-4" href={service.href}>{service.label}</a>}
       <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
-        <ContactCta href={MEETING_URL} label={copy.button} className="btn" />
+        <ContactCta href={meetingUrl(locale)} label={meetingLabel(locale)} className="btn" />
         <p class="text-sm text-light/85">
           {copy.or}{' '}
           <a data-email-link href="#" class="text-light underline underline-offset-4" data-fathom-event="Email Clicked">
@@ -106,6 +115,14 @@ const innerProps = bare ? {} : { class: 'mx-auto max-w-7xl px-6 lg:px-8' };
           <span class="phone-secure" data-fathom-event="Phone Clicked">{copy.phoneLabel}</span>
         </p>
       </div>
+      <ul class="mt-5 max-w-2xl space-y-1.5 text-sm text-light/85">
+        {copy.promise.map((line) => (
+          <li class="flex gap-3">
+            <span class="mt-2.5 h-px w-4 shrink-0 bg-coral" aria-hidden="true"></span>
+            <span>{line}</span>
+          </li>
+        ))}
+      </ul>
     </aside>
   </Inner>
 </Wrap>

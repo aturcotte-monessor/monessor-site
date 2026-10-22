@@ -50,17 +50,18 @@ const jsonLd = {
   hero={{
     kicker: 'Strategic IT management advisory · SMEs',
     title: 'Take back control of your technology investments.',
-    lead: 'Monessor helps SME leaders reduce technical debt, prioritize critical projects, govern artificial intelligence and deliver custom tools, with the discipline of regulated financial services. Our clients typically have between $5 million and $100 million in revenue, in manufacturing, distribution or services.',
+    lead: 'Monessor helps you modernize aging systems, choose the right projects, govern artificial intelligence and put it to work, and deliver custom tools, with pragmatism and rigour. Our clients are mostly in manufacturing, distribution and services.',
     secondary: { label: 'Where to start', href: '#diagnostic' }
   }}
   issues={{
     id: 'symptomes',
     title: 'Where technology stops being a lever and becomes a risk',
+    audience: 'Most often, companies with 20 to 250 employees.',
     items: [
       {
         icon: 'wallet',
         title: 'Projects that drift and costs out of control',
-        text: 'IT budgets and infrastructure bills that grow every year with no clear view of the return, and strategic deliveries that keep slipping.'
+        text: 'IT budgets and infrastructure bills that grow every year with no clear view of the return, and important projects that keep slipping.'
       },
       {
         icon: 'server-cog',
@@ -76,6 +77,16 @@ const jsonLd = {
         icon: 'scale',
         title: 'A strained dialogue between finance and IT',
         text: 'A finance team focused on margins and the balance sheet, facing technical teams absorbed by day-to-day firefighting.'
+      },
+      {
+        icon: 'workflow',
+        title: 'Production and inventory',
+        text: 'Inventory and work orders live in Excel or on paper: production figures arrive too late to act on.'
+      },
+      {
+        icon: 'lock',
+        title: 'Cybersecurity never put to the test',
+        text: 'Ransomware would stop production: backups and access have never been tested.'
       }
     ]
   }}
@@ -83,28 +94,29 @@ const jsonLd = {
     id: 'diagnostic',
     kicker: 'Starting point',
     title: 'IT Maturity Diagnostic and AI Alignment',
-    lead: 'A 2-to-3-week engagement that gives your leadership team a complete view of the state, risks and potential of your technology.',
+    lead: 'A 2-to-3-week engagement that gives you a complete view of your technology: where it stands, its risks and what it can do for your profitability.',
     price: 'From $12,500, fixed-scope engagement.',
+    essor: true,
     items: [
       {
         icon: 'layers',
-        title: 'Architecture and technical debt review',
-        text: 'An independent look at the stability of core systems, failure risks and total cost of ownership.'
+        title: 'The real state of your systems',
+        text: 'An independent look at the stability of your core systems, the risk of outages and what they really cost you, licences, upkeep and support included.'
       },
       {
         icon: 'brain-circuit',
-        title: 'AI use-case matrix',
+        title: 'Where AI will save you time or money',
         text: 'The processes you can automate in the near term, each with its estimated financial return, rather than projects driven by hype.'
       },
       {
         icon: 'handshake',
-        title: 'Governance and vendor contract review',
+        title: 'Your contracts and vendors under the microscope',
         text: 'An independent view of vendor quotes, cloud costs and supplier dependencies, ahead of renegotiation.'
       },
       {
         icon: 'map',
         title: '18-month roadmap',
-        text: 'A clear, prioritized and costed plan, ready to present to your leadership team.'
+        text: 'A clear, prioritized and costed plan: where to invest, in what order and for what return.'
       }
     ]
   }}
@@ -135,8 +147,9 @@ const jsonLd = {
       items: [
         { icon: 'calculator', title: 'Automate a repetitive accounting task', text: 'For example, entering and reconciling supplier invoices.' },
         { icon: 'database', title: 'Prepare your data for an ERP or CRM', text: 'Clean, normalize and prepare data before it is imported.' },
+        { icon: 'wrench', title: 'Build a small internal tool', text: 'To save a team time, or to set your company apart with its clients.' },
         { icon: 'puzzle', title: 'Add an extension to your ERP or CRM', text: 'For example, a quote calculation or a missing report.' },
-        { icon: 'wrench', title: 'Build a small internal tool', text: 'To save a team time, or to set your company apart with its clients.' }
+        { icon: 'list-checks', title: 'Manufacturing', text: 'Track production, prepare quotes or digitize work orders.' }
       ]
     },
     included: {
@@ -152,10 +165,10 @@ const jsonLd = {
       title: 'Every discipline of a real software product',
       intro: 'A reliable tool takes more than code. Here, one accountable person covers each discipline:',
       items: [
-        { icon: 'layers', title: 'Solution architecture', text: 'The tool integrates with your existing systems and stays available, fast and secure as the company grows.' },
+        { icon: 'layers', title: 'Fits your systems', text: 'Solution architecture: the tool integrates with your existing systems and stays available, fast and secure as the company grows.' },
         { icon: 'code', title: 'Software development', text: 'Tested, readable and documented code.' },
-        { icon: 'workflow', title: 'DevOps', text: 'Deployment, monitoring and backups from day one.' },
-        { icon: 'users', title: 'User experience', text: 'By the founder of the UX centre of excellence at a leading Canadian capital markets organization: a tool teams actually adopt.' },
+        { icon: 'workflow', title: 'Deployment and monitoring', text: 'DevOps: deployment, monitoring and backups from day one.' },
+        { icon: 'users', title: 'User experience', text: 'By the founder of the user experience centre of excellence at a leading Canadian capital markets organization: a tool teams actually adopt.' },
         { icon: 'shield-check', title: 'IT governance and cybersecurity', text: 'By a former IT director: access, data and risks stay under control.' }
       ]
     },
@@ -182,7 +195,7 @@ const jsonLd = {
       {
         title: 'IT Maturity Diagnostic and AI Alignment',
         meta: '2 to 3 weeks · from $12,500',
-        text: 'The recommended starting point: where you stand, technical debt, risks and the roadmap, AI included.'
+        text: 'The recommended starting point: the state of your systems, their weak spots, the risks and the roadmap, AI included.'
       },
       {
         title: 'Custom Software Solutions',
@@ -197,11 +210,12 @@ const jsonLd = {
       {
         title: 'Fractional IT leadership',
         meta: 'Monthly · from $8,000 a month',
-        text: 'A seat on your leadership team, about one day a week, to steer execution, guide the teams and report to leadership.'
+        text: 'A seat on your leadership team, about one day a week, to steer execution, guide the teams and report to you.'
       }
     ]
   }}
   note={{
+    id: 'essor',
     title: 'Possible financial assistance',
     text: 'Depending on the project, a digital diagnostic, a system selection or the implementation of a digital plan may be eligible for Investissement Québec’s ESSOR program, which covers up to 50% of eligible expenses. The application must be filed before the engagement begins, approval is not guaranteed and the program ends on March 31, 2027. We can help you assess whether your project qualifies.'
   }}
@@ -217,12 +231,12 @@ const jsonLd = {
       {
         icon: 'brain-circuit',
         title: 'Independent selection of AI partners',
-        text: 'An assessment of your data maturity and high-return use cases, to choose the right partners without buying into unrealistic promises.'
+        text: 'An assessment of your data and the most profitable uses of AI, to choose the right partners without buying into unrealistic promises.'
       },
       {
         icon: 'search-check',
-        title: 'Transaction technology due diligence (sale, acquisition, succession)',
-        text: 'The real value of digital assets, system stability and technical debt, assessed to secure the transaction.'
+        title: 'Technology assessment before a sale, acquisition or succession',
+        text: 'The real value of digital assets, the stability of systems and what it will take to bring them up to standard, to secure the transaction.'
       },
       {
         icon: 'key-round',

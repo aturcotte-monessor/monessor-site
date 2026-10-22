@@ -1,7 +1,7 @@
 ---
 import { getAlternatePath } from '../utils/i18nRoutes';
 import ContactCta from './ContactCta.astro';
-import { MEETING_URL } from '../utils/tracking';
+import { meetingUrl, meetingLabel as bookingLabel } from '../utils/tracking';
 
 interface Props {
   locale?: 'fr' | 'en';
@@ -18,7 +18,8 @@ const switchAria = isFr ? 'English version' : 'Version française';
 const pathname = Astro.url.pathname;
 
 const switchPath = switchHref ?? (await getAlternatePath(pathname, isFr ? 'en' : 'fr'));
-const meetingLabel = isFr ? 'Planifier une rencontre' : 'Book a meeting';
+const meetingLabel = bookingLabel(locale);
+const meetingHref = meetingUrl(locale);
 
 const serviceLinks = isFr
   ? [
@@ -97,7 +98,7 @@ const sectionLinks = isFr
             ))}
             <a href={switchPath} lang={isFr ? 'en' : 'fr'} class="flex min-h-11 items-center rounded-md px-3 hover:bg-light hover:text-teal">{switchLabel}<span class="sr-only">, {switchAria}</span></a>
             <ContactCta
-              href={MEETING_URL}
+              href={meetingHref}
               label={meetingLabel}
               className="btn mt-2 min-h-11"
             />
@@ -134,7 +135,7 @@ const sectionLinks = isFr
         {sectionLinks.map((link) => <a class="py-3 hover:text-teal transition-colors" href={link.href}>{link.label}</a>)}
         <a class="py-3 hover:text-teal transition-colors" href={switchPath} lang={isFr ? 'en' : 'fr'}>{switchLabel}<span class="sr-only">, {switchAria}</span></a>
         <ContactCta
-          href={MEETING_URL}
+          href={meetingHref}
           label={meetingLabel}
           className="btn"
         />
