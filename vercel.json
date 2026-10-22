@@ -21,6 +21,11 @@
       "statusCode": 302
     },
     {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "statusCode": 301
+    },
+    {
       "source": "/insights/technologie-pme-de-centre-de-cout-a-actif-strategique",
       "destination": "/fr/perspectives/article-03-technologie-pme-de-centre-de-cout-a-actif-strategique/",
       "statusCode": 301

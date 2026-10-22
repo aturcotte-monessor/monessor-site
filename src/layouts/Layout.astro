@@ -31,6 +31,9 @@ const pathname = Astro.url.pathname;
 
 // Calcul dynamique des URLs Canoniques et Hreflang
 const canonicalUrl = new URL(pathname, siteUrl).href;
+// Page 404 : Vercel la sert à l'adresse demandée. Sans canonical ni hreflang, Fathom (qui suit le canonical
+// par défaut) enregistre cette adresse réelle au lieu de « /404/ ».
+const isNotFound = /^\/(en\/)?404\/?$/.test(pathname);
 
 const isEnPath = pathname.startsWith('/en/');
 const frPath = isEnPath ? await getAlternatePath(pathname, 'fr') : pathname;
@@ -89,12 +92,16 @@ const organizationSchema = {
     {noindex && <meta name="robots" content="noindex" />}
     
     <!-- Canonical -->
-    <link rel="canonical" href={canonicalUrl} />
+    {!isNotFound && <link rel="canonical" href={canonicalUrl} />}
 
     <!-- Dynamic Hreflang Tags -->
-    <link rel="alternate" hreflang="fr" href={urlFR} />
-    <link rel="alternate" hreflang="en" href={urlEN} />
-    <link rel="alternate" hreflang="x-default" href={urlDefault} />
+    {!isNotFound && (
+      <>
+        <link rel="alternate" hreflang="fr" href={urlFR} />
+        <link rel="alternate" hreflang="en" href={urlEN} />
+        <link rel="alternate" hreflang="x-default" href={urlDefault} />
+      </>
+    )}
 
     <!-- Open Graph / LinkedIn / Facebook -->
     <meta property="og:type" content={ogType} />
