@@ -4,7 +4,6 @@ import Layout from '../../layouts/Layout.astro';
 import InsightCard from '../../components/InsightCard.astro';
 import ContactCta from '../../components/ContactCta.astro';
 import Icon from '../../components/Icon.astro';
-import EssorPriceNote from '../../components/EssorPriceNote.astro';
 import ChevronLines from '../../components/ChevronLines.astro';
 import { meetingUrl, meetingLabel } from '../../utils/tracking';
 import { articleSegments } from '../../utils/articleSegments';
@@ -132,7 +131,6 @@ const container = 'mx-auto max-w-7xl px-6 lg:px-8';
             avec une feuille de route chiffrée sur 18 mois : où investir, dans quel ordre et pour quel rendement.
           </p>
           <p class="mt-4 font-semibold text-teal">Dès 12 500 $, forfait à périmètre fixe.</p>
-          <EssorPriceNote locale={locale} href={`${servicePme}#essor`} />
           <div class="mt-6 flex flex-wrap gap-3">
             <ContactCta
               href={meetingUrl(locale)}
