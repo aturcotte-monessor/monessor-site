@@ -40,6 +40,8 @@ interface Props {
     essor?: boolean;
     cards?: OfferCard[];
     notes?: string[];
+    /** Encadré corail sous les notes (ex. Avis ciblé TI). */
+    callout?: { title: string; text: string };
     itemsTitle?: string;
     items: Item[];
   };
@@ -139,7 +141,7 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
               <h3 class="offer-h3">{card.title}</h3>
               <p class="mt-3 text-lg leading-relaxed">{card.tagline}</p>
               <p class="mt-4 text-sm font-semibold text-teal">{card.meta}</p>
-              <p class="mt-4 leading-relaxed">{card.text}</p>
+              <p class="mt-4 leading-relaxed"><strong class="font-semibold text-teal">{locale === 'fr' ? 'Vous obtenez :' : 'You get:'}</strong> {card.text}</p>
               <p class="mt-6 text-2xl font-bold text-teal">{card.price}</p>
               {card.scope && <p class="mt-2 text-sm leading-relaxed">{card.scope}</p>}
             </article>
@@ -150,6 +152,12 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
         <div class="mt-6 max-w-4xl space-y-2">
           {offer.notes.map((line) => <p class="leading-relaxed">{line}</p>)}
         </div>
+      )}
+      {offer.callout && (
+        <aside class="mt-6 max-w-4xl rounded-2xl border border-slate-200 border-l-4 border-l-coral bg-white p-6">
+          <h3 class="text-lg font-semibold text-teal">{offer.callout.title}</h3>
+          <p class="mt-2 leading-relaxed">{offer.callout.text}</p>
+        </aside>
       )}
       {offer.itemsTitle && <div class="mt-14"><h3 class="offer-h3">{offer.itemsTitle}</h3></div>}
       <div class={`${offer.itemsTitle ? 'mt-8' : 'mt-10'} grid gap-x-10 gap-y-8 md:grid-cols-2`}>
