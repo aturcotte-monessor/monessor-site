@@ -18,8 +18,21 @@ const jsonLd = {
     itemListElement: [
       {
         '@type': 'Offer',
-        itemOffered: { '@type': 'Service', name: 'Diagnostic de maturité TI et alignement IA' },
-        priceSpecification: { '@type': 'PriceSpecification', minPrice: 12500, priceCurrency: 'CAD' }
+        itemOffered: { '@type': 'Service', name: 'Coup de sonde TI' },
+        price: 1500,
+        priceCurrency: 'CAD'
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Bilan de santé TI' },
+        price: 4500,
+        priceCurrency: 'CAD'
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Audit TI complet' },
+        price: 23750,
+        priceCurrency: 'CAD'
       },
       {
         '@type': 'Offer',
@@ -44,8 +57,8 @@ const jsonLd = {
 <ServicePage
   locale="fr"
   segment="pme"
-  title="Diagnostic de maturité TI et direction TI pour PME | Monessor"
-  description="Pour les PME : Diagnostic de maturité TI dès 12 500 $, solutions logicielles sur mesure développées avec l’IA dès 15 000 $, direction TI à temps partagé."
+  title="Bilan de santé TI, audit TI et direction TI pour PME | Monessor"
+  description="Pour les PME : Bilan de santé TI à 4 500 $, audit numérique complet de vos TI à 23 750 $, solutions logicielles sur mesure développées avec l’IA dès 15 000 $, direction TI à temps partagé."
   jsonLd={jsonLd}
   hero={{
     kicker: 'Conseil en gestion stratégique des TI · PME',
@@ -93,29 +106,50 @@ const jsonLd = {
   offer={{
     id: 'diagnostic',
     kicker: 'Point de départ',
-    title: 'Diagnostic de maturité TI et alignement IA',
-    lead: 'Un mandat de 2 à 3 semaines qui vous donne une vision complète de vos technologies : l’état des lieux, les risques et ce qu’elles peuvent apporter à votre rentabilité.',
-    price: 'Dès 12 500 $, forfait à périmètre fixe.',
+    title: 'Deux façons de commencer',
+    lead: 'Un premier regard pour savoir où vous en êtes, ou un audit complet pour savoir quoi faire, dans quel ordre et pour quel rendement. Dans les deux cas, nous partons de vos vrais systèmes et de vos vrais contrats, pas d’une autoévaluation.',
+    cards: [
+      {
+        title: 'Bilan de santé TI',
+        tagline: 'Le regard d’un expert sur l’ensemble de vos TI, et vos priorités pour les 12 prochains mois.',
+        meta: '2 à 3 semaines · une demi-journée de votre temps',
+        text: 'Vos cinq risques principaux, trois gains rapides, des pistes d’IA et un ordre de grandeur budgétaire, présentés à votre direction.',
+        price: '4 500 $, prix fixe'
+      },
+      {
+        title: 'Audit TI complet',
+        tagline: 'Chaque système, contrat et contrôle vérifié, preuves à l’appui, et une feuille de route chiffrée.',
+        meta: '4 à 6 semaines',
+        text: 'Toutes les fonctions de l’entreprise passées en revue, les contrôles essentiels vérifiés, les usages de l’IA chiffrés et un plan sur 18 mois.',
+        price: '23 750 $, prix fixe',
+        scope: 'Pour un site, jusqu’à 10 systèmes, 5 entrevues et 2 processus approfondis. Votre situation est différente ? Nous ajustons la portée avant de commencer, jamais en cours de route.'
+      }
+    ],
+    notes: [
+      'Vous poursuivez dans les 60 jours ? Le montant payé est déduit de l’étape suivante.',
+      'Une question précise ? Le Coup de sonde TI : un atelier de deux heures et une note d’avis, 1 500 $.'
+    ],
+    itemsTitle: 'Ce que couvre l’Audit TI complet',
     items: [
       {
         icon: 'layers',
-        title: 'Vos processus et l’état réel de vos systèmes',
-        text: 'Une revue de vos principaux processus d’affaires et un examen indépendant de vos systèmes centraux : leur stabilité, les risques de panne et ce qu’ils vous coûtent vraiment, licences, entretien et soutien compris.'
+        title: 'Vos fonctions, vos processus et l’état réel de vos systèmes',
+        text: 'Chaque fonction de l’entreprise, des ventes à la paie, et un examen indépendant de vos systèmes centraux : leur stabilité, les risques de panne et ce qu’ils vous coûtent vraiment, licences, entretien et soutien compris.'
       },
       {
-        icon: 'brain-circuit',
-        title: 'Où l’IA vous fera gagner du temps ou de l’argent',
-        text: 'Les processus automatisables à court terme, chacun avec son rendement financier estimé, plutôt que des projets à la mode.'
+        icon: 'lock',
+        title: 'Votre cybersécurité et votre capacité à repartir',
+        text: 'Les contrôles qui peuvent arrêter l’entreprise sont vérifiés, pas seulement déclarés : sauvegardes restaurables, authentification à deux facteurs, accès des employés partis et des fournisseurs.'
       },
       {
         icon: 'handshake',
-        title: 'Vos contrats et vos fournisseurs à la loupe',
-        text: 'Un regard indépendant sur les soumissions, les coûts d’infonuagique et les dépendances envers vos fournisseurs, en vue de les renégocier.'
+        title: 'Vos contrats, vos fournisseurs et vos coûts',
+        text: 'Un regard indépendant sur vos contrats, vos licences et vos coûts d’infonuagique, avec les dépendances à réduire et les pistes de renégociation.'
       },
       {
         icon: 'map',
-        title: 'Feuille de route sur 18 mois',
-        text: 'Un plan clair, priorisé et chiffré : où investir, dans quel ordre, pour quel rendement, et comment accompagner vos équipes dans le changement.'
+        title: 'L’IA et un plan chiffré sur 18 mois',
+        text: 'Les usages de l’IA et de l’automatisation les plus rentables, chacun avec son rendement estimé, puis un plan priorisé : où investir, dans quel ordre, et comment accompagner vos équipes dans le changement.'
       }
     ]
   }}
@@ -182,19 +216,19 @@ const jsonLd = {
       ]
     },
     strategy: {
-      text: 'Votre stratégie IA se définit dans le Diagnostic de maturité TI et alignement IA, qui produit une feuille de route IA priorisée. Cette offre en livre un élément, ou règle directement un point de friction que vous connaissez déjà.',
-      link: { label: 'Le Diagnostic de maturité TI ↑', href: '#diagnostic' }
+      text: 'Votre stratégie IA se définit dans l’Audit TI complet, qui chiffre les usages de l’IA les plus rentables et les place dans un plan priorisé. Cette offre en livre un élément, ou règle directement un point de friction que vous connaissez déjà.',
+      link: { label: 'L’Audit TI complet ↑', href: '#diagnostic' }
     }
   }}
   path={{
     id: 'approche',
-    title: 'Après le diagnostic : une démarche par étapes',
-    intro: 'Le diagnostic fixe la direction. Un premier gain concret, outil sur mesure ou sélection de fournisseurs, produit des résultats rapides. La direction TI à temps partagé en est la suite naturelle, une fois la confiance établie.',
+    title: 'Après le premier regard : une démarche par étapes',
+    intro: 'Le Bilan ou l’Audit fixe la direction. Un premier gain concret, outil sur mesure ou sélection de fournisseurs, produit des résultats rapides. La direction TI à temps partagé en est la suite naturelle, une fois la confiance établie.',
     steps: [
       {
-        title: 'Diagnostic de maturité TI et alignement IA',
-        meta: '2 à 3 semaines · dès 12 500 $',
-        text: 'Le point de départ recommandé : l’état de vos systèmes, leurs faiblesses, les risques et la feuille de route, IA comprise.'
+        title: 'Bilan de santé TI ou Audit TI complet',
+        meta: '2 à 6 semaines · 4 500 $ ou 23 750 $',
+        text: 'Le point de départ recommandé : l’état de vos systèmes, les risques, vos priorités et, avec l’Audit, un plan chiffré, IA comprise.'
       },
       {
         title: 'Solutions logicielles sur mesure',
@@ -216,7 +250,7 @@ const jsonLd = {
   note={{
     id: 'essor',
     title: 'Aide financière possible',
-    text: 'Le Diagnostic de maturité TI n’est pas financé par le programme ESSOR d’Investissement Québec, mais il peut servir à définir un projet qui l’est. Selon le projet, une étude de faisabilité, un diagnostic et plan numérique complet ou la mise en œuvre de ce plan peut être admissible, avec un remboursement jusqu’à 50 % des dépenses admissibles. La demande doit être déposée avant le début du mandat, l’acceptation n’est pas garantie et le programme prend fin le 31 mars 2027. Nous pouvons vous aider à évaluer si votre projet s’y prête.'
+    text: 'Le Bilan de santé TI et l’Audit TI complet ne sont pas financés par le programme ESSOR d’Investissement Québec, mais ils peuvent servir à définir un projet qui l’est. Selon le projet, une étude de faisabilité, un diagnostic et plan numérique complet ou la mise en œuvre de ce plan peut être admissible, avec un remboursement jusqu’à 50 % des dépenses admissibles. La demande doit être déposée avant le début du mandat, l’acceptation n’est pas garantie et le programme prend fin le 31 mars 2027. Nous pouvons vous aider à évaluer si votre projet s’y prête.'
   }}
   expertise={{
     id: 'expertise-complementaire',
@@ -248,7 +282,7 @@ const jsonLd = {
   neutrality={{
     id: 'neutralite',
     title: 'Zéro commission. Zéro revente de licences. Entièrement de votre côté de la table.',
-    text: 'Monessor ne revend aucun logiciel (SaaS, ERP) et ne touche aucune commission de fournisseur : sa seule rémunération vient de ses clients. Quand il développe, ce sont des outils ciblés, pas des plateformes, dont vous possédez le code ; et le diagnostic peut tout aussi bien recommander un produit du marché.',
+    text: 'Monessor ne revend aucun logiciel (SaaS, ERP) et ne touche aucune commission de fournisseur : sa seule rémunération vient de ses clients. Quand il développe, ce sont des outils ciblés, pas des plateformes, dont vous possédez le code ; et l’audit peut tout aussi bien recommander un produit du marché.',
     delivery: 'Chaque mandat est dirigé personnellement par Alex Turcotte, associé directeur. Lorsqu’un mandat exige une expertise très pointue, Monessor fait appel à un spécialiste de son réseau.'
   }}
   other={{
