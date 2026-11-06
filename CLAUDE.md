@@ -20,7 +20,7 @@
 4. **Copie & Vocabulaire :**
    - Utiliser un ton C-Level, sobre et factuel.
    - Ne jamais utiliser de vocabulaire d'agence générique ("funnels", "growth hacking", "boostez vos ventes").
-   - Segment A = PME. Offre d'entrée = *Diagnostic de maturité TI & IA* (2-3 semaines). Repère de taille : « le plus souvent des entreprises de 20 à 250 employés », une seule fois, dans le corps de la page PME (section des enjeux) ; aucune fourchette de chiffre d'affaires, et jamais « établies » ni de repère de taille dans les menus, titres, bannières, méta ou données structurées.
+   - Segment A = PME. Offres d'entrée = *Bilan de santé TI* (4 500 $, 2-3 semaines) et *Audit TI complet* (23 750 $, 4-6 semaines), prix fixes ; *Avis ciblé TI* (1 500 $, livrable : sommaire décisionnel) en mention discrète sous les cartes. EN : IT Health Check, Full IT Audit, Targeted IT Review (decision brief). Ne plus écrire « Diagnostic de maturité TI » ni « dès 12 500 $ ». Repère de taille : « le plus souvent des entreprises de 20 à 250 employés », une seule fois, dans le corps de la page PME (section des enjeux) ; aucune fourchette de chiffre d'affaires, et jamais « établies » ni de repère de taille dans les menus, titres, bannières, méta ou données structurées.
    - Bouton de réservation : « Réserver un appel sans frais » / « Book a free call », lien par langue centralisé dans `src/utils/tracking.ts` (`meetingUrl`, `meetingLabel`).
    - Segment B = Secteurs Régulés (BSIF/OSFI). Offre d'entrée = *Revue de Gouvernance TI* (3-4 semaines), sans prix public.
    - Titre d'Alex Turcotte : associé directeur / Managing Partner. LinkedIn : https://www.linkedin.com/in/turcottealex

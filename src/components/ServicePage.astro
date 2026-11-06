@@ -13,6 +13,8 @@ import { articleSegments } from '../utils/articleSegments';
 
 type IconName = Parameters<typeof Icon>[0]['name'];
 type Item = { icon?: IconName; title: string; text: string; meta?: string };
+/** Carte d'offre à prix fixe (ex. Bilan, Audit) : `scope` précise la portée couverte par le prix. */
+type OfferCard = { title: string; tagline: string; meta: string; price: string; text: string; scope?: string };
 
 interface Props {
   locale: 'fr' | 'en';
@@ -24,8 +26,25 @@ interface Props {
   hero: { kicker: string; title: string; lead: string; secondary: { label: string; href: string } };
   /** `audience` : repère de taille des clients, affiché sous le titre. */
   issues: { id: string; title: string; audience?: string; items: Item[] };
-  /** `essor` : mention ESSOR sous le prix, liée à l'encadré `note` (id « essor »). */
-  offer: { id: string; kicker: string; title: string; lead: string; price: string; essor?: boolean; items: Item[] };
+  /**
+   * `essor` : mention ESSOR sous le prix, liée à l'encadré `note` (id « essor »).
+   * `cards` : plusieurs offres côte à côte (prix dans chaque carte), suivies de `notes`
+   * et des `items`, présentés sous `itemsTitle`.
+   */
+  offer: {
+    id: string;
+    kicker: string;
+    title: string;
+    lead: string;
+    price?: string;
+    essor?: boolean;
+    cards?: OfferCard[];
+    notes?: string[];
+    /** Encadré corail sous les notes (ex. Avis ciblé TI). */
+    callout?: { title: string; text: string };
+    itemsTitle?: string;
+    items: Item[];
+  };
   /** Deuxième offre : solutions logicielles sur mesure (PME seulement). */
   solutions?: {
     id: string;
@@ -56,6 +75,8 @@ const { locale, segment, title, description, jsonLd, hero, issues, offer, soluti
 // Alternance des fonds clair / blanc : la section des solutions décale les suivantes d'un cran
 const shade = (index: number) => ((index + (solutions ? 1 : 0)) % 2 === 0 ? 'bg-light' : 'bg-white');
 const container = 'mx-auto max-w-7xl px-6 lg:px-8';
+// Sous un intertitre (`itemsTitle`), les éléments de l'offre descendent d'un niveau de titre
+const OfferItemHeading = offer.itemsTitle ? 'h4' : 'h3';
 const meetingLabel = bookingLabel(locale);
 const meetingHref = meetingUrl(locale);
 
@@ -111,16 +132,42 @@ const shareImage = `/assets/og/${segment === 'pme' ? (locale === 'fr' ? 'og-pme-
       <p class="home-kicker text-teal">{offer.kicker}</p>
       <h2 class="home-h2">{offer.title}</h2>
       <p class="mt-4 max-w-3xl text-lg leading-relaxed">{offer.lead}</p>
-      <p class="mt-4 font-semibold text-teal">{offer.price}</p>
+      {offer.price && <p class="mt-4 font-semibold text-teal">{offer.price}</p>}
       {offer.essor && <EssorPriceNote locale={locale} href="#essor" />}
-      <div class="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">
+      {offer.cards && (
+        <div class="mt-10 grid gap-4 md:grid-cols-2">
+          {offer.cards.map((card) => (
+            <article class="flex flex-col rounded-2xl border border-slate-200 bg-light p-6 md:p-8">
+              <h3 class="offer-h3">{card.title}</h3>
+              <p class="mt-3 text-lg leading-relaxed">{card.tagline}</p>
+              <p class="mt-4 text-sm font-semibold text-teal">{card.meta}</p>
+              <p class="mt-4 leading-relaxed"><strong class="font-semibold text-teal">{locale === 'fr' ? 'Vous obtenez :' : 'You get:'}</strong> {card.text}</p>
+              <p class="mt-6 text-2xl font-bold text-teal">{card.price}</p>
+              {card.scope && <p class="mt-2 text-sm leading-relaxed">{card.scope}</p>}
+            </article>
+          ))}
+        </div>
+      )}
+      {offer.notes && (
+        <div class="mt-6 max-w-4xl space-y-2">
+          {offer.notes.map((line) => <p class="leading-relaxed">{line}</p>)}
+        </div>
+      )}
+      {offer.callout && (
+        <aside class="mt-6 rounded-2xl border border-slate-200 border-l-4 border-l-coral bg-white p-6">
+          <h3 class="text-lg font-semibold text-teal">{offer.callout.title}</h3>
+          <p class="mt-2 leading-relaxed">{offer.callout.text}</p>
+        </aside>
+      )}
+      {offer.itemsTitle && <div class="mt-14"><h3 class="offer-h3">{offer.itemsTitle}</h3></div>}
+      <div class={`${offer.itemsTitle ? 'mt-8' : 'mt-10'} grid gap-x-10 gap-y-8 md:grid-cols-2`}>
         {offer.items.map((item) => (
           <div class="flex gap-4">
             <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-light text-teal">
               {item.icon && <Icon name={item.icon} size={22} />}
             </span>
             <div>
-              <h3 class="home-h3">{item.title}</h3>
+              <OfferItemHeading class="home-h3">{item.title}</OfferItemHeading>
               <p class="mt-2 leading-relaxed">{item.text}</p>
             </div>
           </div>

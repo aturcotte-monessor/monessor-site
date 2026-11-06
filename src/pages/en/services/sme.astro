@@ -18,8 +18,21 @@ const jsonLd = {
     itemListElement: [
       {
         '@type': 'Offer',
-        itemOffered: { '@type': 'Service', name: 'IT Maturity Diagnostic and AI Alignment' },
-        priceSpecification: { '@type': 'PriceSpecification', minPrice: 12500, priceCurrency: 'CAD' }
+        itemOffered: { '@type': 'Service', name: 'Targeted IT Review' },
+        price: 1500,
+        priceCurrency: 'CAD'
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'IT Health Check' },
+        price: 4500,
+        priceCurrency: 'CAD'
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Full IT Audit' },
+        price: 23750,
+        priceCurrency: 'CAD'
       },
       {
         '@type': 'Offer',
@@ -44,8 +57,8 @@ const jsonLd = {
 <ServicePage
   locale="en"
   segment="pme"
-  title="IT Maturity Diagnostic and IT Leadership for SMEs | Monessor"
-  description="For SMEs: an IT Maturity Diagnostic from $12,500, custom software solutions built with AI from $15,000, and fractional IT leadership."
+  title="IT Health Check, IT Audit and IT Leadership for SMEs | Monessor"
+  description="For SMEs: an IT Health Check for $4,500, a full digital audit of your IT for $23,750, custom software solutions built with AI from $15,000, and fractional IT leadership."
   jsonLd={jsonLd}
   hero={{
     kicker: 'Strategic IT management advisory · SMEs',
@@ -93,29 +106,53 @@ const jsonLd = {
   offer={{
     id: 'diagnostic',
     kicker: 'Starting point',
-    title: 'IT Maturity Diagnostic and AI Alignment',
-    lead: 'A 2-to-3-week engagement that gives you a complete view of your technology: where it stands, its risks and what it can do for your profitability.',
-    price: 'From $12,500, fixed-scope engagement.',
+    title: 'Two ways to start',
+    lead: 'A first look to know where you stand, or a full audit to know what to do, in what order and for what return. Either way, we start from your actual systems and your actual contracts, not from a self-assessment.',
+    cards: [
+      {
+        title: 'IT Health Check',
+        tagline: 'An expert’s view of all your IT, and your priorities for the next 12 months.',
+        meta: '2 to 3 weeks · half a day of your time',
+        text: 'Your five main risks, three quick wins, AI opportunities and a budget estimate, presented to your leadership team.',
+        price: '$4,500, fixed price'
+      },
+      {
+        title: 'Full IT Audit',
+        tagline: 'Your systems, contracts and safeguards verified, with evidence, and a costed roadmap.',
+        meta: '4 to 6 weeks',
+        text: 'Every business function reviewed, key controls verified, AI use cases costed and an 18-month plan.',
+        price: '$23,750, fixed price',
+        scope: 'For one site, up to 10 systems, 5 interviews and 2 processes in depth. Different situation? We adjust the scope before we start.'
+      }
+    ],
+    notes: [
+      'Moving on within 60 days? What you paid is deducted from the next step.'
+    ],
+    callout: {
+      title: 'Just one question to settle?',
+      text: 'An expert view on a specific question, such as an IT vendor, a software choice or a system that worries you? The Targeted IT Review: a two-hour workshop, a focused analysis and a decision brief delivered in 5 to 10 business days, $1,500.'
+    },
+    itemsTitle: 'What the Full IT Audit covers',
     items: [
       {
         icon: 'layers',
-        title: 'Your processes and the real state of your systems',
-        text: 'A review of your main business processes and an independent look at your core systems: their stability, the risk of outages and what they really cost you, licences, upkeep and support included.'
+        title: 'Your functions, your processes and the real state of your systems',
+        text: 'Every business function, from sales to payroll, and an independent review of your core systems: their stability, the risk of outages and what they really cost you, licences, maintenance and support included.'
       },
       {
-        icon: 'brain-circuit',
-        title: 'Where AI will save you time or money',
-        text: 'The processes you can automate in the near term, each with its estimated financial return, rather than projects driven by hype.'
+        icon: 'lock',
+        title: 'Your cybersecurity and your ability to recover',
+        text: 'Essential safeguards are verified, not just declared: backups taken at the right frequency, recovery targets set and tested, multi-factor authentication, access for employees who have left and for vendors.'
       },
       {
         icon: 'handshake',
-        title: 'Your contracts and vendors under the microscope',
-        text: 'An independent view of vendor quotes, cloud costs and supplier dependencies, ahead of renegotiation.'
+        title: 'Your contracts, your vendors and your costs',
+        text: 'An independent look at your contracts, licences and cloud costs, with the dependencies to reduce and the renegotiation opportunities.'
       },
       {
         icon: 'map',
-        title: '18-month roadmap',
-        text: 'A clear, prioritized and costed plan: where to invest, in what order, for what return, and how to bring your teams through the change.'
+        title: 'AI and a costed 18-month plan',
+        text: 'The most profitable uses of AI and automation, each with its estimated return, then a prioritized plan: where to invest, in what order, and how to support your teams through the change.'
       }
     ]
   }}
@@ -182,19 +219,19 @@ const jsonLd = {
       ]
     },
     strategy: {
-      text: 'Your AI strategy is set in the IT Maturity Diagnostic and AI Alignment, which produces a prioritized AI roadmap. This offer delivers one item of that roadmap, or directly removes a friction point you already know.',
-      link: { label: 'The IT Maturity Diagnostic ↑', href: '#diagnostic' }
+      text: 'Your AI strategy is set in the Full IT Audit, which costs out the most profitable uses of AI and places them in a prioritized plan. This offer delivers one item of that plan, or directly removes a friction point you already know.',
+      link: { label: 'The Full IT Audit ↑', href: '#diagnostic' }
     }
   }}
   path={{
     id: 'approche',
-    title: 'After the diagnostic: a step-by-step path',
-    intro: 'The diagnostic sets the direction. A first concrete gain, a custom tool or a vendor selection, produces quick results. Fractional IT leadership is the natural next step, once trust is established.',
+    title: 'After the first look: a step-by-step path',
+    intro: 'The Health Check or the Audit sets the direction. A first concrete gain, a custom tool or a vendor selection, produces quick results. Fractional IT leadership is the natural next step, once trust is established.',
     steps: [
       {
-        title: 'IT Maturity Diagnostic and AI Alignment',
-        meta: '2 to 3 weeks · from $12,500',
-        text: 'The recommended starting point: the state of your systems, their weak spots, the risks and the roadmap, AI included.'
+        title: 'IT Health Check or Full IT Audit',
+        meta: '2 to 6 weeks · $4,500 or $23,750',
+        text: 'The recommended starting point: the state of your systems, the risks, your priorities and, with the Audit, a costed plan, AI included.'
       },
       {
         title: 'Custom Software Solutions',
@@ -216,7 +253,7 @@ const jsonLd = {
   note={{
     id: 'essor',
     title: 'Possible financial assistance',
-    text: 'The IT Maturity Diagnostic is not funded by Investissement Québec’s ESSOR program, but it can help define a project that is. Depending on the project, a feasibility study, a full digital diagnostic and plan, or the implementation of that plan may be eligible, with up to 50% of eligible expenses reimbursed. The application must be filed before the engagement begins, approval is not guaranteed and the program ends on March 31, 2027. We can help you assess whether your project qualifies.'
+    text: 'The IT Health Check and the Full IT Audit are not funded by Investissement Québec’s ESSOR program, but they can help define a project that is. Depending on the project, a feasibility study, a full digital diagnostic and plan, or the implementation of that plan may be eligible, with up to 50% of eligible expenses reimbursed. The application must be filed before the engagement begins, approval is not guaranteed and the program ends on March 31, 2027. We can help you assess whether your project qualifies.'
   }}
   expertise={{
     id: 'expertise-complementaire',
@@ -248,7 +285,7 @@ const jsonLd = {
   neutrality={{
     id: 'neutralite',
     title: 'No commissions. No software resale. Entirely on your side of the table.',
-    text: 'Monessor resells no software (SaaS, ERP) and takes no vendor commissions: it is paid by its clients only. When it builds, it builds targeted tools, not platforms, and you own the code; the diagnostic can just as well recommend an off-the-shelf product.',
+    text: 'Monessor resells no software (SaaS, ERP) and takes no vendor commissions: it is paid by its clients only. When it builds, it builds targeted tools, not platforms, and you own the code; the audit can just as well recommend an off-the-shelf product.',
     delivery: 'Every engagement is led personally by Alex Turcotte, Managing Partner. When an engagement calls for highly specialized expertise, Monessor brings in a specialist from its network.'
   }}
   other={{
