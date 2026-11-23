@@ -1,0 +1,54 @@
+---
+// Liens suivis vers des documents hébergés ailleurs (ex. fiches CCOIM dans Google Drive).
+// La page charge Fathom, qui enregistre la visite (avec les UTM de l'adresse), puis redirige.
+// Non indexée, hors sitemap (filtre dans astro.config.mjs), sans canonical pour que Fathom
+// enregistre l'adresse /go/<slug> elle-même. Ne jamais y afficher de prix : la page reste vide.
+export function getStaticPaths() {
+  const links = {
+    'ccoim-fr': {
+      lang: 'fr',
+      href: 'https://drive.google.com/file/d/13IZTlDFHNs4enhFjoYWJe9dL0Hj6qPuy/view?usp=sharing',
+      label: 'Ouvrir la fiche',
+      wait: 'Ouverture de la fiche…'
+    },
+    'wimcc-en': {
+      lang: 'en',
+      href: 'https://drive.google.com/file/d/1XHgZvNWGoz3xfi_i1dr5Eu-XeKdJC0RT/view?usp=sharing',
+      label: 'Open the offer sheet',
+      wait: 'Opening the offer sheet…'
+    }
+  };
+  return Object.entries(links).map(([slug, link]) => ({ params: { slug }, props: link }));
+}
+const { lang, href, label, wait } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Monessor</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon-v2.svg" />
+    <script is:inline define:vars={{ href }}>
+      var done = false;
+      function go() { if (!done) { done = true; location.replace(href); } }
+      // Laisse le temps à Fathom d'envoyer la visite ; repli si le script est bloqué.
+      window.fathomLoaded = function () { setTimeout(go, 600); };
+      setTimeout(go, 2500);
+    </script>
+    <script is:inline src="https://cdn.usefathom.com/script.js" data-site="LRVBMDAF" defer onload="fathomLoaded()" onerror="go()"></script>
+    <style>
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #102A2E; color: #F8FAFC; font-family: system-ui, sans-serif; text-align: center; }
+      a { color: #F8FAFC; font-weight: 600; display: inline-block; padding: 12px 4px; }
+      a:focus-visible { outline: 3px solid #FF6F61; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>{wait}</p>
+      <p><a href={href}>{label}</a></p>
+    </main>
+  </body>
+</html>
